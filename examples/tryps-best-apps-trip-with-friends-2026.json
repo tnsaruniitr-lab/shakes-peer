@@ -1,0 +1,99 @@
+{
+  "topic": "Best Apps for Planning a Trip with Friends (2026 Comparison)",
+  "primary_keyword": "best apps for planning a trip with friends",
+  "secondary_keywords": [
+    "group trip planning app",
+    "best app for planning a trip with friends",
+    "trip planner app for friends",
+    "TRYPS vs Wanderlog",
+    "Wanderlog alternative",
+    "Splitwise alternative for trips"
+  ],
+  "search_intent": "commercial",
+  "audience": "Friends organising group trips, bachelorettes, birthdays, ski weekends, and international getaways",
+  "angle": "Give readers a real comparison based on what usually breaks first in group-trip planning: picking dates, building an itinerary, splitting costs, and keeping everyone in sync.",
+  "post_format": "comparison",
+  "brand": {
+    "name": "TRYPS",
+    "domain": "https://jointryps.com",
+    "product_name": "TRYPS",
+    "product_description": "A group trip planning app for friends with date polling, shared itinerary, expense splitting, and a no-download invite link.",
+    "audience": "Trip organisers planning with friends",
+    "tone_of_voice": "Direct, warm, slightly dry. No corporate fluff.",
+    "differentiators": [
+      "date polling built into the trip flow",
+      "shared itinerary for the whole group",
+      "expense splitting in the same app",
+      "no-download invite link",
+      "real-time updates for group coordination"
+    ],
+    "founder": "Jake Stein",
+    "twitter_handle": "@trypsapp"
+  },
+  "sources": [
+    {
+      "id": "tryps-homepage",
+      "title": "TRYPS homepage",
+      "url": "https://jointryps.com/",
+      "publisher": "TRYPS",
+      "excerpt": "TRYPS positions itself as a group trip planning app for friends with one-link invite, group date poll, shared itinerary, split expenses, and real-time updates."
+    },
+    {
+      "id": "wanderlog-plan-trip",
+      "title": "Wanderlog plan-a-trip page",
+      "url": "https://app.wanderlog.com/plan-a-trip",
+      "publisher": "Wanderlog",
+      "excerpt": "Wanderlog highlights itinerary building, route planning, budgeting, packing lists, maps, and recommendations for travel planning."
+    },
+    {
+      "id": "wanderlog-android",
+      "title": "Wanderlog Android app listing",
+      "url": "https://play.google.com/store/apps/details?id=com.wanderlog.android",
+      "publisher": "Google Play / Wanderlog",
+      "excerpt": "The listing describes Wanderlog as free for planning trips including group travel, with collaboration, route optimisation, reservation imports, and map-based planning."
+    },
+    {
+      "id": "splitwise-home",
+      "title": "Splitwise homepage",
+      "url": "https://www.splitwise.com/index.html",
+      "publisher": "Splitwise",
+      "excerpt": "Splitwise focuses on shared expenses, balances, groups, and settling up with friends, including trips."
+    },
+    {
+      "id": "tripit-how-it-works",
+      "title": "TripIt how it works",
+      "url": "https://www.tripit.com/web/free/how-it-works",
+      "publisher": "TripIt",
+      "excerpt": "TripIt creates itineraries by having users forward confirmation emails to plans@tripit.com and then builds a comprehensive itinerary that can be shared."
+    },
+    {
+      "id": "tripit-getting-started",
+      "title": "TripIt getting started",
+      "url": "https://help.tripit.com/en/support/solutions/articles/103000063304-getting-started",
+      "publisher": "TripIt",
+      "published_at": "2025-03-21",
+      "excerpt": "TripIt says users can forward confirmation emails or use Inbox Sync, then share plans with family, friends, and coworkers."
+    },
+    {
+      "id": "google-sheets",
+      "title": "Google Sheets product page",
+      "url": "https://workspace.google.com/products/sheets/index.html",
+      "publisher": "Google Workspace",
+      "excerpt": "Google Sheets emphasizes online collaborative spreadsheets, co-editing, comments, access controls, version history, and working across devices."
+    }
+  ],
+  "article": {
+    "slug": "best-apps-for-planning-a-trip-with-friends",
+    "target_word_count": 2400,
+    "include_faq": true,
+    "include_howto_schema": false,
+    "include_comparison_table": true,
+    "cta_label": "One tool that handles all of it.",
+    "cta_url": "https://jointryps.com/start",
+    "author_name": "TRYPS Editorial Team",
+    "hero_image_url": "https://jointryps.com/images/blog/best-apps-for-planning-a-trip-with-friends-hero.png",
+    "hero_image_alt": "Friends coordinating a trip plan across dates, itinerary, and shared costs",
+    "category": "Trip Planning"
+  },
+  "model": "gpt-4.1"
+}

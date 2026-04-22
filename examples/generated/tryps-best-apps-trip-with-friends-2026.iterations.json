@@ -1,0 +1,23 @@
+[
+  {
+    "iteration": 0,
+    "stage": "initial",
+    "score": 88,
+    "rating": "Minor fixes needed",
+    "fix_count": 3
+  },
+  {
+    "iteration": 1,
+    "stage": "improved",
+    "score": 92,
+    "rating": "Publish-ready",
+    "fix_count": 2
+  },
+  {
+    "iteration": 2,
+    "stage": "improved",
+    "score": 92,
+    "rating": "Publish-ready",
+    "fix_count": 2
+  }
+]

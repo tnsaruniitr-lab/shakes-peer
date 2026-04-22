@@ -1,0 +1,154 @@
+{
+  "brand_name": "TRYPS",
+  "canonical_domain": "https://trypsagent.com",
+  "support_email": "support@jointryps.com",
+  "product_summary": "TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.",
+  "homepage_claims": [
+    "A group trip planning app your friends actually use.",
+    "Choose dates, build a shared itinerary, and split expenses — all in one place.",
+    "No downloads. No sign-ups. Send one link or iMessage — your group joins instantly and starts planning.",
+    "One link. Everyone in. Dates locked. Plan built. Costs settled."
+  ],
+  "key_features": [
+    "date polling",
+    "shared itinerary",
+    "expense splitting",
+    "no-download invite link",
+    "iMessage invite support",
+    "group preference capture"
+  ],
+  "proof_points": [
+    "500+ groups already planning trips",
+    "500+ groups waiting",
+    "iOS & Android apps coming soon — join the waitlist to be first"
+  ],
+  "use_cases": [
+    "birthdays",
+    "bachelor trips",
+    "reunions",
+    "weekend getaways",
+    "long vacations",
+    "destination trips"
+  ],
+  "comparison_targets": [
+    "WhatsApp",
+    "Google Sheets",
+    "Splitwise",
+    "Wanderlog"
+  ],
+  "comparison_stance": {
+    "WhatsApp": "Good for chatting, not for locking dates, structuring trip plans, or tracking shared expenses.",
+    "Google Sheets": "Flexible, but manual and fragmented.",
+    "Splitwise": "Useful for settling costs, but only solves one part of the trip.",
+    "Wanderlog": "Useful for itinerary planning, but not designed around group alignment first."
+  },
+  "editorial_phrases": [
+    "One poll. Dates locked. Move forward.",
+    "Turn \"we should go\" into an actual plan.",
+    "The trip has been in the group chat long enough."
+  ],
+  "social_proof_examples": [
+    "Aarav M. organised a 7-person Barcelona trip",
+    "Riya S. organised a bachelorette weekend in Jaipur",
+    "Kabir T. organised a 5-person road trip"
+  ],
+  "content_examples": [
+    "How to plan a group trip without endless back-and-forth",
+    "How to split trip expenses with friends fairly",
+    "Weekend trip planning checklist for friend groups",
+    "Planning a Goa trip with friends",
+    "Planning a Manali trip with friends",
+    "Planning a Pondicherry trip with friends",
+    "Planning a Coorg trip with friends",
+    "7 Days in Oahu With Friends: An Itinerary That Actually Works"
+  ],
+  "voice": {
+    "tone": [
+      "empathetic to the organiser",
+      "confident but not arrogant",
+      "direct",
+      "slightly witty in a dry, restrained way"
+    ],
+    "banned_phrases": [
+      "seamless",
+      "game-changing",
+      "next-level",
+      "cutting-edge",
+      "in today's fast-paced world",
+      "it goes without saying"
+    ]
+  },
+  "naming_rules": {
+    "brand": "TRYPS",
+    "always_use": [
+      "TRYPS"
+    ],
+    "never_use": [
+      "Tryps",
+      "the TRYPS app"
+    ]
+  },
+  "audience_language": {
+    "preferred": [
+      "the organiser",
+      "you",
+      "your group",
+      "your friends",
+      "everyone"
+    ],
+    "avoid": [
+      "users",
+      "customers",
+      "individuals"
+    ]
+  },
+  "urls": {
+    "home": "https://trypsagent.com/",
+    "start": "https://trypsagent.com/start",
+    "waitlist": "https://trypsagent.com/waitlist",
+    "about": "https://trypsagent.com/about",
+    "contact": "https://trypsagent.com/contact",
+    "privacy": "https://trypsagent.com/privacy",
+    "terms": "https://trypsagent.com/terms",
+    "guide": "https://trypsagent.com/group-trip-planning-guide",
+    "split_trip_expenses": "https://trypsagent.com/split-trip-expenses",
+    "weekend_trip_checklist": "https://trypsagent.com/weekend-trip-planning-checklist",
+    "goa_trip": "https://trypsagent.com/plan-a-goa-trip-with-friends",
+    "manali_trip": "https://trypsagent.com/plan-a-manali-trip-with-friends",
+    "pondicherry_trip": "https://trypsagent.com/plan-a-pondicherry-trip-with-friends",
+    "coorg_trip": "https://trypsagent.com/plan-a-coorg-trip-with-friends",
+    "og_image_pattern": "https://trypsagent.com/og/[slug]-og.jpg",
+    "logo": "https://trypsagent.com/assets/logo.png"
+  },
+  "navigation": [
+    { "label": "TRYPS", "href": "/", "aria_label": "TRYPS home" },
+    { "label": "Features", "href": "#features" },
+    { "label": "How it works", "href": "#how-it-works" },
+    { "label": "Comparison", "href": "#comparison" },
+    { "label": "Use cases", "href": "#use-cases" },
+    { "label": "FAQ", "href": "#faq" },
+    { "label": "About", "href": "/about" },
+    { "label": "Guide", "href": "/group-trip-planning-guide" },
+    { "label": "Join waitlist", "href": "/waitlist" },
+    { "label": "Start planning", "href": "/start" }
+  ],
+  "footer_navigation": [
+    { "label": "About", "href": "/about" },
+    { "label": "Privacy", "href": "/privacy" },
+    { "label": "Terms", "href": "/terms" },
+    { "label": "Contact", "href": "/contact" },
+    { "label": "Guide", "href": "/group-trip-planning-guide" }
+  ],
+  "editorial_rules": {
+    "use_specific_numbers_when_available": true,
+    "do_not_invent_statistics": true,
+    "prioritize_organiser_pain": true,
+    "allow_generalization_without_fake_stats": true
+  },
+  "truth_boundary": {
+    "prefer_brand_md_over_old_prompt_files": true,
+    "flag_live_site_conflicts": true,
+    "do_not_assume_imessage_feature_without_current_support": false,
+    "imessage_supported_on_live_site_as_of": "2026-04-12"
+  }
+}

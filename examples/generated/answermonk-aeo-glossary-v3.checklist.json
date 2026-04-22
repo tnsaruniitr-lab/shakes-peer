@@ -1,0 +1,69 @@
+{
+  "publish_ready": true,
+  "checklist_passed": 10,
+  "checklist_total": 10,
+  "editorial_checklist": [
+    {
+      "id": "author",
+      "label": "Named author with LinkedIn",
+      "pass": true,
+      "detail": "Arun Sharma, Founder, AnswerMonk"
+    },
+    {
+      "id": "reviewer",
+      "label": "Editorial reviewer",
+      "pass": true,
+      "detail": "Jane Editor"
+    },
+    {
+      "id": "first_party_data",
+      "label": "First-party data point(s)",
+      "pass": true,
+      "detail": "2 point(s)"
+    },
+    {
+      "id": "named_examples",
+      "label": "Named examples (3+)",
+      "pass": true,
+      "detail": "4 brand(s)"
+    },
+    {
+      "id": "editorial_stance",
+      "label": "Editorial stance",
+      "pass": true,
+      "detail": "AEO, GEO, and LLMO are converging into a single discipline \u2014 treating them as se"
+    },
+    {
+      "id": "original_visuals",
+      "label": "Original visuals (1+)",
+      "pass": true,
+      "detail": "2 declared, 0 pending replacement"
+    },
+    {
+      "id": "primary_citations",
+      "label": "Primary-tier citations (3+)",
+      "pass": true,
+      "detail": "4 primary / 5 total"
+    },
+    {
+      "id": "refresh_commitment",
+      "label": "Next review date set",
+      "pass": true,
+      "detail": "2026-07-22"
+    },
+    {
+      "id": "stance_in_body",
+      "label": "Editorial stance restated in body",
+      "pass": true,
+      "detail": "Splitting AEO, GEO, and LLMO into separate strategies has become obsolete\u2014centra"
+    },
+    {
+      "id": "fpd_anchored",
+      "label": "First-party data anchored to sections",
+      "pass": true,
+      "detail": "How Is AEO Different From SEO? | Is There a Difference Between AEO, GEO, and LLMO?"
+    }
+  ],
+  "human_signal_gaps": [],
+  "pending_visual_placements": []
+}

@@ -74,3 +74,7 @@ npm run dev            # starts on :3000
 ## Stack
 
 Express 5 · TypeScript · Zod · OpenAI / Anthropic · SerpAPI
+
+## Auto-sync
+
+Edits inside `serp-analyzer/` are auto-committed and pushed to `origin/main` (debounced, 4s window) by a Claude Code PostToolUse hook configured in `.claude/settings.local.json`. Disable by removing the hook.

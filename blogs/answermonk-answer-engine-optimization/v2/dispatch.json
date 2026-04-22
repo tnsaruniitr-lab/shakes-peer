@@ -1,0 +1,103 @@
+{
+  "round": 1,
+  "counts": {
+    "applied": 6,
+    "skipped": 7,
+    "drift": 1,
+    "ambiguous": 1
+  },
+  "criticalUnresolved": false,
+  "trace": [
+    {
+      "checkId": "P_faq_count_mismatch",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "FAQPage rebuilt from 7 visible FAQ(s)"
+    },
+    {
+      "checkId": "S_tldr_missing",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "TL;DR inserted (435 chars)"
+    },
+    {
+      "checkId": "S_missing_DefinedTerm_schema",
+      "action": "insert_missing",
+      "outcome": "applied",
+      "reason": "DefinedTerm 'what is aeo' appended"
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "D_Organization_missing_recommended",
+      "action": "insert_missing",
+      "outcome": "skipped",
+      "reason": "no patch envelope"
+    },
+    {
+      "checkId": "D_WebPage_missing_recommended",
+      "action": "insert_missing",
+      "outcome": "skipped",
+      "reason": "no patch envelope"
+    },
+    {
+      "checkId": "S_h2_question_ratio_low",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "S_word_count_above_band",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "2258 words → reclassified to 'pillar' (band fit)"
+    },
+    {
+      "checkId": "H_em_dash_overuse",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "H_judge_specific_human_voice_vs_committee",
+      "action": "apply_patch",
+      "outcome": "drift",
+      "reason": "before string not found in html (patch type=replace_span, target=AEO, or Answer Engine Optimization, is the discipline of maximizing your brand's visibility and source citations in AI-driven engines such as ChatGPT, Gemini, Claude, and Perplexity.)"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (86b → 96b)"
+    },
+    {
+      "checkId": "H_judge_quotability",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (90b → 114b)"
+    },
+    {
+      "checkId": "H_judge_intro_earns_attention_in_first_2_sentenc",
+      "action": "apply_patch",
+      "outcome": "ambiguous",
+      "reason": "before string matches 2 locations — refusing to blind-replace"
+    }
+  ],
+  "escalations": []
+}

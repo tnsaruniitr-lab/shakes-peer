@@ -1,0 +1,54 @@
+[
+  {
+    "iteration": 0,
+    "layerScores": {
+      "technical": 24,
+      "humanization": 53,
+      "quality": 80,
+      "overall": 50
+    },
+    "delta": 0,
+    "elapsedMs": 41151,
+    "costUsd": 0.18681899999999999,
+    "rewriteCount": 9
+  },
+  {
+    "iteration": 1,
+    "layerScores": {
+      "technical": 24,
+      "humanization": 69,
+      "quality": 80,
+      "overall": 56
+    },
+    "delta": 6,
+    "elapsedMs": 35558,
+    "costUsd": 0.18139800000000003,
+    "rewriteCount": 2
+  },
+  {
+    "iteration": 2,
+    "layerScores": {
+      "technical": 24,
+      "humanization": 71,
+      "quality": 77,
+      "overall": 56
+    },
+    "delta": 0,
+    "elapsedMs": 32104,
+    "costUsd": 0.173805,
+    "rewriteCount": 1
+  },
+  {
+    "iteration": 3,
+    "layerScores": {
+      "technical": 24,
+      "humanization": 71,
+      "quality": 80,
+      "overall": 57
+    },
+    "delta": 1,
+    "elapsedMs": 32816,
+    "costUsd": 0.18067800000000003,
+    "rewriteCount": 0
+  }
+]

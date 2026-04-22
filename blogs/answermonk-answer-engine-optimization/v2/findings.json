@@ -1,0 +1,677 @@
+[
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: dateModified, isPartOf, primaryImageOfPage, inLanguage",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "39 em-dashes (6.79 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "40 tricolons (8.71/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_banned_vocabulary",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "AI-signature vocabulary present: robust(1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Specific human voice vs committee 2/10 — Reads like a templated SEO brief with reviewer bylines, 'Quick answer' blocks, and 'Key takeaways' scaffolding—no human cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This glossary guide defines AEO for 2026, explains why the lines with GEO and LLMO have disappeared, provides real audit data and brand examples, and offers a practical table to compare each approach.",
+      "before": "This glossary guide defines AEO for 2026, explains why the lines with GEO and LLMO have disappeared, provides real audit data and brand examples, and offers a practical table to compare each approach.",
+      "after": "I'll show you why AEO, GEO, and LLMO have collapsed into one discipline—and share audit data from 1,240 SaaS brands that convinced me.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 2/10: Reads like a templated SEO brief with reviewer bylines, 'Quick answer' blocks, and 'Key takeaways' scaffolding—no human cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 4/10 — There is a stated 'take' but it's hedged and repeated verbatim across sections rather than argued with conviction.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO, GEO, and LLMO are converging into a single discipline — treating them as separate strategies is wrong and wastes budget",
+      "before": "AEO, GEO, and LLMO are converging into a single discipline — treating them as separate strategies is wrong and wastes budget",
+      "after": "Running separate AEO, GEO, and LLMO teams is the dumbest budget line item I've seen in 2026—kill it before your CFO does.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 4/10: There is a stated 'take' but it's hedged and repeated verbatim across sections rather than argued with conviction."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Unexpected phrasings 2/10 — Every sentence leans on predictable SEO-blog phrasing: 'fragment your signal,' 'holistic strategy,' 'drive visibility.'",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Brands that spread resources across separate playbooks fragment their signal and dilute performance.",
+      "before": "Brands that spread resources across separate playbooks fragment their signal and dilute performance.",
+      "after": "Split your playbook across three acronyms and you'll end up with three half-baked strategies and zero citations.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 2/10: Every sentence leans on predictable SEO-blog phrasing: 'fragment your signal,' 'holistic strategy,' 'drive visibility.'"
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 6/10 — Has a thesis (convergence) but delivers it in surveying, encyclopedia-style prose rather than argument.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Originally, Generative Engine Optimization (GEO) and Large Language Model Optimization (LLMO) emerged to describe nuances of optimizing for ChatGPT and similar LLMs.",
+      "before": "Originally, Generative Engine Optimization (GEO) and Large Language Model Optimization (LLMO) emerged to describe nuances of optimizing for ChatGPT and similar LLMs.",
+      "after": "GEO and LLMO were vendor-invented acronyms that never described anything AEO didn't already cover—the convergence isn't new, the labels were redundant.",
+      "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 6/10: Has a thesis (convergence) but delivers it in surveying, encyclopedia-style prose rather than argument."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Quotable sentence 2/10 — Nothing here is memorable; it's all generic optimization advice phrased in passive declarative form.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Engines reward brands with centralized, schema-driven content and original data, regardless of engine label.",
+      "before": "Engines reward brands with centralized, schema-driven content and original data, regardless of engine label.",
+      "after": "The engines don't care which acronym is on your Jira ticket—they reward the same four signals every time.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 2/10: Nothing here is memorable; it's all generic optimization advice phrased in passive declarative form."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention_in_first_2_sentenc",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention in first 2 sentences 3/10 — Opens with a dictionary definition and an acronym list—classic featured-snippet bait that doesn't pull the reader in.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "Only 11% of B2B SaaS brands show up in a ChatGPT buyer prompt they weren't named in. AEO is how the other 89% fix that.",
+      "rationale": "Humanization axis \"Intro earns attention in first 2 sentences\" scored 3/10: Opens with a dictionary definition and an acronym list—classic featured-snippet bait that doesn't pull the reader in."
+    }
+  },
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: isPartOf",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "42 em-dashes (7.30 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "41 tricolons (8.91/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly reads as corporate glossary boilerplate; a few punchy lines ('dumbest budget line item') hint at a voice but get buried.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO, or Answer Engine Optimization, is the discipline of maximizing your brand's visibility and source citations in AI-driven engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "AEO, or Answer Engine Optimization, is the discipline of maximizing your brand's visibility and source citations in AI-driven engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "I've been calling this AEO since 2023, and it still just means: get your brand cited when someone asks ChatGPT a question.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mostly reads as corporate glossary boilerplate; a few punchy lines ('dumbest budget line item') hint at a voice but get buried."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has a few real opinions (GEO/LLMO as vendor inventions, kill the budget line), but they're diluted by generic restatements.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AI answer engines prioritize sourceable, structured, and authoritative content.",
+      "before": "AI answer engines prioritize sourceable, structured, and authoritative content.",
+      "after": "Most 'AEO checklists' circulating on LinkedIn are useless—they optimize for schema validators, not for what Perplexity actually cites.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: Has a few real opinions (GEO/LLMO as vendor inventions, kill the budget line), but they're diluted by generic restatements."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — 'Dumbest budget line item' and 'which acronym is on your Jira ticket' are fresh; most phrasing is predictable AEO jargon.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AI answer engines prioritize sourceable, structured, and authoritative content.",
+      "before": "AI answer engines prioritize sourceable, structured, and authoritative content.",
+      "after": "Answer engines don't read your content—they scrape it for quotable sentences, then discard the rest.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: 'Dumbest budget line item' and 'which acronym is on your Jira ticket' are fresh; most phrasing is predictable AEO jargon."
+    }
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotability 5/10 — One or two lines are quotable; most summaries are flat formula-speak.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Split discipline = split signal and lower overall brand visibility.",
+      "before": "Split discipline = split signal and lower overall brand visibility.",
+      "after": "The engines don't care which acronym is on your Jira ticket—they reward the same four signals every time.",
+      "rationale": "Humanization axis \"Quotability\" scored 5/10: One or two lines are quotable; most summaries are flat formula-speak."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention_in_first_2_sentenc",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention in first 2 sentences 3/10 — Opens with a textbook definition and a vague 'should be treated as' claim—no hook, no tension.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "If you're running separate AEO, GEO, and LLMO playbooks in 2026, you're burning budget on three names for the same job.",
+      "rationale": "Humanization axis \"Intro earns attention in first 2 sentences\" scored 3/10: Opens with a textbook definition and a vague 'should be treated as' claim—no hook, no tension."
+    }
+  },
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: isPartOf",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "44 em-dashes (7.60 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "40 tricolons (8.63/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly committee-speak with occasional personality flashes ('dumbest budget line item', 'Jira ticket').",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO visibility is best measured by tracking your brand's citation frequency and share-of-voice in specific AI buyer prompts across ChatGPT, Gemini, Claude, Perplexity, and Google AI Overviews.",
+      "before": "AEO visibility is best measured by tracking your brand's citation frequency and share-of-voice in specific AI buyer prompts across ChatGPT, Gemini, Claude, Perplexity, and Google AI Overviews.",
+      "after": "Measure AEO the way I do: count how often your brand shows up in the 20 prompts your buyers actually type into ChatGPT.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mostly committee-speak with occasional personality flashes ('dumbest budget line item', 'Jira ticket')."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — A few sharp lines exist but most prose is boilerplate ('goes beyond traditional', 'holistic strategy', 'discipline of maximizing').",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO goes beyond traditional SEO by focusing on structured content and authority signals that influence AI-generated answers, not just blue links.",
+      "before": "AEO goes beyond traditional SEO by focusing on structured content and authority signals that influence AI-generated answers, not just blue links.",
+      "after": "AEO isn't SEO with a new hat—it's about getting quoted, not ranked.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: A few sharp lines exist but most prose is boilerplate ('goes beyond traditional', 'holistic strategy', 'discipline of maximizing')."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentence 6/10 — 'The engines don't care which acronym is on your Jira ticket' is quotable; most other lines aren't.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with a textbook definition and a dry convergence claim—no hook, no stakes.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "Only 11% of the 1,240 SaaS brands we audited got cited by ChatGPT when a buyer asked about their category. Here's why.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with a textbook definition and a dry convergence claim—no hook, no stakes."
+    }
+  },
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: isPartOf",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "45 em-dashes (7.80 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "40 tricolons (8.67/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly committee-speak with occasional spikes of voice ('dumbest budget line item')—the voice is inconsistent.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO, or Answer Engine Optimization, is the discipline of maximizing your brand's visibility and source citations in AI-driven engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "AEO, or Answer Engine Optimization, is the discipline of maximizing your brand's visibility and source citations in AI-driven engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "AEO is how you get ChatGPT, Gemini, Claude, and Perplexity to name-drop your brand instead of a competitor's.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mostly committee-speak with occasional spikes of voice ('dumbest budget line item')—the voice is inconsistent."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has some real takes (GEO/LLMO are 'vendor-invented acronyms', LinkedIn checklists 'useless'), but they're buried in generic definitional paragraphs.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — 'Jira ticket' and 'new hat' lines are fresh, but most sentences recycle stock marketing cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO targets brand visibility and citations in AI/LLM responses—across leading engines.",
+      "before": "AEO targets brand visibility and citations in AI/LLM responses—across leading engines.",
+      "after": "AEO is the fight to be the brand an AI name-drops when a buyer asks a category question at 11pm.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: 'Jira ticket' and 'new hat' lines are fresh, but most sentences recycle stock marketing cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotability 6/10 — A few quotable lines exist ('not SEO with a new hat', 'Jira ticket'), but most sentences are forgettable.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Measure AEO with share-of-voice, citation frequency, and prompt-level appearance tracking.",
+      "before": "Measure AEO with share-of-voice, citation frequency, and prompt-level appearance tracking.",
+      "after": "If your CFO can't see your brand cited by name in a Perplexity answer this quarter, you don't have an AEO program.",
+      "rationale": "Humanization axis \"Quotability\" scored 6/10: A few quotable lines exist ('not SEO with a new hat', 'Jira ticket'), but most sentences are forgettable."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention_in_first_2_sentenc",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention in first 2 sentences 4/10 — Opens with a textbook definition and a procedural claim; no hook, no tension, no reason to keep reading.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "AEO—answer engine optimization—refers to improving brand visibility in AI engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "If your brand isn't being quoted by ChatGPT, you don't exist to half your buyers. That's what AEO fixes—and why splitting it from GEO is burning budget.",
+      "rationale": "Humanization axis \"Intro earns attention in first 2 sentences\" scored 4/10: Opens with a textbook definition and a procedural claim; no hook, no tension, no reason to keep reading."
+    }
+  }
+]

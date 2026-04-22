@@ -1,0 +1,107 @@
+[
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: isPartOf",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "severity": "warn",
+    "evidence": "43 em-dashes (7.23 per 400 words; target <1)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "severity": "warn",
+    "evidence": "42 tricolons (8.83/500 words; target ≤2)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Mixes strong opinionated lines with heavy boilerplate definitions repeated 3+ times.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has some real takes (GEO/LLMO are 'vendor-invented acronyms', LinkedIn checklists 'useless'), but they're buried in generic definitional paragraphs.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — 'Jira ticket' and 'new hat' lines are fresh, but most sentences recycle stock marketing cadence.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "severity": "warn",
+    "evidence": "Quotability 6/10 — A few quotable lines exist ('not SEO with a new hat', 'Jira ticket'), but most sentences are forgettable.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention_in_first_2_sentenc",
+    "severity": "warn",
+    "evidence": "Intro earns attention in first 2 sentences 4/10 — Opens with a textbook definition and a procedural claim; no hook, no tension, no reason to keep reading.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  }
+]

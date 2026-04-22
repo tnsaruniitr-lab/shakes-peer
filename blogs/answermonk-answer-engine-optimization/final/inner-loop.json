@@ -1,0 +1,28 @@
+[
+  {
+    "iteration": 0,
+    "layerScores": {
+      "technical": 38,
+      "humanization": 60,
+      "quality": 63,
+      "overall": 53
+    },
+    "delta": 0,
+    "elapsedMs": 41793,
+    "costUsd": 0.192534,
+    "rewriteCount": 9
+  },
+  {
+    "iteration": 1,
+    "layerScores": {
+      "technical": 24,
+      "humanization": 76,
+      "quality": 63,
+      "overall": 55
+    },
+    "delta": 2,
+    "elapsedMs": 37170,
+    "costUsd": 0.17072700000000002,
+    "rewriteCount": 0
+  }
+]

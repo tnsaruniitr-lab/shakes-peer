@@ -1,0 +1,302 @@
+{
+  "summary": {
+    "overall_score": 66,
+    "rating": "Significant gaps"
+  },
+  "sections": [
+    {
+      "id": "A",
+      "title": "Search Intent & On-Page SEO",
+      "weight": 20,
+      "score": 20,
+      "applicable_checks": 5,
+      "pass_count": 1,
+      "fail_count": 4,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "A1",
+          "label": "Primary keyword appears in the page title or H1",
+          "status": "pass",
+          "evidence": "Title/H1 contains \"AI search visibility\"."
+        },
+        {
+          "id": "A2",
+          "label": "Meta title is keyword-aligned and within 45-65 characters",
+          "status": "fail",
+          "evidence": "Meta title is 43 characters: \"AI Search Visibility: Complete Guide (2026)\".",
+          "exact_fix": "Replace meta_title with a 45-65 character version that includes the primary keyword, for example: \"AI search visibility\"."
+        },
+        {
+          "id": "A3",
+          "label": "Meta description is specific and within 140-165 characters",
+          "status": "fail",
+          "evidence": "Meta description is 126 characters: \"AI search visibility guide: how brands appear in ChatGPT, Gemini, and Claude. Methods, measurement, and improvement using GEO.\".",
+          "exact_fix": "Replace meta_description with a 140-165 character summary that names the topic, outcome, and one concrete detail."
+        },
+        {
+          "id": "A4",
+          "label": "Slug is concise and keyword-relevant",
+          "status": "fail",
+          "evidence": "Slug \"ai-visibility-guide\" is either too long or not aligned to the primary keyword.",
+          "exact_fix": "Replace slug with a short keyword-led slug such as \"ai-search-visibility\"."
+        },
+        {
+          "id": "A5",
+          "label": "The article body has enough topical depth",
+          "status": "fail",
+          "evidence": "Detected 7 sections and about 650 words.",
+          "exact_fix": "Add at least 3 substantive sections and expand the body to roughly 700+ words with source-backed explanations, examples, or comparisons."
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Answer Extraction & Engagement",
+      "weight": 20,
+      "score": 100,
+      "applicable_checks": 5,
+      "pass_count": 5,
+      "fail_count": 0,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "B1",
+          "label": "The post includes a fast-answer block near the top",
+          "status": "pass",
+          "evidence": "Article includes 3 quick-answer bullets."
+        },
+        {
+          "id": "B2",
+          "label": "Headings are question-led or snippet-friendly",
+          "status": "pass",
+          "evidence": "7 of 7 headings are answer-oriented."
+        },
+        {
+          "id": "B3",
+          "label": "The post includes reader-retention elements",
+          "status": "pass",
+          "evidence": "Detected retention elements: key_takeaways, summary_box, faq, bullets."
+        },
+        {
+          "id": "B4",
+          "label": "Paragraphs are concise enough for AI extraction",
+          "status": "pass",
+          "evidence": "Average paragraph length is about 37 words."
+        },
+        {
+          "id": "B5",
+          "label": "A clear next step or CTA is present",
+          "status": "pass",
+          "evidence": "CTA detected with label \"Run your free AI visibility audit\"."
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "HTML Structure & UX Signals",
+      "weight": 20,
+      "score": 80,
+      "applicable_checks": 5,
+      "pass_count": 4,
+      "fail_count": 1,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "C1",
+          "label": "HTML contains one semantic <article> root and exactly one <h1>",
+          "status": "fail",
+          "evidence": "Detected 4 <article> tags and 1 <h1> tags.",
+          "exact_fix": "Render a single `<article>` wrapper and keep exactly one `<h1>` for the page title."
+        },
+        {
+          "id": "C2",
+          "label": "Heading hierarchy is clean",
+          "status": "pass",
+          "evidence": "Heading order starts with h1 and avoids deep heading jumps."
+        },
+        {
+          "id": "C3",
+          "label": "Inline citation anchors resolve to reference targets",
+          "status": "pass",
+          "evidence": "All 28 citation anchors resolve."
+        },
+        {
+          "id": "C4",
+          "label": "Primary keyword and intent are embedded as machine-readable HTML attributes",
+          "status": "pass",
+          "evidence": "Root article element includes both keyword and intent attributes."
+        },
+        {
+          "id": "C5",
+          "label": "HTML includes an embedded JSON-LD script",
+          "status": "pass",
+          "evidence": "Embedded JSON-LD script tag detected."
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Structured Data & Entity Coverage",
+      "weight": 25,
+      "score": 83,
+      "applicable_checks": 6,
+      "pass_count": 5,
+      "fail_count": 1,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "D1",
+          "label": "JSON-LD includes a BlogPosting node",
+          "status": "pass",
+          "evidence": "BlogPosting node detected."
+        },
+        {
+          "id": "D2",
+          "label": "Core BlogPosting fields are complete",
+          "status": "pass",
+          "evidence": "All core BlogPosting fields are present."
+        },
+        {
+          "id": "D3",
+          "label": "FAQ schema is present when the article contains FAQs",
+          "status": "pass",
+          "evidence": "FAQPage node detected."
+        },
+        {
+          "id": "D4",
+          "label": "Evidence sources are modeled as cited entities in JSON-LD",
+          "status": "pass",
+          "evidence": "Detected 5 CreativeWork source nodes and 5 citation links."
+        },
+        {
+          "id": "D5",
+          "label": "JSON-LD names the main entities or topics explicitly",
+          "status": "pass",
+          "evidence": "Detected about=6 and mentions=1."
+        },
+        {
+          "id": "D6",
+          "label": "Format-specific schema is present when the format requires it",
+          "status": "fail",
+          "evidence": "Missing format-specific schema nodes: HowTo.",
+          "exact_fix": "Add these JSON-LD nodes: HowTo. Map article steps into HowTo and article.breadcrumbs into BreadcrumbList itemListElement."
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Evidence, Trust & Content Quality",
+      "weight": 15,
+      "score": 100,
+      "applicable_checks": 5,
+      "pass_count": 5,
+      "fail_count": 0,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "E1",
+          "label": "Factual paragraphs are source-backed",
+          "status": "pass",
+          "evidence": "All 9 measured narrative blocks include citations."
+        },
+        {
+          "id": "E2",
+          "label": "Provided sources are actually used",
+          "status": "pass",
+          "evidence": "All provided sources are cited at least once."
+        },
+        {
+          "id": "E3",
+          "label": "The article contains concrete specifics, not just generic claims",
+          "status": "pass",
+          "evidence": "Detected at least one concrete statistic, date, price, or framework cue."
+        },
+        {
+          "id": "E4",
+          "label": "Brand mentions feel integrated rather than stuffed",
+          "status": "pass",
+          "evidence": "Brand density is 0.38% (2 mentions across 525 words)."
+        },
+        {
+          "id": "E5",
+          "label": "The article closes with a synthesized conclusion",
+          "status": "pass",
+          "evidence": "Detected 1 conclusion paragraph(s)."
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "Human Signals & E-E-A-T (Helpful Content System)",
+      "weight": 25,
+      "score": 25,
+      "applicable_checks": 8,
+      "pass_count": 2,
+      "fail_count": 6,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "F1",
+          "label": "Author is a Person entity with sameAs LinkedIn URL",
+          "status": "fail",
+          "evidence": "Author Person entity exists but sameAs LinkedIn URL is missing.",
+          "exact_fix": "Provide author: { name, title, bio, linkedin_url } in the request. Writer will emit Person schema with sameAs linking to LinkedIn."
+        },
+        {
+          "id": "F2",
+          "label": "Article contains first-party data signals",
+          "status": "fail",
+          "evidence": "No first-party data markers detected (e.g., 'we found X%', 'our audit of N').",
+          "exact_fix": "Inject at least one first-party data point with a specific metric: 'In our audit of N X, we found Y%.'"
+        },
+        {
+          "id": "F3",
+          "label": "Article cites named brands/products with specifics (not generic)",
+          "status": "pass",
+          "evidence": "9 distinct named entities detected; no generic company language."
+        },
+        {
+          "id": "F4",
+          "label": "Article takes a clear editorial stance",
+          "status": "fail",
+          "evidence": "No 'our take'/'we recommend'/'the better pattern' phrasing found.",
+          "exact_fix": "Add an editorial_stance claim to the request. Writer will render an 'Our take' banner and state the POV in intro + conclusion."
+        },
+        {
+          "id": "F5",
+          "label": "Article includes an original visual (screenshot, diagram, chart)",
+          "status": "fail",
+          "evidence": "No original visual markers present (hero image alone does not count).",
+          "exact_fix": "Add at least one original_visual in the request describing a screenshot, diagram, chart, or framework specific to this brand."
+        },
+        {
+          "id": "F6",
+          "label": "3+ primary-tier citations are present",
+          "status": "fail",
+          "evidence": "Only 0 primary-tier source(s) (need 3+). Editorial-tier sources dominate.",
+          "exact_fix": "Swap marketing blog citations for primary sources: arXiv, OpenAI docs, Google Search Central, W3C, gov/edu, peer-reviewed research."
+        },
+        {
+          "id": "F7",
+          "label": "Article has visible Last Reviewed + Next Review dates",
+          "status": "fail",
+          "evidence": "Missing: Last reviewed, Next review.",
+          "exact_fix": "Use the rich author byline (writer does this automatically when `author` is provided) and set `article.next_review_date` in the request."
+        },
+        {
+          "id": "F8",
+          "label": "No banned AI-tell phrases in the body",
+          "status": "pass",
+          "evidence": "No banned AI-tell phrases detected."
+        }
+      ]
+    }
+  ]
+}

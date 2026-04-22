@@ -8,6 +8,7 @@
     "start": "node dist/index.js",
     "build": "tsc",
     "blog:generate": "node scripts/generate-blog.mjs",
+    "blog:seed-markdown": "npm run build && node scripts/seed-blog-markdown.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

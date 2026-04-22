@@ -57,11 +57,28 @@ POST /blog/write-and-audit    — generate → audit → rewrite loop until scor
 
 ## Output location
 
-- `examples/generated/` — reference blogs committed to the repo
-- `~/Desktop/shakes-peer/blogs/<brand-slug>/` — working drafts (auto-saved on every `/blog/write`)
-- `~/Desktop/shakes-peer/blogs/index.json` — rolling index of the last 500 generations
+Every `/blog/write` call writes to two destinations:
 
-Set `SHAKESPEER_SAVE_TO_DESKTOP=false` to disable auto-save to Desktop.
+**Canonical markdown — `blogs/<slug>.md` (in this repo)**
+Portable source of truth with YAML front-matter, body, inline footnote citations, and an editorial integrity checklist. HTML and JSON-LD are derived renders — the markdown survives CMS migrations and is what downstream consumers should read. Auto-committed and pushed via the file-save hook.
+
+**Full working set — `~/Desktop/shakes-peer/blogs/<brand-slug>-<post-slug>/`**
+- `<slug>.md` — same markdown as the repo copy
+- `<slug>.preview.html` — styled preview
+- `<slug>.html` — raw article HTML
+- `<slug>.jsonld.json` — schema.org graph
+- `<slug>.package.json` — full writer response
+- `<slug>.checklist.json` — editorial signals snapshot
+- `<slug>.audit.json` — audit report (when `write-and-audit` is used)
+- `index.json` at the folder root — rolling list of the last 500 generations
+
+Set `SHAKESPEER_SAVE_TO_DESKTOP=false` to disable both.
+
+To rebuild the markdown in `blogs/` from the historical `examples/generated/*.package.json` files:
+
+```bash
+npm run blog:seed-markdown
+```
 
 ## Local dev
 

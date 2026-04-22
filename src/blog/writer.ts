@@ -1104,12 +1104,14 @@ export function buildBlogJsonLd(
             ]
           : []),
         // Named examples become Organization mentions so AI engines understand
-        // the article cites real, verifiable brands rather than generic references
-        ...input.named_examples.map((ex) => ({
+        // the article cites real, verifiable brands rather than generic references.
+        // Guard: named_examples is optional when callers construct requests
+        // manually (not via Zod parse), so default to an empty list.
+        ...((input.named_examples ?? []).map((ex) => ({
           "@type": "Organization" as const,
           name: ex.brand,
           ...(ex.source_url ? { url: ex.source_url } : {}),
-        })),
+        }))),
       ],
       citation: citationGraph.map((citation) => ({ "@id": citation["@id"] })),
     },
@@ -1248,7 +1250,9 @@ export function renderBlogHtml(
   // signals the post includes. Doubles as machine-readable metadata
   // (emitted as data-attributes) that the publish pipeline reads.
   const primaryCitationCount = input.sources.filter(
-    (s) => s.authority_tier === "primary"
+    // authority_tier is optional on the raw type (Zod default is "editorial"),
+    // so tolerate sources that don't set it explicitly.
+    (s) => (s as { authority_tier?: string }).authority_tier === "primary"
   ).length;
   const checklistItems: Array<{ id: string; label: string; pass: boolean; detail: string }> = [
     {
@@ -1268,14 +1272,16 @@ export function renderBlogHtml(
     {
       id: "first_party_data",
       label: "First-party data",
-      pass: input.first_party_data.length >= 1,
-      detail: `${input.first_party_data.length} data point(s)`,
+      // Guard against callers that bypass Zod parse (e.g. unit tests) — these
+      // arrays are optional on the raw type even though Zod defaults them to [].
+      pass: (input.first_party_data ?? []).length >= 1,
+      detail: `${(input.first_party_data ?? []).length} data point(s)`,
     },
     {
       id: "named_examples",
       label: "Named examples (3+)",
-      pass: input.named_examples.length >= 3,
-      detail: `${input.named_examples.length} brand(s): ${input.named_examples.slice(0, 3).map((e) => e.brand).join(", ")}`,
+      pass: (input.named_examples ?? []).length >= 3,
+      detail: `${(input.named_examples ?? []).length} brand(s): ${(input.named_examples ?? []).slice(0, 3).map((e) => e.brand).join(", ")}`,
     },
     {
       id: "editorial_stance",
@@ -1288,8 +1294,8 @@ export function renderBlogHtml(
     {
       id: "original_visuals",
       label: "Original visuals (1+)",
-      pass: input.original_visuals.length >= 1,
-      detail: `${input.original_visuals.length} visual(s)`,
+      pass: (input.original_visuals ?? []).length >= 1,
+      detail: `${(input.original_visuals ?? []).length} visual(s)`,
     },
     {
       id: "primary_citations",

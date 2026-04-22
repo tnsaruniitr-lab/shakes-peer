@@ -4,6 +4,7 @@ import { generateBlogPackage } from "../blog/writer.js";
 import { auditBlogPackage } from "../blog/auditor.js";
 import { generateBlogPackageWithAuditLoops } from "../blog/pipeline.js";
 import { saveBlogToDesktop } from "../blog/save-output.js";
+import { BlogWriterRequestSchema, type BlogWriterRequest } from "../blog/types.js";
 
 const router = Router();
 
@@ -13,22 +14,36 @@ function shouldSaveToDesktop(): boolean {
   return process.env.SHAKESPEER_SAVE_TO_DESKTOP !== "false";
 }
 
+// Parse the request through Zod so the markdown renderer gets defaulted fields.
+// If parsing fails, we let the generator raise the error — no reason to swallow it here.
+function parseRequest(body: unknown): BlogWriterRequest | null {
+  const parsed = BlogWriterRequestSchema.safeParse(body);
+  return parsed.success ? parsed.data : null;
+}
+
 router.post("/blog/write", async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await generateBlogPackage(req.body);
 
-    // Auto-save working draft to Desktop
+    // Auto-save working draft + canonical markdown
     let savedTo: string | undefined;
+    let repoMarkdown: string | null | undefined;
     if (shouldSaveToDesktop()) {
       try {
-        const saved = saveBlogToDesktop(result);
+        const parsedRequest = parseRequest(req.body);
+        const saved = saveBlogToDesktop(
+          result,
+          undefined,
+          parsedRequest ?? undefined
+        );
         savedTo = saved.folder;
+        repoMarkdown = saved.repo_markdown;
       } catch (err) {
         console.warn("[blog/write] Failed to save to Desktop:", err);
       }
     }
 
-    res.json({ ...result, saved_to: savedTo });
+    res.json({ ...result, saved_to: savedTo, repo_markdown: repoMarkdown });
   } catch (error) {
     if (error instanceof ZodError) {
       res.status(400).json({
@@ -76,21 +91,25 @@ router.post("/blog/write-and-audit", async (req: Request, res: Response): Promis
       target_score: targetScore,
     });
 
-    // Save to Desktop with audit attached
+    // Save to Desktop with audit attached; also write canonical markdown to repo
     let savedTo: string | undefined;
+    let repoMarkdown: string | null | undefined;
     if (shouldSaveToDesktop() && (result as any).package) {
       try {
+        const parsedRequest = parseRequest(req.body);
         const saved = saveBlogToDesktop(
           (result as any).package,
-          (result as any).audit
+          (result as any).audit,
+          parsedRequest ?? undefined
         );
         savedTo = saved.folder;
+        repoMarkdown = saved.repo_markdown;
       } catch (err) {
         console.warn("[blog/write-and-audit] Failed to save to Desktop:", err);
       }
     }
 
-    res.json({ ...result, saved_to: savedTo });
+    res.json({ ...result, saved_to: savedTo, repo_markdown: repoMarkdown });
   } catch (error) {
     if (error instanceof ZodError) {
       res.status(400).json({

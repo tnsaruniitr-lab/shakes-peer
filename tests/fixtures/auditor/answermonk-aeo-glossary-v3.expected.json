@@ -1,0 +1,296 @@
+{
+  "summary": {
+    "overall_score": 82,
+    "rating": "Minor fixes needed"
+  },
+  "sections": [
+    {
+      "id": "A",
+      "title": "Search Intent & On-Page SEO",
+      "weight": 20,
+      "score": 40,
+      "applicable_checks": 5,
+      "pass_count": 2,
+      "fail_count": 3,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "A1",
+          "label": "Primary keyword appears in the page title or H1",
+          "status": "fail",
+          "evidence": "Current title/H1 is \"What Is Answer Engine Optimization (AEO)? The Complete 2026 Definition\" and it does not include \"what is aeo\".",
+          "exact_fix": "Change the title to include the primary keyword, for example: \"what is aeo | What Is Answer Engine Optimization (AEO)? The Complete 2026 Definition\"."
+        },
+        {
+          "id": "A2",
+          "label": "Meta title is keyword-aligned and within 45-65 characters",
+          "status": "pass",
+          "evidence": "Meta title is 59 characters and keyword-aligned."
+        },
+        {
+          "id": "A3",
+          "label": "Meta description is specific and within 140-165 characters",
+          "status": "fail",
+          "evidence": "Meta description is 138 characters: \"What is AEO? The definitive 2026 answer engine optimization (AEO) definition, differences from SEO/GEO/LLMO, and practical audit insights.\".",
+          "exact_fix": "Replace meta_description with a 140-165 character summary that names the topic, outcome, and one concrete detail."
+        },
+        {
+          "id": "A4",
+          "label": "Slug is concise and keyword-relevant",
+          "status": "fail",
+          "evidence": "Slug \"answer-engine-optimization\" is either too long or not aligned to the primary keyword.",
+          "exact_fix": "Replace slug with a short keyword-led slug such as \"what-is-aeo\"."
+        },
+        {
+          "id": "A5",
+          "label": "The article body has enough topical depth",
+          "status": "pass",
+          "evidence": "Detected 10 sections and about 1193 words."
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Answer Extraction & Engagement",
+      "weight": 20,
+      "score": 100,
+      "applicable_checks": 5,
+      "pass_count": 5,
+      "fail_count": 0,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "B1",
+          "label": "The post includes a fast-answer block near the top",
+          "status": "pass",
+          "evidence": "Article includes 3 quick-answer bullets."
+        },
+        {
+          "id": "B2",
+          "label": "Headings are question-led or snippet-friendly",
+          "status": "pass",
+          "evidence": "8 of 10 headings are answer-oriented."
+        },
+        {
+          "id": "B3",
+          "label": "The post includes reader-retention elements",
+          "status": "pass",
+          "evidence": "Detected retention elements: key_takeaways, summary_box, faq, bullets, table."
+        },
+        {
+          "id": "B4",
+          "label": "Paragraphs are concise enough for AI extraction",
+          "status": "pass",
+          "evidence": "Average paragraph length is about 41 words."
+        },
+        {
+          "id": "B5",
+          "label": "A clear next step or CTA is present",
+          "status": "pass",
+          "evidence": "CTA detected with label \"Measure your AEO visibility\"."
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "HTML Structure & UX Signals",
+      "weight": 20,
+      "score": 80,
+      "applicable_checks": 5,
+      "pass_count": 4,
+      "fail_count": 1,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "C1",
+          "label": "HTML contains one semantic <article> root and exactly one <h1>",
+          "status": "fail",
+          "evidence": "Detected 4 <article> tags and 1 <h1> tags.",
+          "exact_fix": "Render a single `<article>` wrapper and keep exactly one `<h1>` for the page title."
+        },
+        {
+          "id": "C2",
+          "label": "Heading hierarchy is clean",
+          "status": "pass",
+          "evidence": "Heading order starts with h1 and avoids deep heading jumps."
+        },
+        {
+          "id": "C3",
+          "label": "Inline citation anchors resolve to reference targets",
+          "status": "pass",
+          "evidence": "All 43 citation anchors resolve."
+        },
+        {
+          "id": "C4",
+          "label": "Primary keyword and intent are embedded as machine-readable HTML attributes",
+          "status": "pass",
+          "evidence": "Root article element includes both keyword and intent attributes."
+        },
+        {
+          "id": "C5",
+          "label": "HTML includes an embedded JSON-LD script",
+          "status": "pass",
+          "evidence": "Embedded JSON-LD script tag detected."
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "Structured Data & Entity Coverage",
+      "weight": 25,
+      "score": 100,
+      "applicable_checks": 6,
+      "pass_count": 6,
+      "fail_count": 0,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "D1",
+          "label": "JSON-LD includes a BlogPosting node",
+          "status": "pass",
+          "evidence": "BlogPosting node detected."
+        },
+        {
+          "id": "D2",
+          "label": "Core BlogPosting fields are complete",
+          "status": "pass",
+          "evidence": "All core BlogPosting fields are present."
+        },
+        {
+          "id": "D3",
+          "label": "FAQ schema is present when the article contains FAQs",
+          "status": "pass",
+          "evidence": "FAQPage node detected."
+        },
+        {
+          "id": "D4",
+          "label": "Evidence sources are modeled as cited entities in JSON-LD",
+          "status": "pass",
+          "evidence": "Detected 5 CreativeWork source nodes and 5 citation links."
+        },
+        {
+          "id": "D5",
+          "label": "JSON-LD names the main entities or topics explicitly",
+          "status": "pass",
+          "evidence": "Detected about=4 and mentions=5."
+        },
+        {
+          "id": "D6",
+          "label": "Format-specific schema is present when the format requires it",
+          "status": "pass",
+          "evidence": "HowTo required=false present=false; BreadcrumbList required=true present=true."
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Evidence, Trust & Content Quality",
+      "weight": 15,
+      "score": 60,
+      "applicable_checks": 5,
+      "pass_count": 3,
+      "fail_count": 2,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "E1",
+          "label": "Factual paragraphs are source-backed",
+          "status": "fail",
+          "evidence": "7 of 21 narrative blocks have no citation_ids.",
+          "exact_fix": "Add at least one valid `citation_id` to every factual intro, body, FAQ, and conclusion paragraph."
+        },
+        {
+          "id": "E2",
+          "label": "Provided sources are actually used",
+          "status": "fail",
+          "evidence": "These sources are currently unused: gartner-ai-search.",
+          "exact_fix": "Either cite these source ids in relevant factual blocks or remove them from the source set: gartner-ai-search."
+        },
+        {
+          "id": "E3",
+          "label": "The article contains concrete specifics, not just generic claims",
+          "status": "pass",
+          "evidence": "Detected at least one concrete statistic, date, price, or framework cue."
+        },
+        {
+          "id": "E4",
+          "label": "Brand mentions feel integrated rather than stuffed",
+          "status": "pass",
+          "evidence": "Brand density is 0.29% (3 mentions across 1019 words)."
+        },
+        {
+          "id": "E5",
+          "label": "The article closes with a synthesized conclusion",
+          "status": "pass",
+          "evidence": "Detected 1 conclusion paragraph(s)."
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "Human Signals & E-E-A-T (Helpful Content System)",
+      "weight": 25,
+      "score": 100,
+      "applicable_checks": 8,
+      "pass_count": 8,
+      "fail_count": 0,
+      "na_count": 0,
+      "unverifiable_count": 0,
+      "checks": [
+        {
+          "id": "F1",
+          "label": "Author is a Person entity with sameAs LinkedIn URL",
+          "status": "pass",
+          "evidence": "Person author with LinkedIn sameAs detected."
+        },
+        {
+          "id": "F2",
+          "label": "Article contains first-party data signals",
+          "status": "pass",
+          "evidence": "Both first-party markers and specific numeric data detected."
+        },
+        {
+          "id": "F3",
+          "label": "Article cites named brands/products with specifics (not generic)",
+          "status": "pass",
+          "evidence": "49 distinct named entities detected; no generic company language."
+        },
+        {
+          "id": "F4",
+          "label": "Article takes a clear editorial stance",
+          "status": "pass",
+          "evidence": "Editorial stance banner is present."
+        },
+        {
+          "id": "F5",
+          "label": "Article includes an original visual (screenshot, diagram, chart)",
+          "status": "pass",
+          "evidence": "2 original visual(s) embedded."
+        },
+        {
+          "id": "F6",
+          "label": "3+ primary-tier citations are present",
+          "status": "pass",
+          "evidence": "4 primary-tier sources provided."
+        },
+        {
+          "id": "F7",
+          "label": "Article has visible Last Reviewed + Next Review dates",
+          "status": "pass",
+          "evidence": "Visible Last Reviewed + Next Review + dateModified schema present."
+        },
+        {
+          "id": "F8",
+          "label": "No banned AI-tell phrases in the body",
+          "status": "pass",
+          "evidence": "No banned AI-tell phrases detected."
+        }
+      ]
+    }
+  ]
+}

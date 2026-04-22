@@ -1,0 +1,191 @@
+[
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: dateModified, isPartOf, primaryImageOfPage, inLanguage",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "39 em-dashes (6.79 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "40 tricolons (8.71/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_banned_vocabulary",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "AI-signature vocabulary present: robust(1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: logo, contactPoint",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: isPartOf",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "6/19 H2s are questions (32% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_above_band",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "1612 words exceeds definitional maximum 1000 (target 700) — readers drop",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "39 em-dashes (6.77 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "40 tricolons (8.68/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  }
+]

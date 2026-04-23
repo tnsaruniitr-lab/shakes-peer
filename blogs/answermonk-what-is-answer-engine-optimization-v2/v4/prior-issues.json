@@ -1,0 +1,114 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "M_description_length",
+    "severity": "warn",
+    "evidence": "Meta description length 97 (target 110–170)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "severity": "warn",
+    "evidence": "9 tricolons (3.53/500 words; target ≤2)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_human_voice_vs_committee",
+    "severity": "fail",
+    "evidence": "Human voice vs committee 3/10 — Reads like a template with repetitive definitional scaffolding; same phrasing recurs across sections.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "severity": "warn",
+    "evidence": "Genuine opinions 6/10 — A few real opinions appear (schema is overhyped, most AEO advice is repackaged SEO) but they're buried between safe generic claims.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — Two memorable metaphors (vending machine, publicist) surrounded by filler phrasing.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "severity": "warn",
+    "evidence": "Point of view 5/10 — Largely surveys both sides; only the conclusion and a couple of asides commit to a stance.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "severity": "warn",
+    "evidence": "Quotability 5/10 — One quotable line ('a number a model can steal'); the rest is forgettable definitional prose.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_hook",
+    "severity": "fail",
+    "evidence": "Intro hook 3/10 — Opens with a boilerplate definition and TL;DR stack; nothing pulls the reader into sentence three.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — The post contains good specificity islands — Profound ($499/mo), Semrush's Jan 2025 launch, the 68% figure, DefinedTerm schema — but several passages, especially in the FAQ and bullet lists, collapse into vague directives ('use monitoring tools,' 'adjust accordingly,' 'benchmark against competitors'). The FAQ answer for 'How do you know if your brand is cited by LLMs?' strips out the concrete tool names already given in the body, leaving only an abstraction. The rewrite above repopulates the concrete details that are already present elsewhere in the post.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  }
+]

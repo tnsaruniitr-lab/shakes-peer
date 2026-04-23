@@ -1,0 +1,174 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "M_description_length",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Meta description length 97 (target 110–170)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "9 tricolons (3.53/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_low_burstiness",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Sentence-length burstiness 0.55 (target ≥0.55) — rhythm too uniform",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice 4/10 — Mostly committee-sounding boilerplate with occasional flashes of voice (vending machine line, 'number worth stealing').",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Industry research confirms that AEO has become essential for any brand seeking discoverability in 2026's search landscape.",
+      "before": "Industry research confirms that AEO has become essential for any brand seeking discoverability in 2026's search landscape.",
+      "after": "I've watched three clients abandon SEO dashboards in the last quarter because Gemini citations now drive more demo bookings than Google rankings.",
+      "rationale": "Humanization axis \"Specific human voice\" scored 4/10: Mostly committee-sounding boilerplate with occasional flashes of voice (vending machine line, 'number worth stealing')."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions 6/10 — A few real opinions appear (schema is overhyped, most AEO advice is repackaged SEO) but they're buried between safe generic claims.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — Two memorable metaphors (vending machine, publicist) surrounded by filler phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This approach allows brands to see trends and adjust their content for greater AI visibility.",
+      "before": "This approach allows brands to see trends and adjust their content for greater AI visibility.",
+      "after": "This tells you whether Claude suddenly decided your competitor is the authority on pricing—useful before your CEO notices first.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: Two memorable metaphors (vending machine, publicist) surrounded by filler phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view 5/10 — Largely surveys both sides; only the conclusion and a couple of asides commit to a stance.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "While AEO and SEO share overlapping tactics, AEO is not just an extension, it requires separate monitoring and technical strategies to win citations in AI-generated answers.",
+      "before": "While AEO and SEO share overlapping tactics, AEO is not just an extension, it requires separate monitoring and technical strategies to win citations in AI-generated answers.",
+      "after": "AEO isn't an SEO extension—treating it that way is why your content gets summarized but never cited.",
+      "rationale": "Humanization axis \"Point of view\" scored 5/10: Largely surveys both sides; only the conclusion and a couple of asides commit to a stance."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentence 6/10 — The 'vending machines' line and 'number worth stealing' are quotable; most sentences aren't.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with stacked metadata, TL;DR, and generic definitions before any hook lands.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) prepares your brand to be cited by AI answer engines like ChatGPT and Gemini.",
+      "before": "Answer engine optimization (AEO) prepares your brand to be cited by AI answer engines like ChatGPT and Gemini.",
+      "after": "If ChatGPT can't quote a number from your page, it won't mention you—and that's the whole game in 2026.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with stacked metadata, TL;DR, and generic definitions before any hook lands."
+    }
+  }
+]

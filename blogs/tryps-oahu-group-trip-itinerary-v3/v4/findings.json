@@ -1,0 +1,165 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 9 Questions but page shows ~16 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "5/14 H2s are questions (36% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1345 words is below pillar minimum 1900 (target 2500)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice 4/10 — Reads like a committee-produced SEO template with editorial byline and formulaic structure.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "By TRYPS Editorial | 2026-04-23 | 8 min read",
+      "before": "By TRYPS Editorial | 2026-04-23 | 8 min read",
+      "after": "Drop the editorial byline and write in first person from someone who actually organized an Oahu trip with friends.",
+      "rationale": "Humanization axis \"Specific human voice\" scored 4/10: Reads like a committee-produced SEO template with editorial byline and formulaic structure."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions 6/10 — Has a few real takes (Duke's is touristy but worth it, Pig and the Lady non-negotiable) but mostly safe recommendations.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — Some decent phrases ('who's on aux', 'war zone') but mostly predictable travel-blog cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This guide gives you a near-bulletproof 7-day Oahu itinerary, using only proven group-friendly spots, so the only thing left undecided is who’s on aux.",
+      "before": "This guide gives you a near-bulletproof 7-day Oahu itinerary, using only proven group-friendly spots, so the only thing left undecided is who’s on aux.",
+      "after": "Here's a 7-day plan that survived my group of six—the only thing it won't settle is who controls the aux cord.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: Some decent phrases ('who's on aux', 'war zone') but mostly predictable travel-blog cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view 6/10 — Has POV in spots but frequently devolves into surveying all options equally.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "September and October are warm and quieter; November–March is best for group surf-watching on the North Shore (big swells), but you’ll get showers near Waikiki.",
+      "before": "September and October are warm and quieter; November–March is best for group surf-watching on the North Shore (big swells), but you’ll get showers near Waikiki.",
+      "after": "Go in May. September works too, but May hits the sweet spot of dry weather and open reservation slots.",
+      "rationale": "Humanization axis \"Point of view\" scored 6/10: Has POV in spots but frequently devolves into surveying all options equally."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentence 5/10 — 'Not all Oahu itineraries survive the group chat' is quotable, but most sentences are utilitarian.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 5/10 — Buried under duplicated title, metadata, and TL;DR before the actual hook lands.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+      "before": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+      "after": "Not all Oahu itineraries survive the group chat. Here's the 7-day plan I used to get five indecisive friends past Hanauma Bay reservations and onto the beach.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 5/10: Buried under duplicated title, metadata, and TL;DR before the actual hook lands."
+    }
+  }
+]

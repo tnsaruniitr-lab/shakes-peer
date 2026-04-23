@@ -1,0 +1,15 @@
+[
+  {
+    "iteration": 0,
+    "layerScores": {
+      "technical": 0,
+      "humanization": 62,
+      "quality": 70,
+      "overall": 42
+    },
+    "delta": 0,
+    "elapsedMs": 44628,
+    "costUsd": 0.193149,
+    "rewriteCount": 0
+  }
+]

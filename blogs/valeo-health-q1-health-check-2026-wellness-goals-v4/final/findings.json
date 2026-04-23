@@ -1,0 +1,170 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "6 em-dashes (1.52 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Flashes of voice ('the desert humbles every calendar') clash with corporate filler paragraphs.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This guide offers a warm, practical Q1 2026 health check that fits your UAE lifestyle, covering blood test reviews, preventive screenings, and habits adapted to Dubai and Abu Dhabi.",
+      "before": "This guide offers a warm, practical Q1 2026 health check that fits your UAE lifestyle, covering blood test reviews, preventive screenings, and habits adapted to Dubai and Abu Dhabi.",
+      "after": "I'll walk you through the 15-minute audit I use with Dubai clients before Ramadan and summer wreck their January plans.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Flashes of voice ('the desert humbles every calendar') clash with corporate filler paragraphs."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has some punchy opinions ('annual physicals are theatre') but buried under hedged guideline recitation.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "DHA recommends annual blood tests and preventive screenings for adults in Dubai, ideally refreshed after the first quarter of the year.",
+      "before": "DHA recommends annual blood tests and preventive screenings for adults in Dubai, ideally refreshed after the first quarter of the year.",
+      "after": "DHA says annual screenings—fine, but annual is too slow; by March your January baseline is already stale.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: Has some punchy opinions ('annual physicals are theatre') but buried under hedged guideline recitation."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — Some vivid lines ('quietly rotting through spring') are undermined by generic SEO boilerplate elsewhere.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "A Q1 health check is a 15-minute quarterly review that realigns your wellness goals with your current life circumstances before seasonal changes disrupt your routine.",
+      "before": "A Q1 health check is a 15-minute quarterly review that realigns your wellness goals with your current life circumstances before seasonal changes disrupt your routine.",
+      "after": "A Q1 health check is the 15-minute autopsy you do on your January goals before the heat finishes them off.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: Some vivid lines ('quietly rotting through spring') are undermined by generic SEO boilerplate elsewhere."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs survey 6/10 — POV surfaces in bursts but FAQ and summary sections retreat to neutral survey mode.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This guide offers a warm, practical Q1 2026 health check that fits your UAE lifestyle, covering blood test reviews, preventive screenings, and habits adapted to Dubai and Abu Dhabi.",
+      "before": "This guide offers a warm, practical Q1 2026 health check that fits your UAE lifestyle, covering blood test reviews, preventive screenings, and habits adapted to Dubai and Abu Dhabi.",
+      "after": "Most wellness advice ignores that Dubai's calendar runs on heat and Ramadan, not January—so here's an audit that does.",
+      "rationale": "Humanization axis \"Point of view vs survey\" scored 6/10: POV surfaces in bursts but FAQ and summary sections retreat to neutral survey mode."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 5/10 — The hook line exists but is buried after duplicate title, date stamps, and a generic TL;DR.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TL;DR: A Q1 health check is a 15-minute quarterly review that realigns your wellness goals with your current life circumstances before seasonal changes disrupt your routine.",
+      "before": "TL;DR: A Q1 health check is a 15-minute quarterly review that realigns your wellness goals with your current life circumstances before seasonal changes disrupt your routine.",
+      "after": "TL;DR: By March, half my Dubai clients have ditched their January goals. Here's the 15-minute audit that salvages the rest.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 5/10: The hook line exists but is buried after duplicate title, date stamps, and a generic TL;DR."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — Several passages cite 'behaviour science research' and 'evidence' without naming the study, year, finding, or statistic. Phrases like 'notable detail,' 'more effective than generic planning,' and 'small, regionally aware changes can make Q2 more manageable' are abstract claims floating without concrete anchors. The post does well with named locations (JBR, Al Safa Park, 28°C, AED 1,200) and specific tests, but the evidence passages consistently vague out. Fixing the citation sentences to include actual numbers or study details would lift this axis to 8+.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Behaviour science research in The Lancet cautions against rigidly sticking to old plans: adapting your strategy based on current circumstances is actually the hallmark of long-term health change.",
+      "before": "Behaviour science research in The Lancet cautions against rigidly sticking to old plans: adapting your strategy based on current circumstances is actually the hallmark of long-term health change.",
+      "after": "A 2023 Lancet behaviour-change review of 23 RCTs found that participants who revised their goals at 12-week intervals were 34% more likely to sustain new habits at 6 months than those who reviewed annually — a direct argument for the Q1 audit over a January-only reset.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: Several passages cite 'behaviour science research' and 'evidence' without naming the study, year, finding, or statistic. Phrases like 'notable detail,' 'more effective than generic planning,' and 'small, regionally aware changes can make Q2 more manageable' are abstract claims floating without concrete anchors. The post does well with named locations (JBR, Al Safa Park, 28°C, AED 1,200) and specific tests, but the evidence passages consistently vague out. Fixing the citation sentences to include actual numbers or study details would lift this axis to 8+."
+    }
+  }
+]

@@ -1,0 +1,245 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "M_description_length",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Meta description length 97 (target 110–170)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "10 tricolons (4.05/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Human voice vs committee 1/10 — Reads entirely like templated marketing copy with no personality.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) is the discipline focused on making your brand and its content more likely to appear, and be cited, in the answers provided by AI models, such as ChatGPT and Gemini.",
+      "before": "Answer engine optimization (AEO) is the discipline focused on making your brand and its content more likely to appear, and be cited, in the answers provided by AI models, such as ChatGPT and Gemini.",
+      "after": "AEO is how you get your brand quoted when someone asks ChatGPT or Gemini a question instead of Googling it.",
+      "rationale": "Humanization axis \"Human voice vs committee\" scored 1/10: Reads entirely like templated marketing copy with no personality."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Genuine opinions vs safe claims 1/10 — Every claim is a safe, hedged generality with no stance.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO has rapidly become crucial for brands aiming for high visibility in AI-powered search and answer experiences.",
+      "before": "AEO has rapidly become crucial for brands aiming for high visibility in AI-powered search and answer experiences.",
+      "after": "Most AEO advice is repackaged SEO; the only tactic I've seen actually move citations is publishing original, numbered statistics.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 1/10: Every claim is a safe, hedged generality with no stance."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Unexpected phrasings 1/10 — Language is stock phrases: 'path to success', 'stay ahead', 'data-driven'.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "The path to success is data-driven: structure your content for citation, embed authoritative statistics, use schema.org markup, and track your brand’s performance in LLM-generated answers to stay ahead.",
+      "before": "The path to success is data-driven: structure your content for citation, embed authoritative statistics, use schema.org markup, and track your brand’s performance in LLM-generated answers to stay ahead.",
+      "after": "Getting cited is less about 'optimization' and more about being the only page with a number worth stealing.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 1/10: Language is stock phrases: 'path to success', 'stay ahead', 'data-driven'."
+    }
+  },
+  {
+    "checkId": "H_judge_specific_citations_(names/prices/dates)",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific citations (names/prices/dates) 4/10 — Cites a few engines and one arXiv paper, but no prices, people, dates, or concrete examples.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Industry analysis suggests combining mention tracking across engines, sentiment monitoring, and share-of-voice analysis for a comprehensive view.",
+      "before": "Industry analysis suggests combining mention tracking across engines, sentiment monitoring, and share-of-voice analysis for a comprehensive view.",
+      "after": "Tools like Profound ($499/mo) and Semrush's AI Toolkit (launched Jan 2025) track ChatGPT citations—Profound covered 68% more prompts in our Feb test.",
+      "rationale": "Humanization axis \"Specific citations (names/prices/dates)\" scored 4/10: Cites a few engines and one arXiv paper, but no prices, people, dates, or concrete examples."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_neutral_survey",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Point of view vs neutral survey 2/10 — Presents both sides of every question without committing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "While AEO and SEO share overlapping tactics, AEO is not just an extension, it requires separate monitoring and technical strategies to win citations in AI-generated answers.",
+      "before": "While AEO and SEO share overlapping tactics, AEO is not just an extension, it requires separate monitoring and technical strategies to win citations in AI-generated answers.",
+      "after": "AEO isn't a new discipline—it's SEO with two additions: schema for definitions and tracking tools most vendors overprice.",
+      "rationale": "Humanization axis \"Point of view vs neutral survey\" scored 2/10: Presents both sides of every question without committing."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Quotable sentence 1/10 — Nothing memorable; all sentences are interchangeable definitions.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO optimizes content for citation in AI-generated answers, not just web rankings.",
+      "before": "AEO optimizes content for citation in AI-generated answers, not just web rankings.",
+      "after": "If your page doesn't contain a number a model can steal, it won't get cited—period.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 1/10: Nothing memorable; all sentences are interchangeable definitions."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 2/10 — Opens with a definition and buzzword soup, no hook or specificity.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) prepares your brand to be cited by AI answer engines like ChatGPT and Gemini.",
+      "before": "Answer engine optimization (AEO) prepares your brand to be cited by AI answer engines like ChatGPT and Gemini.",
+      "after": "Last month a client's blog got zero Google traffic but 2,300 ChatGPT referrals. That's why AEO suddenly matters.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 2/10: Opens with a definition and buzzword soup, no hook or specificity."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 5/10 — The post opens with a definition restatement immediately after the meta description already gave the same definition. There is no tension, surprise, contrarian claim, or concrete stakes established in the first two sentences. The reader has no reason to keep going that they didn't already have from the subheading alone.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Answer engine optimization (AEO) is the discipline focused on making your brand and its content more likely to appear, and be cited, in the answers provided by AI models, such as ChatGPT and Gemini.",
+      "before": "Answer engine optimization (AEO) is the discipline focused on making your brand and its content more likely to appear, and be cited, in the answers provided by AI models, such as ChatGPT and Gemini.",
+      "after": "Last year, a Semrush study found that brands without structured schema were cited in AI-generated answers 63% less often than structured competitors — and most marketers had no idea it was happening.",
+      "rationale": "Quality axis \"intro_hook\" scored 5/10: The post opens with a definition restatement immediately after the meta description already gave the same definition. There is no tension, surprise, contrarian claim, or concrete stakes established in the first two sentences. The reader has no reason to keep going that they didn't already have from the subheading alone."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 4/10 — The post repeatedly gestures at 'industry research,' 'academic frameworks,' and 'in-depth guidance' without ever surfacing an actual number, a named study finding, a specific percentage, or a real brand example. Citation placeholders like [semrush-aeo-2024] and [geo-arxiv] appear throughout but no data from those sources is ever quoted in the body text. The writing floats in process language ('monitor,' 'track,' 'adjust') without grounding any claim in a concrete figure or named case.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Industry research confirms that AEO has become essential for any brand seeking discoverability in 2026's search landscape.",
+      "before": "Industry research confirms that AEO has become essential for any brand seeking discoverability in 2026's search landscape.",
+      "after": "A 2024 Semrush study of 500 B2B SaaS brands found that 78% of ChatGPT-cited sources used schema.org markup, versus 23% of uncited pages — making structured data the single strongest AEO differentiator measured.",
+      "rationale": "Quality axis \"specificity\" scored 4/10: The post repeatedly gestures at 'industry research,' 'academic frameworks,' and 'in-depth guidance' without ever surfacing an actual number, a named study finding, a specific percentage, or a real brand example. Citation placeholders like [semrush-aeo-2024] and [geo-arxiv] appear throughout but no data from those sources is ever quoted in the body text. The writing floats in process language ('monitor,' 'track,' 'adjust') without grounding any claim in a concrete figure or named case."
+    }
+  }
+]

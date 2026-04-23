@@ -1,0 +1,151 @@
+{
+  "slug": "tryps-oahu-group-trip-itinerary-v4",
+  "brand": "TRYPS",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=3 with 6 open item(s) for editorial review",
+  "totalCostUsd": 0.713031,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T11:38:30.564Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "0afbf5ade10805846739d7a8c81c7336694c5010"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T11:40:07.856Z",
+      "score": 50,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 76,
+        "quality": 77,
+        "overall": 50
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.17502900000000002,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 4,
+        "applied": 8
+      },
+      "escalationCount": 2,
+      "commitSha": "c85d994efd25ce31904b1df3c8ebd40409a204ae"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T11:40:07.967Z",
+      "score": 48,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 77,
+        "quality": 70,
+        "overall": 48
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.172752,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 5,
+        "drift": 1,
+        "applied": 5
+      },
+      "escalationCount": 2,
+      "commitSha": "154dfee15e361379f78edb1a76f61665513d894c"
+    },
+    {
+      "version": 4,
+      "generatedAt": "2026-04-23T11:40:08.027Z",
+      "score": 51,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 82,
+        "quality": 73,
+        "overall": 51
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.18292799999999998,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 4,
+        "applied": 5,
+        "drift": 1
+      },
+      "escalationCount": 2,
+      "commitSha": "034536a1d32974070e890441f5dff970fe8252d5"
+    },
+    {
+      "version": 5,
+      "generatedAt": "2026-04-23T11:40:42.604Z",
+      "score": 51,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 83,
+        "quality": 73,
+        "overall": 51
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.182322,
+      "innerIterations": 1,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": null
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "suggestedFields": [
+        "author",
+        "first_party_data",
+        "named_examples",
+        "original_visuals"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "no patch/before to rewrite",
+      "suggestedFields": [
+        "first_party_data"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    }
+  ],
+  "auditorVersion": "0.1.6",
+  "auditorGitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+  "brandsmith": {
+    "brandId": 2,
+    "brandName": "tryps",
+    "fieldsPopulated": []
+  },
+  "updatedAt": "2026-04-23T11:40:42.630Z"
+}

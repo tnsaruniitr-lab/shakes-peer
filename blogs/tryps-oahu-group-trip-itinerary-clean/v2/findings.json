@@ -1,0 +1,188 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 10 Questions but page shows ~19 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_toc_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Post is 1593 words (pillar) — include a <nav aria-label=\"Table of contents\"> for LLM outline extraction",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1593 words is below pillar minimum 1900 (target 2500)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Reads like an SEO template with occasional personality injections; bylined to 'TRYPS Editorial' which signals committee.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This is a practical, group-tested 7-day Oahu itinerary for 4–8 friends: every day planned, actual restaurant and beach names, and honest group advice.",
+      "before": "This is a practical, group-tested 7-day Oahu itinerary for 4–8 friends: every day planned, actual restaurant and beach names, and honest group advice.",
+      "after": "I've run this 7-day Oahu plan with two different friend groups; here's what held up and what I'd skip next time.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Reads like an SEO template with occasional personality injections; bylined to 'TRYPS Editorial' which signals committee."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Some opinion sneaks in (hangry mutinies, tasting menu marathon) but most claims are generic travel-blog safe.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Oahu is group- and family-friendly: beaches, parks, and safe neighborhoods.",
+      "before": "Oahu is group- and family-friendly: beaches, parks, and safe neighborhoods.",
+      "after": "Oahu handles both, but families anchor in Ko Olina while groups do better in Waikiki bars and Kailua kayak days.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: Some opinion sneaks in (hangry mutinies, tasting menu marathon) but most claims are generic travel-blog safe."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — A few fresh phrases ('herding cats,' 'hangry mutinies') but surrounded by predictable structure.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Every place below actually exists (bookable, serve food, or open to non-locals). No invented sunsets.",
+      "before": "Every place below actually exists (bookable, serve food, or open to non-locals). No invented sunsets.",
+      "after": "Keep the 'herding cats,' 'hangry mutinies,' 'tasting menu marathon'—cut formulaic filler like 'no fluff, all split four ways.'",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: A few fresh phrases ('herding cats,' 'hangry mutinies') but surrounded by predictable structure."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 5/10 — Tends to list options evenhandedly rather than commit to opinions.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "For most groups, Waikiki or Ala Moana wins.",
+      "before": "For most groups, Waikiki or Ala Moana wins.",
+      "after": "Pick Ala Moana. Waikiki's a tourist tax, and Kailua only pays off if someone in the group actually wants to kayak at 7am.",
+      "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 5/10: Tends to list options evenhandedly rather than commit to opinions."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentences 5/10 — A couple lines ('herding cats,' 'sane, sunburned') are quotable; most are template filler.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Skip the group-text drama, structure decisions early for a less hungover plan.",
+      "before": "Skip the group-text drama, structure decisions early for a less hungover plan.",
+      "after": "Depart sane, sunburned, and clutching a Rainbow Drive-In plate lunch you'll regret on the plane.",
+      "rationale": "Humanization axis \"Quotable sentences\" scored 5/10: A couple lines ('herding cats,' 'sane, sunburned') are quotable; most are template filler."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with breadcrumb navigation and meta before the actual hook; the real opener is buried in paragraph three.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups By TRYPS Editorial | 2026-04-23 | 9 min read A real-world, day-by-day 7-day Oahu itinerary for friend groups: grounded in actual places, targeted for group organisers, and structured for minimal chaos.",
+      "before": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups By TRYPS Editorial | 2026-04-23 | 9 min read A real-world, day-by-day 7-day Oahu itinerary for friend groups: grounded in actual places, targeted for group organisers, and structured for minimal chaos.",
+      "after": "By day three of 'we should totally go to Hawaii,' your group chat is 400 messages deep and the only booking is a screenshot of Duke's Waikiki.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with breadcrumb navigation and meta before the actual hook; the real opener is buried in paragraph three."
+    }
+  }
+]

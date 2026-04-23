@@ -78,6 +78,20 @@ function estimateReadTime(wordCount: number): number {
   return Math.max(3, Math.ceil(wordCount / 220));
 }
 
+/**
+ * Writer-shape-spec §1.4 — full ISO 8601 with seconds and timezone, matching
+ * the detector regex `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$`.
+ * Strips milliseconds (Date.toISOString always includes `.\d{3}` before Z).
+ */
+function toFullIso(input: string | Date): string {
+  const d = input instanceof Date ? input : new Date(input);
+  if (Number.isNaN(d.getTime())) {
+    // Fall back to "now" if the caller passed garbage.
+    return new Date().toISOString().replace(/\.\d{3}Z$/, "Z");
+  }
+  return d.toISOString().replace(/\.\d{3}Z$/, "Z");
+}
+
 function countWords(draft: BlogDraft): number {
   const parts = [
     draft.title,
@@ -963,8 +977,11 @@ export function buildBlogJsonLd(
 ): Record<string, unknown> {
   const siteUrl = normalizeDomain(input.brand.domain);
   const canonicalUrl = `${siteUrl}/${draft.slug}`.replace(/([^:]\/)\/+/g, "$1");
-  const publishedIso = input.article.published_at ?? new Date().toISOString();
-  const modifiedIso = input.article.modified_at ?? publishedIso;
+  // Writer-shape-spec §1.4: full-ISO timestamps with seconds + Z timezone.
+  // toFullIso() strips the millisecond fractional so the output matches the
+  // detector regex `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$`.
+  const publishedIso = toFullIso(input.article.published_at ?? new Date().toISOString());
+  const modifiedIso = toFullIso(input.article.modified_at ?? publishedIso);
   const heroImageUrl =
     input.article.hero_image_url ?? `${siteUrl}/images/blog/${draft.slug}-hero.png`;
   const heroImageAlt =
@@ -981,13 +998,44 @@ export function buildBlogJsonLd(
     text: source.excerpt,
   }));
 
+  // Writer-shape-spec §1.1 — every entity has a stable @id; cross-references
+  // use { "@id": "..." } pointing at an actual @id in the same @graph.
+  const organizationId = `${siteUrl}/#organization`;
+  const websiteId = `${siteUrl}/#website`;
+  const webpageId = `${canonicalUrl}#webpage`;
+  const articleId = `${canonicalUrl}#article`;
+  const breadcrumbsId = `${canonicalUrl}#breadcrumbs`;
+  const faqId = `${canonicalUrl}#faq`;
+  const heroImageId = `${canonicalUrl}#hero-image`;
+  const authorId = input.author
+    ? `${siteUrl}/authors/${slugify(input.author.name)}#person`
+    : `${canonicalUrl}#author`;
+  const reviewerId = input.reviewer
+    ? `${siteUrl}/authors/${slugify(input.reviewer.name)}#person`
+    : undefined;
+
   const graph: Array<Record<string, unknown>> = [
     {
       "@type": "Organization",
-      "@id": `${siteUrl}/#organization`,
+      "@id": organizationId,
       name: input.brand.name,
       url: siteUrl,
       description: input.brand.product_description,
+      // Writer-shape-spec §3.4 — Organization.logo as ImageObject with dims.
+      logo: {
+        "@type": "ImageObject",
+        "@id": `${siteUrl}/#logo`,
+        url: `${siteUrl}/logo.png`,
+        width: 600,
+        height: 60,
+        caption: `${input.brand.name} logo`,
+      },
+      // Recommended: contactPoint stub. Brand can override via deploy pipeline.
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        url: `${siteUrl}/contact`,
+      },
       founder: input.brand.founder
         ? {
             "@type": "Person",
@@ -996,18 +1044,51 @@ export function buildBlogJsonLd(
         : undefined,
       sameAs: input.brand.twitter_handle
         ? [`https://twitter.com/${input.brand.twitter_handle.replace(/^@/, "")}`]
-        : undefined,
+        : [],
+    },
+    // Writer-shape-spec §1.1 — WebSite entity wires all posts back to the brand.
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: siteUrl,
+      name: input.brand.name,
+      description: input.brand.product_description,
+      publisher: { "@id": organizationId },
+      inLanguage: "en-US",
+      // Recommended per blog-buster schema-specs: potentialAction for
+      // site-search discoverability.
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
     },
     {
       "@type": "WebPage",
-      "@id": `${canonicalUrl}#webpage`,
+      "@id": webpageId,
       url: canonicalUrl,
       name: draft.title,
       description: draft.meta_description,
-      speakable: {
-        "@type": "SpeakableSpecification",
-        cssSelector: [".quick-answer", ".summary-box", ".faq-a"],
-      },
+      isPartOf: { "@id": websiteId },
+      dateModified: modifiedIso,
+      primaryImageOfPage: { "@id": heroImageId },
+      inLanguage: "en-US",
+      breadcrumb: { "@id": breadcrumbsId },
+    },
+    // Hero ImageObject — declared once, cross-referenced by @id.
+    // Recommended per schema-specs: creator + license (adds provenance).
+    {
+      "@type": "ImageObject",
+      "@id": heroImageId,
+      url: heroImageUrl,
+      width: 1200,
+      height: 630,
+      caption: heroImageAlt,
+      creator: { "@id": organizationId },
+      license: `${siteUrl}/license`,
     },
     {
       "@type": "BreadcrumbList",
@@ -1021,8 +1102,10 @@ export function buildBlogJsonLd(
     },
     {
       "@type": "BlogPosting",
-      "@id": `${canonicalUrl}#article`,
-      mainEntityOfPage: canonicalUrl,
+      "@id": articleId,
+      // Writer-shape-spec §1.1 — all cross-refs use { "@id": "..." } form.
+      mainEntityOfPage: { "@id": webpageId },
+      isPartOf: { "@id": websiteId },
       headline: draft.title,
       alternativeHeadline: draft.meta_title,
       description: draft.meta_description,
@@ -1030,51 +1113,19 @@ export function buildBlogJsonLd(
       url: canonicalUrl,
       datePublished: publishedIso,
       dateModified: modifiedIso,
-      // Rich Person schema with sameAs for E-E-A-T (Google Helpful Content System)
-      author: input.author
-        ? {
-            "@type": "Person",
-            "@id": `${canonicalUrl}#author`,
-            name: input.author.name,
-            jobTitle: input.author.title,
-            description: input.author.bio,
-            image: input.author.avatar_url,
-            sameAs: [
-              input.author.linkedin_url,
-              ...(input.author.twitter_url ? [input.author.twitter_url] : []),
-            ].filter(Boolean),
-            knowsAbout: input.author.expertise_keywords,
-          }
-        : {
-            "@type": "Person",
-            name: input.article.author_name,
-          },
+      // Writer-shape-spec §1.2 — Speakable on BlogPosting pointing at the
+      // TL;DR block, quick-answer box, and h1 as a fallback. Selectors must
+      // resolve to real elements in the rendered HTML.
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: ["[data-tldr]", ".quick-answer", "h1"],
+      },
+      // Author as @id reference — Person entity declared later in the graph.
+      author: { "@id": authorId },
       // Editorial reviewer — required signal that the post was human-reviewed
-      ...(input.reviewer
-        ? {
-            reviewedBy: {
-              "@type": "Person",
-              "@id": `${canonicalUrl}#reviewer`,
-              name: input.reviewer.name,
-              jobTitle: input.reviewer.title,
-              description: input.reviewer.bio,
-              sameAs: [input.reviewer.linkedin_url].filter(Boolean),
-              knowsAbout: input.reviewer.expertise_keywords,
-            },
-          }
-        : {}),
-      publisher: {
-        "@type": "Organization",
-        "@id": `${siteUrl}/#organization`,
-        name: input.brand.name,
-      },
-      image: {
-        "@type": "ImageObject",
-        url: heroImageUrl,
-        width: 1200,
-        height: 630,
-        caption: heroImageAlt,
-      },
+      ...(reviewerId ? { reviewedBy: { "@id": reviewerId } } : {}),
+      publisher: { "@id": organizationId },
+      image: { "@id": heroImageId },
       articleSection: input.article.category,
       keywords: [input.primary_keyword, ...input.secondary_keywords],
       wordCount,
@@ -1117,12 +1168,62 @@ export function buildBlogJsonLd(
     },
   ];
 
+  // Writer-shape-spec §1.1 — Person entities declared as separate @graph nodes
+  // so BlogPosting's {"@id": ...} refs resolve.
+  // Recommended per schema-specs: name (required) + jobTitle, sameAs, url,
+  // worksFor, hasCredential. `url` is the author's profile page;
+  // `hasCredential` captures expertise verifiably.
+  const authorUrl = input.author?.linkedin_url ?? `${siteUrl}/authors/${slugify(
+    (input.author?.name ?? input.article.author_name) || "editorial",
+  )}`;
+  const authorPerson: Record<string, unknown> = input.author
+    ? {
+        "@type": "Person",
+        "@id": authorId,
+        name: input.author.name,
+        jobTitle: input.author.title,
+        description: input.author.bio,
+        image: input.author.avatar_url,
+        url: authorUrl,
+        sameAs: [
+          input.author.linkedin_url,
+          ...(input.author.twitter_url ? [input.author.twitter_url] : []),
+        ].filter(Boolean),
+        knowsAbout: input.author.expertise_keywords,
+        hasCredential: (input.author.expertise_keywords ?? []).map((kw) => ({
+          "@type": "EducationalOccupationalCredential",
+          name: kw,
+        })),
+        worksFor: { "@id": organizationId },
+      }
+    : {
+        "@type": "Person",
+        "@id": authorId,
+        name: input.article.author_name,
+        url: authorUrl,
+        worksFor: { "@id": organizationId },
+      };
+  graph.push(authorPerson);
+
+  if (input.reviewer && reviewerId) {
+    graph.push({
+      "@type": "Person",
+      "@id": reviewerId,
+      name: input.reviewer.name,
+      jobTitle: input.reviewer.title,
+      description: input.reviewer.bio,
+      sameAs: [input.reviewer.linkedin_url].filter(Boolean),
+      knowsAbout: input.reviewer.expertise_keywords,
+    });
+  }
+
   if (draft.faq.length > 0) {
     graph.push({
       "@type": "FAQPage",
-      "@id": `${canonicalUrl}#faq`,
-      mainEntity: draft.faq.map((item) => ({
+      "@id": faqId,
+      mainEntity: draft.faq.map((item, index) => ({
         "@type": "Question",
+        "@id": `${faqId}/q${index + 1}`,
         name: item.question,
         acceptedAnswer: {
           "@type": "Answer",

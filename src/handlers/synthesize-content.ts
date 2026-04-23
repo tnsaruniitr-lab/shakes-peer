@@ -170,15 +170,26 @@ async function synthesizeDefinedTerm(
     return { ...base, outcome: "skipped", reason: "no definitional sentence found for primary_keyword" };
   }
 
+  // Writer-shape-spec §1.1 — stable @id so the term is addressable cross-page.
+  const brandDomain = ctx.request.brand.domain ?? "";
+  const brandUrl = brandDomain
+    ? brandDomain.startsWith("http")
+      ? brandDomain
+      : `https://${brandDomain}`
+    : "";
+  const termSlug = term.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   const definedTerm: Record<string, unknown> = {
     "@type": "DefinedTerm",
+    "@id": brandUrl ? `${brandUrl}/glossary/${termSlug}#term` : undefined,
     name: term,
     description,
     inDefinedTermSet: {
       "@type": "DefinedTermSet",
+      "@id": brandUrl ? `${brandUrl}/glossary#set` : undefined,
       name: `${ctx.request.brand.name} Glossary`,
     },
   };
+  for (const k of Object.keys(definedTerm)) if (definedTerm[k] === undefined) delete definedTerm[k];
 
   graph.push(definedTerm);
   const nextJsonLd = wrapGraph(state.jsonLd, graph);
@@ -300,25 +311,33 @@ async function synthesizeOrganization(
   );
   const domain = brand.domain ?? "";
   const url = domain ? (domain.startsWith("http") ? domain : `https://${domain}`) : "";
-  // Handshake contract §7a — Organization recommended fields:
-  // name, url, logo, sameAs (array — empty is an acceptable signal, missing
-  // is not), contactPoint, description. Always emit sameAs and contactPoint
-  // so the detector's recommended-field check passes; populate what we have
-  // from the brand config.
+  // Writer-shape-spec §1.1 + §3.4 — stable @id, logo as ImageObject with
+  // dimensions, always emit sameAs + contactPoint so recommended-field checks
+  // pass. @id pattern matches writer.ts so both sides cross-reference cleanly.
   const sameAs = sameAsUrlsFrom(brand) ?? [];
   const contactPoint: Record<string, unknown> = {
     "@type": "ContactPoint",
     contactType: "customer support",
     ...(url ? { url: `${url}/contact` } : {}),
   };
+  const logo: Record<string, unknown> | undefined = url
+    ? {
+        "@type": "ImageObject",
+        "@id": `${url}/#logo`,
+        url: `${url}/logo.png`,
+        width: 600,
+        height: 60,
+        caption: `${brand.name} logo`,
+      }
+    : undefined;
   const org: Record<string, unknown> = {
     "@type": "Organization",
-    "@id": url ? `${url}#org` : undefined,
+    "@id": url ? `${url}/#organization` : undefined,
     name: brand.name,
     url: url || undefined,
     description: brand.product_description || undefined,
     sameAs,
-    logo: url ? `${url}/logo.png` : undefined,
+    logo,
     contactPoint,
   };
   // Drop undefineds for cleanliness (but keep empty arrays — they're meaningful).
@@ -372,22 +391,53 @@ async function synthesizeWebPage(
   const existing = graph.findIndex(
     (n) => typeof n === "object" && n !== null && isType((n as Record<string, unknown>)["@type"], "WebPage"),
   );
-  // Handshake contract §7a — WebPage recommended: description, dateModified,
-  // isPartOf, primaryImageOfPage, inLanguage.
+  // Writer-shape-spec §1.1 + §1.4 — full ISO, WebPage uses @id refs where
+  // possible; when we don't have a WebSite entity in the graph we inline a
+  // minimal one so isPartOf resolves.
+  const heroImageId = `${url}#hero-image`;
   const ogImage =
     state.metaTags["og:image"] || state.metaTags["twitter:image"] || undefined;
+  const websiteId = host ? `${host}/#website` : undefined;
+  // If a WebSite entity with this @id already exists in the graph, just ref
+  // it. Otherwise inline a minimal WebSite node so the ref resolves.
+  const hasWebsite = graph.some(
+    (n) =>
+      typeof n === "object" &&
+      n !== null &&
+      isType((n as Record<string, unknown>)["@type"], "WebSite"),
+  );
+  if (!hasWebsite && websiteId) {
+    graph.push({
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: host,
+      name: brand?.name,
+    });
+  }
+  // Same pattern for hero ImageObject.
+  const hasHero = graph.some(
+    (n) =>
+      typeof n === "object" &&
+      n !== null &&
+      (n as Record<string, unknown>)["@id"] === heroImageId,
+  );
+  if (!hasHero && ogImage) {
+    graph.push({
+      "@type": "ImageObject",
+      "@id": heroImageId,
+      url: ogImage,
+    });
+  }
   const webPage: Record<string, unknown> = {
     "@type": "WebPage",
     "@id": `${url}#webpage`,
     url,
     name: title,
     description: description || undefined,
-    isPartOf: host ? { "@type": "WebSite", url: host, name: brand?.name } : undefined,
+    isPartOf: websiteId ? { "@id": websiteId } : undefined,
     inLanguage: "en-US",
-    dateModified: new Date().toISOString().slice(0, 10),
-    primaryImageOfPage: ogImage
-      ? { "@type": "ImageObject", url: ogImage }
-      : undefined,
+    dateModified: new Date().toISOString().replace(/\.\d{3}Z$/, "Z"),
+    primaryImageOfPage: ogImage ? { "@id": heroImageId } : undefined,
   };
   for (const k of Object.keys(webPage)) if (webPage[k] === undefined) delete webPage[k];
 

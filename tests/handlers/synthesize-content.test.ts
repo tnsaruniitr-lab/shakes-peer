@@ -191,9 +191,15 @@ describe("WebPage synthesizer", () => {
     const graph = (r.jsonLd as { "@graph": unknown[] })["@graph"] ?? r.jsonLd;
     const list = Array.isArray(graph) ? graph : [graph];
     const wp = list.find((n) => (n as Record<string, unknown>)["@type"] === "WebPage") as Record<string, unknown>;
-    const img = wp.primaryImageOfPage as Record<string, unknown>;
-    expect(img["@type"]).toBe("ImageObject");
-    expect(img.url).toBe("https://cdn.example/cover.jpg");
+    // Writer-shape-spec §1.1 — primaryImageOfPage is an @id ref, and the
+    // synthesizer injects the ImageObject separately into @graph.
+    const ref = wp.primaryImageOfPage as Record<string, unknown>;
+    expect(typeof ref["@id"]).toBe("string");
+    const imgNode = list.find(
+      (n) => (n as Record<string, unknown>)["@id"] === ref["@id"],
+    ) as Record<string, unknown>;
+    expect(imgNode["@type"]).toBe("ImageObject");
+    expect(imgNode.url).toBe("https://cdn.example/cover.jpg");
   });
 
   it("skips when no domain context is available", async () => {

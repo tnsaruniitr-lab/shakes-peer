@@ -1,0 +1,156 @@
+[
+  {
+    "checkId": "D_Organization_missing_recommended",
+    "severity": "warn",
+    "evidence": "Organization missing recommended: sameAs, contactPoint",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_WebPage_missing_recommended",
+    "severity": "warn",
+    "evidence": "WebPage missing recommended: dateModified, primaryImageOfPage",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "severity": "warn",
+    "evidence": "12 em-dashes (3.73 per 400 words; target <1)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.88/500 words; target ≤2)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_passive_overuse",
+    "severity": "warn",
+    "evidence": "Passive-voice ratio 18% (target <15%)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice",
+    "severity": "fail",
+    "evidence": "Specific human voice 1/10 — Reads as committee-written boilerplate with no individual voice or perspective.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "severity": "warn",
+    "evidence": "Genuine opinions 4/10 — A couple of opinionated lines exist but are drowned in generic safe claims.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 4/10 — One fun Wikipedia-footnote line; the rest is boilerplate strings of nouns.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_specific_citations",
+    "severity": "fail",
+    "evidence": "Specific citations 3/10 — Vague placeholder citations like [geo-arxiv]; no real numbers, prices, or named studies in-line.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "severity": "warn",
+    "evidence": "Point of view 4/10 — Mostly surveys both sides neutrally; rare POV flashes feel bolted on.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "severity": "warn",
+    "evidence": "Quotable sentence 5/10 — The 'Wikipedia footnote nobody asked for' and 'no page two of ChatGPT' lines are quotable; most of the body isn't.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "fail",
+    "evidence": "Intro earns attention 2/10 — Opens with a generic TL;DR definition and even leaks an editor note ('Replace anonymous editorial byline...').",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "severity": "warn",
+    "evidence": "intro_hook 5/10 — The post opens with three competing 'definitions' in quick succession (TL;DR, inline def, Quick answer box) before any genuine hook lands. The first body sentence is a flat dictionary entry. The one genuinely interesting line—'Getting cited by ChatGPT feels less like SEO and more like writing a Wikipedia footnote nobody asked for'—is buried mid-block and never used as an opener. The actual first two sentences a reader encounters are generic setup, not earned attention.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — The post has pockets of strong specificity—the Semrush 8,200-URL study, the 2.3x FAQPage citation lift, named schema types, named engines. But the 'How Can You Track' and 'Summary' sections collapse into abstractions: 'platforms that can extract,' 'specialized tools that log,' 'modern digital strategies require.' Tool names mentioned in the conclusion CTA (AnswerMonk, Profound) never appear in the body where they are actually needed. The action steps in the playbook section also lack numbers (how often? what threshold triggers a content refresh?).",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

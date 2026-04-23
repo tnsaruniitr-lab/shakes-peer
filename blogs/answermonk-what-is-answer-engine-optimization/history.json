@@ -1,0 +1,105 @@
+{
+  "slug": "answermonk-what-is-answer-engine-optimization",
+  "brand": "AnswerMonk",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=2 with 4 open item(s) for editorial review",
+  "totalCostUsd": 0.329541,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T04:57:20.457Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "b35118489fe273e247fa309346e534f3196adf02"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T04:58:32.670Z",
+      "score": 36,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 46,
+        "quality": 70,
+        "overall": 36
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.16476,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 2,
+        "applied": 11,
+        "skipped": 6,
+        "ambiguous": 3
+      },
+      "escalationCount": 2,
+      "commitSha": "db7d6e6f9b93825dd5b6e7938a65456db88944f2"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T04:58:32.773Z",
+      "score": 39,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 59,
+        "quality": 63,
+        "overall": 39
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.164781,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 2,
+        "applied": 7,
+        "skipped": 8,
+        "drift": 1,
+        "ambiguous": 2
+      },
+      "escalationCount": 2,
+      "commitSha": "0ef846a51ffd3fb216f6dd2a55ac8b88ca835aec"
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 3
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "suggestedFields": [
+        "author",
+        "first_party_data",
+        "named_examples",
+        "original_visuals"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 3
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "no patch/before to rewrite",
+      "suggestedFields": [
+        "first_party_data"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 3
+    }
+  ],
+  "updatedAt": "2026-04-23T04:58:32.865Z"
+}

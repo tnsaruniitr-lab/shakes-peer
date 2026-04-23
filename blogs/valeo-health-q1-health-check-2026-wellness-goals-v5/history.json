@@ -1,0 +1,152 @@
+{
+  "slug": "valeo-health-q1-health-check-2026-wellness-goals-v5",
+  "brand": "Valeo Health",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=3 with 6 open item(s) for editorial review",
+  "totalCostUsd": 0.755769,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T11:59:43.114Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "879573c138fa05864cd8fd6fcfde364f24e4f1e4"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T12:01:47.644Z",
+      "score": 42,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 62,
+        "quality": 70,
+        "overall": 42
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.193149,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 3,
+        "drift": 1,
+        "applied": 10
+      },
+      "escalationCount": 2,
+      "commitSha": "1d7f0409af8153630acc201313330550649529c3"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T12:01:47.741Z",
+      "score": 44,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 71,
+        "quality": 63,
+        "overall": 44
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.194052,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 6,
+        "applied": 7,
+        "drift": 1
+      },
+      "escalationCount": 2,
+      "commitSha": "178f90bdec6b1f071205fb25ac03c31da68eb057"
+    },
+    {
+      "version": 4,
+      "generatedAt": "2026-04-23T12:01:47.809Z",
+      "score": 47,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 75,
+        "quality": 67,
+        "overall": 47
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.18256799999999995,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 6,
+        "applied": 4,
+        "drift": 3
+      },
+      "escalationCount": 2,
+      "commitSha": "9a214947d76bbe5982d23e2e51a97c4ad539c560"
+    },
+    {
+      "version": 5,
+      "generatedAt": "2026-04-23T12:02:25.726Z",
+      "score": 48,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 76,
+        "quality": 70,
+        "overall": 48
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.18600000000000003,
+      "innerIterations": 1,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": null
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "suggestedFields": [
+        "author",
+        "first_party_data",
+        "named_examples",
+        "original_visuals"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "no patch/before to rewrite",
+      "suggestedFields": [
+        "first_party_data"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    }
+  ],
+  "auditorVersion": "0.1.6",
+  "auditorGitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+  "brandsmith": {
+    "brandId": 5,
+    "brandName": "Valeo Health",
+    "fieldsPopulated": []
+  },
+  "updatedAt": "2026-04-23T12:02:25.778Z"
+}

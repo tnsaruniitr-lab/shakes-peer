@@ -1,0 +1,179 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "M_description_length",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Meta description length 107 (target 110–170)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "TL;DR is 61 words (target 40–58)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly committee-style marketing copy, though occasional zingers break through.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This evidence-backed review helps you sustain 2026 wellness goals and connect health habits to your unique UAE lifestyle.",
+      "before": "This evidence-backed review helps you sustain 2026 wellness goals and connect health habits to your unique UAE lifestyle.",
+      "after": "Here's what actually works for UAE adults trying to stick with health goals past March—based on what I've seen in the clinic.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mostly committee-style marketing copy, though occasional zingers break through."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp opinions appear (coaching-as-theatre, willpower line), but they're buried in safe hedged prose.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Friendly note: Your progress is real, even if imperfect, especially in Dubai’s dynamic environment.",
+      "before": "Friendly note: Your progress is real, even if imperfect, especially in Dubai’s dynamic environment.",
+      "after": "Cut this line entirely—it's filler. Replace with a specific observation about what Dubai residents typically get wrong in April.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: A few sharp opinions appear (coaching-as-theatre, willpower line), but they're buried in safe hedged prose."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — Some memorable turns ('overpriced theatre', '3pm energy crash'), but surrounded by 'leveraging a structured...clinically grounded reset' boilerplate.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Instead of waiting until the year’s end, or letting February’s motivation dips define the rest of 2026, leveraging a structured Q1 wellness review offers a clinically grounded reset.",
+      "before": "Instead of waiting until the year’s end, or letting February’s motivation dips define the rest of 2026, leveraging a structured Q1 wellness review offers a clinically grounded reset.",
+      "after": "Don't wait till December. A 15-minute review now beats another year of pretending January's plan is still alive.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: Some memorable turns ('overpriced theatre', '3pm energy crash'), but surrounded by 'leveraging a structured...clinically grounded reset' boilerplate."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides 6/10 — Has a POV when it drops the hedging, but the 'friendly notes' dilute it into self-help neutrality.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This may feel discouraging, but the most effective intervention is surprisingly gentle: a simple 15-minute Q1 health check, completed at home, can more than double your odds of sustaining progress until June and beyond.",
+      "before": "This may feel discouraging, but the most effective intervention is surprisingly gentle: a simple 15-minute Q1 health check, completed at home, can more than double your odds of sustaining progress until June and beyond.",
+      "after": "Willpower is not the fix. A pen and 15 minutes is.",
+      "rationale": "Humanization axis \"Point of view vs both-sides\" scored 6/10: Has a POV when it drops the hedging, but the 'friendly notes' dilute it into self-help neutrality."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 5/10 — The actual strong hook ('Fifteen minutes with a pen can flip that') is buried under meta-headers, TL;DR, bylines, and repeated stats.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TL;DR: A 15-minute Q1 health check completed at home can more than double your odds of sustaining wellness goals through June and beyond, counteracting the 64% dropout rate by late March.",
+      "before": "TL;DR: A 15-minute Q1 health check completed at home can more than double your odds of sustaining wellness goals through June and beyond, counteracting the 64% dropout rate by late March.",
+      "after": "By late March, 64% of UAE adults have quietly quit their January goals. Fifteen minutes with a pen fixes more of that than any app.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 5/10: The actual strong hook ('Fifteen minutes with a pen can flip that') is buried under meta-headers, TL;DR, bylines, and repeated stats."
+    }
+  },
+  {
+    "checkId": "Q_answer_extractability",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "answer_extractability 6/10 — The primary keyword answer is scattered across a TL;DR block, a 'Quick answer' box, and repeated body paragraphs. No single 40–60 word passage cleanly states: what a Q1 health check is, what it produces, and what UAE adults should specifically do. An AI assistant would need to stitch together three separate sections. A single consolidated answer block placed immediately after the headline would fix extractability.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Instead of waiting until the year's end, or letting February's motivation dips define the rest of 2026, leveraging a structured Q1 wellness review offers a clinically grounded reset.",
+      "before": "Instead of waiting until the year's end, or letting February's motivation dips define the rest of 2026, leveraging a structured Q1 wellness review offers a clinically grounded reset.",
+      "after": "A Q1 health check — a structured 15-minute self-review completed in late March — boosts 6-month wellness goal adherence by 31% compared with year-end reviews alone (Chen et al., BMJ 2024, n=12,400). UAE residents should combine this review with DHA-mandated screenings: annual blood pressure from age 18, lipid panel from 35, and HbA1c annually for adults 35+ with BMI over 25.",
+      "rationale": "Quality axis \"answer_extractability\" scored 6/10: The primary keyword answer is scattered across a TL;DR block, a 'Quick answer' box, and repeated body paragraphs. No single 40–60 word passage cleanly states: what a Q1 health check is, what it produces, and what UAE adults should specifically do. An AI assistant would need to stitch together three separate sections. A single consolidated answer block placed immediately after the headline would fix extractability."
+    }
+  }
+]

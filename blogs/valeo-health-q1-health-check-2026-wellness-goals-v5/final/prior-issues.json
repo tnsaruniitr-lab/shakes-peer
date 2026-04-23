@@ -1,0 +1,114 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "M_description_length",
+    "severity": "warn",
+    "evidence": "Meta description length 107 (target 110–170)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "severity": "warn",
+    "evidence": "TL;DR is 61 words (target 40–58)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly committee-style marketing copy, though occasional zingers break through.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp opinions appear (coaching-as-theatre, willpower line), but they're buried in safe hedged prose.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — Some memorable turns ('overpriced theatre', '3pm energy crash'), but surrounded by 'leveraging a structured...clinically grounded reset' boilerplate.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 6/10 — Has some POV ('Skip the coaching upsell') but mostly presents as neutral guidance.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "severity": "warn",
+    "evidence": "Quotable sentences 6/10 — One or two quotable lines exist, but they're buried under conventional prose.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 5/10 — The actual strong hook ('Fifteen minutes with a pen can flip that') is buried under meta-headers, TL;DR, bylines, and repeated stats.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_answer_extractability",
+    "severity": "warn",
+    "evidence": "answer_extractability 6/10 — The primary keyword answer is scattered across a TL;DR block, a 'Quick answer' box, and repeated body paragraphs. No single 40–60 word passage cleanly states: what a Q1 health check is, what it produces, and what UAE adults should specifically do. An AI assistant would need to stitch together three separate sections. A single consolidated answer block placed immediately after the headline would fix extractability.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

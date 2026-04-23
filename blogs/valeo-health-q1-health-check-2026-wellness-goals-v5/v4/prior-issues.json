@@ -1,0 +1,121 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "M_description_length",
+    "severity": "warn",
+    "evidence": "Meta description length 107 (target 110–170)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "severity": "warn",
+    "evidence": "TL;DR is 61 words (target 40–58)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "fail",
+    "evidence": "Specific human voice vs committee 3/10 — Reads like a content marketing team output with repeated 'Friendly note' scaffolding and branded phrasing.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 5/10 — A few opinionated lines exist ('anyone telling you to grind...is selling something') but most content is hedged and safe.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — 'Your willpower expires in February; your calendar doesn't' is sharp, but most prose is predictable wellness-speak.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_neutral_survey",
+    "severity": "warn",
+    "evidence": "Point of view vs neutral survey 5/10 — Has flashes of POV but defaults to balanced, disclaimer-laden coverage typical of brand health content.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "severity": "warn",
+    "evidence": "Quotable sentences 6/10 — One or two quotable lines exist, but they're buried under conventional prose.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 6/10 — The '64% quietly quit' hook is strong, but it's immediately diluted by boilerplate second sentence and duplicate TL;DR.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The TL;DR block and 'Quick answer' section front-load good material, but by the time the actual body prose begins, the first sentence is partially redundant with what was already stated twice above it. The hook loses urgency because it's the third time the reader sees the 64% stat. The sentence is salvageable but needs to land as if it's the first time the reader is hearing it, not a recap. Score docked for the structural repetition undermining the hook's punch, not for the sentence quality in isolation.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — An editorial instruction ('Cite the lead author...') was accidentally published as body copy, which is a critical specificity and credibility failure. Beyond that slip, placeholder citation tags like [lancet-behaviour-change] and [bmj-goal-setting] appear throughout without being resolved into real author/year/volume data anywhere visible to the reader. The AED 1,200 figure and the DHA age/BMI thresholds are good concrete anchors, but the core statistical claims (31%, 2x odds, 18% glucose benefit) float without verifiable sourcing, dragging the specificity score down significantly.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  }
+]

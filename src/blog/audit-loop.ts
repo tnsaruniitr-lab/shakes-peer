@@ -69,7 +69,11 @@ export interface AuditLoopResult {
 }
 
 export async function runAuditLoop(input: AuditLoopInput): Promise<AuditLoopResult> {
-  const maxRounds = input.maxRounds ?? 3;
+  // Handshake coherence brief §B3 — LLM-judge findings (H_judge_*, Q_*) climb
+  // ~2 points per rewrite pass; they need 5 rounds to cross the 7/10 threshold.
+  // Deterministic runs have no judge to benefit, so cap at 3.
+  const llmEnabled = input.rewrite?.runLlm === true || input.synthesis?.runLlm === true;
+  const maxRounds = input.maxRounds ?? (llmEnabled ? 5 : 3);
   const rounds: AuditLoopRound[] = [];
   const totalEscalations: EscalationRecord[] = [];
   let state = input.initialState;

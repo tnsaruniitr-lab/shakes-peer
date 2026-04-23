@@ -30,6 +30,16 @@ const RuleSchema = z.object({
   generation_instruction: z.string().min(1),
   source: z.array(z.string()).min(1),
   deprecated: z.boolean().optional(),
+  // ─── Handshake contract v1.1 additions ────────────────────────────────────
+  // authority declares who is the source of truth for this rule:
+  //   shakespeer       — runs in our auditor only (or as preflight)
+  //   blog-buster      — deprecated here, live in blog-buster
+  //   shared-preflight — we detect first, blog-buster confirms/rejects/extends
+  authority: z.enum(["shakespeer", "blog-buster", "shared-preflight"]).optional(),
+  // Pointer to the blog-buster check that replaces this one (when deprecated).
+  superseded_by: z.string().optional(),
+  // Flag for checks where blog-buster claims coverage — verified during Phase 1 smoke.
+  coverage_verification_pending: z.boolean().optional(),
 });
 
 const RulesFileSchema = z.object({
@@ -40,6 +50,7 @@ const RulesFileSchema = z.object({
     tiers: z.record(z.string()),
     severity: z.record(z.string()),
     applies_to: z.array(z.string()),
+    authority: z.record(z.string()).optional(),
   }),
   sections: z.array(SectionSchema).min(1),
   rules: z.array(RuleSchema).min(1),
@@ -170,5 +181,71 @@ describe("blog-rules.json — section invariants", () => {
     for (const s of data.sections) {
       expect(rulesBySection.get(s.id) ?? 0).toBeGreaterThan(0);
     }
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Handshake contract invariants (v1.1+).
+// Enforces the rules declared in docs/handshake-contract.md §3 and §11.
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe("blog-rules.json — handshake invariants", () => {
+  it("every rule declares an authority", () => {
+    const data = loadRules();
+    const missing = data.rules.filter(
+      (r: { authority?: string }) => !r.authority
+    );
+    if (missing.length) {
+      console.error(
+        "Rules missing authority:",
+        missing.map((r: { id: string }) => r.id)
+      );
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it("every deprecated rule points to its successor via superseded_by", () => {
+    const data = loadRules();
+    const orphans = data.rules.filter(
+      (r: { deprecated?: boolean; superseded_by?: string }) =>
+        r.deprecated === true && !r.superseded_by
+    );
+    if (orphans.length) {
+      console.error(
+        "Deprecated rules without superseded_by:",
+        orphans.map((r: { id: string }) => r.id)
+      );
+    }
+    expect(orphans).toEqual([]);
+  });
+
+  it("deprecated rules always have authority: blog-buster", () => {
+    const data = loadRules();
+    const mismatched = data.rules.filter(
+      (r: { deprecated?: boolean; authority?: string }) =>
+        r.deprecated === true && r.authority !== "blog-buster"
+    );
+    expect(mismatched).toEqual([]);
+  });
+
+  it("non-deprecated rules have authority shakespeer or shared-preflight", () => {
+    const data = loadRules();
+    const mismatched = data.rules.filter(
+      (r: { deprecated?: boolean; authority?: string }) =>
+        r.deprecated !== true &&
+        r.authority !== "shakespeer" &&
+        r.authority !== "shared-preflight"
+    );
+    expect(mismatched).toEqual([]);
+  });
+
+  it("superseded_by values are namespaced (contain a colon)", () => {
+    const data = loadRules();
+    const bad = data.rules
+      .filter((r: { superseded_by?: string }) => r.superseded_by)
+      .filter(
+        (r: { superseded_by?: string }) => !r.superseded_by?.includes(":")
+      );
+    expect(bad).toEqual([]);
   });
 });

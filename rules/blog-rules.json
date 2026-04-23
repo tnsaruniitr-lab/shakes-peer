@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0",
-  "description": "Shakes-peer blog quality rules — governance catalog for auditor checks",
-  "effective_date": "2026-04-22",
+  "version": "1.1.0",
+  "description": "Shakes-peer blog quality rules \u2014 governance catalog for auditor checks",
+  "effective_date": "2026-04-23",
   "legend": {
     "tiers": {
       "1": "DOM or regex on structured draft",
@@ -14,9 +14,9 @@
       "8": "Human-only"
     },
     "severity": {
-      "CRITICAL": "Must pass — blocks publish",
+      "CRITICAL": "Must pass \u2014 blocks publish",
       "HIGH": "Must pass for pillars; authors can override with reason",
-      "MEDIUM": "Should pass — quality warning",
+      "MEDIUM": "Should pass \u2014 quality warning",
       "LOW": "Nice to have"
     },
     "applies_to": [
@@ -30,15 +30,44 @@
       "faq",
       "mechanism",
       "article"
-    ]
+    ],
+    "authority": {
+      "shakespeer": "Shakes-peer is the sole authority; check runs in auditor.ts and in audit preflight",
+      "blog-buster": "Blog-buster is the sole authority; rule is deprecated in shakes-peer auditor but kept for lineage",
+      "shared-preflight": "Shakes-peer runs this as preflight; blog-buster confirms/rejects/extends"
+    }
   },
   "sections": [
-    { "id": "A", "title": "Search Intent & On-Page SEO", "weight": 20 },
-    { "id": "B", "title": "Answer Extraction & Engagement", "weight": 20 },
-    { "id": "C", "title": "HTML Structure & UX Signals", "weight": 20 },
-    { "id": "D", "title": "Structured Data & Entity Coverage", "weight": 25 },
-    { "id": "E", "title": "Evidence, Trust & Content Quality", "weight": 15 },
-    { "id": "F", "title": "Human Signals & E-E-A-T (Helpful Content System)", "weight": 25 }
+    {
+      "id": "A",
+      "title": "Search Intent & On-Page SEO",
+      "weight": 20
+    },
+    {
+      "id": "B",
+      "title": "Answer Extraction & Engagement",
+      "weight": 20
+    },
+    {
+      "id": "C",
+      "title": "HTML Structure & UX Signals",
+      "weight": 20
+    },
+    {
+      "id": "D",
+      "title": "Structured Data & Entity Coverage",
+      "weight": 25
+    },
+    {
+      "id": "E",
+      "title": "Evidence, Trust & Content Quality",
+      "weight": 15
+    },
+    {
+      "id": "F",
+      "title": "Human Signals & E-E-A-T (Helpful Content System)",
+      "weight": 25
+    }
   ],
   "rules": [
     {
@@ -47,10 +76,17 @@
       "title": "Primary keyword appears in the page title or H1",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Look at article.title or the first <h1> and compare it to request.primary_keyword.",
       "generation_instruction": "Include the exact primary keyword (or a very close variant) in the H1 / title.",
-      "source": ["Standard SEO", "AnswerMonk R-020"]
+      "source": [
+        "Standard SEO",
+        "AnswerMonk R-020"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "A2",
@@ -58,10 +94,18 @@
       "title": "Meta title is keyword-aligned and within 45-65 characters",
       "severity": "HIGH",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Count article.meta_title characters and verify it includes request.primary_keyword or a close variant.",
       "generation_instruction": "Write a meta_title 45-65 chars long that leads with the primary keyword.",
-      "source": ["Standard SEO", "AnswerMonk R-140"]
+      "source": [
+        "Standard SEO",
+        "AnswerMonk R-140"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:M_title_length"
     },
     {
       "id": "A3",
@@ -69,10 +113,18 @@
       "title": "Meta description is specific and within 140-165 characters",
       "severity": "HIGH",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Count article.meta_description characters and check for concrete nouns or numbers, not empty hype.",
       "generation_instruction": "Write a meta_description 140-165 chars that includes the primary keyword and a concrete value proposition.",
-      "source": ["Standard SEO", "AnswerMonk R-141"]
+      "source": [
+        "Standard SEO",
+        "AnswerMonk R-141"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:M_description_length"
     },
     {
       "id": "A4",
@@ -80,10 +132,16 @@
       "title": "Slug is concise and keyword-relevant",
       "severity": "MEDIUM",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Check article.slug against request.primary_keyword and keep it under 80 characters.",
       "generation_instruction": "Keep slug under 80 chars, lowercase, hyphens, include the primary keyword.",
-      "source": ["AnswerMonk R-154"]
+      "source": [
+        "AnswerMonk R-154"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "A5",
@@ -91,10 +149,17 @@
       "title": "The article body has enough topical depth",
       "severity": "MEDIUM",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Count section blocks and total visible words across article text or HTML.",
       "generation_instruction": "Target the word count in BlogArticleOptions.target_word_count (defaults by post type).",
-      "source": ["AnswerMonk R-040"]
+      "source": [
+        "AnswerMonk R-040"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:quality.specificity"
     },
     {
       "id": "B1",
@@ -102,10 +167,17 @@
       "title": "The post includes a fast-answer block near the top",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Check article.quick_answer or an equivalent early answer block in the first 20% of HTML.",
-      "generation_instruction": "Produce 3-5 quick_answer bullets — each is a standalone, extractable answer to the primary query.",
-      "source": ["AnswerMonk R-010", "Sieve PB:1416"]
+      "generation_instruction": "Produce 3-5 quick_answer bullets \u2014 each is a standalone, extractable answer to the primary query.",
+      "source": [
+        "AnswerMonk R-010",
+        "Sieve PB:1416"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "B2",
@@ -113,10 +185,19 @@
       "title": "Headings are question-led or snippet-friendly",
       "severity": "HIGH",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Count H2 entries that are question-led or snippet-friendly (40% question form target).",
       "generation_instruction": "Phrase at least 40% of H2 headings as questions ending with '?'.",
-      "source": ["AnswerMonk R-012", "Ahrefs"]
+      "source": [
+        "AnswerMonk R-012",
+        "Ahrefs"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:S_h2_question_ratio_low",
+      "coverage_verification_pending": true
     },
     {
       "id": "B3",
@@ -124,10 +205,17 @@
       "title": "The post includes reader-retention elements",
       "severity": "MEDIUM",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Look for bullets, tables, or key_takeaways that break up text.",
       "generation_instruction": "Include at least one list, table, or key_takeaways block per 500 words.",
-      "source": ["AnswerMonk R-013"]
+      "source": [
+        "AnswerMonk R-013"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:technical"
     },
     {
       "id": "B4",
@@ -135,10 +223,17 @@
       "title": "Paragraphs are concise enough for AI extraction",
       "severity": "MEDIUM",
       "tier": 6,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Compute average paragraph word count across article text or HTML.",
       "generation_instruction": "Keep paragraphs 2-4 sentences, max 80 words.",
-      "source": ["AnswerMonk R-016"]
+      "source": [
+        "AnswerMonk R-016"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:humanization.paragraph-metrics"
     },
     {
       "id": "B5",
@@ -146,10 +241,16 @@
       "title": "A clear next step or CTA is present",
       "severity": "HIGH",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Check article.call_to_action or an anchor link marked as CTA in the HTML.",
       "generation_instruction": "Emit call_to_action with a topic-relevant label and URL.",
-      "source": ["AnswerMonk R-130"]
+      "source": [
+        "AnswerMonk R-130"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "C1",
@@ -157,10 +258,17 @@
       "title": "HTML contains one semantic <article> root and exactly one <h1>",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Parse HTML for a single <article> element and one <h1>.",
       "generation_instruction": "Render exactly one <article> and one <h1> in the output HTML.",
-      "source": ["AnswerMonk R-020"]
+      "source": [
+        "AnswerMonk R-020"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:T_h1_missing,T_h1_multiple"
     },
     {
       "id": "C2",
@@ -168,10 +276,17 @@
       "title": "Heading hierarchy is clean",
       "severity": "HIGH",
       "tier": 1,
-      "applies_to": ["all"],
-      "verification_method": "Heading sequence does not skip levels (H1 → H2 → H3 only).",
+      "applies_to": [
+        "all"
+      ],
+      "verification_method": "Heading sequence does not skip levels (H1 \u2192 H2 \u2192 H3 only).",
       "generation_instruction": "Never skip heading levels in the HTML output.",
-      "source": ["AnswerMonk R-021"]
+      "source": [
+        "AnswerMonk R-021"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:T_heading_hierarchy_gap"
     },
     {
       "id": "C3",
@@ -179,10 +294,16 @@
       "title": "Inline citation anchors resolve to reference targets",
       "severity": "HIGH",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Every <sup class='citation'> link must resolve to a #source-* anchor.",
       "generation_instruction": "Only cite source IDs that appear in the sources list.",
-      "source": ["Shakes-peer validation"]
+      "source": [
+        "Shakes-peer validation"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "C4",
@@ -190,10 +311,16 @@
       "title": "Primary keyword and intent are embedded as machine-readable HTML attributes",
       "severity": "MEDIUM",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Check for data-primary-keyword and data-search-intent attributes on the <article>.",
       "generation_instruction": "Emit data-primary-keyword and data-search-intent on the <article>.",
-      "source": ["Shakes-peer convention"]
+      "source": [
+        "Shakes-peer convention"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "C5",
@@ -201,10 +328,17 @@
       "title": "HTML includes an embedded JSON-LD script",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Find <script type='application/ld+json'> in the <head>.",
       "generation_instruction": "Embed the JSON-LD graph in the <head>.",
-      "source": ["AnswerMonk R-030"]
+      "source": [
+        "AnswerMonk R-030"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_no_schema_blocks"
     },
     {
       "id": "D1",
@@ -212,10 +346,17 @@
       "title": "JSON-LD includes a BlogPosting node",
       "severity": "CRITICAL",
       "tier": 2,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Parse JSON-LD graph; require a node with @type BlogPosting.",
       "generation_instruction": "Include BlogPosting in the JSON-LD graph with all required fields.",
-      "source": ["AnswerMonk R-030"]
+      "source": [
+        "AnswerMonk R-030"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_no_article_entity"
     },
     {
       "id": "D2",
@@ -223,10 +364,17 @@
       "title": "Core BlogPosting fields are complete",
       "severity": "CRITICAL",
       "tier": 2,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "BlogPosting has headline, author, datePublished, image, publisher, mainEntityOfPage.",
       "generation_instruction": "Populate every required BlogPosting field.",
-      "source": ["AnswerMonk R-030"]
+      "source": [
+        "AnswerMonk R-030"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_BlogPosting_missing_required"
     },
     {
       "id": "D3",
@@ -234,10 +382,17 @@
       "title": "FAQ schema is present when the article contains FAQs",
       "severity": "HIGH",
       "tier": 2,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "If article.faq has >= 3 items, JSON-LD must include FAQPage.",
       "generation_instruction": "When emitting 3+ FAQ items, also emit FAQPage schema in the graph.",
-      "source": ["AnswerMonk R-031"]
+      "source": [
+        "AnswerMonk R-031"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_faq_mainentity_malformed"
     },
     {
       "id": "D4",
@@ -245,10 +400,17 @@
       "title": "Evidence sources are modeled as cited entities in JSON-LD",
       "severity": "HIGH",
       "tier": 2,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "BlogPosting.citation[] mirrors the sources array.",
       "generation_instruction": "Mirror every source as a CreativeWork in the JSON-LD graph and link from BlogPosting.citation.",
-      "source": ["Shakes-peer convention"]
+      "source": [
+        "Shakes-peer convention"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_no_article_entity"
     },
     {
       "id": "D5",
@@ -256,10 +418,17 @@
       "title": "JSON-LD names the main entities or topics explicitly",
       "severity": "MEDIUM",
       "tier": 2,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "BlogPosting.about or mentions includes Thing/Person/Organization nodes.",
       "generation_instruction": "Include about and mentions arrays in BlogPosting schema.",
-      "source": ["Shakes-peer convention"]
+      "source": [
+        "Shakes-peer convention"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_entity_missing_id"
     },
     {
       "id": "D6",
@@ -267,10 +436,20 @@
       "title": "Format-specific schema is present when the format requires it",
       "severity": "HIGH",
       "tier": 2,
-      "applies_to": ["howto", "comparison", "metric", "glossary"],
+      "applies_to": [
+        "howto",
+        "comparison",
+        "metric",
+        "glossary"
+      ],
       "verification_method": "howto -> HowTo schema; comparison -> ItemList/Table; metric -> Dataset; glossary -> DefinedTerm.",
       "generation_instruction": "Emit format-specific schema for the chosen post_format.",
-      "source": ["AnswerMonk R-032 to R-035"]
+      "source": [
+        "AnswerMonk R-032 to R-035"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:D_BlogPosting_missing_google_required"
     },
     {
       "id": "E1",
@@ -278,10 +457,16 @@
       "title": "Factual paragraphs are source-backed",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Every intro/section/FAQ/conclusion paragraph has at least one citation_id.",
       "generation_instruction": "Attach citation_ids to every factual paragraph.",
-      "source": ["AnswerMonk R-062"]
+      "source": [
+        "AnswerMonk R-062"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "E2",
@@ -289,10 +474,16 @@
       "title": "Provided sources are actually used",
       "severity": "HIGH",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "No source IDs in validation.uncited_source_ids.",
       "generation_instruction": "Cite every source provided at least once; remove unused sources.",
-      "source": ["Shakes-peer convention"]
+      "source": [
+        "Shakes-peer convention"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "E3",
@@ -300,10 +491,17 @@
       "title": "The article contains concrete specifics, not just generic claims",
       "severity": "MEDIUM",
       "tier": 6,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Look for numbers, dates, prices, percentages, or named frameworks in the body.",
-      "generation_instruction": "Use specific numbers, dates, and named frameworks — not vague claims.",
-      "source": ["AnswerMonk R-101"]
+      "generation_instruction": "Use specific numbers, dates, and named frameworks \u2014 not vague claims.",
+      "source": [
+        "AnswerMonk R-101"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:quality.specificity"
     },
     {
       "id": "E4",
@@ -311,10 +509,16 @@
       "title": "Brand mentions feel integrated rather than stuffed",
       "severity": "MEDIUM",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Brand name frequency vs word count should stay in a reasonable band.",
-      "generation_instruction": "Mention the brand naturally — not in every paragraph.",
-      "source": ["AnswerMonk R-174"]
+      "generation_instruction": "Mention the brand naturally \u2014 not in every paragraph.",
+      "source": [
+        "AnswerMonk R-174"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "E5",
@@ -322,10 +526,16 @@
       "title": "The article closes with a synthesized conclusion",
       "severity": "MEDIUM",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Check for at least one conclusion paragraph with >= 12 words.",
       "generation_instruction": "End with a synthesized conclusion that restates the main takeaway, not just a CTA.",
-      "source": ["AnswerMonk R-162"]
+      "source": [
+        "AnswerMonk R-162"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "F1",
@@ -333,10 +543,18 @@
       "title": "Author is a Person entity with sameAs LinkedIn URL",
       "severity": "CRITICAL",
       "tier": 2,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Check JSON-LD BlogPosting.author for Person with sameAs containing linkedin.com.",
       "generation_instruction": "Supply `author: { name, title, bio, linkedin_url }` in the request.",
-      "source": ["AnswerMonk R-060", "Google E-E-A-T"]
+      "source": [
+        "AnswerMonk R-060",
+        "Google E-E-A-T"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:E_author_sameas_missing"
     },
     {
       "id": "F2",
@@ -344,10 +562,17 @@
       "title": "Article contains first-party data signals",
       "severity": "CRITICAL",
       "tier": 5,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Match 'we found', 'our data', 'in our audit', 'we tested' + specific numbers in the body.",
       "generation_instruction": "Weave every FirstPartyData finding into the body using 'we found' / 'our data' phrasing.",
-      "source": ["AnswerMonk R-103", "Google Helpful Content"]
+      "source": [
+        "AnswerMonk R-103",
+        "Google Helpful Content"
+      ],
+      "authority": "shared-preflight",
+      "deprecated": false
     },
     {
       "id": "F3",
@@ -355,10 +580,17 @@
       "title": "Article cites named brands/products with specifics (not generic)",
       "severity": "HIGH",
       "tier": 5,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Count proper-noun brand mentions; flag generic phrases like 'leading companies'.",
-      "generation_instruction": "Use the provided named_examples verbatim — never replace with 'top brands' or similar.",
-      "source": ["AnswerMonk R-103"]
+      "generation_instruction": "Use the provided named_examples verbatim \u2014 never replace with 'top brands' or similar.",
+      "source": [
+        "AnswerMonk R-103"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:humanization.banned-vocabulary"
     },
     {
       "id": "F4",
@@ -366,10 +598,16 @@
       "title": "Article takes a clear editorial stance",
       "severity": "HIGH",
       "tier": 5,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Look for Our-Take banner or stance language without hedging.",
       "generation_instruction": "State the editorial_stance claim in intro and conclusion; render an 'Our take' banner.",
-      "source": ["AnswerMonk R-162"]
+      "source": [
+        "AnswerMonk R-162"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "F5",
@@ -377,10 +615,16 @@
       "title": "Article includes an original visual (screenshot, diagram, chart)",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "HTML must contain original-visual markers with no unreplaced placeholders.",
       "generation_instruction": "Declare at least one original_visual; replace placeholder with asset_url before publish.",
-      "source": ["AnswerMonk R-120"]
+      "source": [
+        "AnswerMonk R-120"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "F6",
@@ -388,10 +632,16 @@
       "title": "3+ primary-tier citations are present",
       "severity": "HIGH",
       "tier": 3,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "Count sources with authority_tier=primary; require >= 3.",
       "generation_instruction": "Include at least 3 primary-tier sources (arXiv, OpenAI docs, Google Search Central, gov/edu).",
-      "source": ["AnswerMonk R-080"]
+      "source": [
+        "AnswerMonk R-080"
+      ],
+      "authority": "shakespeer",
+      "deprecated": false
     },
     {
       "id": "F7",
@@ -399,10 +649,19 @@
       "title": "Article has visible Last Reviewed + Next Review dates",
       "severity": "CRITICAL",
       "tier": 1,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "HTML shows 'Last reviewed' + 'Next review' and JSON-LD has dateModified.",
       "generation_instruction": "Render the rich byline (happens automatically when `author` is provided) and set next_review_date.",
-      "source": ["AnswerMonk R-110", "R-113"]
+      "source": [
+        "AnswerMonk R-110",
+        "R-113"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:S_visible_last_updated_missing",
+      "coverage_verification_pending": true
     },
     {
       "id": "F8",
@@ -410,10 +669,17 @@
       "title": "No banned AI-tell phrases in the body",
       "severity": "CRITICAL",
       "tier": 5,
-      "applies_to": ["all"],
+      "applies_to": [
+        "all"
+      ],
       "verification_method": "String-match against the banned-phrase list (e.g., 'in today's fast-paced world').",
       "generation_instruction": "Avoid all banned AI-tell phrases defined in the writer prompt.",
-      "source": ["AnswerMonk R-163"]
+      "source": [
+        "AnswerMonk R-163"
+      ],
+      "authority": "blog-buster",
+      "deprecated": true,
+      "superseded_by": "blog-buster:H_banned_vocabulary,H_banned_phrases"
     }
   ]
 }

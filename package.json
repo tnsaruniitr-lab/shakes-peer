@@ -15,9 +15,11 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.88.0",
     "@supabase/supabase-js": "^2.49.0",
+    "blog-buster": "file:../blog-buster",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.0.1",
+    "node-html-parser": "^7.1.0",
     "openai": "^6.34.0",
     "serpapi": "^2.1.0",
     "zod": "^3.24.0"

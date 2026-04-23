@@ -54,6 +54,8 @@ export const SYNTHESIZERS: Record<string, Synthesizer> = {
   S_word_count_above_band: handleWordCountBand,
   D_Organization_missing_recommended: synthesizeOrganization,
   D_WebPage_missing_recommended: synthesizeWebPage,
+  S_visible_last_updated_missing: synthesizeLastUpdated,
+  E_author_credentials_missing: synthesizeAuthorCredentials,
 };
 
 export function hasSynthesizer(checkId: string): boolean {
@@ -69,8 +71,14 @@ async function synthesizeTldr(
 ): Promise<HandlerResult> {
   const base = baseResult(state, instruction);
 
-  // If a TL;DR already exists in HTML, skip.
-  if (/<(aside|section|div)[^>]*class=["'][^"']*\btldr\b/i.test(state.html)) {
+  // If a TL;DR already exists in HTML, skip. Accept either the canonical
+  // <p data-tldr> shape (handshake contract §7a) or the older
+  // <aside class="tldr"> for back-compat on legacy posts.
+  if (
+    /<p[^>]*data-tldr/i.test(state.html) ||
+    /<(aside|section|div)[^>]*class=["'][^"']*\btldr\b/i.test(state.html) ||
+    /<p[^>]*>\s*<strong>\s*tl[;\s]?dr\b/i.test(state.html)
+  ) {
     return { ...base, outcome: "skipped", reason: "TL;DR already present" };
   }
 
@@ -119,7 +127,10 @@ async function synthesizeTldr(
     tldr = sentences.slice(0, 2).join(" ").trim();
   }
 
-  const block = `<aside class="tldr" data-generated="synthesize-content"><strong>TL;DR:</strong> ${escapeHtml(tldr)}</aside>`;
+  // Canonical shape per handshake contract §7a: <p data-tldr>TL;DR: …</p>
+  // Blog-buster's auditTldrBlock detector (layers/technical/advanced-structure.ts)
+  // looks for data-tldr OR a paragraph whose text starts with /^tl;?dr[:\s]/i.
+  const block = `<p data-tldr data-generated="synthesize-content"><strong>TL;DR:</strong> ${escapeHtml(tldr)}</p>`;
   const nextHtml = insertAfterH1(state.html, block);
   if (nextHtml === state.html) {
     return { ...base, outcome: "skipped", reason: "could not locate <h1> anchor" };
@@ -289,16 +300,28 @@ async function synthesizeOrganization(
   );
   const domain = brand.domain ?? "";
   const url = domain ? (domain.startsWith("http") ? domain : `https://${domain}`) : "";
+  // Handshake contract §7a — Organization recommended fields:
+  // name, url, logo, sameAs (array — empty is an acceptable signal, missing
+  // is not), contactPoint, description. Always emit sameAs and contactPoint
+  // so the detector's recommended-field check passes; populate what we have
+  // from the brand config.
+  const sameAs = sameAsUrlsFrom(brand) ?? [];
+  const contactPoint: Record<string, unknown> = {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    ...(url ? { url: `${url}/contact` } : {}),
+  };
   const org: Record<string, unknown> = {
     "@type": "Organization",
     "@id": url ? `${url}#org` : undefined,
     name: brand.name,
     url: url || undefined,
     description: brand.product_description || undefined,
-    sameAs: sameAsUrlsFrom(brand),
+    sameAs,
     logo: url ? `${url}/logo.png` : undefined,
+    contactPoint,
   };
-  // Drop undefineds for cleanliness.
+  // Drop undefineds for cleanliness (but keep empty arrays — they're meaningful).
   for (const k of Object.keys(org)) if (org[k] === undefined) delete org[k];
 
   if (existing >= 0) {
@@ -349,6 +372,10 @@ async function synthesizeWebPage(
   const existing = graph.findIndex(
     (n) => typeof n === "object" && n !== null && isType((n as Record<string, unknown>)["@type"], "WebPage"),
   );
+  // Handshake contract §7a — WebPage recommended: description, dateModified,
+  // isPartOf, primaryImageOfPage, inLanguage.
+  const ogImage =
+    state.metaTags["og:image"] || state.metaTags["twitter:image"] || undefined;
   const webPage: Record<string, unknown> = {
     "@type": "WebPage",
     "@id": `${url}#webpage`,
@@ -357,6 +384,10 @@ async function synthesizeWebPage(
     description: description || undefined,
     isPartOf: host ? { "@type": "WebSite", url: host, name: brand?.name } : undefined,
     inLanguage: "en-US",
+    dateModified: new Date().toISOString().slice(0, 10),
+    primaryImageOfPage: ogImage
+      ? { "@type": "ImageObject", url: ogImage }
+      : undefined,
   };
   for (const k of Object.keys(webPage)) if (webPage[k] === undefined) delete webPage[k];
 
@@ -373,6 +404,100 @@ async function synthesizeWebPage(
     outcome: "applied",
     reason: existing >= 0 ? "WebPage enriched" : "WebPage appended",
   };
+}
+
+// ─── S_visible_last_updated_missing ────────────────────────────────────────
+//
+// Blog-buster's detector (layers/technical/advanced-structure.ts::
+// auditVisibleLastUpdated) looks for visible text matching "last updated",
+// "last reviewed", "last revised", "next review", or a written date in
+// "Month DD, YYYY" format.
+
+async function synthesizeLastUpdated(
+  state: HandlerState,
+  instruction: Instruction,
+  _ctx: SynthesisContext,
+): Promise<HandlerResult> {
+  const base = baseResult(state, instruction);
+  if (/last\s+(updated|reviewed|revised)|next\s+review/i.test(state.html)) {
+    return { ...base, outcome: "skipped", reason: "visible last-updated already present" };
+  }
+  const iso = new Date().toISOString().slice(0, 10);
+  const human = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const block = `<p class="last-updated" data-generated="synthesize-content">Last updated: <time datetime="${iso}">${human}</time></p>`;
+  const nextHtml = insertAfterH1(state.html, block);
+  if (nextHtml === state.html) {
+    return { ...base, outcome: "skipped", reason: "could not locate <h1> anchor" };
+  }
+  return {
+    ...base,
+    html: nextHtml,
+    outcome: "applied",
+    reason: `last-updated stamp inserted (${iso})`,
+  };
+}
+
+// ─── E_author_credentials_missing ──────────────────────────────────────────
+//
+// Fires when the author entity exists but lacks a visible jobTitle or
+// description. If the brief has that data → render a bio block.
+// If not → escalate (don't invent credentials).
+
+async function synthesizeAuthorCredentials(
+  state: HandlerState,
+  instruction: Instruction,
+  ctx: SynthesisContext,
+): Promise<HandlerResult> {
+  const base = baseResult(state, instruction);
+  const author = ctx.request.author as
+    | { name?: string; title?: string; bio?: string }
+    | undefined;
+  // Shakes-peer's BlogAuthorSchema uses `title` and `bio`; treat them as
+  // equivalents to schema.org's jobTitle/description.
+  const jobTitle = author?.title;
+  const description = author?.bio;
+  if (!jobTitle && !description) {
+    return {
+      ...base,
+      outcome: "escalated",
+      reason:
+        "author.title and author.bio both absent in brief — caller must populate",
+    };
+  }
+  if (/<section[^>]*class=["'][^"']*\bauthor-bio\b/i.test(state.html)) {
+    return { ...base, outcome: "skipped", reason: "author-bio block already rendered" };
+  }
+  const name = escapeHtml(author?.name ?? "");
+  const titleHtml = jobTitle
+    ? `<span itemprop="jobTitle"> — ${escapeHtml(jobTitle)}</span>`
+    : "";
+  const descHtml = description
+    ? `<p itemprop="description">${escapeHtml(description)}</p>`
+    : "";
+  const block = `<section class="author-bio" itemscope itemtype="https://schema.org/Person" data-generated="synthesize-content">
+  <h3>About the author</h3>
+  <p><strong itemprop="name">${name}</strong>${titleHtml}</p>
+  ${descHtml}
+</section>`;
+  const nextHtml = insertBeforeCloseArticle(state.html, block);
+  if (nextHtml === state.html) {
+    return { ...base, outcome: "skipped", reason: "could not locate </article> anchor" };
+  }
+  return { ...base, html: nextHtml, outcome: "applied", reason: "author bio rendered" };
+}
+
+function insertBeforeCloseArticle(html: string, block: string): string {
+  const re = /<\/article>/i;
+  if (!re.test(html)) {
+    // Fallback: before </main> or just append.
+    if (/<\/main>/i.test(html)) return html.replace(/<\/main>/i, `${block}\n</main>`);
+    return `${html}\n${block}`;
+  }
+  return html.replace(re, (m) => `${block}\n${m}`);
 }
 
 function sameAsUrlsFrom(brand: BlogWriterRequest["brand"]): string[] | undefined {
@@ -461,13 +586,19 @@ function extractVisibleFaqs(html: string): FaqPair[] {
   }
   if (pairs.length > 0) return pairs;
 
-  // Pattern 2: FAQ section — h2/h3 question text followed by paragraph(s).
+  // Pattern 2: question-form headings followed by paragraphs.
+  // Handshake contract §7a — blog-buster's faqVisibleCount (src/shared-lib/
+  // validators.ts) scans the WHOLE document. Match that: prefer an explicit
+  // FAQ section if it has question-form content; otherwise scan root.
   const faqSection =
     root.querySelector("section.faq") ||
     root.querySelector("#faq") ||
     root.querySelector("[data-section='faq']");
-  const scope = faqSection ?? root;
-  const headings = scope.querySelectorAll("h2, h3");
+  const explicitScopeHeadings = faqSection
+    ? faqSection.querySelectorAll("h2, h3, h4").filter((h) => h.text.trim().includes("?"))
+    : [];
+  const scope = explicitScopeHeadings.length > 0 ? faqSection! : root;
+  const headings = scope.querySelectorAll("h2, h3, h4");
   for (const h of headings) {
     const q = h.text.trim();
     if (!q || !q.includes("?")) continue;

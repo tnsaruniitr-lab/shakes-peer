@@ -1,0 +1,202 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Specific human voice vs committee 2/10 — Reads entirely as corporate editorial output with no individual voice.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This closes the loop between clinical insight and pragmatic, compassionate everyday wellness checks.",
+      "before": "This closes the loop between clinical insight and pragmatic, compassionate everyday wellness checks.",
+      "after": "I tell my clients: one blood panel plus one honest conversation beats a year of vague resolutions.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 2/10: Reads entirely as corporate editorial output with no individual voice."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Genuine opinions vs safe claims 2/10 — Every claim is hedged, generic, and risk-free.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "A pragmatic Q1 health check is your moment to non-judgementally assess, adapt, and refocus for the rest of the year, ensuring goals are both clinically relevant and sustainable with the Dubai routine.",
+      "before": "A pragmatic Q1 health check is your moment to non-judgementally assess, adapt, and refocus for the rest of the year, ensuring goals are both clinically relevant and sustainable with the Dubai routine.",
+      "after": "Annual screenings are mostly theatre—useful once, useless for behaviour change. Quarterly reviews are where the real work happens.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 2/10: Every claim is hedged, generic, and risk-free."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasing",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Unexpected phrasing 2/10 — Relies on tired wellness clichés like 'progress not perfection' and 'close the loop'.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Progress, not perfection, is the clinically proven path.",
+      "before": "Progress, not perfection, is the clinically proven path.",
+      "after": "Miss a target? Treat it like a failed A/B test, not a character flaw.",
+      "rationale": "Humanization axis \"Unexpected phrasing\" scored 2/10: Relies on tired wellness clichés like 'progress not perfection' and 'close the loop'."
+    }
+  },
+  {
+    "checkId": "H_judge_specific_citations",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific citations 5/10 — Mentions DHA, MOHAP, BMJ, Lancet and one price, but citations are unlinked placeholders and details are thin.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "If your DHA screening is due, book it, some packages in Dubai start from AED 1,200, but options vary.",
+      "before": "If your DHA screening is due, book it, some packages in Dubai start from AED 1,200, but options vary.",
+      "after": "DHA-linked panels at Valeo start from AED 1,200; Aster's comparable package is AED 999 as of March 2026.",
+      "rationale": "Humanization axis \"Specific citations\" scored 5/10: Mentions DHA, MOHAP, BMJ, Lancet and one price, but citations are unlinked placeholders and details are thin."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Point of view 3/10 — Surveys guidelines evenly without taking a stance on what actually matters.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "A pragmatic Q1 health check in Dubai reviews your 2026 wellness goals using clinically grounded self-audit prompts.",
+      "before": "A pragmatic Q1 health check in Dubai reviews your 2026 wellness goals using clinically grounded self-audit prompts.",
+      "after": "Skip the January reset ritual—if you haven't reviewed your goals by late March, you've already lost the year.",
+      "rationale": "Humanization axis \"Point of view\" scored 3/10: Surveys guidelines evenly without taking a stance on what actually matters."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Quotable sentence 2/10 — Nothing memorable; language is bureaucratic and brand-laden.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Clinically grounded, non-judgemental check-ins, supported by Valeo Health’s at-home packages, help UAE residents make realistic health gains.",
+      "before": "Clinically grounded, non-judgemental check-ins, supported by Valeo Health’s at-home packages, help UAE residents make realistic health gains.",
+      "after": "Swap tactics, not self-worth.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 2/10: Nothing memorable; language is bureaucratic and brand-laden."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with a generic framework promise rather than a hook.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "With Q1 2026 behind us, Dubai residents can review progress on new year health goals in 15 minutes using this practical, evidence-backed audit framework.",
+      "before": "With Q1 2026 behind us, Dubai residents can review progress on new year health goals in 15 minutes using this practical, evidence-backed audit framework.",
+      "after": "Most of your New Year health goals are already dead. Here's the 15-minute Q1 autopsy before Dubai's summer makes recovery harder.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with a generic framework promise rather than a hook."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — Sporadic specificity exists (AED 1,200 screening cost, taraweeh mention, late-March heat timing) but the nutrition and movement checklist items routinely fall back on abstract descriptors like 'balanced,' 'region-specific needs,' and 'heart-healthy fats' without naming actual foods, gram targets, or measurable thresholds. The hydration section similarly says 'enough water' without a quantity. These are the zones where abstraction dominates and an editor should push for named foods, MOHAP-cited numbers, or concrete frequency targets.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Are meals balanced for region-specific needs (fibre, heart-healthy fats, less added sugar or salt)?",
+      "before": "Are meals balanced for region-specific needs (fibre, heart-healthy fats, less added sugar or salt)?",
+      "after": "Are your meals hitting MOHAP's UAE plate targets — roughly 50% vegetables and legumes, 25% whole grains such as brown rice or wholemeal khubz, and 25% lean protein — while staying under 5 g of added salt daily?",
+      "rationale": "Quality axis \"specificity\" scored 6/10: Sporadic specificity exists (AED 1,200 screening cost, taraweeh mention, late-March heat timing) but the nutrition and movement checklist items routinely fall back on abstract descriptors like 'balanced,' 'region-specific needs,' and 'heart-healthy fats' without naming actual foods, gram targets, or measurable thresholds. The hydration section similarly says 'enough water' without a quantity. These are the zones where abstraction dominates and an editor should push for named foods, MOHAP-cited numbers, or concrete frequency targets."
+    }
+  }
+]

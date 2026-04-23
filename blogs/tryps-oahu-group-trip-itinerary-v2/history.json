@@ -1,0 +1,159 @@
+{
+  "slug": "tryps-oahu-group-trip-itinerary-v2",
+  "brand": "TRYPS",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=3 with 8 open item(s) for editorial review",
+  "totalCostUsd": 0.730488,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T09:52:09.392Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "5b8784921694d43699066e3f34c23f53c0077429"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T09:53:54.796Z",
+      "score": 50,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 78,
+        "quality": 77,
+        "overall": 50
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.168267,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 5,
+        "applied": 7
+      },
+      "escalationCount": 2,
+      "commitSha": "2950bbaecdebeb305cb6001d8f49f4ff80759fcf"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T09:53:55.004Z",
+      "score": 50,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 76,
+        "quality": 80,
+        "overall": 50
+      },
+      "verdict": "block",
+      "criticalCount": 3,
+      "costUsd": 0.183276,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 4,
+        "skipped": 6,
+        "drift": 1,
+        "applied": 4
+      },
+      "escalationCount": 3,
+      "commitSha": "8eca6371f955bfeba4d4cf6a69b81356f9893db7"
+    },
+    {
+      "version": 4,
+      "generatedAt": "2026-04-23T09:53:55.094Z",
+      "score": 49,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 73,
+        "quality": 80,
+        "overall": 49
+      },
+      "verdict": "block",
+      "criticalCount": 3,
+      "costUsd": 0.190845,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 4,
+        "skipped": 5,
+        "ambiguous": 1,
+        "applied": 5,
+        "drift": 1
+      },
+      "escalationCount": 3,
+      "commitSha": "8b226639ec59cbbac5ba0d23aaefbfc7d70aa2be"
+    },
+    {
+      "version": 5,
+      "generatedAt": "2026-04-23T09:54:27.543Z",
+      "score": 50,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 76,
+        "quality": 80,
+        "overall": 50
+      },
+      "verdict": "block",
+      "criticalCount": 3,
+      "costUsd": 0.1881,
+      "innerIterations": 1,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": null
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "suggestedFields": [
+        "author",
+        "first_party_data",
+        "named_examples",
+        "original_visuals"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "no patch/before to rewrite",
+      "suggestedFields": [
+        "first_party_data"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "V_schema_invalid_json",
+      "severity": "critical",
+      "evidence": "JSON-LD block #1 failed to parse: Bad control character in string literal in JSON at position 7793 (line 224 column 30). Downstream schema checks cannot run on this block.",
+      "firstSeenVersion": 3,
+      "lastSeenVersion": 4
+    }
+  ],
+  "auditorVersion": "0.1.6",
+  "auditorGitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+  "brandsmith": {
+    "brandId": 2,
+    "brandName": "tryps",
+    "fieldsPopulated": []
+  },
+  "updatedAt": "2026-04-23T09:54:27.682Z"
+}

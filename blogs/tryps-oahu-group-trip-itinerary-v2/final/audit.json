@@ -1,0 +1,19 @@
+{
+  "version": 5,
+  "isFinal": true,
+  "verdict": "block",
+  "verdictReason": "3 critical finding(s) — cannot ship: V_schema_invalid_json, E_author_sameas_missing, E_human_signals_bundle_incomplete",
+  "finalScore": 50,
+  "criticalCount": 3,
+  "iterationsCount": 1,
+  "status": "escalated",
+  "stopReason": "3 critical finding(s) have no auto-fix (V_schema_invalid_json, E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+  "totalCostUsd": 0.1881,
+  "scoreWeights": {
+    "technical": 0.35,
+    "humanization": 0.4,
+    "quality": 0.25
+  },
+  "blogBusterVersion": "0.1.6",
+  "note": "post-loop verification audit — reflects final HTML state"
+}

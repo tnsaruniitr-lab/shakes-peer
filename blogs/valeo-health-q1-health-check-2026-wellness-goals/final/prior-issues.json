@@ -1,0 +1,107 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_keyword_position",
+    "severity": "warn",
+    "evidence": "Primary keyword \"q1 health check\" not in first 8 words of TL;DR",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "severity": "warn",
+    "evidence": "7 em-dashes (2.11 per 400 words; target <1)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_banned_vocabulary",
+    "severity": "fail",
+    "evidence": "AI-signature vocabulary present: cornerstone(1), foster(1)",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 6/10 — The GP voice appears in flashes (Ramadan quips, 45°C car park) but FAQ and summary sections revert to generic content-marketing prose.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — Some vivid lines (45°C car park, January-self vs July-self) sit next to heavy boilerplate phrases.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "severity": "warn",
+    "evidence": "Quotable sentences 6/10 — A few quotable zingers exist, but they're buried among flat clinical summaries nobody would repeat.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with a definitional TL;DR and duplicated title; the strong GP line is buried several sentences down.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — The post has strong specific moments (AED 650 panel, 48-hour results, 40% adherence improvement, 1.5–2L water, 6 am vs 6 pm walk, HbA1c/LDL/vitamin D/TSH named explicitly). However, several key sentences drift into abstraction without anchoring data: 'genuinely change outcomes for chronic conditions' names no condition, no number, no source. Similarly, 'Small changes compound fast' and 'Frequent check-ins mean you adapt strategies before motivation or context shifts' are generic self-help phrasing. The identified sentence is the clearest offender — it asserts a claim about chronic conditions vs fitness tracking with zero specificity about which conditions, what outcomes, or by how much.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

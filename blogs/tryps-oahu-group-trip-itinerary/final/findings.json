@@ -1,0 +1,213 @@
+[
+  {
+    "checkId": "V_schema_invalid_json",
+    "layer": "technical",
+    "severity": "critical",
+    "evidence": "JSON-LD block #1 failed to parse: Bad control character in string literal in JSON at position 7830 (line 224 column 31). Downstream schema checks cannot run on this block.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 10 Questions but page shows ~18 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_keyword_position",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Primary keyword \"oahu group trip itinerary\" not in first 8 words of TL;DR",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_toc_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Post is 1505 words (pillar) — include a <nav aria-label=\"Table of contents\"> for LLM outline extraction",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1505 words is below pillar minimum 1900 (target 2500)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly reads like a listicle template with scattered attempts at personality; tone shifts suggest multiple passes or AI generation.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Coordinating a group trip to Oahu only works when you combine a real itinerary, brutal honesty about budget, and a shared plan for chaos control.",
+      "before": "Coordinating a group trip to Oahu only works when you combine a real itinerary, brutal honesty about budget, and a shared plan for chaos control.",
+      "after": "Our group only stopped bickering once we'd booked Hanauma Bay, assigned a car driver, and agreed Sarah wasn't picking dinner anymore.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mostly reads like a listicle template with scattered attempts at personality; tone shifts suggest multiple passes or AI generation."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 5/10 — Has some light opinions (Ala Moana beats Waikiki) but mostly hedges and repeats safe travel-blog consensus.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Friend groups don't need more platitudes, you need dates, places, and backup backups.",
+      "before": "Friend groups don't need more platitudes, you need dates, places, and backup backups.",
+      "after": "Skip Diamond Head sunrise—the parking scramble ruins it. Do the late-afternoon slot instead, when the light's better and half the tour buses have left.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 5/10: Has some light opinions (Ala Moana beats Waikiki) but mostly hedges and repeats safe travel-blog consensus."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — A few lively bits ('one organiser, seven opinions, 1000 unread messages') are diluted by generic filler.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Oahu loves a reservation system.",
+      "before": "Oahu loves a reservation system.",
+      "after": "Keep this—it's one of the few lines with bite. The rest should match: 'Rideshare dies the moment you leave Honolulu' beats 'Rideshare is hit-or-miss outside Honolulu.'",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: A few lively bits ('one organiser, seven opinions, 1000 unread messages') are diluted by generic filler."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view 6/10 — Takes sides on lodging and timing but often lapses into survey-mode FAQs.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Oahu is set up for both, beaches, hikes, and museums are family-proof, but most friend groups will want to set expectations for late dinners and city nightlife if traveling with kids.",
+      "before": "Oahu is set up for both, beaches, hikes, and museums are family-proof, but most friend groups will want to set expectations for late dinners and city nightlife if traveling with kids.",
+      "after": "If you're bringing kids, this isn't the itinerary—our version assumes late dinners, Bar 35, and nobody asking about naptime.",
+      "rationale": "Humanization axis \"Point of view\" scored 6/10: Takes sides on lodging and timing but often lapses into survey-mode FAQs."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentence 5/10 — One line (the Hanauma Bay moment) is genuinely quotable; most others are forgettable.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Coordinating an Oahu group trip shouldn't be chaos.",
+      "before": "Coordinating an Oahu group trip shouldn't be chaos.",
+      "after": "There's a specific moment on every group trip when someone suggests Hanauma Bay and you realize nobody booked it.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 5/10: One line (the Hanauma Bay moment) is genuinely quotable; most others are forgettable."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 2/10 — The intro contains a leftover AI meta-instruction visible to readers—catastrophic failure of attention and credibility.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Remove this meta-instruction entirely; replace with a concrete opener like 'Last May, five of us landed at HNL with zero bookings and one shared Note.'",
+      "before": "Remove this meta-instruction entirely; replace with a concrete opener like 'Last May, five of us landed at HNL with zero bookings and one shared Note.'",
+      "after": "Last May, five of us landed at HNL with zero bookings, one shared Note, and a group chat already 400 messages deep.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 2/10: The intro contains a leftover AI meta-instruction visible to readers—catastrophic failure of attention and credibility."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 4/10 — The actual post opener (ignoring the TL;DR meta-block) is generic throat-clearing. 'Coordinating an Oahu group trip shouldn't be chaos' is a platitude that signals nothing specific. The post itself contains a better seed ('There's a specific moment on every group trip when someone suggests Hanauma Bay and you realize nobody booked it') but buries it several paragraphs in. The opener needs a concrete scene, a named place, a number, or a personal failure — not a category statement.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Coordinating an Oahu group trip shouldn't be chaos. Here's a day-by-day, friend-proof 7-day itinerary using real spots, plus what actually matters for planning.",
+      "before": "Coordinating an Oahu group trip shouldn't be chaos. Here's a day-by-day, friend-proof 7-day itinerary using real spots, plus what actually matters for planning.",
+      "after": "Last May, five of us landed at HNL with zero bookings and one shared Notes doc. By day two, we'd lost half a morning to a full Hanauma Bay parking lot and a 45-minute plate-lunch debate. Here's the itinerary we wish we'd had.",
+      "rationale": "Quality axis \"intro_hook\" scored 4/10: The actual post opener (ignoring the TL;DR meta-block) is generic throat-clearing. 'Coordinating an Oahu group trip shouldn't be chaos' is a platitude that signals nothing specific. The post itself contains a better seed ('There's a specific moment on every group trip when someone suggests Hanauma Bay and you realize nobody booked it') but buries it several paragraphs in. The opener needs a concrete scene, a named place, a number, or a personal failure — not a category statement."
+    }
+  }
+]

@@ -1,0 +1,121 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "severity": "warn",
+    "evidence": "TL;DR is 72 words (target 40–58)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "severity": "warn",
+    "evidence": "5 em-dashes (1.37 per 400 words; target <1)",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.38/500 words; target ≤2)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Some personality peeks through (the Dave/Doodle line), but most of the piece reverts to marketing-committee cadence.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — The Wanderlog road-trip concession and 'Dave ghosting' show real takes, but most comparisons read like neutral bullet points.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — A few fresh lines (thumbs-up emoji three days late, group chat dying on trip four) are outnumbered by boilerplate comparison phrasing.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_citations",
+    "severity": "warn",
+    "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "severity": "warn",
+    "evidence": "Quotable sentences 6/10 — The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — The opening is a duplicated nav crumb plus a generic TL;DR; the real hook (Dave ghosting Doodle) is buried paragraphs in.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_answer_extractability",
+    "severity": "warn",
+    "evidence": "answer_extractability 5/10 — The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — The post names the right apps and gives one concrete price ($29.99/year for Wanderlog Pro), but repeatedly invokes '[google-travel-trends]' as a citation while describing the data in vague, unquantified language ('steady rise,' 'especially for trips among friends'). Multiple section headers — 'What does each app actually do for the organiser?' — resolve into bullet lists of adjectives ('strong,' 'flexible,' 'overkill') rather than concrete feature counts, user numbers, or named limitations. The 4–10 friends sizing note is the only user-scale figure in the piece.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

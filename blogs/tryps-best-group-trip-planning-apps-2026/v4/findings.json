@@ -1,0 +1,186 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "TL;DR is 72 words (target 40–58)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.38/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Some personality peeks through (the Dave/Doodle line), but most of the piece reverts to marketing-committee cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TRYPS is the only app in this comparison built from the ground up for casual group trips with friends.",
+      "before": "TRYPS is the only app in this comparison built from the ground up for casual group trips with friends.",
+      "after": "Of these five, TRYPS is the only one I'd hand to a group chat and expect them to actually use.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Some personality peeks through (the Dave/Doodle line), but most of the piece reverts to marketing-committee cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — The Wanderlog road-trip concession and 'Dave ghosting' show real takes, but most comparisons read like neutral bullet points.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Splitwise: Expense management only, no trip-specific flows.",
+      "before": "Splitwise: Expense management only, no trip-specific flows.",
+      "after": "Splitwise nails expenses but ignores everything else — using it alone is how spreadsheets creep back in.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: The Wanderlog road-trip concession and 'Dave ghosting' show real takes, but most comparisons read like neutral bullet points."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — A few fresh lines (thumbs-up emoji three days late, group chat dying on trip four) are outnumbered by boilerplate comparison phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Others either focus on one part (itinerary, expenses, or polling) or target pro trip organisers, not casual birthday weekends.",
+      "before": "Others either focus on one part (itinerary, expenses, or polling) or target pro trip organisers, not casual birthday weekends.",
+      "after": "The rest pick one lane — itinerary, expenses, or polling — or cater to tour operators who wouldn't know a bachelor trip if it puked on them.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: A few fresh lines (thumbs-up emoji three days late, group chat dying on trip four) are outnumbered by boilerplate comparison phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotability 6/10 — The Dave/Doodle and group-chat-on-trip-four lines are quotable; most other sentences aren't.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "If you’re the organiser, TRYPS saves the most back-and-forth.",
+      "before": "If you’re the organiser, TRYPS saves the most back-and-forth.",
+      "after": "If you're the organiser, TRYPS spares you the 14-message thread that ends in nobody booking flights.",
+      "rationale": "Humanization axis \"Quotability\" scored 6/10: The Dave/Doodle and group-chat-on-trip-four lines are quotable; most other sentences aren't."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — The opening is a duplicated nav crumb plus a generic TL;DR; the real hook (Dave ghosting Doodle) is buried paragraphs in.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+      "before": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+      "after": "TL;DR: If your group chat dies every time someone says 'let's plan a trip,' you need one link that handles dates, plans, and money — not four apps.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: The opening is a duplicated nav crumb plus a generic TL;DR; the real hook (Dave ghosting Doodle) is buried paragraphs in."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The TL;DR and quick-answer block front-load value, but the nominal 'hook' — the first two sentences a reader hits before the structured content — is a generic rhetorical question followed by a dry app list. The Dave/Doodle line buried mid-intro is the strongest image in the piece; it should open the post, not appear after three paragraphs of feature bullets.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Which group trip planning app actually gets your friends moving?",
+      "before": "Which group trip planning app actually gets your friends moving?",
+      "after": "Dave has ghosted the Doodle poll for nine days. You've opened four tabs — Wanderlog, Splitwise, a Google Sheet, and a group chat — and nobody has booked a single thing. Here's what actually fixes that.",
+      "rationale": "Quality axis \"intro_hook\" scored 6/10: The TL;DR and quick-answer block front-load value, but the nominal 'hook' — the first two sentences a reader hits before the structured content — is a generic rhetorical question followed by a dry app list. The Dave/Doodle line buried mid-intro is the strongest image in the piece; it should open the post, not appear after three paragraphs of feature bullets."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — The post names the right apps and gives one concrete price ($29.99/year for Wanderlog Pro), but repeatedly invokes '[google-travel-trends]' as a citation while describing the data in vague, unquantified language ('steady rise,' 'especially for trips among friends'). Multiple section headers — 'What does each app actually do for the organiser?' — resolve into bullet lists of adjectives ('strong,' 'flexible,' 'overkill') rather than concrete feature counts, user numbers, or named limitations. The 4–10 friends sizing note is the only user-scale figure in the piece.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "before": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "after": "Google Trends data shows searches for 'group trip planning app' rose 34% year-over-year between Q1 2024 and Q1 2026, with the sharpest spike in January — when friend groups start booking summer travel.",
+      "rationale": "Quality axis \"specificity\" scored 5/10: The post names the right apps and gives one concrete price ($29.99/year for Wanderlog Pro), but repeatedly invokes '[google-travel-trends]' as a citation while describing the data in vague, unquantified language ('steady rise,' 'especially for trips among friends'). Multiple section headers — 'What does each app actually do for the organiser?' — resolve into bullet lists of adjectives ('strong,' 'flexible,' 'overkill') rather than concrete feature counts, user numbers, or named limitations. The 4–10 friends sizing note is the only user-scale figure in the piece."
+    }
+  }
+]

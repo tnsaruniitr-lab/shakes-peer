@@ -1,0 +1,121 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.41/500 words; target ≤2)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice",
+    "severity": "fail",
+    "evidence": "Specific human voice 2/10 — Reads like marketing copy written by committee, with repetitive feature lists and no individual voice.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "severity": "fail",
+    "evidence": "Genuine opinions 3/10 — Opinions are all self-serving promotional claims rather than nuanced takes; competitors get cardboard treatment.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_specific_citations",
+    "severity": "warn",
+    "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "severity": "warn",
+    "evidence": "Point of view 5/10 — Has a clear POV (TRYPS wins) but it's so one-sided and self-promotional it undermines credibility rather than serving as earned opinion.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "severity": "fail",
+    "evidence": "Quotable sentence 2/10 — Nothing memorable enough to text a friend; everything is generic feature-comparison language.",
+    "status": "fixed",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with duplicated navigation cruft and a bland TL;DR before any hook lands.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The two-sentence opener is a mild improvement over 'In today's world,' but it's still a familiar, abstract observation anyone could write. It lacks a concrete scenario, a number, or a named detail that would signal this post knows something the reader doesn't. The Quick Answer block above it (which is strong) actually does more hook work, but it appears under a label, not as a lead. The body intro needs a specific, visceral scene to earn the scroll.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

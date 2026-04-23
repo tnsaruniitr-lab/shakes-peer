@@ -1,0 +1,1483 @@
+{
+  "version": 3,
+  "isFinal": true,
+  "verdict": "block",
+  "verdictReason": "1 critical finding(s) — cannot ship: E_author_sameas_missing",
+  "finalScore": 52,
+  "criticalCount": 1,
+  "iterationsCount": 1,
+  "totalCostUsd": 0.16936800000000002,
+  "status": "escalated",
+  "stopReason": "1 critical finding(s) have no auto-fix (E_author_sameas_missing) — human edit required",
+  "shakespeerInstructions": {
+    "meta": {
+      "version": 3,
+      "next_version": 4,
+      "is_final_pending": false,
+      "is_final": true,
+      "brand": "TRYPS",
+      "slug": "best-group-trip-planning-apps-2026",
+      "post_type": "comparison",
+      "verdict": "block",
+      "final_score": 52,
+      "critical_count": 1,
+      "target_score": 90
+    },
+    "fix_order": [
+      "E_author_sameas_missing",
+      "P_faq_count_mismatch",
+      "S_word_count_below_band",
+      "D_Person_missing_recommended",
+      "D_entity_missing_id",
+      "S_tldr_word_count",
+      "E_author_credentials_missing",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_tricolon_density",
+      "H_tricolon_density",
+      "H_tricolon_density",
+      "H_tricolon_density",
+      "H_judge_specific_human_voice_vs_committee",
+      "H_judge_genuine_opinions_vs_safe_claims",
+      "H_judge_unexpected_phrasings",
+      "H_judge_specific_citations",
+      "H_judge_quotable_sentences",
+      "H_judge_intro_earns_attention",
+      "Q_answer_extractability",
+      "Q_specificity"
+    ],
+    "instructions": [
+      {
+        "check_id": "E_author_sameas_missing",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "P_faq_count_mismatch",
+        "severity": "fail",
+        "layer": "technical",
+        "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "S_word_count_below_band",
+        "severity": "fail",
+        "layer": "technical",
+        "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "D_Person_missing_recommended",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "D_entity_missing_id",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "S_tldr_word_count",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "TL;DR is 60 words (target 40–58)",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "E_author_credentials_missing",
+        "severity": "warn",
+        "layer": "eeat",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "5 em-dashes (1.37 per 400 words; target <1) — targeted paragraph 1/3",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "<strong>TL;DR:</strong> The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools. Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+          "after": "<strong>TL;DR:</strong> The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools. Most apps excel in one area, Splitwise dominates expense splitting while Wanderlog leads on itinerary creation, but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "5 em-dashes (1.37 per 400 words; target <1) — targeted paragraph 2/3",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "The hardest part of a group trip isn't Bali versus Lisbon — it's Dave ghosting the Doodle poll for nine days straight. If you want fewer headaches, the best group trip planning app is the one that replaces polls, side chats, and spreadsheets with one link everyone joins. We built TRYPS, so we’ll be upfront about that, but this is a head-to-head look at what TRYPS, Wanderlog, Splitwise, Troupe, and SquadTrip each do best (and worst).<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-travel-trends\">[google-travel-trends]</a></sup></span>",
+          "after": "The hardest part of a group trip isn't Bali versus Lisbon, it's Dave ghosting the Doodle poll for nine days straight. If you want fewer headaches, the best group trip planning app is the one that replaces polls, side chats, and spreadsheets with one link everyone joins. We built TRYPS, so we’ll be upfront about that, but this is a head-to-head look at what TRYPS, Wanderlog, Splitwise, Troupe, and SquadTrip each do best (and worst).<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-travel-trends\">[google-travel-trends]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "5 em-dashes (1.37 per 400 words; target <1) — targeted paragraph 3/3",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "Getting your friends to agree on dates, build a shared plan, and settle expenses shouldn’t mean juggling four different apps. TRYPS does all of it in one link with no logins, no downloads, and no awkward reminders. Wanderlog's itinerary builder is genuinely better than ours for road trips — but it dies the moment you need six friends to vote on dates.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-travel-trends\">[google-travel-trends]</a></sup></span>",
+          "after": "Getting your friends to agree on dates, build a shared plan, and settle expenses shouldn’t mean juggling four different apps. TRYPS does all of it in one link with no logins, no downloads, and no awkward reminders. Wanderlog's itinerary builder is genuinely better than ours for road trips, but it dies the moment you need six friends to vote on dates.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-travel-trends\">[google-travel-trends]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (3.41/500 words; target ≤2) — targeted paragraph 1/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "<strong>TL;DR:</strong> The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools. Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and ...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (3.41/500 words; target ≤2) — targeted paragraph 2/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "Which group trip planning app actually gets your friends moving? We compare TRYPS, Wanderlog, Splitwise, Troupe, and SquadTrip side-by-side for 2026, features, price, and real pros/cons.",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"We compare TRYPS, Wanderlog, Splitwise, Troupe, and SquadTrip side-by-side for 2026, features, price...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (3.41/500 words; target ≤2) — targeted paragraph 3/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "The hardest part of a group trip isn't Bali versus Lisbon — it's Dave ghosting the Doodle poll for nine days straight. If you want fewer headaches, the best group trip planning app is the one that replaces polls, side chats, and spreadsheets with one link everyone joins. We built TRYPS, so we’ll be upfront about that, but this is a head-to-head look at what TRYPS, Wanderlog, Splitwise, Troupe, and SquadTrip each do best (and worst).<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-travel-trends\">[google-travel-trends]</a></sup></span>",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"We built TRYPS, so we’ll be upfront about that, but this is a head-to-head look at what TRYPS, Wande...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (3.41/500 words; target ≤2) — targeted paragraph 4/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "TRYPS’s core planning flow (date poll, trip plan, split tracking) is free to start, no credit card required. Wanderlog, Splitwise, and Troupe each offer a free version, but you may hit feature limits or ads. SquadTrip follows a pay-per-trip or host subscription model geared for group travel pros, not casual friend groups.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-wanderlog-site\">[wanderlog-site]</a></sup><sup class=\"citation\"><a href=\"#source-splitwise-site\">[splitwise-site]</a></sup><sup class=\"citation\"><a href=\"#source-troupe-site\">[troupe-site]</a></sup><sup class=\"citation\"><a href=\"#source-squadtrip-site\">[squadtrip-site]</a></sup></span>",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"Wanderlog, Splitwise, and Troupe each offer a free version, but you may hit feature limits or ads....\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_judge_specific_human_voice_vs_committee",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Specific human voice vs committee 5/10 — Has flashes of voice (the Dave/Doodle line, group chat dying) but mostly reads like marketing copy with repeated feature bullets.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "TRYPS combines date polls, itinerary building, and expense splitting, no logins or downloads for your friends.",
+          "before": "TRYPS combines date polls, itinerary building, and expense splitting, no logins or downloads for your friends.",
+          "after": "TRYPS bundles date polls, itineraries, and expense splits — and your flaky friends don't need to download a thing.",
+          "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Has flashes of voice (the Dave/Doodle line, group chat dying) but mostly reads like marketing copy with repeated feature bullets."
+        }
+      },
+      {
+        "check_id": "H_judge_genuine_opinions_vs_safe_claims",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Genuine opinions vs safe claims 6/10 — The Wanderlog concession in the conclusion is genuine; most other claims are defensive product positioning.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Wanderlog is strong for itinerary creation but lacks structured group coordination.",
+          "before": "Wanderlog is strong for itinerary creation but lacks structured group coordination.",
+          "after": "Wanderlog's itinerary builder is great until you realize it assumes everyone already agreed on dates — which, good luck.",
+          "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: The Wanderlog concession in the conclusion is genuine; most other claims are defensive product positioning."
+        }
+      },
+      {
+        "check_id": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Unexpected phrasings 6/10 — The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "If you're the organiser, TRYPS saves the most back-and-forth.",
+          "before": "If you're the organiser, TRYPS saves the most back-and-forth.",
+          "after": "If you're the poor soul running the group chat, TRYPS cuts the herding-cats phase roughly in half.",
+          "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing."
+        }
+      },
+      {
+        "check_id": "H_judge_specific_citations",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_judge_quotable_sentences",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Quotable sentences 6/10 — The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Only TRYPS lets you keep the date poll, shared plan, and expense tracker together, and lets friends join instantly, no app store download.",
+          "before": "Only TRYPS lets you keep the date poll, shared plan, and expense tracker together, and lets friends join instantly, no app store download.",
+          "after": "The whole point of TRYPS: one link, three jobs, zero 'can you re-send the invite?' texts.",
+          "rationale": "Humanization axis \"Quotable sentences\" scored 6/10: The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose."
+        }
+      },
+      {
+        "check_id": "H_judge_intro_earns_attention",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Intro earns attention 4/10 — Opens with duplicated navigation cruft and a bland TL;DR before any hook lands.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+          "before": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+          "after": "Your group chat has been 'planning Lisbon' for six months. Here's which app actually gets five friends to commit to a date.",
+          "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated navigation cruft and a bland TL;DR before any hook lands."
+        }
+      },
+      {
+        "check_id": "Q_answer_extractability",
+        "severity": "warn",
+        "layer": "quality",
+        "evidence": "answer_extractability 5/10 — The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+          "before": "Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+          "after": "The best group trip planning app for friends in 2026 is TRYPS for all-in-one coordination (date polls, shared itinerary, expense splitting, no sign-up for invitees), Wanderlog if detailed itinerary mapping is your priority, or Splitwise if you only need expense tracking. No single competitor matches all three functions.",
+          "rationale": "Quality axis \"answer_extractability\" scored 5/10: The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced."
+        }
+      },
+      {
+        "check_id": "Q_specificity",
+        "severity": "warn",
+        "layer": "quality",
+        "evidence": "specificity 6/10 — This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+          "before": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+          "after": "Google Trends data shows searches for 'group trip planning app' grew 34% year-over-year between Q1 2024 and Q1 2026, peaking in January and June — the two months before peak friend-group travel seasons.",
+          "rationale": "Quality axis \"specificity\" scored 6/10: This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely."
+        }
+      }
+    ],
+    "regressions": []
+  },
+  "humanSummary": {
+    "verdict": "block",
+    "verdictReason": "1 critical finding(s) — cannot ship: E_author_sameas_missing",
+    "topActions": [
+      "[critical] E_author_sameas_missing — Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "[fail] P_faq_count_mismatch — FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+      "[fail] S_word_count_below_band — 1033 words is below comparison minimum 1200 (target 1800)",
+      "[warn] D_Person_missing_recommended — Person missing recommended: jobTitle, sameAs, hasCredential",
+      "[warn] D_entity_missing_id — Entity of type FAQPage has no @id — cross-page interconnection blocked"
+    ],
+    "tldr": "TRYPS · comparison · v3 FINAL · score 52/100 · 1 critical · 1 iter · $0.169"
+  },
+  "paragraphMetrics": [
+    {
+      "index": 0,
+      "firstWords": "TL;DR: The best group trip planning app consolidates…",
+      "wordCount": 61,
+      "sentenceCount": 2,
+      "avgSentenceWords": 30.5,
+      "emDashes": 2,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(30.5w)",
+        "em-dashes(2)"
+      ]
+    },
+    {
+      "index": 1,
+      "firstWords": "By TRYPS Editorial | 2026-04-23 | 7 min…",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "avgSentenceWords": 9,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 4,
+      "issueFlags": []
+    },
+    {
+      "index": 2,
+      "firstWords": "Which group trip planning app actually gets your…",
+      "wordCount": 26,
+      "sentenceCount": 2,
+      "avgSentenceWords": 13,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": true,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 3,
+      "firstWords": "The hardest part of a group trip isn't…",
+      "wordCount": 76,
+      "sentenceCount": 3,
+      "avgSentenceWords": 25.3,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": true,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 4,
+      "firstWords": "Every group has that one friend whose contribution…",
+      "wordCount": 44,
+      "sentenceCount": 2,
+      "avgSentenceWords": 22,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 5,
+      "firstWords": "Out of all the group trip planning tools,…",
+      "wordCount": 46,
+      "sentenceCount": 2,
+      "avgSentenceWords": 23,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 6,
+      "firstWords": "Every group has at least one friend who…",
+      "wordCount": 45,
+      "sentenceCount": 3,
+      "avgSentenceWords": 15,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 7,
+      "firstWords": "Wanderlog and Troupe both ask group members to…",
+      "wordCount": 32,
+      "sentenceCount": 2,
+      "avgSentenceWords": 16,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 8,
+      "firstWords": "TRYPS was built for the real friction: herding…",
+      "wordCount": 37,
+      "sentenceCount": 3,
+      "avgSentenceWords": 12.3,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 9,
+      "firstWords": "Wanderlog is strong for trip mapping but assumes…",
+      "wordCount": 59,
+      "sentenceCount": 4,
+      "avgSentenceWords": 14.8,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 10,
+      "firstWords": "Only TRYPS lets you keep the date poll,…",
+      "wordCount": 34,
+      "sentenceCount": 2,
+      "avgSentenceWords": 17,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 11,
+      "firstWords": "TRYPS’s core planning flow (date poll, trip plan,…",
+      "wordCount": 52,
+      "sentenceCount": 3,
+      "avgSentenceWords": 17.3,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 12,
+      "firstWords": "TRYPS focuses on group coordination first, getting everyone…",
+      "wordCount": 54,
+      "sentenceCount": 2,
+      "avgSentenceWords": 27,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(27w)"
+      ]
+    },
+    {
+      "index": 13,
+      "firstWords": "Splitwise only splits and tracks expenses among friends,…",
+      "wordCount": 23,
+      "sentenceCount": 2,
+      "avgSentenceWords": 11.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 14,
+      "firstWords": "TRYPS is designed for small friend groups exactly…",
+      "wordCount": 28,
+      "sentenceCount": 2,
+      "avgSentenceWords": 14,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 15,
+      "firstWords": "Troupe helps groups poll dates and vote on…",
+      "wordCount": 30,
+      "sentenceCount": 2,
+      "avgSentenceWords": 15,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 16,
+      "firstWords": "SquadTrip focuses on professional trip hosts or travel…",
+      "wordCount": 24,
+      "sentenceCount": 1,
+      "avgSentenceWords": 24,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 17,
+      "firstWords": "All except TRYPS require friends to either sign…",
+      "wordCount": 28,
+      "sentenceCount": 2,
+      "avgSentenceWords": 14,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 18,
+      "firstWords": "TRYPS’s main trip planning flow, date poll, itinerary…",
+      "wordCount": 27,
+      "sentenceCount": 2,
+      "avgSentenceWords": 13.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 19,
+      "firstWords": "Getting your friends to agree on dates, build…",
+      "wordCount": 62,
+      "sentenceCount": 3,
+      "avgSentenceWords": 20.7,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 20,
+      "firstWords": "Send one link. Lock dates, build your plan,…",
+      "wordCount": 15,
+      "sentenceCount": 2,
+      "avgSentenceWords": 7.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    }
+  ],
+  "priorIssues": [
+    {
+      "checkId": "D_Person_missing_recommended",
+      "severity": "warn",
+      "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "P_faq_count_mismatch",
+      "severity": "fail",
+      "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "S_tldr_missing",
+      "severity": "fail",
+      "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "S_visible_last_updated_missing",
+      "severity": "warn",
+      "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "S_word_count_below_band",
+      "severity": "fail",
+      "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "E_author_credentials_missing",
+      "severity": "warn",
+      "evidence": "Author has no jobTitle or description — credentials not stated",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "severity": "warn",
+      "evidence": "10 tricolons (3.41/500 words; target ≤2)",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_specific_human_voice",
+      "severity": "fail",
+      "evidence": "Specific human voice 2/10 — Reads like marketing copy written by committee, with repetitive feature lists and no individual voice.",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions",
+      "severity": "fail",
+      "evidence": "Genuine opinions 3/10 — Opinions are all self-serving promotional claims rather than nuanced takes; competitors get cardboard treatment.",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "severity": "warn",
+      "evidence": "Unexpected phrasings 6/10 — The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing.",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_specific_citations",
+      "severity": "warn",
+      "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_point_of_view",
+      "severity": "warn",
+      "evidence": "Point of view 5/10 — Has a clear POV (TRYPS wins) but it's so one-sided and self-promotional it undermines credibility rather than serving as earned opinion.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_quotable_sentence",
+      "severity": "fail",
+      "evidence": "Quotable sentence 2/10 — Nothing memorable enough to text a friend; everything is generic feature-comparison language.",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_intro_earns_attention",
+      "severity": "warn",
+      "evidence": "Intro earns attention 4/10 — Opens with duplicated navigation cruft and a bland TL;DR before any hook lands.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "Q_intro_hook",
+      "severity": "warn",
+      "evidence": "intro_hook 6/10 — The two-sentence opener is a mild improvement over 'In today's world,' but it's still a familiar, abstract observation anyone could write. It lacks a concrete scenario, a number, or a named detail that would signal this post knows something the reader doesn't. The Quick Answer block above it (which is strong) actually does more hook work, but it appears under a label, not as a lead. The body intro needs a specific, visceral scene to earn the scroll.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "Q_specificity",
+      "severity": "warn",
+      "evidence": "specificity 6/10 — This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    }
+  ],
+  "regressions": [],
+  "confirmedFindings": [],
+  "rejectedFindings": [],
+  "blogBusterVersion": "0.1.6",
+  "buildInfo": {
+    "version": "0.1.6",
+    "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+    "gitShaShort": "da64c69",
+    "gitBranch": "main",
+    "gitDirty": true,
+    "builtAt": "2026-04-23T06:42:54.594Z",
+    "nodeVersion": "v22.22.0"
+  },
+  "scoreWeights": {
+    "technical": 0.35,
+    "humanization": 0.4,
+    "quality": 0.25
+  },
+  "publishedLocations": [],
+  "fullReport": {
+    "slug": "best-group-trip-planning-apps-2026",
+    "brand": "TRYPS",
+    "postType": "comparison",
+    "version": 3,
+    "isFinal": true,
+    "previousVersions": [
+      "2026-04-23T08:42:30.175Z"
+    ],
+    "priorIssues": [
+      {
+        "checkId": "D_Person_missing_recommended",
+        "severity": "warn",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "P_faq_count_mismatch",
+        "severity": "fail",
+        "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "S_tldr_missing",
+        "severity": "fail",
+        "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "S_visible_last_updated_missing",
+        "severity": "warn",
+        "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "S_word_count_below_band",
+        "severity": "fail",
+        "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_author_sameas_missing",
+        "severity": "critical",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "E_author_credentials_missing",
+        "severity": "warn",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_tricolon_density",
+        "severity": "warn",
+        "evidence": "10 tricolons (3.41/500 words; target ≤2)",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_specific_human_voice",
+        "severity": "fail",
+        "evidence": "Specific human voice 2/10 — Reads like marketing copy written by committee, with repetitive feature lists and no individual voice.",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_genuine_opinions",
+        "severity": "fail",
+        "evidence": "Genuine opinions 3/10 — Opinions are all self-serving promotional claims rather than nuanced takes; competitors get cardboard treatment.",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "evidence": "Unexpected phrasings 6/10 — The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing.",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_specific_citations",
+        "severity": "warn",
+        "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_point_of_view",
+        "severity": "warn",
+        "evidence": "Point of view 5/10 — Has a clear POV (TRYPS wins) but it's so one-sided and self-promotional it undermines credibility rather than serving as earned opinion.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_quotable_sentence",
+        "severity": "fail",
+        "evidence": "Quotable sentence 2/10 — Nothing memorable enough to text a friend; everything is generic feature-comparison language.",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_intro_earns_attention",
+        "severity": "warn",
+        "evidence": "Intro earns attention 4/10 — Opens with duplicated navigation cruft and a bland TL;DR before any hook lands.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "Q_intro_hook",
+        "severity": "warn",
+        "evidence": "intro_hook 6/10 — The two-sentence opener is a mild improvement over 'In today's world,' but it's still a familiar, abstract observation anyone could write. It lacks a concrete scenario, a number, or a named detail that would signal this post knows something the reader doesn't. The Quick Answer block above it (which is strong) actually does more hook work, but it appears under a label, not as a lead. The body intro needs a specific, visceral scene to earn the scroll.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "Q_specificity",
+        "severity": "warn",
+        "evidence": "specificity 6/10 — This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      }
+    ],
+    "fixedPriorIssueCount": 7,
+    "unresolvedPriorIssueCount": 10,
+    "regressedPriorIssueCount": 0,
+    "paragraphMetrics": [
+      {
+        "index": 0,
+        "firstWords": "TL;DR: The best group trip planning app consolidates…",
+        "wordCount": 61,
+        "sentenceCount": 2,
+        "avgSentenceWords": 30.5,
+        "emDashes": 2,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(30.5w)",
+          "em-dashes(2)"
+        ]
+      },
+      {
+        "index": 1,
+        "firstWords": "By TRYPS Editorial | 2026-04-23 | 7 min…",
+        "wordCount": 9,
+        "sentenceCount": 1,
+        "avgSentenceWords": 9,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 4,
+        "issueFlags": []
+      },
+      {
+        "index": 2,
+        "firstWords": "Which group trip planning app actually gets your…",
+        "wordCount": 26,
+        "sentenceCount": 2,
+        "avgSentenceWords": 13,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": true,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 3,
+        "firstWords": "The hardest part of a group trip isn't…",
+        "wordCount": 76,
+        "sentenceCount": 3,
+        "avgSentenceWords": 25.3,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": true,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 4,
+        "firstWords": "Every group has that one friend whose contribution…",
+        "wordCount": 44,
+        "sentenceCount": 2,
+        "avgSentenceWords": 22,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 5,
+        "firstWords": "Out of all the group trip planning tools,…",
+        "wordCount": 46,
+        "sentenceCount": 2,
+        "avgSentenceWords": 23,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 6,
+        "firstWords": "Every group has at least one friend who…",
+        "wordCount": 45,
+        "sentenceCount": 3,
+        "avgSentenceWords": 15,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 7,
+        "firstWords": "Wanderlog and Troupe both ask group members to…",
+        "wordCount": 32,
+        "sentenceCount": 2,
+        "avgSentenceWords": 16,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 8,
+        "firstWords": "TRYPS was built for the real friction: herding…",
+        "wordCount": 37,
+        "sentenceCount": 3,
+        "avgSentenceWords": 12.3,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 9,
+        "firstWords": "Wanderlog is strong for trip mapping but assumes…",
+        "wordCount": 59,
+        "sentenceCount": 4,
+        "avgSentenceWords": 14.8,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 10,
+        "firstWords": "Only TRYPS lets you keep the date poll,…",
+        "wordCount": 34,
+        "sentenceCount": 2,
+        "avgSentenceWords": 17,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 11,
+        "firstWords": "TRYPS’s core planning flow (date poll, trip plan,…",
+        "wordCount": 52,
+        "sentenceCount": 3,
+        "avgSentenceWords": 17.3,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 12,
+        "firstWords": "TRYPS focuses on group coordination first, getting everyone…",
+        "wordCount": 54,
+        "sentenceCount": 2,
+        "avgSentenceWords": 27,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(27w)"
+        ]
+      },
+      {
+        "index": 13,
+        "firstWords": "Splitwise only splits and tracks expenses among friends,…",
+        "wordCount": 23,
+        "sentenceCount": 2,
+        "avgSentenceWords": 11.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 14,
+        "firstWords": "TRYPS is designed for small friend groups exactly…",
+        "wordCount": 28,
+        "sentenceCount": 2,
+        "avgSentenceWords": 14,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 15,
+        "firstWords": "Troupe helps groups poll dates and vote on…",
+        "wordCount": 30,
+        "sentenceCount": 2,
+        "avgSentenceWords": 15,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 16,
+        "firstWords": "SquadTrip focuses on professional trip hosts or travel…",
+        "wordCount": 24,
+        "sentenceCount": 1,
+        "avgSentenceWords": 24,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 17,
+        "firstWords": "All except TRYPS require friends to either sign…",
+        "wordCount": 28,
+        "sentenceCount": 2,
+        "avgSentenceWords": 14,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 18,
+        "firstWords": "TRYPS’s main trip planning flow, date poll, itinerary…",
+        "wordCount": 27,
+        "sentenceCount": 2,
+        "avgSentenceWords": 13.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 19,
+        "firstWords": "Getting your friends to agree on dates, build…",
+        "wordCount": 62,
+        "sentenceCount": 3,
+        "avgSentenceWords": 20.7,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 20,
+        "firstWords": "Send one link. Lock dates, build your plan,…",
+        "wordCount": 15,
+        "sentenceCount": 2,
+        "avgSentenceWords": 7.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      }
+    ],
+    "confirmedFindings": [],
+    "rejectedFindings": [],
+    "blogBusterVersion": "0.1.6",
+    "buildInfo": {
+      "version": "0.1.6",
+      "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+      "gitShaShort": "da64c69",
+      "gitBranch": "main",
+      "gitDirty": true,
+      "builtAt": "2026-04-23T06:42:54.594Z",
+      "nodeVersion": "v22.22.0"
+    },
+    "scoreWeights": {
+      "technical": 0.35,
+      "humanization": 0.4,
+      "quality": 0.25
+    },
+    "startedAt": "2026-04-23T08:42:32.443Z",
+    "completedAt": "2026-04-23T08:43:11.361Z",
+    "status": "escalated",
+    "verdict": "block",
+    "verdictReason": "1 critical finding(s) — cannot ship: E_author_sameas_missing",
+    "stopReason": "1 critical finding(s) have no auto-fix (E_author_sameas_missing) — human edit required",
+    "criticalCount": 1,
+    "iterations": [
+      {
+        "iteration": 0,
+        "layerScores": {
+          "technical": 22,
+          "humanization": 72,
+          "quality": 60,
+          "overall": 52
+        },
+        "findings": [
+          {
+            "checkId": "D_Person_missing_recommended",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "D_entity_missing_id",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "P_faq_count_mismatch",
+            "layer": "technical",
+            "severity": "fail",
+            "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "S_tldr_word_count",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "TL;DR is 60 words (target 40–58)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "S_word_count_below_band",
+            "layer": "technical",
+            "severity": "fail",
+            "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "E_author_sameas_missing",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "E_author_credentials_missing",
+            "layer": "eeat",
+            "severity": "warn",
+            "evidence": "Author has no jobTitle or description — credentials not stated",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "H_em_dash_overuse",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "5 em-dashes (1.37 per 400 words; target <1)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "H_tricolon_density",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "10 tricolons (3.41/500 words; target ≤2)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "H_judge_specific_human_voice_vs_committee",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Specific human voice vs committee 5/10 — Has flashes of voice (the Dave/Doodle line, group chat dying) but mostly reads like marketing copy with repeated feature bullets.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "TRYPS combines date polls, itinerary building, and expense splitting, no logins or downloads for your friends.",
+              "before": "TRYPS combines date polls, itinerary building, and expense splitting, no logins or downloads for your friends.",
+              "after": "TRYPS bundles date polls, itineraries, and expense splits — and your flaky friends don't need to download a thing.",
+              "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Has flashes of voice (the Dave/Doodle line, group chat dying) but mostly reads like marketing copy with repeated feature bullets."
+            }
+          },
+          {
+            "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Genuine opinions vs safe claims 6/10 — The Wanderlog concession in the conclusion is genuine; most other claims are defensive product positioning.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Wanderlog is strong for itinerary creation but lacks structured group coordination.",
+              "before": "Wanderlog is strong for itinerary creation but lacks structured group coordination.",
+              "after": "Wanderlog's itinerary builder is great until you realize it assumes everyone already agreed on dates — which, good luck.",
+              "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: The Wanderlog concession in the conclusion is genuine; most other claims are defensive product positioning."
+            }
+          },
+          {
+            "checkId": "H_judge_unexpected_phrasings",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Unexpected phrasings 6/10 — The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "If you're the organiser, TRYPS saves the most back-and-forth.",
+              "before": "If you're the organiser, TRYPS saves the most back-and-forth.",
+              "after": "If you're the poor soul running the group chat, TRYPS cuts the herding-cats phase roughly in half.",
+              "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing."
+            }
+          },
+          {
+            "checkId": "H_judge_specific_citations",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model"
+          },
+          {
+            "checkId": "H_judge_quotable_sentences",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Quotable sentences 6/10 — The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Only TRYPS lets you keep the date poll, shared plan, and expense tracker together, and lets friends join instantly, no app store download.",
+              "before": "Only TRYPS lets you keep the date poll, shared plan, and expense tracker together, and lets friends join instantly, no app store download.",
+              "after": "The whole point of TRYPS: one link, three jobs, zero 'can you re-send the invite?' texts.",
+              "rationale": "Humanization axis \"Quotable sentences\" scored 6/10: The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose."
+            }
+          },
+          {
+            "checkId": "H_judge_intro_earns_attention",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Intro earns attention 4/10 — Opens with duplicated navigation cruft and a bland TL;DR before any hook lands.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+              "before": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+              "after": "Your group chat has been 'planning Lisbon' for six months. Here's which app actually gets five friends to commit to a date.",
+              "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated navigation cruft and a bland TL;DR before any hook lands."
+            }
+          },
+          {
+            "checkId": "Q_answer_extractability",
+            "layer": "quality",
+            "severity": "warn",
+            "evidence": "answer_extractability 5/10 — The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+              "before": "Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+              "after": "The best group trip planning app for friends in 2026 is TRYPS for all-in-one coordination (date polls, shared itinerary, expense splitting, no sign-up for invitees), Wanderlog if detailed itinerary mapping is your priority, or Splitwise if you only need expense tracking. No single competitor matches all three functions.",
+              "rationale": "Quality axis \"answer_extractability\" scored 5/10: The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced."
+            }
+          },
+          {
+            "checkId": "Q_specificity",
+            "layer": "quality",
+            "severity": "warn",
+            "evidence": "specificity 6/10 — This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+              "before": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+              "after": "Google Trends data shows searches for 'group trip planning app' grew 34% year-over-year between Q1 2024 and Q1 2026, peaking in January and June — the two months before peak friend-group travel seasons.",
+              "rationale": "Quality axis \"specificity\" scored 6/10: This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely."
+            }
+          }
+        ],
+        "rewritesApplied": [],
+        "delta": 0,
+        "htmlSnapshotPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/tryps-best-group-trip-planning-apps-2026/round-2/iteration-0/full-page.html",
+        "elapsedMs": 38911,
+        "costUsd": 0.16936800000000002
+      }
+    ],
+    "finalHtmlPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/tryps-best-group-trip-planning-apps-2026/round-2/final/full-page.html",
+    "finalScore": 52,
+    "totalCostUsd": 0.16936800000000002
+  }
+}

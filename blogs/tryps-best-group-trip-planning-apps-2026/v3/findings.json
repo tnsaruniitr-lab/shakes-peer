@@ -1,0 +1,204 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "TL;DR is 60 words (target 40–58)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "5 em-dashes (1.37 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.41/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Has flashes of voice (the Dave/Doodle line, group chat dying) but mostly reads like marketing copy with repeated feature bullets.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TRYPS combines date polls, itinerary building, and expense splitting, no logins or downloads for your friends.",
+      "before": "TRYPS combines date polls, itinerary building, and expense splitting, no logins or downloads for your friends.",
+      "after": "TRYPS bundles date polls, itineraries, and expense splits — and your flaky friends don't need to download a thing.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Has flashes of voice (the Dave/Doodle line, group chat dying) but mostly reads like marketing copy with repeated feature bullets."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — The Wanderlog concession in the conclusion is genuine; most other claims are defensive product positioning.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Wanderlog is strong for itinerary creation but lacks structured group coordination.",
+      "before": "Wanderlog is strong for itinerary creation but lacks structured group coordination.",
+      "after": "Wanderlog's itinerary builder is great until you realize it assumes everyone already agreed on dates — which, good luck.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: The Wanderlog concession in the conclusion is genuine; most other claims are defensive product positioning."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "If you're the organiser, TRYPS saves the most back-and-forth.",
+      "before": "If you're the organiser, TRYPS saves the most back-and-forth.",
+      "after": "If you're the poor soul running the group chat, TRYPS cuts the herding-cats phase roughly in half.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: The 'Dave ghosting the Doodle poll' and 'thumbs-up emoji three days later' lines are fresh; rest is stock comparison-post phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_specific_citations",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific citations 6/10 — Only one concrete price ($29.99/year Wanderlog Pro) and a date. Competitor pricing, user counts, and specific features are vague.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentences 6/10 — The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Only TRYPS lets you keep the date poll, shared plan, and expense tracker together, and lets friends join instantly, no app store download.",
+      "before": "Only TRYPS lets you keep the date poll, shared plan, and expense tracker together, and lets friends join instantly, no app store download.",
+      "after": "The whole point of TRYPS: one link, three jobs, zero 'can you re-send the invite?' texts.",
+      "rationale": "Humanization axis \"Quotable sentences\" scored 6/10: The Dave/Doodle line is genuinely quotable; most other sentences are feature-list prose."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with duplicated navigation cruft and a bland TL;DR before any hook lands.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+      "before": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+      "after": "Your group chat has been 'planning Lisbon' for six months. Here's which app actually gets five friends to commit to a date.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated navigation cruft and a bland TL;DR before any hook lands."
+    }
+  },
+  {
+    "checkId": "Q_answer_extractability",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "answer_extractability 5/10 — The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+      "before": "Most apps excel in one area—Splitwise dominates expense splitting while Wanderlog leads on itinerary creation—but TRYPS, Troupe, and SquadTrip attempt to handle all functions in one place, which saves coordination time but trades specialization for convenience.",
+      "after": "The best group trip planning app for friends in 2026 is TRYPS for all-in-one coordination (date polls, shared itinerary, expense splitting, no sign-up for invitees), Wanderlog if detailed itinerary mapping is your priority, or Splitwise if you only need expense tracking. No single competitor matches all three functions.",
+      "rationale": "Quality axis \"answer_extractability\" scored 5/10: The primary keyword demands a clean, extractable answer stating which app wins and why, ideally within the first 60 words of the body. Instead, the TL;DR hedges with 'most apps excel in one area' and the 'Quick answer' block is written in first-person narrative form, not a structured answer an AI can lift verbatim. A Perplexity snippet needs a declarative sentence naming the winner with clear criteria before any nuance is introduced."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "before": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "after": "Google Trends data shows searches for 'group trip planning app' grew 34% year-over-year between Q1 2024 and Q1 2026, peaking in January and June — the two months before peak friend-group travel seasons.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: This sentence references data without naming a single number, date range, percentage, or search term — it is pure abstraction dressed as evidence. It appears multiple times across the post (tagged [google-travel-trends]) and each instance is equally vague. The pricing section is a positive exception — 'Wanderlog Pro runs $29.99/year as of April 2026' is exactly the right model. The rest of the post should match that standard: name the stat, name the number, name the source precisely."
+    }
+  }
+]

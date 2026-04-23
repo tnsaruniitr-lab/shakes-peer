@@ -1,0 +1,12 @@
+[
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "suggestedFields": [
+      "author.linkedin_url"
+    ],
+    "firstSeenVersion": 2,
+    "lastSeenVersion": 3
+  }
+]

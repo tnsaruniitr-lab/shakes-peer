@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "isFinal": false,
+  "verdict": "block",
+  "verdictReason": "1 critical finding(s) — cannot ship: E_author_sameas_missing",
+  "finalScore": 45,
+  "criticalCount": 1,
+  "iterationsCount": 1,
+  "status": "escalated",
+  "stopReason": "1 critical finding(s) have no auto-fix (E_author_sameas_missing) — human edit required",
+  "totalCostUsd": 0.174315,
+  "scoreWeights": {
+    "technical": 0.35,
+    "humanization": 0.4,
+    "quality": 0.25
+  },
+  "blogBusterVersion": "0.1.6"
+}

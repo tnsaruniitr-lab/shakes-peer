@@ -1,0 +1,211 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "9 tricolons (3.22/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Specific human voice 2/10 — Reads like marketing copy written by committee, with repetitive feature lists and no individual voice.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TRYPS is the only group trip planning app focused on friends that combines date polls, itinerary building, and expense splitting in one place, with no sign-ups needed for your group.",
+      "before": "TRYPS is the only group trip planning app focused on friends that combines date polls, itinerary building, and expense splitting in one place, with no sign-ups needed for your group.",
+      "after": "I built TRYPS after watching my group chat die on trip four — here's how it stacks up against the apps I used before.",
+      "rationale": "Humanization axis \"Specific human voice\" scored 2/10: Reads like marketing copy written by committee, with repetitive feature lists and no individual voice."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Genuine opinions 3/10 — Opinions are all self-serving promotional claims rather than nuanced takes; competitors get cardboard treatment.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Wanderlog, Splitwise, Troupe, and SquadTrip each have their place, but if you’re wrangling a casual friend group, TRYPS leaves the least work on your plate.",
+      "before": "Wanderlog, Splitwise, Troupe, and SquadTrip each have their place, but if you’re wrangling a casual friend group, TRYPS leaves the least work on your plate.",
+      "after": "Wanderlog's itinerary builder is genuinely better than ours for road trips — but it dies the moment you need six friends to vote on dates.",
+      "rationale": "Humanization axis \"Genuine opinions\" scored 3/10: Opinions are all self-serving promotional claims rather than nuanced takes; competitors get cardboard treatment."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Unexpected phrasings 3/10 — Phrasings are predictable ('herding your friends,' 'back-and-forth,' 'headache') with one 'herding' cliché as the only attempt at color.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "The hardest part of a group trip isn’t picking a place. It’s getting everyone to agree on dates, the plan, and the money.",
+      "before": "The hardest part of a group trip isn’t picking a place. It’s getting everyone to agree on dates, the plan, and the money.",
+      "after": "The hardest part of a group trip isn't Bali versus Lisbon — it's Dave ghosting the Doodle poll for nine days straight.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 3/10: Phrasings are predictable ('herding your friends,' 'back-and-forth,' 'headache') with one 'herding' cliché as the only attempt at color."
+    }
+  },
+  {
+    "checkId": "H_judge_specific_citations",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Specific citations 3/10 — No actual prices, version numbers, dates, or named features — just vague placeholder citations like [wanderlog-site].",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Wanderlog: Free with optional paid upgrades for advanced features.",
+      "before": "Wanderlog: Free with optional paid upgrades for advanced features.",
+      "after": "Wanderlog Pro runs $29.99/year as of April 2026, unlocking offline maps and unlimited route optimization.",
+      "rationale": "Humanization axis \"Specific citations\" scored 3/10: No actual prices, version numbers, dates, or named features — just vague placeholder citations like [wanderlog-site]."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view 5/10 — Has a clear POV (TRYPS wins) but it's so one-sided and self-promotional it undermines credibility rather than serving as earned opinion.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Quotable sentence 2/10 — Nothing memorable enough to text a friend; everything is generic feature-comparison language.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Most people planning a trip with friends hit the same issues: date chaos, half-made itineraries, and messy split expenses.",
+      "before": "Most people planning a trip with friends hit the same issues: date chaos, half-made itineraries, and messy split expenses.",
+      "after": "Every group has that one friend whose contribution to planning is a thumbs-up emoji three days after you needed an answer.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 2/10: Nothing memorable enough to text a friend; everything is generic feature-comparison language."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with duplicated nav/title clutter and a generic rhetorical question; no hook or specificity.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison By TRYPS Editorial | 2026-04-23 | 7 min read Which group trip planning app actually gets your friends moving?",
+      "before": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison By TRYPS Editorial | 2026-04-23 | 7 min read Which group trip planning app actually gets your friends moving?",
+      "after": "Last summer my seven-person Portugal trip died in a Doodle poll. Here's which of the five leading apps would have actually saved it.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated nav/title clutter and a generic rhetorical question; no hook or specificity."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The two-sentence opener is a mild improvement over 'In today's world,' but it's still a familiar, abstract observation anyone could write. It lacks a concrete scenario, a number, or a named detail that would signal this post knows something the reader doesn't. The Quick Answer block above it (which is strong) actually does more hook work, but it appears under a label, not as a lead. The body intro needs a specific, visceral scene to earn the scroll.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "The hardest part of a group trip isn't picking a place. It's getting everyone to agree on dates, the plan, and the money.",
+      "before": "The hardest part of a group trip isn't picking a place. It's getting everyone to agree on dates, the plan, and the money.",
+      "after": "Your Barcelona trip died in a 47-message group chat. The dates never got locked, the Airbnb link expired, and someone's still owed €83. Here's the app that prevents all three.",
+      "rationale": "Quality axis \"intro_hook\" scored 6/10: The two-sentence opener is a mild improvement over 'In today's world,' but it's still a familiar, abstract observation anyone could write. It lacks a concrete scenario, a number, or a named detail that would signal this post knows something the reader doesn't. The Quick Answer block above it (which is strong) actually does more hook work, but it appears under a label, not as a lead. The body intro needs a specific, visceral scene to earn the scroll."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — The post names the five apps correctly and gives per-app feature verdicts, which is good. But it relies heavily on repeated structural lists rather than grounding claims in numbers, real user scenarios, or named use cases. The Google trends citation is a placeholder with no actual figure, percentage, or time range — it's an abstraction dressed as evidence. Pricing section says 'you may hit feature limits' without naming what those limits are (e.g., Splitwise Pro is $3.99/month; Wanderlog's AI features require the $2.99/month plan). Phrases like 'real friction,' 'fewer headaches,' and 'overkill' recur without concrete illustration.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "before": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "after": "Google Trends data shows searches for 'group trip planner' grew 34% year-over-year from 2023 to 2025, peaking each January and May — the windows when friend groups start planning summer and holiday trips.",
+      "rationale": "Quality axis \"specificity\" scored 5/10: The post names the five apps correctly and gives per-app feature verdicts, which is good. But it relies heavily on repeated structural lists rather than grounding claims in numbers, real user scenarios, or named use cases. The Google trends citation is a placeholder with no actual figure, percentage, or time range — it's an abstraction dressed as evidence. Pricing section says 'you may hit feature limits' without naming what those limits are (e.g., Splitwise Pro is $3.99/month; Wanderlog's AI features require the $2.99/month plan). Phrases like 'real friction,' 'fewer headaches,' and 'overkill' recur without concrete illustration."
+    }
+  }
+]

@@ -1,0 +1,340 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://trypsagent.com/#organization",
+      "name": "TRYPS",
+      "url": "https://trypsagent.com",
+      "description": "TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://trypsagent.com/#logo",
+        "url": "https://trypsagent.com/logo.png",
+        "width": 600,
+        "height": 60,
+        "caption": "TRYPS logo"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://trypsagent.com/contact"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Arun Sharma"
+      },
+      "sameAs": [
+        "https://twitter.com/trypsapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trypsagent.com/#website",
+      "url": "https://trypsagent.com",
+      "name": "TRYPS",
+      "description": "TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.",
+      "publisher": {
+        "@id": "https://trypsagent.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://trypsagent.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#webpage",
+      "url": "https://trypsagent.com/oahu-group-trip-itinerary-v4",
+      "name": "7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups",
+      "description": "Oahu group trip itinerary: a 7-day, day-by-day guide for friend groups (4–8) with real beaches, eats, and activities—plus costs, FAQs, and timing.",
+      "isPartOf": {
+        "@id": "https://trypsagent.com/#website"
+      },
+      "dateModified": "2026-04-23T11:38:30Z",
+      "primaryImageOfPage": {
+        "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#hero-image"
+      },
+      "inLanguage": "en-US",
+      "breadcrumb": {
+        "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#breadcrumbs"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#hero-image",
+      "url": "https://trypsagent.com/images/blog/oahu-group-trip-itinerary-v4-hero.png",
+      "width": 1200,
+      "height": 630,
+      "caption": "7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups hero image for TRYPS",
+      "creator": {
+        "@id": "https://trypsagent.com/#organization"
+      },
+      "license": "https://trypsagent.com/license"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Blog",
+          "item": "https://trypsagent.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Trip Planning",
+          "item": "https://trypsagent.com/blog/category"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "7-Day Oahu Group Trip Itinerary",
+          "item": "https://trypsagent.com/blog/oahu-group-trip-itinerary"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#article",
+      "mainEntityOfPage": {
+        "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#webpage"
+      },
+      "isPartOf": {
+        "@id": "https://trypsagent.com/#website"
+      },
+      "headline": "7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups",
+      "alternativeHeadline": "Oahu Group Trip Itinerary: 7-Day Plan for Friend Groups",
+      "description": "Oahu group trip itinerary: a 7-day, day-by-day guide for friend groups (4–8) with real beaches, eats, and activities—plus costs, FAQs, and timing.",
+      "abstract": "The chaos phase of Oahu group trip planning ends here. This is a real 7-day itinerary—with actual places—built for friend-group organisers who want everyone aligned (and costs under control).",
+      "url": "https://trypsagent.com/oahu-group-trip-itinerary-v4",
+      "datePublished": "2026-04-23T11:38:30Z",
+      "dateModified": "2026-04-23T11:38:30Z",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "[data-tldr]",
+          ".quick-answer",
+          "h1"
+        ]
+      },
+      "author": {
+        "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#author"
+      },
+      "publisher": {
+        "@id": "https://trypsagent.com/#organization"
+      },
+      "image": {
+        "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#hero-image"
+      },
+      "articleSection": "Trip Planning",
+      "keywords": [
+        "oahu group trip itinerary",
+        "oahu itinerary 7 days",
+        "oahu group travel",
+        "hawaii friends trip",
+        "oahu trip planning",
+        "group trip oahu"
+      ],
+      "wordCount": 2612,
+      "inLanguage": "en-US",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups"
+        },
+        {
+          "@type": "Thing",
+          "name": "No sign-up required for group members — just share a link"
+        },
+        {
+          "@type": "Thing",
+          "name": "Date polling + itinerary + expense splitting in one place"
+        },
+        {
+          "@type": "Thing",
+          "name": "Free to start — no credit card for core flow"
+        },
+        {
+          "@type": "Thing",
+          "name": "Designed for small friend groups (4–10 people)"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "TRYPS",
+          "url": "https://trypsagent.com"
+        },
+        {
+          "@type": "Person",
+          "name": "Arun Sharma"
+        }
+      ],
+      "citation": [
+        {
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-gohawaii-oahu"
+        },
+        {
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-hanauma-bay-official"
+        },
+        {
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-diamond-head-reservation"
+        },
+        {
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-oahu-visitors-bureau"
+        },
+        {
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-nps-pearl-harbor"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#author",
+      "name": "TRYPS Editorial",
+      "url": "https://trypsagent.com/authors/tryps-editorial",
+      "worksFor": {
+        "@id": "https://trypsagent.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q1",
+          "name": "What is the best time to visit Oahu as a group?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "April–June offers the best combo of reliable weather, fewer crowds, and manageable prices for group trip planners. September–October is a close second for quiet beaches and easy reservations. Avoid peak July–August and major US holidays for lower stress."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q2",
+          "name": "How much does a 7-day Oahu group trip actually cost per person?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Expect $1,950–$3,150 per person (for four people sharing): split vacation rental, food, activities, group transport, and incidentals included."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q3",
+          "name": "Do you need a car for an Oahu group trip?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, especially for North Shore and Kailua days. Rideshare coverage is thin outside Honolulu, and public transit isn’t practical for groups on a schedule."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q4",
+          "name": "Can you do Hanauma Bay without a reservation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No—Hanauma Bay requires a $25 reservation per non-resident, bookable exactly 48 hours in advance. No walk-up tickets for groups or individuals."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q5",
+          "name": "Is Oahu family-friendly for multi-age groups?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes—Oahu's beaches, resort areas, and cultural attractions like Bishop Museum and Waikiki Beach work for all ages. Group-friendly facilities are standard."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q6",
+          "name": "How early do Oahu’s best beaches get crowded?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Waikiki fills up from 9 am; North Shore beaches go early on surf days. For Diamond Head or Hanauma Bay, book the earliest entry possible for quiet and parking."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q7",
+          "name": "What's the best area to stay as a group: Waikiki, Ala Moana, or Kailua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For 4–8 people, Ala Moana vacation rentals offer the best blend of group space, lower price, and central access. Waikiki is best for walkability and nightlife; Kailua is great for low-key groups but requires a car for everything."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q8",
+          "name": "Which Oahu day trip is best for a group based in Waikiki?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A North Shore circuit (Sunset Beach, Pipeline, Waimea Bay, Laniakea turtles) packs the most variety and group-friendly stops for one day. Requires a rental car and an early start."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q9",
+          "name": "Is Pearl Harbor worth going to with a friend group?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pearl Harbor is a historic must—free tickets for the USS Arizona Memorial, but book timed entry in advance if your group is interested."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#faq/q10",
+          "name": "How do you split costs fairly on a group Oahu trip?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Track all expenses in a shared tool or app that logs who paid what—ideally with trip-specific categories (lodging, food, car, activities). Don’t use group chat for IOUs."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-gohawaii-oahu",
+      "headline": "Hawaii Tourism Authority — Oahu",
+      "url": "https://www.gohawaii.com/islands/oahu",
+      "text": "Official Oahu visitor guide from Hawaii Tourism Authority: neighborhoods, beaches, cultural sites, seasonal weather, and visitor guidelines."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-hanauma-bay-official",
+      "headline": "Honolulu Parks & Rec — Hanauma Bay Nature Preserve",
+      "url": "https://www.honolulu.gov/parks/hbay.html",
+      "text": "Official Hanauma Bay reservation system: $25 non-resident entry, mandatory 2-day advance reservation, closed Mondays and Tuesdays, education video required before swim."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-diamond-head-reservation",
+      "headline": "Hawaii State Parks — Diamond Head State Monument Reservations",
+      "url": "https://gostateparks.hawaii.gov/diamondhead",
+      "text": "Diamond Head reservation system for non-Hawaii residents: $5 entry, timed entry reservations required, summit trail is 0.8 miles one-way with elevation gain."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-oahu-visitors-bureau",
+      "headline": "Oahu Visitors Bureau — Planning Guide",
+      "url": "https://www.visit-oahu.com/",
+      "text": "Oahu Visitors Bureau trip planning resources covering neighborhoods, group travel logistics, seasonal considerations, and regional highlights (North Shore, Windward, South Shore)."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/oahu-group-trip-itinerary-v4#source-nps-pearl-harbor",
+      "headline": "National Park Service — World War II Valor in the Pacific / Pearl Harbor",
+      "url": "https://www.nps.gov/perl/index.htm",
+      "text": "NPS Pearl Harbor National Memorial: free USS Arizona Memorial program, timed-entry ticket system, separate $ for USS Missouri and Bowfin."
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 10 Questions but page shows ~22 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_toc_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Post is 2219 words (pillar) — include a <nav aria-label=\"Table of contents\"> for LLM outline extraction",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Has some voice ('this is the job now') but mostly reads like branded editorial copy with consistent cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "The real blocker isn't picking sunset beaches or poke bowls, it's getting everyone in sync on dates, reservations, and money before flights begin.",
+      "before": "The real blocker isn't picking sunset beaches or poke bowls, it's getting everyone in sync on dates, reservations, and money before flights begin.",
+      "after": "The real blocker isn't picking beaches—it's getting six friends to agree on dates and Venmo each other before anyone books a flight.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Has some voice ('this is the job now') but mostly reads like branded editorial copy with consistent cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Does take stances (Duke's is touristy and fine, skip Hanauma at your peril, WhatsApp is for ranting) so opinions come through.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — A few good turns ('hangover half of the group', 'stare-down from staff') but lots of SEO-flavored stock phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "The chaos phase of Oahu group trip planning ends here.",
+      "before": "The chaos phase of Oahu group trip planning ends here.",
+      "after": "If your group chat has 400 unread messages and zero decisions, start here.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: A few good turns ('hangover half of the group', 'stare-down from staff') but lots of SEO-flavored stock phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentence 5/10 — A couple of lines ('this is the job now') are quotable, but most sentences are functional.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "The real win isn't the Instagram spots—it's front-loading reservations and payment splits before you land, which planning apps now handle better than group chats ever could.",
+      "before": "The real win isn't the Instagram spots—it's front-loading reservations and payment splits before you land, which planning apps now handle better than group chats ever could.",
+      "after": "Skip Hanauma Bay and someone will still be sulting about it on Day 6—just book it.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 5/10: A couple of lines ('this is the job now') are quotable, but most sentences are functional."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with a generic promise and TL;DR/meta clutter before the first real sentence; fails to hook.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "The chaos phase of Oahu group trip planning ends here.",
+      "before": "The chaos phase of Oahu group trip planning ends here.",
+      "after": "Seven friends. Seven days. One group chat meltdown away from someone booking their own Airbnb in spite.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with a generic promise and TL;DR/meta clutter before the first real sentence; fails to hook."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — Most of the post is strongly anchored in named places, prices, and logistics—but Day 5's lunch entry collapses into vagueness ('Casual spots near Kailua Beach') after the body text correctly names Kalapawai Market. The bullet contradicts the specificity of the paragraph above it and is the most extractable failure point. The rewrite pulls the named location already present in the body copy into the bullet where readers are most likely scanning.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Lunch: Casual spots near Kailua Beach (bring snacks or pick up en route)",
+      "before": "Lunch: Casual spots near Kailua Beach (bring snacks or pick up en route)",
+      "after": "Lunch: Grab plate lunches at Kalapawai Market on Kailua Road (under $15/person, outdoor picnic tables, handles groups without reservations).",
+      "rationale": "Quality axis \"specificity\" scored 6/10: Most of the post is strongly anchored in named places, prices, and logistics—but Day 5's lunch entry collapses into vagueness ('Casual spots near Kailua Beach') after the body text correctly names Kalapawai Market. The bullet contradicts the specificity of the paragraph above it and is the most extractable failure point. The rewrite pulls the named location already present in the body copy into the bullet where readers are most likely scanning."
+    }
+  }
+]

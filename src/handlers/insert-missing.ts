@@ -190,12 +190,14 @@ function rewriteJsonLdInHtml(
 ): string {
   const serialized = JSON.stringify(jsonLd, null, 2);
   const re = /<script\s+type=["']application\/ld\+json["']\s*>([\s\S]*?)<\/script>/i;
+  // Callback form prevents `$1` backreference interpretation in serialized JSON.
+  const neutralized = serialized.replace(/<\/(script)/gi, "<\\/$1");
+  const newScript = `<script type="application/ld+json">\n${neutralized}\n</script>`;
   if (re.test(html)) {
-    return html.replace(re, `<script type="application/ld+json">\n${serialized}\n</script>`);
+    return html.replace(re, () => newScript);
   }
-  const injection = `<script type="application/ld+json">\n${serialized}\n</script>`;
   if (/<\/head>/i.test(html)) {
-    return html.replace(/<\/head>/i, `${injection}\n</head>`);
+    return html.replace(/<\/head>/i, () => `${newScript}\n</head>`);
   }
-  return `${html}\n${injection}`;
+  return `${html}\n${newScript}`;
 }

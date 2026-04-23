@@ -79,6 +79,23 @@ function estimateReadTime(wordCount: number): number {
 }
 
 /**
+ * Embed a JSON-LD string inside a <script type="application/ld+json"> tag
+ * safely. The content must be valid RAW JSON — do NOT HTML-escape quotes
+ * (that breaks JSON.parse). The only concern is a `</script>` sequence
+ * appearing inside a string value, which would break out of the script tag.
+ * We escape the `/` in any `</` to neutralize that case without affecting
+ * JSON validity.
+ *
+ * Previously this call used escapeHtml() which produced `&quot;` wrappers
+ * around every key/value, making every v1 JSON-LD block unparseable — a
+ * silent regression that blog-buster v0.1.6's V_schema_invalid_json
+ * detector finally surfaced.
+ */
+function jsonLdStringForScript(json: string): string {
+  return json.replace(/<\/(script)/gi, "<\\/$1");
+}
+
+/**
  * Writer-shape-spec §1.4 — full ISO 8601 with seconds and timezone, matching
  * the detector regex `^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$`.
  * Strips milliseconds (Date.toISOString always includes `.\d{3}` before Z).
@@ -165,9 +182,67 @@ function extractJsonObject(text: string): string | null {
   return text.slice(start, end + 1);
 }
 
+/**
+ * Detect which domain a post belongs to. Each domain gets a different editor
+ * role identity and tonal defaults (Tier 2 of the 3-tier tuning: universal
+ * craft → domain overlay → brand overlay).
+ *
+ * Extensible — add new domains by adding a regex arm below and a matching
+ * entry in getEditorRole().
+ */
+type DomainMode = "health" | "travel" | "default";
+
+function detectDomainMode(input: BlogWriterRequest): DomainMode {
+  const haystack = [
+    input.topic,
+    input.brand.product_description,
+    input.article.category,
+    input.post_format ?? "",
+    ...(input.brand.differentiators ?? []),
+  ]
+    .join(" ")
+    .toLowerCase();
+
+  // Health / wellness / YMYL — strictest tone controls.
+  if (
+    /\b(health|wellness|medical|clinic|blood|biomarker|nutrition|diet|fitness|mental\s*health|therapy|doctor|patient|symptom|disease|diagnos|pharma|medication|screening|prescription)\b/.test(
+      haystack,
+    )
+  ) {
+    return "health";
+  }
+  // Travel / trip planning / itinerary.
+  if (
+    /\b(trip|travel|itinerary|vacation|holiday|destination|flight|hotel|resort|booking|tour|cruise|backpack|expedition|road\s*trip|group\s*trip|getaway)\b/.test(
+      haystack,
+    )
+  ) {
+    return "travel";
+  }
+  return "default";
+}
+
+/**
+ * Editor-identity line injected into the Humanity Mode header. This is the
+ * single sentence that tells the model WHO it's writing as — which shapes
+ * word choice, register, and what feels safe to say far more than any
+ * adjective list.
+ */
+function getEditorRole(mode: DomainMode): string {
+  switch (mode) {
+    case "health":
+      return "Write as a thoughtful health editor or coach, not a hype copywriter. The reader trusts the post because it sounds like someone who has thought carefully, not because it performs authority.";
+    case "travel":
+      return "Write as a seasoned group-trip organiser who has actually run these logistics — someone who knows which reservations close out first, which transitions in the itinerary friend groups actually stumble on, and when to be direct about tradeoffs. Helpful, not salesy.";
+    default:
+      return "Write as a thoughtful editor talking to a smart reader. Warmth, not theatrics. Specific, not generic.";
+  }
+}
+
 function buildPrompt(input: BlogWriterRequest): string {
   const brandContext = loadBrandContext(input);
   const format = detectPostFormat(input);
+  const domainMode = detectDomainMode(input);
   const isTrypsBrand =
     /tryps/i.test(input.brand.name) || /jointryps\.com/i.test(input.brand.domain);
   const siteUrl = normalizeDomain(input.brand.domain);
@@ -415,6 +490,75 @@ Every section the same length and structure reads mechanical. Vary deliberately:
 - Mix paragraph length. Not every paragraph needs to be 3 sentences.
 - If bullets don't help, don't use them — bullets are for parallel discrete items, not narrative.
 - Use occasional one-sentence paragraphs for emphasis on a single strong claim.
+
+─── HUMANITY MODE (hard rule) ───
+**Identity:** ${getEditorRole(domainMode)}
+
+Allowed:
+- calm empathy and normalising language when the topic is emotionally charged ("many people find...", "it's common to...", "it's normal that...")
+- practical reassurance grounded in material from the brief or sources
+- concrete examples drawn from the brief/sources
+- light emotional intelligence about the reader's situation
+- occasional direct address of the reader's state ("if your routine no longer matches your real life...")
+
+FORBIDDEN (these read as fabrication):
+- invented first-person writer experience ("I tried this", "Last April I...")
+- invented clinician, coach, or expert persona ("I'm a Dubai-based GP...")
+- invented patients, customers, or anecdotal scenes
+- dramatic storytelling or memoir-style openers not grounded in material the brief/sources provide
+- fictional dialogue or composite characters
+
+Story shape to follow in the intro and first section:
+1. Name the real tension the reader is facing.
+2. Reframe it usefully — offer a better way to think about it.
+3. Preview what the rest of the post provides (practical steps).
+4. End with a grounded next step — not a flourish.
+
+The story comes from the READER's situation, not the writer's invented biography.
+
+─── PARAGRAPH COHERENCE (hard rule) ───
+Each paragraph must earn its place by doing work the previous one didn't:
+- A paragraph either advances the argument, introduces a concrete example from the brief/sources, answers a question the previous paragraph raised, or pivots to a new angle. No paragraph should restate the prior one in different words.
+- Use IDEA transitions, not ADVERB transitions. Bad: "Moreover, another important factor is X." Good: "X matters here too — for a different reason."
+- At least two paragraphs per section should reference something established earlier in the post by concept, not by adverb. Not "as I mentioned" or "as discussed above". Reference the actual concept: e.g., "the Hanauma Bay 48-hour window we flagged earlier".
+- The last sentence of a section should open the question the next section answers. The first sentence of a section should gesture back at why that question now matters.
+${domainMode === "travel"
+  ? "- Travel-specific: logistical continuity matters. If Day 2 depends on a reservation flagged in the pre-trip checklist, reference it explicitly when Day 2 comes up. Readers trust itineraries that remember what they told them."
+  : ""}${domainMode === "health"
+  ? "- Health-specific: emotional continuity matters more than logical continuity. If the intro acknowledged that falling off track is common, a later paragraph should pick up that thread — not abandon it for a neutral clinical tone."
+  : ""}
+
+─── ENGAGEMENT (hard rule) ───
+Every paragraph must give the reader a reason to stay. Each paragraph must deliver at least ONE of:
+- a specific fact or number the reader likely doesn't know (drawn from brief/sources — never invented)
+- a non-obvious claim the reader might want to disagree with
+- a reframing that changes how the reader would approach the problem
+- a concrete example, named entity, or scenario
+
+A paragraph that only summarises what a knowledgeable reader already thinks has no job. Cut it or rewrite it around a specific.
+
+${domainMode === "health" ? `─── HEALTH / WELLNESS MODE (active — YMYL content) ───
+This post is in the health/wellness domain. Apply stricter tone rules:
+
+Priorities in this order:
+1. Trust and accuracy over cleverness.
+2. Reassurance over intensity — the reader may be anxious; do not amplify.
+3. Informational neutrality when no first-party evidence is supplied — be restrained, not confident.
+
+Forbidden for health posts:
+- Do NOT sound like a practising doctor, clinician, nutritionist, or therapist unless the author metadata in the brief explicitly establishes those credentials.
+- Do NOT dramatise ordinary health behaviours ("By month 3 the patient was...", "Most people fail at...").
+- Do NOT invent clinical thresholds, diagnostic criteria, or treatment outcomes.
+- Do NOT use scare language ("silent killer", "lurking", "dangerous levels") unless the sources quote it verbatim.
+- Do NOT prescribe dosage, treatment plans, or specific medications.
+
+Required for health posts:
+- Use hedged, accurate phrasing: "may help", "can support", "research suggests" (when citing a real named source).
+- When discussing screenings, tests, or routines, note that individual medical advice should come from a qualified clinician.
+- Emotional register: calm, matter-of-fact, supportive. Not alarmist. Not performatively warm.
+
+Target feeling: a reader should finish a paragraph feeling informed and slightly calmer, not hyped or frightened.
+` : ""}
 ${isTrypsBrand
   ? `- Tone for TRYPS: direct, warm, slightly dry. Speak to the organiser's real pain.
 - Relevant TRYPS signals when natural: date poll, shared itinerary, expense splitting, no-download invite.
@@ -1525,7 +1669,7 @@ export function renderBlogHtml(
   <meta property="article:modified_time" content="${escapeHtml(modifiedIso)}">
   <meta property="article:section" content="${escapeHtml(input.article.category)}">
   <style>${buildPreviewStyles()}</style>
-  <script type="application/ld+json">${escapeHtml(jsonLdString)}</script>
+  <script type="application/ld+json">${jsonLdStringForScript(jsonLdString)}</script>
 </head>
 <body>
   <a class="sr-only skip-link" href="#main-content">Skip to content</a>

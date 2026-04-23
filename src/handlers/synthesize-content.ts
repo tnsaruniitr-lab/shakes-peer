@@ -683,8 +683,10 @@ function extractIntroText(html: string, source: BlogWriterResponse): string {
       .filter(Boolean)
       .join(" ");
   }
-  // Fallback: first 3 <p> in article body.
+  // Fallback: first 3 <p> in article body. Strip scripts/styles first so
+  // their raw text doesn't contaminate extracted prose.
   const root = parse(html);
+  for (const el of root.querySelectorAll("script, style, template, noscript")) el.remove();
   const ps = root.querySelectorAll("article p, main p, body p").slice(0, 3);
   return ps.map((p) => p.text.trim()).filter(Boolean).join(" ");
 }
@@ -735,6 +737,16 @@ function looksLikeQuestion(text: string): boolean {
 
 function extractVisibleFaqs(html: string): FaqPair[] {
   const root = parse(html);
+  // node-html-parser's .text concatenates ALL descendant text, including
+  // <script>/<style>/<template> contents. That pollutes FAQ answer fields
+  // when walking siblings of a question-heading: if any sibling contains a
+  // JSON-LD <script>, the serialized JSON leaks into the answer string and
+  // the rebuilt FAQPage schema then contains an answer with a raw JSON blob,
+  // which fails JSON.parse and fires V_schema_invalid_json. Strip these
+  // invisible-to-user elements before any text extraction.
+  for (const el of root.querySelectorAll("script, style, template, noscript")) {
+    el.remove();
+  }
   const pairs: FaqPair[] = [];
 
   // Pattern 1: <details><summary>Q</summary>A</details>
@@ -797,6 +809,8 @@ function extractVisibleFaqs(html: string): FaqPair[] {
 
 function countWords(html: string): number {
   const root = parse(html);
+  // Strip scripts/styles so JSON-LD content doesn't inflate word counts.
+  for (const el of root.querySelectorAll("script, style, template, noscript")) el.remove();
   const body = root.querySelector("article") ?? root.querySelector("main") ?? root.querySelector("body") ?? root;
   return body.text.trim().split(/\s+/).filter(Boolean).length;
 }
@@ -844,12 +858,21 @@ function rewriteJsonLdInHtml(
 ): string {
   const serialized = JSON.stringify(jsonLd, null, 2);
   const re = /<script\s+type=["']application\/ld\+json["']\s*>([\s\S]*?)<\/script>/i;
+  // CRITICAL: use callback form of String.replace to avoid JavaScript
+  // interpreting `$1`/`$2`/`$&` in the serialized JSON as regex
+  // backreferences. A FAQ answer like "Expect $1,950 per person" would
+  // otherwise have `$1` replaced by the first capture group (the previous
+  // script's content) — smuggling the entire prior JSON-LD into the answer
+  // text and breaking V_schema_invalid_json.
+  const neutralizeScriptClose = (s: string) => s.replace(/<\/(script)/gi, "<\\/$1");
+  const newScript = `<script type="application/ld+json">\n${neutralizeScriptClose(serialized)}\n</script>`;
   if (re.test(html)) {
-    return html.replace(re, `<script type="application/ld+json">\n${serialized}\n</script>`);
+    return html.replace(re, () => newScript);
   }
-  const injection = `<script type="application/ld+json">\n${serialized}\n</script>`;
-  if (/<\/head>/i.test(html)) return html.replace(/<\/head>/i, `${injection}\n</head>`);
-  return `${html}\n${injection}`;
+  if (/<\/head>/i.test(html)) {
+    return html.replace(/<\/head>/i, () => `${newScript}\n</head>`);
+  }
+  return `${html}\n${newScript}`;
 }
 
 function escapeAttr(v: string): string {

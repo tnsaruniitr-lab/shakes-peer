@@ -3,6 +3,7 @@ import { ZodError } from "zod";
 import { generateBlogPackage } from "../blog/writer.js";
 import { auditBlogPackage } from "../blog/auditor.js";
 import { generateBlogPackageWithAuditLoops } from "../blog/pipeline.js";
+import { generateAndAutoEdit } from "../blog/auto-edit-pipeline.js";
 import { saveBlogToDesktop } from "../blog/save-output.js";
 import { BlogWriterRequestSchema, type BlogWriterRequest } from "../blog/types.js";
 
@@ -121,6 +122,36 @@ router.post("/blog/write-and-audit", async (req: Request, res: Response): Promis
 
     res.status(500).json({
       error: "Blog write-and-audit failed",
+      message: error instanceof Error ? error.message : "Unknown error",
+    });
+  }
+});
+
+// Auto-edit pipeline: generate → blog-buster audit loop → versioned commits.
+// Each round writes blogs/<slug>/vN/ with full metrics and commits per version.
+router.post("/blog/auto-edit", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const maxRounds =
+      typeof req.body?.max_rounds === "number" ? req.body.max_rounds : 2;
+    const targetScore =
+      typeof req.body?.target_score === "number" ? req.body.target_score : 90;
+    const runLlm = req.body?.run_llm !== false;
+    const push = req.body?.push !== false;
+
+    const result = await generateAndAutoEdit(req.body, {
+      maxRounds,
+      targetScore,
+      runLlm,
+      push,
+    });
+    res.json(result);
+  } catch (error) {
+    if (error instanceof ZodError) {
+      res.status(400).json({ error: "Invalid input", details: error.flatten() });
+      return;
+    }
+    res.status(500).json({
+      error: "Auto-edit pipeline failed",
       message: error instanceof Error ? error.message : "Unknown error",
     });
   }

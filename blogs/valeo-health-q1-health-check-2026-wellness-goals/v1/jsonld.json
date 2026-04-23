@@ -1,0 +1,303 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://feelvaleo.com/#organization",
+      "name": "Valeo Health",
+      "url": "https://feelvaleo.com",
+      "description": "Valeo Health is a UAE direct-to-consumer at-home healthcare platform offering blood test packages, preventive screenings, metabolic health programmes, and personalised wellness coaching for Dubai residents.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://feelvaleo.com/#logo",
+        "url": "https://feelvaleo.com/logo.png",
+        "width": 600,
+        "height": 60,
+        "caption": "Valeo Health logo"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://feelvaleo.com/contact"
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://feelvaleo.com/#website",
+      "url": "https://feelvaleo.com",
+      "name": "Valeo Health",
+      "description": "Valeo Health is a UAE direct-to-consumer at-home healthcare platform offering blood test packages, preventive screenings, metabolic health programmes, and personalised wellness coaching for Dubai residents.",
+      "publisher": {
+        "@id": "https://feelvaleo.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://feelvaleo.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#webpage",
+      "url": "https://feelvaleo.com/q1-health-check-2026-wellness-goals",
+      "name": "Q1 2026 Health Check: How to Audit Your Wellness Goals and Stay on Track",
+      "description": "Q1 health check guide: practical 15-min audit to review 2026 wellness goals & annual health screening in Dubai and UAE.",
+      "isPartOf": {
+        "@id": "https://feelvaleo.com/#website"
+      },
+      "dateModified": "2026-04-23T08:05:36Z",
+      "primaryImageOfPage": {
+        "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#hero-image"
+      },
+      "inLanguage": "en-US",
+      "breadcrumb": {
+        "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#breadcrumbs"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#hero-image",
+      "url": "https://feelvaleo.com/images/blog/q1-health-check-2026-wellness-goals-hero.png",
+      "width": 1200,
+      "height": 630,
+      "caption": "Q1 2026 Health Check: How to Audit Your Wellness Goals and Stay on Track hero image for Valeo Health",
+      "creator": {
+        "@id": "https://feelvaleo.com/#organization"
+      },
+      "license": "https://feelvaleo.com/license"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Blog",
+          "item": "https://feelvaleo.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Wellness",
+          "item": "https://feelvaleo.com/blog/wellness"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Q1 2026 Health Check: How to Audit Your Wellness Goals and Stay on Track",
+          "item": "https://feelvaleo.com/blog/q1-2026-health-check-audit-wellness-goals"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#article",
+      "mainEntityOfPage": {
+        "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#webpage"
+      },
+      "isPartOf": {
+        "@id": "https://feelvaleo.com/#website"
+      },
+      "headline": "Q1 2026 Health Check: How to Audit Your Wellness Goals and Stay on Track",
+      "alternativeHeadline": "Q1 Health Check: Audit 2026 Wellness Goals UAE",
+      "description": "Q1 health check guide: practical 15-min audit to review 2026 wellness goals & annual health screening in Dubai and UAE.",
+      "abstract": "Review your 2026 wellness goals with a Q1 health check designed for UAE residents. Learn how to self-audit in 15 minutes and align with local preventive guidelines.",
+      "url": "https://feelvaleo.com/q1-health-check-2026-wellness-goals",
+      "datePublished": "2026-04-23T08:05:36Z",
+      "dateModified": "2026-04-23T08:05:36Z",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "[data-tldr]",
+          ".quick-answer",
+          "h1"
+        ]
+      },
+      "author": {
+        "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#author"
+      },
+      "publisher": {
+        "@id": "https://feelvaleo.com/#organization"
+      },
+      "image": {
+        "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#hero-image"
+      },
+      "articleSection": "Wellness",
+      "keywords": [
+        "q1 health check",
+        "2026 wellness goals",
+        "health check up dubai",
+        "annual health screening uae",
+        "q1 wellness review",
+        "new year health goals"
+      ],
+      "wordCount": 1103,
+      "inLanguage": "en-US",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Q1 2026 Health Check: How to Audit Your Wellness Goals and Stay on Track"
+        },
+        {
+          "@type": "Thing",
+          "name": "At-home sample collection across Dubai and Abu Dhabi"
+        },
+        {
+          "@type": "Thing",
+          "name": "Personalised wellness coaching from qualified dieticians and coaches"
+        },
+        {
+          "@type": "Thing",
+          "name": "Integrated blood test packages with same-week results"
+        },
+        {
+          "@type": "Thing",
+          "name": "Preventive health programmes designed for UAE lifestyle and climate"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "Valeo Health",
+          "url": "https://feelvaleo.com"
+        }
+      ],
+      "citation": [
+        {
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-who-healthy-adults"
+        },
+        {
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-dha-preventive"
+        },
+        {
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-bmj-goal-setting"
+        },
+        {
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-mohap-nutrition"
+        },
+        {
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-lancet-behaviour-change"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#author",
+      "name": "Valeo Health Editorial",
+      "url": "https://feelvaleo.com/authors/valeo-health-editorial",
+      "worksFor": {
+        "@id": "https://feelvaleo.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q1",
+          "name": "What is a Q1 health check?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Q1 health check is a focused 15-minute review of your wellness progress at the end of the first quarter, using goal-based and preventive health frameworks designed for UAE residents."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q2",
+          "name": "Why is quarterly goal review recommended?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quarterly goal reviews help people stay accountable, detect barriers early, and make timely adjustments for better health outcomes, as evidenced by peer-reviewed research."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q3",
+          "name": "What screenings are recommended in Dubai for 2026?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dubai Health Authority recommends annual preventive health screenings including blood panels, metabolic markers, and cardiovascular risk assessments based on age and health status."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q4",
+          "name": "How can Dubai residents adjust routines after Ramadan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gradually return to regular meal timings, focus on balanced nutrition, and adjust hydration to account for heat, following UAE Ministry guidelines."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q5",
+          "name": "What are easy ways to stay on track with wellness goals in the UAE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use short quarterly reviews, align with DHA preventive guidance, adapt to season and cultural factors like Ramadan and summer, and use at-home screenings as needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q6",
+          "name": "Why should hydration be reviewed now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hydration needs increase with rising temperatures; MOHAP recommends improving water intake and adapting for the UAE climate to support metabolic and general health."
+          }
+        },
+        {
+          "@type": "Question",
+          "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#faq/q7",
+          "name": "Does quarterly review help with behaviour change?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, evidence from The Lancet shows regular self-review leads to higher adherence and more sustained health behaviour change compared to annual reviews."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-who-healthy-adults",
+      "headline": "WHO — Promoting well-being and addressing the wider determinants of health",
+      "url": "https://www.who.int/health-topics/well-being",
+      "text": "World Health Organization framework for holistic well-being, covering physical, mental, and social dimensions of health."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-dha-preventive",
+      "headline": "Dubai Health Authority — Preventive Health Screenings",
+      "url": "https://www.dha.gov.ae/en/services/preventive-health-services",
+      "text": "DHA guidelines on preventive screenings for UAE residents, including age-based recommendations for blood panels, metabolic markers, and cardiovascular risk."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-bmj-goal-setting",
+      "headline": "BMJ — Goal setting and review in clinical practice",
+      "url": "https://www.bmj.com/content/374/bmj.n1982",
+      "text": "Peer-reviewed evidence on quarterly goal review cadences in chronic-condition management; shorter review cycles correlate with better adherence and outcomes."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-mohap-nutrition",
+      "headline": "UAE Ministry of Health and Prevention — Nutrition Guidelines for Adults",
+      "url": "https://mohap.gov.ae/en/services/nutrition-guidelines",
+      "text": "MOHAP's nutritional guidance tailored for UAE adults, accounting for regional dietary patterns and climate-related hydration needs."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://feelvaleo.com/q1-health-check-2026-wellness-goals#source-lancet-behaviour-change",
+      "headline": "The Lancet — Behaviour change for health: evidence and challenges",
+      "url": "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(18)30311-6",
+      "text": "Lancet review on the psychology of long-term behaviour change; identifies quarterly self-review as a key adherence mechanism."
+    }
+  ]
+}

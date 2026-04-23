@@ -1,0 +1,165 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 10 Questions but page shows ~19 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_toc_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Post is 1737 words (pillar) — include a <nav aria-label=\"Table of contents\"> for LLM outline extraction",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1737 words is below pillar minimum 1900 (target 2500)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mix of human-sounding jabs and SEO-committee filler; the takeaways section reads corporate.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Planning Oahu for a small group works best when you combine tight decision-making early with flexible low-energy starts.",
+      "before": "Planning Oahu for a small group works best when you combine tight decision-making early with flexible low-energy starts.",
+      "after": "Plan hard early, then leave mornings loose—that's the trick for groups of six who all want different things.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mix of human-sounding jabs and SEO-committee filler; the takeaways section reads corporate."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has some real opinions (skip Hanauma if you miss the booking, Ala Moana beats Waikiki) but buries them in generic advice.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — A few good lines (malasadas, poke twice) but most phrasing is predictable travel-blog cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Knowing these cycles minimizes group drama about weather or prices.",
+      "before": "Knowing these cycles minimizes group drama about weather or prices.",
+      "after": "Tell the group it might rain in February now, before someone books a non-refundable surf lesson and blames you.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: A few good lines (malasadas, poke twice) but most phrasing is predictable travel-blog cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentence 5/10 — Malasadas line is decent but most prose is too utilitarian to quote.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Your group’s mood will improve (so will your admin load).",
+      "before": "Your group’s mood will improve (so will your admin load).",
+      "after": "Your friends will thank you; you'll stop being the group's unpaid travel agent.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 5/10: Malasadas line is decent but most prose is too utilitarian to quote."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 6/10 — Opening is decent but immediately drowned by 'Quick answer' block before the hook lands.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Coordinating a 7-day Oahu group trip is chaos until you get specific.",
+      "before": "Coordinating a 7-day Oahu group trip is chaos until you get specific.",
+      "after": "By day three, someone will still be asking if we booked Hanauma Bay. Here's how to shut down that group chat early.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 6/10: Opening is decent but immediately drowned by 'Quick answer' block before the hook lands."
+    }
+  }
+]

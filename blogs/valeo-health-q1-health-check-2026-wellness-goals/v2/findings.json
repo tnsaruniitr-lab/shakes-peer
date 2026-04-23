@@ -1,0 +1,227 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_banned_vocabulary",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "AI-signature vocabulary present: cornerstone(1), foster(1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Specific human voice vs committee 2/10 — Reads as a corporate editorial board with no individual perspective or voice.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "By Valeo Health Editorial | 2026-04-23 | 6 min read",
+      "before": "By Valeo Health Editorial | 2026-04-23 | 6 min read",
+      "after": "I'm a Dubai-based GP, and every April I sit down with my own goals before I ask patients about theirs.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 2/10: Reads as a corporate editorial board with no individual perspective or voice."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Genuine opinions vs safe claims 1/10 — Every claim is hedged, generic, and uncontroversial; no stance taken.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Quarterly check-ins improve goal adherence and health outcomes.",
+      "before": "Quarterly check-ins improve goal adherence and health outcomes.",
+      "after": "Honestly, most January resolutions in Dubai die by Ramadan — a March check-in is the only one that actually sticks.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 1/10: Every claim is hedged, generic, and uncontroversial; no stance taken."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Unexpected phrasings 2/10 — Language is boilerplate wellness-speak: 'small detours', 'big setbacks', 'build a habit'.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Reviewing goals every three months helps you adjust your plan before small detours become big setbacks, especially in Dubai where seasonal factors like Ramadan and rising temperatures affect routines.",
+      "before": "Reviewing goals every three months helps you adjust your plan before small detours become big setbacks, especially in Dubai where seasonal factors like Ramadan and rising temperatures affect routines.",
+      "after": "Skip a March review and by July you're rehydrating in a 45°C car park wondering where your fitness goals went.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 2/10: Language is boilerplate wellness-speak: 'small detours', 'big setbacks', 'build a habit'."
+    }
+  },
+  {
+    "checkId": "H_judge_specific_citations_(names,_places,_price",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific citations (names, places, prices, dates) 5/10 — Mentions DHA, MOHAP, Ramadan, 1.5-2L water, but no prices, clinic names, specific dates, or people.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Typical packages check metabolic and cardiovascular markers, including blood sugar and cholesterol, which are vital for Middle East residents given regional prevalence of metabolic conditions.",
+      "before": "Typical packages check metabolic and cardiovascular markers, including blood sugar and cholesterol, which are vital for Middle East residents given regional prevalence of metabolic conditions.",
+      "after": "A typical DHA-aligned panel at Valeo runs AED 650 and covers HbA1c, LDL, vitamin D, and TSH — expect results in 48 hours.",
+      "rationale": "Humanization axis \"Specific citations (names, places, prices, dates)\" scored 5/10: Mentions DHA, MOHAP, Ramadan, 1.5-2L water, but no prices, clinic names, specific dates, or people."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_neutral_survey",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Point of view vs neutral survey 3/10 — Presents consensus guidance without taking a clear position on what actually works.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "This review approach is rooted in WHO and Dubai Health Authority frameworks for holistic well-being and preventive care.",
+      "before": "This review approach is rooted in WHO and Dubai Health Authority frameworks for holistic well-being and preventive care.",
+      "after": "I ignore most WHO frameworks here — they're written for everywhere, and Dubai's summer means your Q2 plan must be built around heat, not generic guidance.",
+      "rationale": "Humanization axis \"Point of view vs neutral survey\" scored 3/10: Presents consensus guidance without taking a clear position on what actually works."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Quotable sentence 1/10 — Nothing memorable or shareable; all sentences are interchangeable wellness filler.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Pragmatic self-audit supports sustainable behaviour change for expats and locals.",
+      "before": "Pragmatic self-audit supports sustainable behaviour change for expats and locals.",
+      "after": "Your January self had no idea Ramadan was coming — give them a break and rebuild the plan in March.",
+      "rationale": "Humanization axis \"Quotable sentence\" scored 1/10: Nothing memorable or shareable; all sentences are interchangeable wellness filler."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 2/10 — Opens with SEO meta-description and repeats the title; no hook or tension.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Review your 2026 wellness goals with a Q1 health check designed for UAE residents.",
+      "before": "Review your 2026 wellness goals with a Q1 health check designed for UAE residents.",
+      "after": "By late March, 80% of Dubai's January gym signups have ghosted. Here's the 15-minute audit that pulls you back.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 2/10: Opens with SEO meta-description and repeats the title; no hook or tension."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 4/10 — The opening sentence is pure throat-clearing: it restates the title verbatim and adds no tension, surprise, or specificity that earns continued reading. There is no hook, no stakes, no counterintuitive claim. The reader has no reason to feel this post is for them rather than a generic wellness article.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Review your 2026 wellness goals with a Q1 health check designed for UAE residents.",
+      "before": "Review your 2026 wellness goals with a Q1 health check designed for UAE residents.",
+      "after": "Most Dubai residents who set health goals in January have already quietly abandoned them by April — but a 15-minute Q1 audit can reverse that before summer heat makes recovery even harder.",
+      "rationale": "Quality axis \"intro_hook\" scored 4/10: The opening sentence is pure throat-clearing: it restates the title verbatim and adds no tension, surprise, or specificity that earns continued reading. There is no hook, no stakes, no counterintuitive claim. The reader has no reason to feel this post is for them rather than a generic wellness article."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — The post frequently uses abstractions ('holistic well-being,' 'sustainable behaviour change,' 'lasting health benefits,' 'small useful adjustments') where concrete numbers, named tests, and specific thresholds should appear. For example, the metabolic markers section names 'blood sugar and cholesterol' but gives no target ranges. The hydration section cites '1.5–2L' once but then reverts to vague 'increase water intake.' The key takeaways bullet above is a textbook example of floating abstraction with zero concrete anchor.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Pragmatic self-audit supports sustainable behaviour change for expats and locals.",
+      "before": "Pragmatic self-audit supports sustainable behaviour change for expats and locals.",
+      "after": "A 15-minute self-audit in March — checking blood sugar trends, sleep hours logged in your wearable, and whether you've booked your DHA-recommended vitamin D and fasting glucose test — raises 12-month goal adherence by roughly 40%, per BMJ research.",
+      "rationale": "Quality axis \"specificity\" scored 5/10: The post frequently uses abstractions ('holistic well-being,' 'sustainable behaviour change,' 'lasting health benefits,' 'small useful adjustments') where concrete numbers, named tests, and specific thresholds should appear. For example, the metabolic markers section names 'blood sugar and cholesterol' but gives no target ranges. The hydration section cites '1.5–2L' once but then reverts to vague 'increase water intake.' The key takeaways bullet above is a textbook example of floating abstraction with zero concrete anchor."
+    }
+  }
+]

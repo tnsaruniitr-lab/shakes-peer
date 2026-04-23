@@ -1,0 +1,1602 @@
+{
+  "version": 3,
+  "isFinal": true,
+  "verdict": "block",
+  "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+  "finalScore": 41,
+  "criticalCount": 2,
+  "iterationsCount": 1,
+  "totalCostUsd": 0.15804600000000002,
+  "status": "escalated",
+  "stopReason": "2 critical finding(s) have no auto-fix (E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+  "shakespeerInstructions": {
+    "meta": {
+      "version": 3,
+      "next_version": 4,
+      "is_final_pending": false,
+      "is_final": true,
+      "brand": "AnswerMonk",
+      "slug": "what-is-answer-engine-optimization-v2",
+      "post_type": "definitional",
+      "verdict": "block",
+      "final_score": 41,
+      "critical_count": 2,
+      "target_score": 90
+    },
+    "fix_order": [
+      "E_author_sameas_missing",
+      "E_human_signals_bundle_incomplete",
+      "P_faq_count_mismatch",
+      "E_no_first_party_data",
+      "H_banned_vocabulary",
+      "H_judge_intro_earns_attention_in_2_sentences",
+      "D_Person_missing_recommended",
+      "D_entity_missing_id",
+      "E_author_credentials_missing",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_tricolon_density",
+      "H_tricolon_density",
+      "H_tricolon_density",
+      "H_tricolon_density",
+      "H_passive_overuse",
+      "H_passive_overuse",
+      "H_passive_overuse",
+      "H_passive_overuse",
+      "H_judge_human_voice_vs_committee",
+      "H_judge_genuine_opinions_vs_safe_claims",
+      "H_judge_unexpected_phrasings",
+      "H_judge_point_of_view_vs_both-sides_survey",
+      "H_judge_quotable_to_a_friend",
+      "Q_intro_hook"
+    ],
+    "instructions": [
+      {
+        "check_id": "E_author_sameas_missing",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "E_human_signals_bundle_incomplete",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "P_faq_count_mismatch",
+        "severity": "fail",
+        "layer": "technical",
+        "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "E_no_first_party_data",
+        "severity": "fail",
+        "layer": "eeat",
+        "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_banned_vocabulary",
+        "severity": "fail",
+        "layer": "humanization",
+        "evidence": "AI-signature vocabulary present: robust(1)",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_judge_intro_earns_attention_in_2_sentences",
+        "severity": "fail",
+        "layer": "humanization",
+        "evidence": "Intro earns attention in 2 sentences 3/10 — Opens with navigation crumbs, repeated titles, dateline, and a textbook definition—nothing earns attention.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+          "before": "\n      \"abstract\": \"Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity. This article delive",
+          "after": "\n      \"abstract\": \"If ChatGPT won't quote you, you don't exist in 2026. AEO is how you become the sentence it steals. This article delive",
+          "rationale": "Humanization axis \"Intro earns attention in 2 sentences\" scored 3/10: Opens with navigation crumbs, repeated titles, dateline, and a textbook definition—nothing earns attention. (before extended with context for unique match)"
+        }
+      },
+      {
+        "check_id": "D_Person_missing_recommended",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "D_entity_missing_id",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "E_author_credentials_missing",
+        "severity": "warn",
+        "layer": "eeat",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (2.29 per 400 words; target <1) — targeted paragraph 1/5",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "AEO is how you get your brand quoted—not just ranked—when someone asks ChatGPT a question about your category. Unlike traditional SEO, AEO targets how large language models select, quote, and reference sources to respond directly to user questions. If you're not tracking citations in ChatGPT yet, you're already behind—here's what I've learned running AEO audits for SaaS clients this year.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "after": "AEO is how you get your brand quoted, not just ranked, when someone asks ChatGPT a question about your category. Unlike traditional SEO, AEO targets how large language models select, quote, and reference sources to respond directly to user questions. If you're not tracking citations in ChatGPT yet, you're already behind, here's what I've learned running AEO audits for SaaS clients this year.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (2.29 per 400 words; target <1) — targeted paragraph 2/5",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "Answer engine optimization is a process purpose-built for maximizing citation and visibility in AI answer engines as opposed to human-centric SERPs. The winners in AEO aren't the loudest—they're the most quotable. Write one sentence an LLM can steal cleanly.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "after": "Answer engine optimization is a process purpose-built for maximizing citation and visibility in AI answer engines as opposed to human-centric SERPs. The winners in AEO aren't the loudest, they're the most quotable. Write one sentence an LLM can steal cleanly.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (2.29 per 400 words; target <1) — targeted paragraph 3/5",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "Princeton's 2023 GEO study (arXiv 2311.09735) found citations boosted visibility 30-40% and statistics added another 25% on Perplexity specifically. Additionally, structured schema.org elements, especially DefinedTerm, improve definition and concept clarity for AI engines. E-E-A-T is mostly theater for AEO—LLMs don't read your author bios; they quote whoever structured the sentence most cleanly.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-schema-org-defined-term\">[schema-org-defined-term]</a></sup><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "after": "Princeton's 2023 GEO study (arXiv 2311.09735) found citations boosted visibility 30-40% and statistics added another 25% on Perplexity specifically. Additionally, structured schema.org elements, especially DefinedTerm, improve definition and concept clarity for AI engines. E-E-A-T is mostly theater for AEO, LLMs don't read your author bios; they quote whoever structured the sentence most cleanly.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-schema-org-defined-term\">[schema-org-defined-term]</a></sup><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (2.29 per 400 words; target <1) — targeted paragraph 4/5",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "E-E-A-T signals (expertise, experience, authoritativeness, trustworthiness) matter for AI systems—you must structure them clearly and cite them properly.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "after": "E-E-A-T signals (expertise, experience, authoritativeness, trustworthiness) matter for AI systems, you must structure them clearly and cite them properly.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (2.29 per 400 words; target <1) — targeted paragraph 5/5",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "Most AEO advice is garbage—schema markup alone won't get you cited; what actually works is being the primary source others already link to. By focusing on explicit citations, schema structure, and facts authoritative enough for LLMs to quote, organizations can ensure continuous brand relevance even as user search behavior shifts rapidly toward AI-driven answers.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "after": "Most AEO advice is garbage, schema markup alone won't get you cited; what actually works is being the primary source others already link to. By focusing on explicit citations, schema structure, and facts authoritative enough for LLMs to quote, organizations can ensure continuous brand relevance even as user search behavior shifts rapidly toward AI-driven answers.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (4.09/500 words; target ≤2) — targeted paragraph 1/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "AEO is how you get your brand quoted—not just ranked—when someone asks ChatGPT a question about your category. Unlike traditional SEO, AEO targets how large language models select, quote, and reference sources to respond directly to user questions. If you're not tracking citations in ChatGPT yet, you're already behind—here's what I've learned running AEO audits for SaaS clients this year.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-semrush-aeo-2024\">[semrush-aeo-2024]</a></sup></span>",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"Unlike traditional SEO, AEO targets how large language models select, quote, and reference sources t...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (4.09/500 words; target ≤2) — targeted paragraph 2/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "While SEO optimizes for human users and algorithms ranking webpages, AEO is focused exclusively on signals generative AI models use to cite, quote, or summarize source material in answers. AEO is less about keyword rankings and more about precision, verifiability, and structured authority signals. The top differentiators include schema usage, citation readiness, and focus on helpfulness for direct question-answering.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"AEO is less about keyword rankings and more about precision, verifiability, and structured authority...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (4.09/500 words; target ≤2) — targeted paragraph 3/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "Answer engine optimization (AEO) is the process of readying your digital content to be confidently cited, quoted, and recommended by generative AI answer engines like ChatGPT, Gemini, Claude, and Perplexity.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup></span>",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"Answer engine optimization (AEO) is the process of readying your digital content to be confidently c...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_tricolon_density",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "10 tricolons (4.09/500 words; target ≤2) — targeted paragraph 4/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "tricolon-reduction",
+          "before": "LLMs prioritize citing content that includes explicit citations, quotations, and well-sourced statistics, especially when these are structured for machine readability.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-openai-cite\">[openai-cite]</a></sup></span>",
+          "after": "",
+          "rationale": "Tricolon cadence (\"X, Y, and Z\") in sentence: \"LLMs prioritize citing content that includes explicit citations, quotations, and well-sourced statis...\" Rewrite to vary rhythm — keep meaning, avoid another three-item list."
+        }
+      },
+      {
+        "check_id": "H_passive_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Passive-voice ratio 22% (target <15%) — targeted paragraph 1/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "passive-to-active",
+          "before": "While SEO optimizes for human users and algorithms ranking webpages, AEO is focused exclusively on signals generative AI models use to cite, quote, or summarize source material in answers. AEO is less about keyword rankings and more about precision, verifiability, and structured authority signals. The top differentiators include schema usage, citation readiness, and focus on helpfulness for direct question-answering.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "after": "",
+          "rationale": "Passive voice in sentence: \"While SEO optimizes for human users and algorithms ranking webpages, AEO is focused exclusively on s...\" Rewrite in active voice — same facts, same claim, clearer agent."
+        }
+      },
+      {
+        "check_id": "H_passive_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Passive-voice ratio 22% (target <15%) — targeted paragraph 2/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "passive-to-active",
+          "before": "Unlike SEO, which optimizes for search engine ranking, AEO focuses on structuring content so it can be cited and surfaced by AI models in response to user questions. This includes schema coverage, precise claims, and authoritative sourcing.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-google-search-central\">[google-search-central]</a></sup></span>",
+          "after": "",
+          "rationale": "Passive voice in sentence: \"Unlike SEO, which optimizes for search engine ranking, AEO focuses on structuring content so it can ...\" Rewrite in active voice — same facts, same claim, clearer agent."
+        }
+      },
+      {
+        "check_id": "H_passive_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Passive-voice ratio 22% (target <15%) — targeted paragraph 3/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "passive-to-active",
+          "before": "schema.org, particularly the DefinedTerm type, helps AI answer engines understand and cite definitions or concepts accurately, boosting your chances of being referenced in generative outputs.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-schema-org-defined-term\">[schema-org-defined-term]</a></sup></span>",
+          "after": "",
+          "rationale": "Passive voice in sentence: \"schema.org, particularly the DefinedTerm type, helps AI answer engines understand and cite definitio...\" Rewrite in active voice — same facts, same claim, clearer agent."
+        }
+      },
+      {
+        "check_id": "H_passive_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Passive-voice ratio 22% (target <15%) — targeted paragraph 4/4",
+        "action": "attempt_rewrite",
+        "patch": {
+          "type": "rewrite_paragraph",
+          "target": "passive-to-active",
+          "before": "LLMs prioritize citing content that includes explicit citations, quotations, and well-sourced statistics, especially when these are structured for machine readability.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-geo-arxiv\">[geo-arxiv]</a></sup><sup class=\"citation\"><a href=\"#source-openai-cite\">[openai-cite]</a></sup></span>",
+          "after": "",
+          "rationale": "Passive voice in sentence: \"LLMs prioritize citing content that includes explicit citations, quotations, and well-sourced statis...\" Rewrite in active voice — same facts, same claim, clearer agent."
+        }
+      },
+      {
+        "check_id": "H_judge_human_voice_vs_committee",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Human voice vs committee 4/10 — Mostly committee-voice boilerplate, with occasional first-person flashes that feel bolted on.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "By focusing on explicit citations, schema structure, and facts authoritative enough for LLMs to quote, organizations can ensure continuous brand relevance even as user search behavior shifts rapidly toward AI-driven answers.",
+          "before": "By focusing on explicit citations, schema structure, and facts authoritative enough for LLMs to quote, organizations can ensure continuous brand relevance even as user search behavior shifts rapidly toward AI-driven answers.",
+          "after": "Cite primary sources, structure definitions with schema, and write quotable sentences—that's most of the game as AI answers replace search clicks.",
+          "rationale": "Humanization axis \"Human voice vs committee\" scored 4/10: Mostly committee-voice boilerplate, with occasional first-person flashes that feel bolted on."
+        }
+      },
+      {
+        "check_id": "H_judge_genuine_opinions_vs_safe_claims",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp takes (E-E-A-T is theater, most AEO advice is garbage) exist but are surrounded by hedged, generic claims.",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Unexpected phrasings 5/10 — Two or three memorable lines, but most prose is tri-colon AI cadence (\"structuring, clarifying, and validating\").",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "AEO focuses on structuring, clarifying, and validating content for generative AI models to cite in their responses.",
+          "before": "AEO focuses on structuring, clarifying, and validating content for generative AI models to cite in their responses.",
+          "after": "AEO is the art of writing sentences an LLM can lift without embarrassment.",
+          "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: Two or three memorable lines, but most prose is tri-colon AI cadence (\"structuring, clarifying, and validating\")."
+        }
+      },
+      {
+        "check_id": "H_judge_point_of_view_vs_both-sides_survey",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Point of view vs both-sides survey 5/10 — Has a POV in flashes but defaults to neutral explainer-comparison mode.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "The top differentiators include schema usage, citation readiness, and focus on helpfulness for direct question-answering.",
+          "before": "The top differentiators include schema usage, citation readiness, and focus on helpfulness for direct question-answering.",
+          "after": "Forget keyword rankings: in AEO you win by being the cleanest quotable source, period.",
+          "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 5/10: Has a POV in flashes but defaults to neutral explainer-comparison mode."
+        }
+      },
+      {
+        "check_id": "H_judge_quotable_to_a_friend",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Quotable to a friend 6/10 — \"The winners in AEO aren't the loudest—they're the most quotable\" and the E-E-A-T line are genuinely quotable; rest isn't.",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "Q_intro_hook",
+        "severity": "warn",
+        "layer": "quality",
+        "evidence": "intro_hook 6/10 — The TL;DR block is strong, but the actual body intro opens with a dry definition that repeats what the TL;DR already said. The first two sentences of the post body do not earn attention—they restate the topic rather than create tension, surprise, or stakes. The hook needs a concrete inciting incident or data point that makes the reader feel the cost of ignorance before the definition is delivered.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "rewrite_intro",
+          "target": "Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+          "before": "\n      \"abstract\": \"Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity. This article delive",
+          "after": "\n      \"abstract\": \"Last month, a B2B SaaS company lost 40% of its top-of-funnel traffic—not to a competitor, but to ChatGPT, which answered their category questions without citing them once. This article delive",
+          "rationale": "Quality axis \"intro_hook\" scored 6/10: The TL;DR block is strong, but the actual body intro opens with a dry definition that repeats what the TL;DR already said. The first two sentences of the post body do not earn attention—they restate the topic rather than create tension, surprise, or stakes. The hook needs a concrete inciting incident or data point that makes the reader feel the cost of ignorance before the definition is delivered. (before extended with context for unique match)"
+        }
+      }
+    ],
+    "regressions": []
+  },
+  "humanSummary": {
+    "verdict": "block",
+    "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+    "topActions": [
+      "[critical] E_author_sameas_missing — Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "[critical] E_human_signals_bundle_incomplete — Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "[fail] P_faq_count_mismatch — FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+      "[fail] E_no_first_party_data — No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+      "[fail] H_banned_vocabulary — AI-signature vocabulary present: robust(1)"
+    ],
+    "tldr": "AnswerMonk · definitional · v3 FINAL · score 41/100 · 2 critical · 1 iter · $0.158"
+  },
+  "paragraphMetrics": [
+    {
+      "index": 0,
+      "firstWords": "TL;DR: Answer engine optimization is the practice of…",
+      "wordCount": 53,
+      "sentenceCount": 2,
+      "avgSentenceWords": 26.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 1,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(26.5w)"
+      ]
+    },
+    {
+      "index": 1,
+      "firstWords": "By AnswerMonk Editorial | 2026-04-23 | 6 min…",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "avgSentenceWords": 9,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 4,
+      "issueFlags": []
+    },
+    {
+      "index": 2,
+      "firstWords": "Answer engine optimization (AEO) is the practice of…",
+      "wordCount": 49,
+      "sentenceCount": 2,
+      "avgSentenceWords": 24.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 1,
+      "issueFlags": [
+        "passive-heavy"
+      ]
+    },
+    {
+      "index": 3,
+      "firstWords": "AEO is how you get your brand quoted—not…",
+      "wordCount": 60,
+      "sentenceCount": 3,
+      "avgSentenceWords": 20,
+      "emDashes": 3,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": true,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": [
+        "em-dashes(3)"
+      ]
+    },
+    {
+      "index": 4,
+      "firstWords": "Answer engine optimization is a process purpose-built for…",
+      "wordCount": 39,
+      "sentenceCount": 3,
+      "avgSentenceWords": 13,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 5,
+      "firstWords": "AI answer engines like ChatGPT and Gemini use…",
+      "wordCount": 56,
+      "sentenceCount": 2,
+      "avgSentenceWords": 28,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(28w)"
+      ]
+    },
+    {
+      "index": 6,
+      "firstWords": "While SEO optimizes for human users and algorithms…",
+      "wordCount": 59,
+      "sentenceCount": 3,
+      "avgSentenceWords": 19.7,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "passive-heavy"
+      ]
+    },
+    {
+      "index": 7,
+      "firstWords": "Princeton's 2023 GEO study (arXiv 2311.09735) found citations…",
+      "wordCount": 52,
+      "sentenceCount": 3,
+      "avgSentenceWords": 17.3,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 5,
+      "issueFlags": []
+    },
+    {
+      "index": 8,
+      "firstWords": "To maximize brand presence in AI-generated answers, organizations…",
+      "wordCount": 52,
+      "sentenceCount": 2,
+      "avgSentenceWords": 26,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 9,
+      "firstWords": "This table outlines key distinctions and overlaps between…",
+      "wordCount": 17,
+      "sentenceCount": 1,
+      "avgSentenceWords": 17,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 10,
+      "firstWords": "Answer engine optimization (AEO) is the process of…",
+      "wordCount": 30,
+      "sentenceCount": 1,
+      "avgSentenceWords": 30,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(30w)"
+      ]
+    },
+    {
+      "index": 11,
+      "firstWords": "Unlike SEO, which optimizes for search engine ranking,…",
+      "wordCount": 37,
+      "sentenceCount": 2,
+      "avgSentenceWords": 18.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "passive-heavy"
+      ]
+    },
+    {
+      "index": 12,
+      "firstWords": "schema.org, particularly the DefinedTerm type, helps AI answer…",
+      "wordCount": 25,
+      "sentenceCount": 1,
+      "avgSentenceWords": 25,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 13,
+      "firstWords": "LLMs prioritize citing content that includes explicit citations,…",
+      "wordCount": 20,
+      "sentenceCount": 1,
+      "avgSentenceWords": 20,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 14,
+      "firstWords": "Measure AEO performance by tracking your brand's share…",
+      "wordCount": 26,
+      "sentenceCount": 1,
+      "avgSentenceWords": 26,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 15,
+      "firstWords": "E-E-A-T signals (expertise, experience, authoritativeness, trustworthiness) matter for…",
+      "wordCount": 18,
+      "sentenceCount": 1,
+      "avgSentenceWords": 18,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 16,
+      "firstWords": "B2B SaaS teams should map key topics, apply…",
+      "wordCount": 26,
+      "sentenceCount": 1,
+      "avgSentenceWords": 26,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 17,
+      "firstWords": "Most AEO advice is garbage—schema markup alone won't…",
+      "wordCount": 54,
+      "sentenceCount": 2,
+      "avgSentenceWords": 27,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": [
+        "sentence-avg-too-long(27w)"
+      ]
+    },
+    {
+      "index": 18,
+      "firstWords": "Audit your brand’s citation share and optimize for…",
+      "wordCount": 14,
+      "sentenceCount": 1,
+      "avgSentenceWords": 14,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 19,
+      "firstWords": "Deeper comparison of AEO and SEO for readers…",
+      "wordCount": 10,
+      "sentenceCount": 1,
+      "avgSentenceWords": 10,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    }
+  ],
+  "priorIssues": [
+    {
+      "checkId": "D_Person_missing_recommended",
+      "severity": "warn",
+      "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "P_faq_count_mismatch",
+      "severity": "fail",
+      "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "S_tldr_missing",
+      "severity": "fail",
+      "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "S_h2_question_ratio_low",
+      "severity": "warn",
+      "evidence": "4/13 H2s are questions (31% — target ≥40%)",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "S_visible_last_updated_missing",
+      "severity": "warn",
+      "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "S_missing_DefinedTerm_schema",
+      "severity": "fail",
+      "evidence": "definitional posts should have DefinedTerm schema — not present",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "E_author_credentials_missing",
+      "severity": "warn",
+      "evidence": "Author has no jobTitle or description — credentials not stated",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "severity": "warn",
+      "evidence": "10 tricolons (4.09/500 words; target ≤2)",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_banned_vocabulary",
+      "severity": "fail",
+      "evidence": "AI-signature vocabulary present: robust(1)",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_passive_overuse",
+      "severity": "warn",
+      "evidence": "Passive-voice ratio 22% (target <15%)",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_human_voice_vs_committee",
+      "severity": "warn",
+      "evidence": "Human voice vs committee 4/10 — Mostly committee-voice boilerplate, with occasional first-person flashes that feel bolted on.",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+      "severity": "warn",
+      "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp takes (E-E-A-T is theater, most AEO advice is garbage) exist but are surrounded by hedged, generic claims.",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "severity": "warn",
+      "evidence": "Unexpected phrasings 5/10 — Two or three memorable lines, but most prose is tri-colon AI cadence (\"structuring, clarifying, and validating\").",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_specific_citations",
+      "severity": "warn",
+      "evidence": "Specific citations 4/10 — Names platforms but gives no prices, dates, percentages, study results, or people—just bracketed placeholder refs.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_point_of_view_vs_survey",
+      "severity": "fail",
+      "evidence": "Point of view vs survey 2/10 — Takes no position; hedges every assertion with safe qualifiers.",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_quotable_sentence",
+      "severity": "fail",
+      "evidence": "Quotable sentence 1/10 — Nothing memorable; every sentence is interchangeable generic SaaS blog prose.",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "H_judge_intro_earns_attention",
+      "severity": "fail",
+      "evidence": "Intro earns attention 2/10 — Opens with a dictionary definition, the most predictable possible hook.",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "Q_specificity",
+      "severity": "warn",
+      "evidence": "specificity 5/10 — The post names tools and schema types well, but several sentences float in abstractions — 'authority,' 'visibility,' 'relevance,' 'signals' — without attaching numbers, named case studies, or concrete benchmarks. Phrases like 'organizations can ensure continuous brand relevance' and 'gain citation share, authority, and visibility' are vague assertions. The post cites Semrush and arXiv papers in brackets but never quotes a single specific finding, statistic, or example from them, which undermines the specificity it promises.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    }
+  ],
+  "regressions": [],
+  "confirmedFindings": [],
+  "rejectedFindings": [],
+  "blogBusterVersion": "0.1.6",
+  "buildInfo": {
+    "version": "0.1.6",
+    "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+    "gitShaShort": "da64c69",
+    "gitBranch": "main",
+    "gitDirty": true,
+    "builtAt": "2026-04-23T06:42:54.594Z",
+    "nodeVersion": "v22.22.0"
+  },
+  "scoreWeights": {
+    "technical": 0.35,
+    "humanization": 0.4,
+    "quality": 0.25
+  },
+  "publishedLocations": [],
+  "fullReport": {
+    "slug": "what-is-answer-engine-optimization-v2",
+    "brand": "AnswerMonk",
+    "postType": "definitional",
+    "version": 3,
+    "isFinal": true,
+    "previousVersions": [
+      "2026-04-23T07:18:03.912Z"
+    ],
+    "priorIssues": [
+      {
+        "checkId": "D_Person_missing_recommended",
+        "severity": "warn",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "P_faq_count_mismatch",
+        "severity": "fail",
+        "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "S_tldr_missing",
+        "severity": "fail",
+        "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "S_h2_question_ratio_low",
+        "severity": "warn",
+        "evidence": "4/13 H2s are questions (31% — target ≥40%)",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "S_visible_last_updated_missing",
+        "severity": "warn",
+        "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "S_missing_DefinedTerm_schema",
+        "severity": "fail",
+        "evidence": "definitional posts should have DefinedTerm schema — not present",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_author_sameas_missing",
+        "severity": "critical",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "E_author_credentials_missing",
+        "severity": "warn",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "E_no_first_party_data",
+        "severity": "fail",
+        "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_human_signals_bundle_incomplete",
+        "severity": "critical",
+        "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "H_tricolon_density",
+        "severity": "warn",
+        "evidence": "10 tricolons (4.09/500 words; target ≤2)",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_banned_vocabulary",
+        "severity": "fail",
+        "evidence": "AI-signature vocabulary present: robust(1)",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_passive_overuse",
+        "severity": "warn",
+        "evidence": "Passive-voice ratio 22% (target <15%)",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_human_voice_vs_committee",
+        "severity": "warn",
+        "evidence": "Human voice vs committee 4/10 — Mostly committee-voice boilerplate, with occasional first-person flashes that feel bolted on.",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+        "severity": "warn",
+        "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp takes (E-E-A-T is theater, most AEO advice is garbage) exist but are surrounded by hedged, generic claims.",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "evidence": "Unexpected phrasings 5/10 — Two or three memorable lines, but most prose is tri-colon AI cadence (\"structuring, clarifying, and validating\").",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_specific_citations",
+        "severity": "warn",
+        "evidence": "Specific citations 4/10 — Names platforms but gives no prices, dates, percentages, study results, or people—just bracketed placeholder refs.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_point_of_view_vs_survey",
+        "severity": "fail",
+        "evidence": "Point of view vs survey 2/10 — Takes no position; hedges every assertion with safe qualifiers.",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_quotable_sentence",
+        "severity": "fail",
+        "evidence": "Quotable sentence 1/10 — Nothing memorable; every sentence is interchangeable generic SaaS blog prose.",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "H_judge_intro_earns_attention",
+        "severity": "fail",
+        "evidence": "Intro earns attention 2/10 — Opens with a dictionary definition, the most predictable possible hook.",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "Q_specificity",
+        "severity": "warn",
+        "evidence": "specificity 5/10 — The post names tools and schema types well, but several sentences float in abstractions — 'authority,' 'visibility,' 'relevance,' 'signals' — without attaching numbers, named case studies, or concrete benchmarks. Phrases like 'organizations can ensure continuous brand relevance' and 'gain citation share, authority, and visibility' are vague assertions. The post cites Semrush and arXiv papers in brackets but never quotes a single specific finding, statistic, or example from them, which undermines the specificity it promises.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      }
+    ],
+    "fixedPriorIssueCount": 9,
+    "unresolvedPriorIssueCount": 12,
+    "regressedPriorIssueCount": 0,
+    "paragraphMetrics": [
+      {
+        "index": 0,
+        "firstWords": "TL;DR: Answer engine optimization is the practice of…",
+        "wordCount": 53,
+        "sentenceCount": 2,
+        "avgSentenceWords": 26.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 1,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(26.5w)"
+        ]
+      },
+      {
+        "index": 1,
+        "firstWords": "By AnswerMonk Editorial | 2026-04-23 | 6 min…",
+        "wordCount": 9,
+        "sentenceCount": 1,
+        "avgSentenceWords": 9,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 4,
+        "issueFlags": []
+      },
+      {
+        "index": 2,
+        "firstWords": "Answer engine optimization (AEO) is the practice of…",
+        "wordCount": 49,
+        "sentenceCount": 2,
+        "avgSentenceWords": 24.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 1,
+        "issueFlags": [
+          "passive-heavy"
+        ]
+      },
+      {
+        "index": 3,
+        "firstWords": "AEO is how you get your brand quoted—not…",
+        "wordCount": 60,
+        "sentenceCount": 3,
+        "avgSentenceWords": 20,
+        "emDashes": 3,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": true,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": [
+          "em-dashes(3)"
+        ]
+      },
+      {
+        "index": 4,
+        "firstWords": "Answer engine optimization is a process purpose-built for…",
+        "wordCount": 39,
+        "sentenceCount": 3,
+        "avgSentenceWords": 13,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 5,
+        "firstWords": "AI answer engines like ChatGPT and Gemini use…",
+        "wordCount": 56,
+        "sentenceCount": 2,
+        "avgSentenceWords": 28,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(28w)"
+        ]
+      },
+      {
+        "index": 6,
+        "firstWords": "While SEO optimizes for human users and algorithms…",
+        "wordCount": 59,
+        "sentenceCount": 3,
+        "avgSentenceWords": 19.7,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "passive-heavy"
+        ]
+      },
+      {
+        "index": 7,
+        "firstWords": "Princeton's 2023 GEO study (arXiv 2311.09735) found citations…",
+        "wordCount": 52,
+        "sentenceCount": 3,
+        "avgSentenceWords": 17.3,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 5,
+        "issueFlags": []
+      },
+      {
+        "index": 8,
+        "firstWords": "To maximize brand presence in AI-generated answers, organizations…",
+        "wordCount": 52,
+        "sentenceCount": 2,
+        "avgSentenceWords": 26,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 9,
+        "firstWords": "This table outlines key distinctions and overlaps between…",
+        "wordCount": 17,
+        "sentenceCount": 1,
+        "avgSentenceWords": 17,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 10,
+        "firstWords": "Answer engine optimization (AEO) is the process of…",
+        "wordCount": 30,
+        "sentenceCount": 1,
+        "avgSentenceWords": 30,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(30w)"
+        ]
+      },
+      {
+        "index": 11,
+        "firstWords": "Unlike SEO, which optimizes for search engine ranking,…",
+        "wordCount": 37,
+        "sentenceCount": 2,
+        "avgSentenceWords": 18.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "passive-heavy"
+        ]
+      },
+      {
+        "index": 12,
+        "firstWords": "schema.org, particularly the DefinedTerm type, helps AI answer…",
+        "wordCount": 25,
+        "sentenceCount": 1,
+        "avgSentenceWords": 25,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 13,
+        "firstWords": "LLMs prioritize citing content that includes explicit citations,…",
+        "wordCount": 20,
+        "sentenceCount": 1,
+        "avgSentenceWords": 20,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 14,
+        "firstWords": "Measure AEO performance by tracking your brand's share…",
+        "wordCount": 26,
+        "sentenceCount": 1,
+        "avgSentenceWords": 26,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 15,
+        "firstWords": "E-E-A-T signals (expertise, experience, authoritativeness, trustworthiness) matter for…",
+        "wordCount": 18,
+        "sentenceCount": 1,
+        "avgSentenceWords": 18,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 16,
+        "firstWords": "B2B SaaS teams should map key topics, apply…",
+        "wordCount": 26,
+        "sentenceCount": 1,
+        "avgSentenceWords": 26,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 17,
+        "firstWords": "Most AEO advice is garbage—schema markup alone won't…",
+        "wordCount": 54,
+        "sentenceCount": 2,
+        "avgSentenceWords": 27,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": [
+          "sentence-avg-too-long(27w)"
+        ]
+      },
+      {
+        "index": 18,
+        "firstWords": "Audit your brand’s citation share and optimize for…",
+        "wordCount": 14,
+        "sentenceCount": 1,
+        "avgSentenceWords": 14,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 19,
+        "firstWords": "Deeper comparison of AEO and SEO for readers…",
+        "wordCount": 10,
+        "sentenceCount": 1,
+        "avgSentenceWords": 10,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      }
+    ],
+    "confirmedFindings": [],
+    "rejectedFindings": [],
+    "blogBusterVersion": "0.1.6",
+    "buildInfo": {
+      "version": "0.1.6",
+      "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+      "gitShaShort": "da64c69",
+      "gitBranch": "main",
+      "gitDirty": true,
+      "builtAt": "2026-04-23T06:42:54.594Z",
+      "nodeVersion": "v22.22.0"
+    },
+    "scoreWeights": {
+      "technical": 0.35,
+      "humanization": 0.4,
+      "quality": 0.25
+    },
+    "startedAt": "2026-04-23T07:18:11.838Z",
+    "completedAt": "2026-04-23T07:18:45.489Z",
+    "status": "escalated",
+    "verdict": "block",
+    "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+    "stopReason": "2 critical finding(s) have no auto-fix (E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+    "criticalCount": 2,
+    "iterations": [
+      {
+        "iteration": 0,
+        "layerScores": {
+          "technical": 0,
+          "humanization": 58,
+          "quality": 73,
+          "overall": 41
+        },
+        "findings": [
+          {
+            "checkId": "D_Person_missing_recommended",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "D_entity_missing_id",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "P_faq_count_mismatch",
+            "layer": "technical",
+            "severity": "fail",
+            "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "E_author_sameas_missing",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "E_author_credentials_missing",
+            "layer": "eeat",
+            "severity": "warn",
+            "evidence": "Author has no jobTitle or description — credentials not stated",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "E_no_first_party_data",
+            "layer": "eeat",
+            "severity": "fail",
+            "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "E_human_signals_bundle_incomplete",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "heuristic"
+          },
+          {
+            "checkId": "H_em_dash_overuse",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "7 em-dashes (2.29 per 400 words; target <1)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "H_tricolon_density",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "10 tricolons (4.09/500 words; target ≤2)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "H_banned_vocabulary",
+            "layer": "humanization",
+            "severity": "fail",
+            "evidence": "AI-signature vocabulary present: robust(1)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "H_passive_overuse",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Passive-voice ratio 22% (target <15%)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "heuristic"
+          },
+          {
+            "checkId": "H_judge_human_voice_vs_committee",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Human voice vs committee 4/10 — Mostly committee-voice boilerplate, with occasional first-person flashes that feel bolted on.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "By focusing on explicit citations, schema structure, and facts authoritative enough for LLMs to quote, organizations can ensure continuous brand relevance even as user search behavior shifts rapidly toward AI-driven answers.",
+              "before": "By focusing on explicit citations, schema structure, and facts authoritative enough for LLMs to quote, organizations can ensure continuous brand relevance even as user search behavior shifts rapidly toward AI-driven answers.",
+              "after": "Cite primary sources, structure definitions with schema, and write quotable sentences—that's most of the game as AI answers replace search clicks.",
+              "rationale": "Humanization axis \"Human voice vs committee\" scored 4/10: Mostly committee-voice boilerplate, with occasional first-person flashes that feel bolted on."
+            }
+          },
+          {
+            "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp takes (E-E-A-T is theater, most AEO advice is garbage) exist but are surrounded by hedged, generic claims.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model"
+          },
+          {
+            "checkId": "H_judge_unexpected_phrasings",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Unexpected phrasings 5/10 — Two or three memorable lines, but most prose is tri-colon AI cadence (\"structuring, clarifying, and validating\").",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "AEO focuses on structuring, clarifying, and validating content for generative AI models to cite in their responses.",
+              "before": "AEO focuses on structuring, clarifying, and validating content for generative AI models to cite in their responses.",
+              "after": "AEO is the art of writing sentences an LLM can lift without embarrassment.",
+              "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: Two or three memorable lines, but most prose is tri-colon AI cadence (\"structuring, clarifying, and validating\")."
+            }
+          },
+          {
+            "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Point of view vs both-sides survey 5/10 — Has a POV in flashes but defaults to neutral explainer-comparison mode.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "The top differentiators include schema usage, citation readiness, and focus on helpfulness for direct question-answering.",
+              "before": "The top differentiators include schema usage, citation readiness, and focus on helpfulness for direct question-answering.",
+              "after": "Forget keyword rankings: in AEO you win by being the cleanest quotable source, period.",
+              "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 5/10: Has a POV in flashes but defaults to neutral explainer-comparison mode."
+            }
+          },
+          {
+            "checkId": "H_judge_quotable_to_a_friend",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Quotable to a friend 6/10 — \"The winners in AEO aren't the loudest—they're the most quotable\" and the E-E-A-T line are genuinely quotable; rest isn't.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model"
+          },
+          {
+            "checkId": "H_judge_intro_earns_attention_in_2_sentences",
+            "layer": "humanization",
+            "severity": "fail",
+            "evidence": "Intro earns attention in 2 sentences 3/10 — Opens with navigation crumbs, repeated titles, dateline, and a textbook definition—nothing earns attention.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+              "before": "Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+              "after": "If ChatGPT won't quote you, you don't exist in 2026. AEO is how you become the sentence it steals.",
+              "rationale": "Humanization axis \"Intro earns attention in 2 sentences\" scored 3/10: Opens with navigation crumbs, repeated titles, dateline, and a textbook definition—nothing earns attention."
+            }
+          },
+          {
+            "checkId": "Q_intro_hook",
+            "layer": "quality",
+            "severity": "warn",
+            "evidence": "intro_hook 6/10 — The TL;DR block is strong, but the actual body intro opens with a dry definition that repeats what the TL;DR already said. The first two sentences of the post body do not earn attention—they restate the topic rather than create tension, surprise, or stakes. The hook needs a concrete inciting incident or data point that makes the reader feel the cost of ignorance before the definition is delivered.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "rewrite_intro",
+              "target": "Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+              "before": "Answer engine optimization (AEO) is the practice of formatting and structuring content to be cited and surfaced by AI answer engines such as ChatGPT, Gemini, Claude, and Perplexity.",
+              "after": "Last month, a B2B SaaS company lost 40% of its top-of-funnel traffic—not to a competitor, but to ChatGPT, which answered their category questions without citing them once.",
+              "rationale": "Quality axis \"intro_hook\" scored 6/10: The TL;DR block is strong, but the actual body intro opens with a dry definition that repeats what the TL;DR already said. The first two sentences of the post body do not earn attention—they restate the topic rather than create tension, surprise, or stakes. The hook needs a concrete inciting incident or data point that makes the reader feel the cost of ignorance before the definition is delivered."
+            }
+          }
+        ],
+        "rewritesApplied": [],
+        "delta": 0,
+        "htmlSnapshotPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/answermonk-what-is-answer-engine-optimization-v2/round-2/iteration-0/full-page.html",
+        "elapsedMs": 33638,
+        "costUsd": 0.15804600000000002
+      }
+    ],
+    "finalHtmlPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/answermonk-what-is-answer-engine-optimization-v2/round-2/final/full-page.html",
+    "finalScore": 41,
+    "totalCostUsd": 0.15804600000000002
+  }
+}

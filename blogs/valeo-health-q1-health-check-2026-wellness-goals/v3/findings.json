@@ -1,0 +1,179 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_keyword_position",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Primary keyword \"q1 health check\" not in first 8 words of TL;DR",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_banned_vocabulary",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "AI-signature vocabulary present: cornerstone(1), foster(1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Voice oscillates between a believable GP persona and generic SEO listicle boilerplate.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "DHA-aligned screenings and reviews are essential for UAE health optimisation.",
+      "before": "DHA-aligned screenings and reviews are essential for UAE health optimisation.",
+      "after": "If you skip the DHA screenings, you're guessing — and I've watched too many patients guess their way into a diagnosis.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Voice oscillates between a believable GP persona and generic SEO listicle boilerplate."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — A few sharp opinions (ignoring WHO, Ramadan killing resolutions) sit beside many hedged platitudes.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Quarterly reviews work well for chronic conditions, nutrition, and fitness tracking.",
+      "before": "Quarterly reviews work well for chronic conditions, nutrition, and fitness tracking.",
+      "after": "Quarterly reviews are overkill for fitness tracking but genuinely change outcomes for chronic conditions — don't waste them on step counts.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: A few sharp opinions (ignoring WHO, Ramadan killing resolutions) sit beside many hedged platitudes."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — '45°C car park' and 'January self had no idea Ramadan was coming' are vivid; most other phrasing is stock.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Checking in each March with a DHA-aligned, 15-minute Q1 health check helps Dubai and Abu Dhabi residents stay grounded, realistic, and proactive about their 2026 wellness goals.",
+      "before": "Checking in each March with a DHA-aligned, 15-minute Q1 health check helps Dubai and Abu Dhabi residents stay grounded, realistic, and proactive about their 2026 wellness goals.",
+      "after": "A March check-in won't transform you — it just stops July-you from being furious at January-you.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: '45°C car park' and 'January self had no idea Ramadan was coming' are vivid; most other phrasing is stock."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 6/10 — Has a POV (anti-WHO, pro-March review) but dilutes it with neutral 'friendly note' filler.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Friendly note: This is not about perfection, but about small, useful adjustments for the next quarter.",
+      "before": "Friendly note: This is not about perfection, but about small, useful adjustments for the next quarter.",
+      "after": "Perfection isn't the goal; I'd rather you hit 60% of a realistic plan than 100% of a fantasy one.",
+      "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 6/10: Has a POV (anti-WHO, pro-March review) but dilutes it with neutral 'friendly note' filler."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with duplicated H1, a bureaucratic TL;DR, and a meta description before the human hook appears.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TL;DR: A Q1 2026 health check is a 15-minute wellness audit that measures your progress across physical, mental, and lifestyle goals using Dubai's regional health guidelines and WHO frameworks.",
+      "before": "TL;DR: A Q1 2026 health check is a 15-minute wellness audit that measures your progress across physical, mental, and lifestyle goals using Dubai's regional health guidelines and WHO frameworks.",
+      "after": "Most Dubai New Year resolutions are dead by Ramadan. I'm a GP here, and March — not January — is when I rebuild mine.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with duplicated H1, a bureaucratic TL;DR, and a meta description before the human hook appears."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — Several bullet points and transition sentences float in abstractions ('small, useful adjustments', 'longer-lasting health benefits', 'sustainable progress'). The one genuinely specific data point — 'A typical DHA-aligned panel at Valeo runs AED 650 and covers HbA1c, LDL, vitamin D, and TSH — expect results in 48 hours' — is excellent and shows what the rest of the post lacks. The 'Key takeaways' and 'Long-term behaviours' sections in particular rely on vague language where named numbers, clinic names, or cited figures would anchor the claims.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Quarterly reviews work well for chronic conditions, nutrition, and fitness tracking.",
+      "before": "Quarterly reviews work well for chronic conditions, nutrition, and fitness tracking.",
+      "after": "Quarterly reviews cut HbA1c drift in type-2 patients by ~0.4% in one BMJ cohort, and in Dubai's context they catch the Ramadan-to-summer fitness gap before it becomes a six-month backslide.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: Several bullet points and transition sentences float in abstractions ('small, useful adjustments', 'longer-lasting health benefits', 'sustainable progress'). The one genuinely specific data point — 'A typical DHA-aligned panel at Valeo runs AED 650 and covers HbA1c, LDL, vitamin D, and TSH — expect results in 48 hours' — is excellent and shows what the rest of the post lacks. The 'Key takeaways' and 'Long-term behaviours' sections in particular rely on vague language where named numbers, clinic names, or cited figures would anchor the claims."
+    }
+  }
+]

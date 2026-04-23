@@ -1,0 +1,128 @@
+[
+  {
+    "checkId": "V_schema_invalid_json",
+    "severity": "critical",
+    "evidence": "JSON-LD block #1 failed to parse: Bad control character in string literal in JSON at position 7863 (line 224 column 51). Downstream schema checks cannot run on this block.",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 10 Questions but page shows ~19 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "severity": "warn",
+    "evidence": "TL;DR is 70 words (target 40–58)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_toc_missing",
+    "severity": "warn",
+    "evidence": "Post is 1593 words (pillar) — include a <nav aria-label=\"Table of contents\"> for LLM outline extraction",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "severity": "fail",
+    "evidence": "1593 words is below pillar minimum 1900 (target 2500)",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_banned_phrases",
+    "severity": "fail",
+    "evidence": "AI-signature phrases present (1): the key to success is",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly sounds like content-mill output with occasional human flashes ('herding cats', 'hangry mutinies'), but the framing, TL;DR, and FAQ format scream template.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 5/10 — Some real takes (rentals beat hotels at 4+, skip swimming in winter North Shore), but mostly hedged generalities.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — 'Herding cats,' 'hangry mutinies,' and 'Rainbow Drive-In plate lunch for the plane' land; most other phrasing is generic travel-blog.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_survey",
+    "severity": "warn",
+    "evidence": "Point of view vs survey 5/10 — Picks a lane on rentals vs hotels, but most sections survey options neutrally.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "severity": "warn",
+    "evidence": "Quotable sentence 5/10 — 'Herding cats and actually get everyone out of the chat and onto the sand' is quotable; most of the rest is forgettable.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Buried under 'Last updated,' TL;DR, byline, and meta-description before any actual hook lands.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  }
+]

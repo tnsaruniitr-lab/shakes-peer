@@ -1,0 +1,195 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "M_description_length",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Meta description length 97 (target 110–170)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.89/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Human voice vs committee 3/10 — Reads like a template with repetitive definitional scaffolding; same phrasing recurs across sections.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) is the practice of increasing the likelihood that your brand or content is cited or surfaced in AI-generated answers by large language models (LLMs) such as ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer engine optimization (AEO) is the practice of increasing the likelihood that your brand or content is cited or surfaced in AI-generated answers by large language models (LLMs) such as ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "AEO is how you get quoted by ChatGPT, Gemini, Claude, or Perplexity when someone skips Google and just asks the bot.",
+      "rationale": "Humanization axis \"Human voice vs committee\" scored 3/10: Reads like a template with repetitive definitional scaffolding; same phrasing recurs across sections."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions 4/10 — Only the conclusion offers a real take; the body plays it safe with consensus claims.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO in 2026 requires integrating schema for definitions, monitoring LLM citation behavior, and tracking brand sentiment in generative responses.",
+      "before": "AEO in 2026 requires integrating schema for definitions, monitoring LLM citation behavior, and tracking brand sentiment in generative responses.",
+      "after": "Honestly, schema and sentiment dashboards are overhyped—what actually gets you cited is owning a stat nobody else publishes.",
+      "rationale": "Humanization axis \"Genuine opinions\" scored 4/10: Only the conclusion offers a real take; the body plays it safe with consensus claims."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 4/10 — Mostly predictable marketing phrasing; the 'number a model can steal' line is the only standout.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Techniques overlap, but AEO tactics prioritize verifiable facts, structured schema, and authority signals fine-tuned for AI extractability.",
+      "before": "Techniques overlap, but AEO tactics prioritize verifiable facts, structured schema, and authority signals fine-tuned for AI extractability.",
+      "after": "The tactics rhyme, but AEO rewards pages built like vending machines: a model walks up, grabs a stat, walks off.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 4/10: Mostly predictable marketing phrasing; the 'number a model can steal' line is the only standout."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view 4/10 — Survey-style answers throughout; a clear stance only appears in the final conclusion.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Is AEO just an extension of SEO? While AEO and SEO share overlapping tactics, AEO is not just an extension, it requires separate monitoring and technical strategies to win citations in AI-generated answers.",
+      "before": "Is AEO just an extension of SEO? While AEO and SEO share overlapping tactics, AEO is not just an extension, it requires separate monitoring and technical strategies to win citations in AI-generated answers.",
+      "after": "Is AEO just SEO in a new hat? Mostly yes—but the scoring rubric changed, and pretending otherwise will cost you citations.",
+      "rationale": "Humanization axis \"Point of view\" scored 4/10: Survey-style answers throughout; a clear stance only appears in the final conclusion."
+    }
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotability 5/10 — One quotable line ('a number a model can steal'); the rest is forgettable definitional prose.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Measuring AEO success requires monitoring where and how your brand gets mentioned, cited, or quoted in AI-generated answers.",
+      "before": "Measuring AEO success requires monitoring where and how your brand gets mentioned, cited, or quoted in AI-generated answers.",
+      "after": "You measure AEO the way a publicist measures press: who quoted you, in what tone, and whether anyone noticed.",
+      "rationale": "Humanization axis \"Quotability\" scored 5/10: One quotable line ('a number a model can steal'); the rest is forgettable definitional prose."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_hook",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro hook 3/10 — Opens with a boilerplate definition and TL;DR stack; nothing pulls the reader into sentence three.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) prepares your brand to be cited by AI answer engines like ChatGPT and Gemini.",
+      "before": "Answer engine optimization (AEO) prepares your brand to be cited by AI answer engines like ChatGPT and Gemini.",
+      "after": "Google sent you 40% less traffic this year and ChatGPT is why. AEO is the scramble to get cited inside the bot instead.",
+      "rationale": "Humanization axis \"Intro hook\" scored 3/10: Opens with a boilerplate definition and TL;DR stack; nothing pulls the reader into sentence three."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — The post contains good specificity islands — Profound ($499/mo), Semrush's Jan 2025 launch, the 68% figure, DefinedTerm schema — but several passages, especially in the FAQ and bullet lists, collapse into vague directives ('use monitoring tools,' 'adjust accordingly,' 'benchmark against competitors'). The FAQ answer for 'How do you know if your brand is cited by LLMs?' strips out the concrete tool names already given in the body, leaving only an abstraction. The rewrite above repopulates the concrete details that are already present elsewhere in the post.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Use monitoring tools to track citations, mentions, and sentiment across generative search engines, then compare results over time.",
+      "before": "Use monitoring tools to track citations, mentions, and sentiment across generative search engines, then compare results over time.",
+      "after": "Use Profound ($499/mo) or Semrush's AI Toolkit (launched January 2025) to track citations across ChatGPT, Gemini, and Perplexity; in our February 2026 test, Profound surfaced 68% more prompts than the next closest tool.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: The post contains good specificity islands — Profound ($499/mo), Semrush's Jan 2025 launch, the 68% figure, DefinedTerm schema — but several passages, especially in the FAQ and bullet lists, collapse into vague directives ('use monitoring tools,' 'adjust accordingly,' 'benchmark against competitors'). The FAQ answer for 'How do you know if your brand is cited by LLMs?' strips out the concrete tool names already given in the body, leaving only an abstraction. The rewrite above repopulates the concrete details that are already present elsewhere in the post."
+    }
+  }
+]

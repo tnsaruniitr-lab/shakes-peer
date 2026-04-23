@@ -1,0 +1,263 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_missing",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "5/14 H2s are questions (36% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_visible_last_updated_missing",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "S_missing_DefinedTerm_schema",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "definitional posts should have DefinedTerm schema — not present",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "11 em-dashes (3.62 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "16 tricolons (6.58/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_passive_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Passive-voice ratio 18% (target <15%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Human voice vs committee 1/10 — Reads like a template produced by a marketing committee, with no individual voice anywhere.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer Engine Optimization (AEO) is the discipline of optimizing brand content so that it is selected, cited, and surfaced by large language models (LLMs) and AI answer engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer Engine Optimization (AEO) is the discipline of optimizing brand content so that it is selected, cited, and surfaced by large language models (LLMs) and AI answer engines like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "I've spent the last year watching ChatGPT quietly replace Google for half my clients' buyers—here's what actually moves the needle.",
+      "rationale": "Humanization axis \"Human voice vs committee\" scored 1/10: Reads like a template produced by a marketing committee, with no individual voice anywhere."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Genuine opinions vs safe claims 1/10 — Every claim is hedged, generic, and risk-free.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO is essential for brands seeking visibility as AI-generated answers dominate product discovery and research.",
+      "before": "AEO is essential for brands seeking visibility as AI-generated answers dominate product discovery and research.",
+      "after": "Most AEO advice is recycled SEO nonsense; the only thing that reliably gets you cited is publishing original numbers nobody else has.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 1/10: Every claim is hedged, generic, and risk-free."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasing",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Unexpected phrasing 1/10 — Entirely boilerplate phrasing; 'dominate product discovery,' 'informational landscape,' 'decision journeys.'",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO is essential for brands to appear in AI-generated answers across all major LLMs.",
+      "before": "AEO is essential for brands to appear in AI-generated answers across all major LLMs.",
+      "after": "Getting cited by ChatGPT feels less like SEO and more like being picked first in gym class—by a kid who only read your footnotes.",
+      "rationale": "Humanization axis \"Unexpected phrasing\" scored 1/10: Entirely boilerplate phrasing; 'dominate product discovery,' 'informational landscape,' 'decision journeys.'"
+    }
+  },
+  {
+    "checkId": "H_judge_specific_citations_(names,_prices,_dates",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Specific citations (names, prices, dates) 3/10 — Names a few LLMs and one schema type, but zero prices, dates, people, or concrete case data.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Tools that audit AI-generated mentions and monitor citation-share are now essential in competitive B2B SaaS markets.",
+      "before": "Tools that audit AI-generated mentions and monitor citation-share are now essential in competitive B2B SaaS markets.",
+      "after": "Tools like Profound ($499/mo), Peec AI, and Otterly.ai now audit citation-share across ChatGPT and Perplexity—pick one by Q2 2026.",
+      "rationale": "Humanization axis \"Specific citations (names, prices, dates)\" scored 3/10: Names a few LLMs and one schema type, but zero prices, dates, people, or concrete case data."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_neutral_survey",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Point of view vs neutral survey 2/10 — Balanced, encyclopedic framing throughout; takes no stance.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "While SEO attempts to rank pages in search results, AEO is about being surfaced and referenced in AI-composed answers.",
+      "before": "While SEO attempts to rank pages in search results, AEO is about being surfaced and referenced in AI-composed answers.",
+      "after": "SEO is dying slower than Twitter pundits claim, but AEO is already where B2B deals get won or lost—stop treating them as equals.",
+      "rationale": "Humanization axis \"Point of view vs neutral survey\" scored 2/10: Balanced, encyclopedic framing throughout; takes no stance."
+    }
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Quotability 1/10 — Nothing here is memorable or forwardable.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Success in AEO depends on understanding how generative engines choose citations and structuring your content for maximum inclusion.",
+      "before": "Success in AEO depends on understanding how generative engines choose citations and structuring your content for maximum inclusion.",
+      "after": "If your brand isn't quotable, it isn't citable—LLMs hunt for sentences, not paragraphs.",
+      "rationale": "Humanization axis \"Quotability\" scored 1/10: Nothing here is memorable or forwardable."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 2/10 — Opens with a dictionary definition; gives the reader no reason to keep going.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) is the practice of improving your brand's visibility in answers generated by AI systems like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer engine optimization (AEO) is the practice of improving your brand's visibility in answers generated by AI systems like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "Last month, Perplexity cited our competitor 14 times in buyer queries and us zero—despite ranking #1 on Google. Here's what changed.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 2/10: Opens with a dictionary definition; gives the reader no reason to keep going."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 5/10 — The opening sentence is a plain definition — accurate but inert. It carries zero tension, surprise, or narrative pull. A reader skimming has no reason to stop. The hook needs a concrete scenario or a counterintuitive stakes-setter before the definition lands.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Answer engine optimization (AEO) is the practice of improving your brand's visibility in answers generated by AI systems like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer engine optimization (AEO) is the practice of improving your brand's visibility in answers generated by AI systems like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "When a buyer asks ChatGPT which project-management SaaS to choose, three brands get named and everyone else gets silence. Answer engine optimization (AEO) is the discipline that determines which three.",
+      "rationale": "Quality axis \"intro_hook\" scored 5/10: The opening sentence is a plain definition — accurate but inert. It carries zero tension, surprise, or narrative pull. A reader skimming has no reason to stop. The hook needs a concrete scenario or a counterintuitive stakes-setter before the definition lands."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — Large sections of the body rely on abstract process language ('filter, condense, surface,' 'informational landscape,' 'authority signals,' 'iterative enhancements') with no grounding in real numbers, named studies beyond bracketed placeholders, named companies that won or lost AEO races, or before/after schema results. The schema advice names schema.org/DefinedTerm — that is good concrete specificity — but it stands nearly alone. The playbook steps and the AEO-vs-SEO sections read as categorical assertions rather than evidence-anchored claims.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO matters because LLM-powered answer engines filter, condense, and surface only a few sources when generating answers—often reshaping the informational landscape with each response.",
+      "before": "AEO matters because LLM-powered answer engines filter, condense, and surface only a few sources when generating answers—often reshaping the informational landscape with each response.",
+      "after": "In a Semrush 2024 study of 10,000 ChatGPT answers, the top cited domain appeared in 34% of responses while the fifth-ranked domain appeared in fewer than 4%—meaning citation share collapses faster than search ranking share ever did.",
+      "rationale": "Quality axis \"specificity\" scored 5/10: Large sections of the body rely on abstract process language ('filter, condense, surface,' 'informational landscape,' 'authority signals,' 'iterative enhancements') with no grounding in real numbers, named studies beyond bracketed placeholders, named companies that won or lost AEO races, or before/after schema results. The schema advice names schema.org/DefinedTerm — that is good concrete specificity — but it stands nearly alone. The playbook steps and the AEO-vs-SEO sections read as categorical assertions rather than evidence-anchored claims."
+    }
+  }
+]

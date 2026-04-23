@@ -1,0 +1,151 @@
+{
+  "slug": "valeo-health-q1-health-check-2026-wellness-goals-v3",
+  "brand": "Valeo Health",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=3 with 6 open item(s) for editorial review",
+  "totalCostUsd": 0.703029,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T10:02:57.930Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "007f08bb346d4502def681991a1754c7544e2014"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T10:04:40.331Z",
+      "score": 41,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 59,
+        "quality": 70,
+        "overall": 41
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.183192,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 3,
+        "applied": 9,
+        "drift": 2
+      },
+      "escalationCount": 2,
+      "commitSha": "675e0b05136e70d267022d71d211e5fa8198cc82"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T10:04:40.419Z",
+      "score": 49,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 74,
+        "quality": 77,
+        "overall": 49
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.172374,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 5,
+        "applied": 6
+      },
+      "escalationCount": 2,
+      "commitSha": "4090ba3ea9d4ddf997c0aa88a160b8b01a608f8b"
+    },
+    {
+      "version": 4,
+      "generatedAt": "2026-04-23T10:04:40.568Z",
+      "score": 47,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 73,
+        "quality": 70,
+        "overall": 47
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.173853,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "skipped": 4,
+        "applied": 7,
+        "drift": 4
+      },
+      "escalationCount": 2,
+      "commitSha": "3fb997750c19cf352a406bcf6e1412fe401aef2d"
+    },
+    {
+      "version": 5,
+      "generatedAt": "2026-04-23T10:05:16.452Z",
+      "score": 46,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 72,
+        "quality": 70,
+        "overall": 46
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.17361000000000001,
+      "innerIterations": 1,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": null
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "suggestedFields": [
+        "author",
+        "first_party_data",
+        "named_examples",
+        "original_visuals"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "no patch/before to rewrite",
+      "suggestedFields": [
+        "first_party_data"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    }
+  ],
+  "auditorVersion": "0.1.6",
+  "auditorGitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+  "brandsmith": {
+    "brandId": 5,
+    "brandName": "Valeo Health",
+    "fieldsPopulated": []
+  },
+  "updatedAt": "2026-04-23T10:05:16.474Z"
+}

@@ -1,0 +1,179 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "8 em-dashes (1.74 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_low_burstiness",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Sentence-length burstiness 0.53 (target ≥0.55) — rhythm too uniform",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mix of branded committee-speak and inserted 'voice' lines that feel bolted on by different authors.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "For most, a 15-minute check-in outperforms rigid January-only goal reviews, supporting ongoing well-being year-round.",
+      "before": "For most, a 15-minute check-in outperforms rigid January-only goal reviews, supporting ongoing well-being year-round.",
+      "after": "Most of my clients find 15 minutes on a Friday beats any January planning binge — and they actually do it.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mix of branded committee-speak and inserted 'voice' lines that feel bolted on by different authors."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Some sharp opinions exist but are drowned in hedged, guideline-citing sentences.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Quarterly health reviews support sustained progress more than only annual goal-setting.",
+      "before": "Quarterly health reviews support sustained progress more than only annual goal-setting.",
+      "after": "Annual resolutions are mostly theatre here; quarterly reviews are the only format my clients actually stick with.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: Some sharp opinions exist but are drowned in hedged, guideline-citing sentences."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasing",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasing 5/10 — The '78 days/first iftar' and '45°C commute' lines are great, but most sentences are generic wellness-blog phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "A scheduled q1 health check is less about critique and more about course-correcting early, before habits drift too far from your original 2026 wellness goals.",
+      "before": "A scheduled q1 health check is less about critique and more about course-correcting early, before habits drift too far from your original 2026 wellness goals.",
+      "after": "A Q1 check isn't an audit — it's catching the drift before your January self becomes unrecognisable.",
+      "rationale": "Humanization axis \"Unexpected phrasing\" scored 5/10: The '78 days/first iftar' and '45°C commute' lines are great, but most sentences are generic wellness-blog phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 6/10 — POV appears in flashes but is buried under neutral guideline summaries.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "WHO's well-being framework and Dubai's healthcare pathways both emphasise the value of social and professional reinforcement.",
+      "before": "WHO's well-being framework and Dubai's healthcare pathways both emphasise the value of social and professional reinforcement.",
+      "after": "If you've stalled three months running, stop pretending willpower will fix it — get a coach who knows Ramadan schedules.",
+      "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 6/10: POV appears in flashes but is buried under neutral guideline summaries."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 5/10 — The TL;DR and opening line are flat; the killer 78-days stat is buried paragraphs down.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Dubai's Q1 can quickly shift your New Year wellness goals out of sight.",
+      "before": "Dubai's Q1 can quickly shift your New Year wellness goals out of sight.",
+      "after": "In Dubai, your January resolution has a shelf life of 78 days — roughly the gap from 1 January to the first iftar.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 5/10: The TL;DR and opening line are flat; the killer 78-days stat is buried paragraphs down."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — The coaching section collapses into abstractions: 'social and professional reinforcement,' 'strategies adapted to your reality,' 'generic advice.' The rest of the post earns specificity points with named figures (AED 1,200, HbA1c, 19 March 2026, 45°C, February humidity), but the 'when to seek coaching' and 'long-term well-being' sections drift into vague motivational language without named services, durations, costs, or measurable triggers. The worst offender is the coaching paragraph, which promises local expertise but delivers no concrete example of what that expertise looks like.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "If your Q1 review identifies habits you can't restart alone, such as sleep routines eroded by late iftar meals or step targets missed due to outdoor heat, it's normal to need support.",
+      "before": "If your Q1 review identifies habits you can't restart alone, such as sleep routines eroded by late iftar meals or step targets missed due to outdoor heat, it's normal to need support.",
+      "after": "If your Q1 review shows three or more weeks of missed sleep targets — common when iftar runs past 9 PM and suhoor starts at 4:30 AM — a DHA-registered sleep coach or a structured 4-week Ramadan wind-down protocol can restore baseline faster than self-correction alone.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: The coaching section collapses into abstractions: 'social and professional reinforcement,' 'strategies adapted to your reality,' 'generic advice.' The rest of the post earns specificity points with named figures (AED 1,200, HbA1c, 19 March 2026, 45°C, February humidity), but the 'when to seek coaching' and 'long-term well-being' sections drift into vague motivational language without named services, durations, costs, or measurable triggers. The worst offender is the coaching paragraph, which promises local expertise but delivers no concrete example of what that expertise looks like."
+    }
+  }
+]

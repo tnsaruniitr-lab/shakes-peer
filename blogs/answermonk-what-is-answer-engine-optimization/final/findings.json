@@ -1,0 +1,193 @@
+[
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 8 Questions but page shows ~15 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "17 em-dashes (4.71 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "20 tricolons (6.92/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Human voice vs committee 3/10 — Reads like a content template with brief injected 'spicy' lines that feel bolted on.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "In 2026, AEO centers on aligning your content with the data structures and evidence types that LLMs interpret as trustworthy.",
+      "before": "In 2026, AEO centers on aligning your content with the data structures and evidence types that LLMs interpret as trustworthy.",
+      "after": "In 2026, AEO is basically this: give the LLM a sentence it can steal without getting sued, and make the steal easy.",
+      "rationale": "Humanization axis \"Human voice vs committee\" scored 3/10: Reads like a content template with brief injected 'spicy' lines that feel bolted on."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 5/10 — A few contrarian lines exist (schema overrated, E-E-A-T red herring) but most claims are safe and generic.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Effective AEO focuses on intent fulfillment, authoritative evidence, and structured metadata to win mention and citation in generative search results.",
+      "before": "Effective AEO focuses on intent fulfillment, authoritative evidence, and structured metadata to win mention and citation in generative search results.",
+      "after": "Most AEO advice is noise; in our tests only three things moved citations: a quotable stat, a clean definition, and being mentioned on Reddit.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 5/10: A few contrarian lines exist (schema overrated, E-E-A-T red herring) but most claims are safe and generic."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 4/10 — One or two vivid lines ('lazy LLM will paste', 'feels safe plagiarizing') but drowned in boilerplate phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO measurement requires tracking where, how, and when your brand is cited across leading AI answer engines.",
+      "before": "AEO measurement requires tracking where, how, and when your brand is cited across leading AI answer engines.",
+      "after": "AEO measurement means stalking your own brand across four chatbots and screenshotting every time it shows up or doesn't.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 4/10: One or two vivid lines ('lazy LLM will paste', 'feels safe plagiarizing') but drowned in boilerplate phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 5/10 — Has glimmers of a POV but quickly retreats to balanced, hedged recommendations.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "To win in answer engine optimization, brands should combine people-first, authoritative content with embedded AEO signals.",
+      "before": "To win in answer engine optimization, brands should combine people-first, authoritative content with embedded AEO signals.",
+      "after": "Skip 'people-first' platitudes—pick one definition per page, back it with one primary stat, and ignore the rest of the schema zoo.",
+      "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 5/10: Has glimmers of a POV but quickly retreats to balanced, hedged recommendations."
+    }
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotability 4/10 — The 'lazy LLM paste' line is quotable; most others are forgettable definitional boilerplate.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO is about being cited by AI answer engines, not just ranked by search engines.",
+      "before": "AEO is about being cited by AI answer engines, not just ranked by search engines.",
+      "after": "AEO is SEO for machines that don't click—you win by being the sentence, not the link.",
+      "rationale": "Humanization axis \"Quotability\" scored 4/10: The 'lazy LLM paste' line is quotable; most others are forgettable definitional boilerplate."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with a textbook definition repeated three times (TL;DR, quick answer, intro) before saying anything interesting.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Answer engine optimization (AEO) in 2026 is the discipline of making content discoverable, citable, and preferred in AI-generated answers across ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer engine optimization (AEO) in 2026 is the discipline of making content discoverable, citable, and preferred in AI-generated answers across ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "Your next customer will read one paragraph about you—and a chatbot will write it. AEO is how you ghostwrite that paragraph.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with a textbook definition repeated three times (TL;DR, quick answer, intro) before saying anything interesting."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The post opens with a flat definition sentence that restates the title verbatim. There is no tension, surprising fact, or concrete scenario to earn continued reading. The TL;DR and Quick Answer blocks above it also dilute whatever hook effect remains. The first body sentence reads as throat-clearing dressed in jargon.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Answer engine optimization (AEO) in 2026 is the discipline of making content discoverable, citable, and preferred in AI-generated answers across ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer engine optimization (AEO) in 2026 is the discipline of making content discoverable, citable, and preferred in AI-generated answers across ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "A Perplexity user typed your brand's core question last week—and your competitor got cited, not you. That gap has a name: answer engine optimization.",
+      "rationale": "Quality axis \"intro_hook\" scored 6/10: The post opens with a flat definition sentence that restates the title verbatim. There is no tension, surprising fact, or concrete scenario to earn continued reading. The TL;DR and Quick Answer blocks above it also dilute whatever hook effect remains. The first body sentence reads as throat-clearing dressed in jargon."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — The measurement section collapses into abstractions at key moments—'tools that aggregate,' 'refine content to strengthen AI-evidence signals,' and 'adapt to how LLMs process, trust, and quote sources' are all vague. The Princeton GEO statistic (40% visibility boost) is a bright spot, but it appears once. The bold claim that 'schema markup is overrated' and 'a single well-cited statistic outperformed a full DefinedTerm rollout' is never anchored with sample size, test methodology, or dates, making it feel asserted rather than evidenced.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Tools that aggregate these metrics save time and inform ongoing AEO content iterations.",
+      "before": "Tools that aggregate these metrics save time and inform ongoing AEO content iterations.",
+      "after": "Tools like Profound, Otterly.ai, and BrandMentions now track citation-share across ChatGPT, Gemini, and Perplexity, letting you see week-over-week shifts in how often your brand appears in a given answer category.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: The measurement section collapses into abstractions at key moments—'tools that aggregate,' 'refine content to strengthen AI-evidence signals,' and 'adapt to how LLMs process, trust, and quote sources' are all vague. The Princeton GEO statistic (40% visibility boost) is a bright spot, but it appears once. The bold claim that 'schema markup is overrated' and 'a single well-cited statistic outperformed a full DefinedTerm rollout' is never anchored with sample size, test methodology, or dates, making it feel asserted rather than evidenced."
+    }
+  }
+]

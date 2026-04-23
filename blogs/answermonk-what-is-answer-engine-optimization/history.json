@@ -1,0 +1,107 @@
+{
+  "slug": "answermonk-what-is-answer-engine-optimization",
+  "brand": "AnswerMonk",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=2 with 4 open item(s) for editorial review",
+  "totalCostUsd": 0.360375,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T06:21:22.612Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "b4d1ee212b0dfde34f39c2dfd4a0f5a0496669bc"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T06:22:41.237Z",
+      "score": 37,
+      "layerScores": {
+        "technical": 0,
+        "humanization": 47,
+        "quality": 73,
+        "overall": 37
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.18178499999999997,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "applied": 11,
+        "skipped": 3,
+        "ambiguous": 2,
+        "drift": 1
+      },
+      "escalationCount": 2,
+      "commitSha": "057be0539cf4c2402552161a35e2d79c99e62a56"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T06:22:41.358Z",
+      "score": 46,
+      "layerScores": {
+        "technical": 7,
+        "humanization": 64,
+        "quality": 70,
+        "overall": 46
+      },
+      "verdict": "block",
+      "criticalCount": 2,
+      "costUsd": 0.17859000000000003,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 3,
+        "applied": 6,
+        "skipped": 3,
+        "ambiguous": 3
+      },
+      "escalationCount": 2,
+      "commitSha": "291a220d8be8c105b4f3b9a279cd82da7aa95211"
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 3
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "suggestedFields": [
+        "author",
+        "first_party_data",
+        "named_examples",
+        "original_visuals"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 3
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "no patch/before to rewrite",
+      "suggestedFields": [
+        "first_party_data"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 3
+    }
+  ],
+  "auditorVersion": "0.1.4",
+  "auditorGitSha": "d6179c6cfa7824101267e937b6e9ea7eef8ae48b",
+  "updatedAt": "2026-04-23T06:22:41.491Z"
+}

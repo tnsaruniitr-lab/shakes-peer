@@ -1,0 +1,128 @@
+{
+  "round": 1,
+  "counts": {
+    "escalated": 3,
+    "skipped": 3,
+    "applied": 9,
+    "drift": 2
+  },
+  "criticalUnresolved": true,
+  "trace": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "action": "human_fix_required",
+      "outcome": "escalated",
+      "reason": "human_fix_required (critical)"
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "action": "human_fix_required",
+      "outcome": "escalated",
+      "reason": "human_fix_required (critical)"
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "H_judge_human_voice_vs_committee",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (125b → 119b)"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (70b → 145b)"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (91b → 114b)"
+    },
+    {
+      "checkId": "H_judge_point_of_view",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (72b → 154b)"
+    },
+    {
+      "checkId": "H_judge_quotable_sentence",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (100b → 126b)"
+    },
+    {
+      "checkId": "H_judge_intro_earns_attention",
+      "action": "apply_patch",
+      "outcome": "drift",
+      "reason": "before string not found in html (patch type=replace_span, target=Dubai's Q1 can quickly shift your New Year wellness goals out of sight.)"
+    },
+    {
+      "checkId": "H_low_burstiness",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "H_judge_specific_citations",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (147b → 151b)"
+    },
+    {
+      "checkId": "Q_specificity",
+      "action": "apply_patch",
+      "outcome": "drift",
+      "reason": "before string not found in html (patch type=replace_span, target=Quarterly reviews promote ongoing adjustment, not rigid self-judgment.)"
+    },
+    {
+      "checkId": "P_faq_count_mismatch",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "FAQPage rebuilt from 7 visible FAQ(s)"
+    },
+    {
+      "checkId": "S_tldr_missing",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "TL;DR inserted (367 chars)"
+    },
+    {
+      "checkId": "D_Person_missing_recommended",
+      "action": "insert_missing",
+      "outcome": "skipped",
+      "reason": "no patch envelope"
+    },
+    {
+      "checkId": "S_visible_last_updated_missing",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "last-updated stamp inserted (2026-04-23)"
+    },
+    {
+      "checkId": "E_author_credentials_missing",
+      "action": "attempt_rewrite",
+      "outcome": "escalated",
+      "reason": "author.title and author.bio both absent in brief — caller must populate"
+    }
+  ],
+  "escalations": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "at": "2026-04-23T10:03:33.700Z"
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "at": "2026-04-23T10:03:33.700Z"
+    }
+  ]
+}

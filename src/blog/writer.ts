@@ -290,8 +290,8 @@ Content brief:
 - Include comparison table: ${input.article.include_comparison_table}
 - Category: ${input.article.category}
 - Author: ${input.article.author_name}
-- CTA label: ${input.article.cta_label ?? "Start with TRYPS"}
-- CTA URL: ${input.article.cta_url ?? `${siteUrl}/start`}
+- CTA label: ${input.article.cta_label ?? "Learn more"}
+- CTA URL: ${input.article.cta_url ?? siteUrl}
 - Hero image URL: ${suggestedHeroUrl}
 - Hero image alt: ${input.article.hero_image_alt ?? "Write a specific alt description"}
 
@@ -356,7 +356,6 @@ Return ONLY a valid JSON object with this exact shape:
 }
 
 Rules:
-- First 2-3 sentences must directly answer the main query.
 - H1 should contain the primary keyword verbatim or very close.
 - Prefer question-led H2s.
 - Keep paragraphs short. Max 3 sentences each.
@@ -371,9 +370,51 @@ Rules:
 - quick_answer items should be direct, extractable answers.
 - summary_box items should work as a recap block.
 - Use global English.
-- Avoid filler phrases like "in today's fast-paced world", "game-changing", and "seamless".
 - Keep the article aligned to ${input.brand.name}'s product without turning it into a sales page.
 - If the sources do not support a claim, omit it.
+
+─── INTRO — EARNS ATTENTION (hard rule) ───
+The first two sentences of the intro MUST:
+- Open with a specific entity, year, named person/place, or concrete number drawn from the brief or sources. NEVER open with a definition (no "X is the practice of...", "Y is the quarter when...", "Z refers to..."). NEVER open with "In today's world" or any variation.
+- State a non-obvious claim — something a knowledgeable reader would find worth pausing on.
+- Answer the main query — but do it AFTER the hook, not before.
+Generic openers are auto-rejected.
+
+─── SPECIFICITY QUOTA (mandatory, every section) ───
+Every section (intro, each body section, conclusion) MUST contain:
+- At least ONE specific entity drawn from the brief or sources: a named person, company, product, place, year, percentage, or concrete number. Abstract claims without a concrete anchor get rejected.
+- At least ONE non-obvious claim (not something every post on this topic already says).
+- Zero safe-both-sides constructions unless immediately followed by a stance ("Some argue X, others Y — the evidence favours X because...").
+
+Specificity must come from real material. Do NOT invent numbers, names, percentages, prices, or credentials that aren't in the brief or sources. If a specific isn't available, restructure the sentence around a specific that IS available.
+
+─── VOICE & CADENCE — BANNED PHRASES (hard rule) ───
+These phrases are AUTOMATICALLY REJECTED. If you are tempted to use one, rewrite the sentence around a specific instead:
+- Openers to never use: "In today's world", "In today's fast-paced world", "In the digital age", "In the ever-evolving landscape", "In the modern era"
+- Transition adverbs to use sparingly (≤2 per post combined): "Ultimately", "Fundamentally", "Essentially", "Moreover", "Furthermore", "Additionally"
+- Filler openings to never use: "It's important to note", "It's important to remember", "It's worth noting", "The truth is", "One of the key things", "One of the most important"
+- Marketing adjectives to never use: "game-changing", "revolutionary", "cutting-edge", "best-in-class", "seamless", "robust", "leverage" (as a verb), "unlock", "level up"
+- Verbs to use sparingly: "dive into", "explore", "unpack", "navigate", "delve"
+- Vague evidence to never use: "studies show", "research suggests", "many experts agree", "experts say", "data shows" — every claim must cite a specific named source or be omitted
+- Audience-pandering to never use: "Whether you're a beginner or an expert", "Whether you're new to X or experienced"
+- Boilerplate conclusions to never use: "In conclusion", "To summarise", "Ultimately, the choice is yours"
+- Vague plural quantifiers to never use: "many brands", "leading companies", "top businesses" — use named brands from the brief/sources or omit
+
+If a section reads generic after removing the banned phrase, the section itself is generic. Rewrite with a specific instead of swapping one phrase for another.
+
+─── SOURCE TREATMENT (not stapled citation) ───
+Do NOT append sources like "According to [source], X is true." Instead:
+- Use sources as evidence for YOUR argument, not as stand-alone claims.
+- Where possible, pick ONE source to partly disagree with or narrow the scope of. This is what makes writing read like it was written by someone with a point of view.
+- When a source makes a broad claim, narrow it to a specific scope ("WHO says X globally — but for UAE summer-heat constraints specifically, that needs adjustment").
+- Never open a paragraph with "Studies show..." or "Research indicates...". Open with the claim; put the source inline after.
+
+─── CADENCE (variance, not uniformity) ───
+Every section the same length and structure reads mechanical. Vary deliberately:
+- Some sections 1-2 paragraphs, others 3-4, based on what the material warrants.
+- Mix paragraph length. Not every paragraph needs to be 3 sentences.
+- If bullets don't help, don't use them — bullets are for parallel discrete items, not narrative.
+- Use occasional one-sentence paragraphs for emphasis on a single strong claim.
 ${isTrypsBrand
   ? `- Tone for TRYPS: direct, warm, slightly dry. Speak to the organiser's real pain.
 - Relevant TRYPS signals when natural: date poll, shared itinerary, expense splitting, no-download invite.
@@ -1442,9 +1483,8 @@ export function renderBlogHtml(
       { label: input.brand.name, href: "/", aria_label: `${input.brand.name} home` },
       { label: "Home", href: "/" },
       { label: "Blog", href: "/blog" },
-      { label: "Guide", href: "/group-trip-planning-guide" },
       { label: "About", href: "/about" },
-      { label: "Start planning", href: input.article.cta_url ?? "/start" },
+      { label: input.article.cta_label ?? "Learn more", href: input.article.cta_url ?? "/" },
     ];
   const footerItems =
     brandFacts?.footer_navigation ?? [
@@ -1452,9 +1492,12 @@ export function renderBlogHtml(
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
       { label: "Contact", href: "/contact" },
-      { label: "Guide", href: "/group-trip-planning-guide" },
     ];
-  const supportEmail = brandFacts?.support_email ?? "support@jointryps.com";
+  const supportEmail = brandFacts?.support_email;
+  const footerSummary =
+    brandFacts?.product_summary ??
+    input.brand.product_description ??
+    `${input.brand.name} provides health and wellness services.`;
 
   return `<!DOCTYPE html>
 <html lang="en-US">
@@ -1559,8 +1602,8 @@ export function renderBlogHtml(
         .map((item) => `<a href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`)
         .join("")}
     </nav>
-    <p>${escapeHtml(brandFacts?.product_summary ?? `${input.brand.name} helps friends plan trips together, lock dates, build itineraries, and split expenses.`)}</p>
-    <p>Support: <a href="mailto:${escapeHtml(supportEmail)}">${escapeHtml(supportEmail)}</a></p>
+    <p>${escapeHtml(footerSummary)}</p>
+    ${supportEmail ? `<p>Support: <a href="mailto:${escapeHtml(supportEmail)}">${escapeHtml(supportEmail)}</a></p>` : ""}
     <p>&copy; ${escapeHtml(input.brand.name)}</p>
   </footer>
   </div>

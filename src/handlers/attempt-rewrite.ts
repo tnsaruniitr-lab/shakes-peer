@@ -42,6 +42,9 @@ const BANNED_REWRITE_MARKERS = [
 // threshold is plausibly hit.
 const THRESHOLD_CHECK_PREFIXES = ["H_judge_", "Q_"];
 const THRESHOLD_RETRIES = 2; // total Claude calls per finding = 1 + 2 = 3
+const FIRST_PERSON_RE = /\b(I|I'm|I’ve|I'd|me|my|mine|we|we're|we’ve|our|ours|us)\b/i;
+const CLINICAL_PERSONA_RE = /\b(gp|doctor|physician|patient|patients|clinic|clinician|medical director)\b/i;
+const NUMBER_TOKEN_RE = /\b(?:AED\s*)?\d+(?:\.\d+)?\b|°C\b/i;
 
 function isThresholdCheck(checkId: string): boolean {
   return THRESHOLD_CHECK_PREFIXES.some((p) => checkId.startsWith(p));
@@ -107,6 +110,10 @@ export async function attemptRewriteHandler(
       return { ...base, outcome: "skipped", reason: `rewrite contains banned marker ${banned}` };
     }
   }
+  const unsafeReason = detectUnsafeRewrite(patch.before, rewrite, instruction.check_id);
+  if (unsafeReason) {
+    return { ...base, outcome: "skipped", reason: unsafeReason };
+  }
 
   let nextHtml = state.html.replace(patch.before, rewrite);
   if (nextHtml === state.html) {
@@ -135,6 +142,7 @@ export async function attemptRewriteHandler(
         }
         if (!harder || harder.length < Math.max(20, currentText.length * 0.3)) break;
         if (BANNED_REWRITE_MARKERS.some((r) => r.test(harder))) break;
+        if (detectUnsafeRewrite(currentText, harder, instruction.check_id)) break;
         // Replace the previous rewrite in-place with the harder one.
         const beforeBlockInHtml = currentText;
         if (!nextHtml.includes(beforeBlockInHtml)) break;
@@ -170,9 +178,9 @@ function buildPushPrompt(
     `Starting score: ${startScore}/10 · Target: ${targetScore}+/10 · This is rewrite pass #${passNumber}.`,
     "",
     "The previous rewrite is BELOW the target. Push further:",
-    "- Be more concrete. Replace vague claims with specific numbers, names, comparisons.",
-    "- Inject genuine point-of-view. Take a stance; do not hedge both sides.",
-    "- Use unexpected phrasings — one memorable image or sharp observation.",
+    "- Be more concrete, but ONLY using details already present in the fragment. Do not invent numbers, names, credentials, prices, timelines, or measurements.",
+    "- Strengthen point-of-view only if the fragment already supports it. Do not invent first-person experience, professional roles, patients, or brand anecdotes.",
+    "- Use fresh phrasing, but stay plausible and restrained. No zingers that add new facts.",
     "- Preserve the outer HTML tag structure exactly.",
     "- Output ONLY the rewritten HTML fragment. No preamble, no meta-commentary.",
     "",
@@ -196,6 +204,7 @@ function buildRewritePrompt(instruction: Instruction, before: string): string {
     "- Do NOT add commentary, preamble, or meta-text. Output ONLY the rewritten HTML.",
     "- Do NOT mention that you are an AI.",
     "- Keep factual content accurate — if in doubt, keep the original claim.",
+    "- Do NOT invent first-person experience, credentials, quoted observations, prices, measurements, or timelines not already present in the fragment.",
     "",
     "Original fragment:",
     before,
@@ -221,4 +230,25 @@ async function callClaudeDefault(
     .filter((c): c is Anthropic.TextBlock => c.type === "text")
     .map((c) => c.text)
     .join("\n");
+}
+
+function detectUnsafeRewrite(before: string, rewrite: string, checkId: string): string | null {
+  if (!FIRST_PERSON_RE.test(before) && FIRST_PERSON_RE.test(rewrite)) {
+    return "rewrite introduces unsupported first-person voice";
+  }
+  if (!CLINICAL_PERSONA_RE.test(before) && CLINICAL_PERSONA_RE.test(rewrite)) {
+    return "rewrite introduces unsupported clinical persona";
+  }
+
+  if (checkId.startsWith("H_judge_") || checkId.startsWith("Q_")) {
+    const beforeNumbers = new Set((before.match(/\b(?:AED\s*)?\d+(?:\.\d+)?\b|°C\b/g) ?? []).map((m) => m.toLowerCase()));
+    const rewriteNumbers = new Set((rewrite.match(/\b(?:AED\s*)?\d+(?:\.\d+)?\b|°C\b/g) ?? []).map((m) => m.toLowerCase()));
+    for (const token of rewriteNumbers) {
+      if (!beforeNumbers.has(token)) {
+        return "rewrite introduces unsupported numeric specificity";
+      }
+    }
+  }
+
+  return null;
 }

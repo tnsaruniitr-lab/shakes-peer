@@ -48,12 +48,16 @@ describe("attemptRewriteHandler", () => {
       }),
       {
         runLlm: true,
+        // Rewrite stays within the semantic material of the before-text
+        // (a solution, best practices) — doesn't invent numbers, names,
+        // first-person claims, or clinical credentials. This is what the
+        // fabrication guardrail is enforcing.
         callClaude: async () =>
-          "<p>We cut onboarding time from 6 days to 2 by scripting the first-time flow.</p>",
+          "<p>This approach relies on standard conventions rather than bespoke tooling.</p>",
       },
     );
     expect(r.outcome).toBe("applied");
-    expect(r.html).toContain("onboarding time");
+    expect(r.html).toContain("standard conventions");
     expect(r.html).not.toContain("robust");
   });
 

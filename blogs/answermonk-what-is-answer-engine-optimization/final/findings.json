@@ -1,0 +1,231 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "TL;DR is 63 words (target 40–58)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_h2_question_ratio_low",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "5/14 H2s are questions (36% — target ≥40%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "15 em-dashes (4.57 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "16 tricolons (6.09/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_passive_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Passive-voice ratio 18% (target <15%)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 4/10 — Mostly boilerplate marketing-speak with a few injected 'spicy' lines that feel bolted on rather than written by one person.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "In 2026, answer engine optimization is fundamental to brand visibility in the era of generative search.",
+      "before": "In 2026, answer engine optimization is fundamental to brand visibility in the era of generative search.",
+      "after": "By 2026, if ChatGPT can't quote you in one sentence, your B2B pipeline is quietly bleeding out.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 4/10: Mostly boilerplate marketing-speak with a few injected 'spicy' lines that feel bolted on rather than written by one person."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 5/10 — A couple of opinionated jabs exist, but most claims hedge into generic best-practice territory.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Generative engines prefer sources with clear schema, authoritative context, and up-to-date facts.",
+      "before": "Generative engines prefer sources with clear schema, authoritative context, and up-to-date facts.",
+      "after": "In my tests, Perplexity ignores schema entirely and just grabs the paragraph with the crispest number—authority be damned.",
+      "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 5/10: A couple of opinionated jabs exist, but most claims hedge into generic best-practice territory."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 5/10 — The gym-class simile and 'quotable = citable' line are fresh, but they're drowned in predictable phrasing.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "AEO ensures your brand is referenced in AI responses.",
+      "before": "AEO ensures your brand is referenced in AI responses.",
+      "after": "AEO is the difference between being the answer and being the footnote nobody clicks.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 5/10: The gym-class simile and 'quotable = citable' line are fresh, but they're drowned in predictable phrasing."
+    }
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_both-sides_survey",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Point of view vs both-sides survey 5/10 — Occasional POV flashes ('SEO is dying slower than Twitter pundits claim') but mostly balanced survey prose.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "SEO optimizes for user search intent and SERP features. AEO optimizes to be cited by LLMs in dynamic, conversational responses.",
+      "before": "SEO optimizes for user search intent and SERP features. AEO optimizes to be cited by LLMs in dynamic, conversational responses.",
+      "after": "Forget SERP features—if your competitor owns the ChatGPT citation, you've already lost the deal before the user Googles anything.",
+      "rationale": "Humanization axis \"Point of view vs both-sides survey\" scored 5/10: Occasional POV flashes ('SEO is dying slower than Twitter pundits claim') but mostly balanced survey prose."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_to_a_friend",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable to a friend 5/10 — The gym-class line and 'quotable isn't citable' are genuinely share-worthy; rest is forgettable.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention 3/10 — Opens with duplicated nav/title clutter and a generic TL;DR. Nothing hooks the reader in the first two sentences.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog AEO Fundamentals What is Answer Engine Optimization (AEO) and How Does It Work in 2026? AEO Fundamentals What is Answer Engine Optimization (AEO) and How Does It Work in 2026?",
+      "before": "Blog AEO Fundamentals What is Answer Engine Optimization (AEO) and How Does It Work in 2026? AEO Fundamentals What is Answer Engine Optimization (AEO) and How Does It Work in 2026?",
+      "after": "34% of ChatGPT answers cite the same domain. The fifth-place brand? Under 4%. AEO is winner-takes-most—here's how it actually works.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 3/10: Opens with duplicated nav/title clutter and a generic TL;DR. Nothing hooks the reader in the first two sentences."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 5/10 — The first two body sentences are pure definition-throat-clearing. The most arresting fact in the entire post—the 34% vs 4% citation-share collapse—is buried four sections deep. The hook should lead with that concrete asymmetry to earn attention immediately. The TL;DR block above the byline partially salvages this, but it is pre-article UI, not the article's own hook.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Answer engine optimization (AEO) is the practice of improving your brand's visibility in answers generated by AI systems like ChatGPT, Gemini, Claude, and Perplexity.",
+      "before": "Answer engine optimization (AEO) is the practice of improving your brand's visibility in answers generated by AI systems like ChatGPT, Gemini, Claude, and Perplexity.",
+      "after": "In a Semrush study of 10,000 ChatGPT answers, the top cited domain appeared in 34% of responses; the fifth-ranked domain appeared in fewer than 4%. That cliff is why Answer Engine Optimization now matters more than where you rank on Google.",
+      "rationale": "Quality axis \"intro_hook\" scored 5/10: The first two body sentences are pure definition-throat-clearing. The most arresting fact in the entire post—the 34% vs 4% citation-share collapse—is buried four sections deep. The hook should lead with that concrete asymmetry to earn attention immediately. The TL;DR block above the byline partially salvages this, but it is pre-article UI, not the article's own hook."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 6/10 — Several bullet-point summary lines ('It influences brand perception in generative search,' 'Emphasize freshness and authority in all content,' 'Improvements stem from iterative schema enhancements') float in abstraction with no named examples, numbers, or concrete scenarios. The post earns its specificity points from the 34%/4% stat, the named tools with pricing (Profound at $499/mo), and the schema.org/DefinedTerm call-out—but those islands are surrounded by generic filler bullets that an editor should cut or concretize.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "It influences brand perception in generative search.",
+      "before": "It influences brand perception in generative search.",
+      "after": "A brand cited in ChatGPT's top answer for a category query—e.g., 'best project management software for remote teams'—appears without a click, directly shaping buyer shortlists before a single SERP result is seen.",
+      "rationale": "Quality axis \"specificity\" scored 6/10: Several bullet-point summary lines ('It influences brand perception in generative search,' 'Emphasize freshness and authority in all content,' 'Improvements stem from iterative schema enhancements') float in abstraction with no named examples, numbers, or concrete scenarios. The post earns its specificity points from the 34%/4% stat, the named tools with pricing (Profound at $499/mo), and the schema.org/DefinedTerm call-out—but those islands are surrounded by generic filler bullets that an editor should cut or concretize."
+    }
+  }
+]

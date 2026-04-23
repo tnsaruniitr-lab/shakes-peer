@@ -1,0 +1,107 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~13 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "severity": "warn",
+    "evidence": "TL;DR is 61 words (target 40–58)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_judge_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Human voice vs committee 5/10 — Mixes sharp human asides with generic marketing prose; editorial notes like 'Cut this line' suggest draft artifacts.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has some opinionated zingers but surrounded by hedged, safe institutional claims.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — Lines like 'annual screenings are mostly theatre' and 'swap tactics, not self-worth' are vivid, but padded by boilerplate.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_point_of_view",
+    "severity": "warn",
+    "evidence": "Point of view 6/10 — Has a clear thesis (quarterly > annual) but drifts into neutral explainer mode in the middle sections.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_to_a_friend",
+    "severity": "warn",
+    "evidence": "Quotable to a friend 6/10 — A few genuinely quotable lines ('Miss a target? Treat it like a failed A/B test, not a character flaw') but they're buried.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with bureaucratic TL;DR stacks and a generic framework pitch before any hook lands.",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The first true prose sentence (after metadata/TL;DR blocks) is a passive, clause-heavy scene-setter that buries the tension. It reads like a press release. The article's strongest hook material is already present in the TL;DR and the editorial asides ('Annual screenings are mostly theatre'), but none of it leads the body copy. The rewrite opens with a specific time-bound claim and an implied question ('why does March matter?') that pulls the reader forward.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

@@ -1,0 +1,100 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "H_low_burstiness",
+    "severity": "warn",
+    "evidence": "Sentence-length burstiness 0.53 (target ≥0.55) — rhythm too uniform",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 5/10 — Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_point_of_view_vs_survey",
+    "severity": "warn",
+    "evidence": "Point of view vs survey 6/10 — Has POV moments but frequently retreats into neutral authority-citing.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotable_sentence",
+    "severity": "warn",
+    "evidence": "Quotable sentence 6/10 — The '78 days to first iftar' line and 'fewer March collapses, fewer guilty July restarts' are quotable; rest is forgettable.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

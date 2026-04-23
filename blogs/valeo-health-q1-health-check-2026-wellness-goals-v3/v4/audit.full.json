@@ -1,0 +1,1455 @@
+{
+  "version": 4,
+  "isFinal": true,
+  "verdict": "block",
+  "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+  "finalScore": 47,
+  "criticalCount": 2,
+  "iterationsCount": 1,
+  "totalCostUsd": 0.173853,
+  "status": "escalated",
+  "stopReason": "2 critical finding(s) have no auto-fix (E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+  "shakespeerInstructions": {
+    "meta": {
+      "version": 4,
+      "next_version": 5,
+      "is_final_pending": false,
+      "is_final": true,
+      "brand": "Valeo Health",
+      "slug": "q1-health-check-2026-wellness-goals-v3",
+      "post_type": "general",
+      "verdict": "block",
+      "final_score": 47,
+      "critical_count": 2,
+      "target_score": 90
+    },
+    "fix_order": [
+      "E_author_sameas_missing",
+      "E_human_signals_bundle_incomplete",
+      "P_faq_count_mismatch",
+      "E_no_first_party_data",
+      "D_Person_missing_recommended",
+      "D_entity_missing_id",
+      "E_author_credentials_missing",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_em_dash_overuse",
+      "H_low_burstiness",
+      "H_judge_specific_human_voice_vs_committee",
+      "H_judge_genuine_opinions_vs_safe_claims",
+      "H_judge_unexpected_phrasings",
+      "H_judge_quotable_sentences",
+      "H_judge_intro_earns_attention",
+      "Q_specificity"
+    ],
+    "instructions": [
+      {
+        "check_id": "E_author_sameas_missing",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "E_human_signals_bundle_incomplete",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "P_faq_count_mismatch",
+        "severity": "fail",
+        "layer": "technical",
+        "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "E_no_first_party_data",
+        "severity": "fail",
+        "layer": "eeat",
+        "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "D_Person_missing_recommended",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "D_entity_missing_id",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "E_author_credentials_missing",
+        "severity": "warn",
+        "layer": "eeat",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (1.52 per 400 words; target <1) — targeted paragraph 1/4",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "January 2026 set record lows for outdoor activity in Dubai, as many residents shifted plans after a rainy Ramadan and higher-than-average February humidity. If your 2026 wellness goals no longer match your daily reality, you’re not alone. Quarterly reviews beat annual resolutions — I've watched clients abandon January goals by March every year since I started coaching here. The good news: a Q1 health check takes just 15 minutes, can be done at home, and helps you recalibrate with local DHA screening guidelines and UAE climate demands. I've used this 15-minute audit with my own clients in Dubai since 2023, and it beats any January resolution I've tried.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-bmj-goal-setting\">[bmj-goal-setting]</a></sup><sup class=\"citation\"><a href=\"#source-dha-preventive\">[dha-preventive]</a></sup></span>",
+          "after": "January 2026 set record lows for outdoor activity in Dubai, as many residents shifted plans after a rainy Ramadan and higher-than-average February humidity. If your 2026 wellness goals no longer match your daily reality, you’re not alone. Quarterly reviews beat annual resolutions, I've watched clients abandon January goals by March every year since I started coaching here. The good news: a Q1 health check takes just 15 minutes, can be done at home, and helps you recalibrate with local DHA screening guidelines and UAE climate demands. I've used this 15-minute audit with my own clients in Dubai since 2023, and it beats any January resolution I've tried.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-bmj-goal-setting\">[bmj-goal-setting]</a></sup><sup class=\"citation\"><a href=\"#source-dha-preventive\">[dha-preventive]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (1.52 per 400 words; target <1) — targeted paragraph 2/4",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "Dubai Health Authority lists age-based preventive screenings: for adults under 40, an annual metabolic and cardiovascular risk blood panel; for those over 40, added markers and screenings like HbA1c and lipid profiles. If you haven’t updated your bloodwork or metabolic status in the last 12 months, Q1 is an ideal checkpoint, especially before Ramadan dietary changes or increased summer dehydration risk. A DHA-aligned panel at Valeo runs AED 1,200 and includes HbA1c, lipids, vitamin D, and ferritin — the four most commonly flagged in our Q1 2025 sample.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-dha-preventive\">[dha-preventive]</a></sup></span>",
+          "after": "Dubai Health Authority lists age-based preventive screenings: for adults under 40, an annual metabolic and cardiovascular risk blood panel; for those over 40, added markers and screenings like HbA1c and lipid profiles. If you haven’t updated your bloodwork or metabolic status in the last 12 months, Q1 is an ideal checkpoint, especially before Ramadan dietary changes or increased summer dehydration risk. A DHA-aligned panel at Valeo runs AED 1,200 and includes HbA1c, lipids, vitamin D, and ferritin, the four most commonly flagged in our Q1 2025 sample.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-dha-preventive\">[dha-preventive]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (1.52 per 400 words; target <1) — targeted paragraph 3/4",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "The most pragmatic change is the one you can start before April brings persistent summer heat. Update one behaviour: if hydration slipped, set a daily water intake reminder; if activity lagged, choose an indoor alternative (like mall walks typical in Dubai). If you haven’t booked a health check up Dubai session this year, arranging an at-home screening now can prevent small problems from growing. Fix it in April or you'll be making excuses in July — mid-year catch-ups rarely happen in this heat.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-bmj-goal-setting\">[bmj-goal-setting]</a></sup><sup class=\"citation\"><a href=\"#source-dha-preventive\">[dha-preventive]</a></sup></span>",
+          "after": "The most pragmatic change is the one you can start before April brings persistent summer heat. Update one behaviour: if hydration slipped, set a daily water intake reminder; if activity lagged, choose an indoor alternative (like mall walks typical in Dubai). If you haven’t booked a health check up Dubai session this year, arranging an at-home screening now can prevent small problems from growing. Fix it in April or you'll be making excuses in July, mid-year catch-ups rarely happen in this heat.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-bmj-goal-setting\">[bmj-goal-setting]</a></sup><sup class=\"citation\"><a href=\"#source-dha-preventive\">[dha-preventive]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_em_dash_overuse",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "7 em-dashes (1.52 per 400 words; target <1) — targeted paragraph 4/4",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "em-dash-removal",
+          "before": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment. Forget WHO frameworks — the only review that matters is the one you'll actually do in 15 minutes on a Friday morning. For UAE residents, this means fewer all-or-nothing cycles and more personalized, sustainable change, matching not just annual ambitions, but your actual season and social calendar.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-who-healthy-adults\">[who-healthy-adults]</a></sup><sup class=\"citation\"><a href=\"#source-lancet-behaviour-change\">[lancet-behaviour-change]</a></sup></span>",
+          "after": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment. Forget WHO frameworks, the only review that matters is the one you'll actually do in 15 minutes on a Friday morning. For UAE residents, this means fewer all-or-nothing cycles and more personalized, sustainable change, matching not just annual ambitions, but your actual season and social calendar.<span class=\"citations\"><sup class=\"citation\"><a href=\"#source-who-healthy-adults\">[who-healthy-adults]</a></sup><sup class=\"citation\"><a href=\"#source-lancet-behaviour-change\">[lancet-behaviour-change]</a></sup></span>",
+          "rationale": "Remove em-dashes from paragraph (reduces AI-signature density; commas preserve meaning)"
+        }
+      },
+      {
+        "check_id": "H_low_burstiness",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Sentence-length burstiness 0.53 (target ≥0.55) — rhythm too uniform",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_judge_specific_human_voice_vs_committee",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Specific human voice vs committee 5/10 — Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "A Q1 health check swaps all-or-nothing thinking for adaptable quarterly adjustments.",
+          "before": "A Q1 health check swaps all-or-nothing thinking for adaptable quarterly adjustments.",
+          "after": "Skip the all-or-nothing January mindset—a Q1 check-in lets you tweak what's actually broken instead of scrapping everything.",
+          "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic."
+        }
+      },
+      {
+        "check_id": "H_judge_genuine_opinions_vs_safe_claims",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Genuine opinions vs safe claims 6/10 — Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+          "before": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+          "after": "Quarterly self-checks beat step tracking because mood and motivation shift faster than any fitness metric captures.",
+          "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims."
+        }
+      },
+      {
+        "check_id": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Unexpected phrasings 6/10 — Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "For UAE residents, this means fewer all-or-nothing cycles and more personalized, sustainable change, matching not just annual ambitions, but your actual season and social calendar.",
+          "before": "For UAE residents, this means fewer all-or-nothing cycles and more personalized, sustainable change, matching not just annual ambitions, but your actual season and social calendar.",
+          "after": "For UAE residents: fewer March collapses, fewer July guilt-spirals, and routines that survive a 45°C commute.",
+          "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing."
+        }
+      },
+      {
+        "check_id": "H_judge_quotable_sentences",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Quotable sentences 6/10 — A few quotable lines exist but drown in boilerplate.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "The result: fewer March collapses, fewer guilty July restarts, and a routine that actually survives a 45°C August.",
+          "before": "The result: fewer March collapses, fewer guilty July restarts, and a routine that actually survives a 45°C August.",
+          "after": "Keep this line—it's the best in the piece. Replace surrounding filler like 'lifts the pressure of annual resolutions' to let it land.",
+          "rationale": "Humanization axis \"Quotable sentences\" scored 6/10: A few quotable lines exist but drown in boilerplate."
+        }
+      },
+      {
+        "check_id": "H_judge_intro_earns_attention",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Intro earns attention 4/10 — Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Dubai’s Q1 can quickly shift your New Year wellness goals out of sight.",
+          "before": "\n      \"abstract\": \"Dubai’s Q1 can quickly shift your New Year wellness goals out of sight. Here’s a pragmatic,",
+          "after": "\n      \"abstract\": \"In Dubai, your New Year resolution has a shelf life of about 78 days—roughly January 1 to the first iftar. Here’s a pragmatic,",
+          "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead. (before extended with context for unique match)"
+        }
+      },
+      {
+        "check_id": "Q_specificity",
+        "severity": "warn",
+        "layer": "quality",
+        "evidence": "specificity 6/10 — Several passages dissolve into abstraction: 'current mood, motivation, and environment' are placeholders, not facts. The coaching and long-term well-being sections repeatedly use vague phrases ('personalized, sustainable change,' 'your actual season and social calendar,' 'WHO's well-being framework') without anchoring them in numbers, named tools, or observable behaviors. The post has strong specificity in places (AED 1,200 panel, HbA1c, 19 March Ramadan date) but these abstract passages undercut the overall score.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+          "before": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+          "after": "Quarterly self-checks go beyond tracking your 7,000-step daily target or weekly weigh-ins — they let you recalibrate around concrete shifts like Dubai's April average high of 37°C, Ramadan's shifted sleep window (roughly midnight–3 a.m. suhoor), and whether your gym's outdoor pool has closed for summer.",
+          "rationale": "Quality axis \"specificity\" scored 6/10: Several passages dissolve into abstraction: 'current mood, motivation, and environment' are placeholders, not facts. The coaching and long-term well-being sections repeatedly use vague phrases ('personalized, sustainable change,' 'your actual season and social calendar,' 'WHO's well-being framework') without anchoring them in numbers, named tools, or observable behaviors. The post has strong specificity in places (AED 1,200 panel, HbA1c, 19 March Ramadan date) but these abstract passages undercut the overall score."
+        }
+      }
+    ],
+    "regressions": []
+  },
+  "humanSummary": {
+    "verdict": "block",
+    "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+    "topActions": [
+      "[critical] E_author_sameas_missing — Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "[critical] E_human_signals_bundle_incomplete — Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "[fail] P_faq_count_mismatch — FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+      "[fail] E_no_first_party_data — No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+      "[warn] D_Person_missing_recommended — Person missing recommended: jobTitle, sameAs, hasCredential"
+    ],
+    "tldr": "Valeo Health · general · v4 FINAL · score 47/100 · 2 critical · 1 iter · $0.174"
+  },
+  "paragraphMetrics": [
+    {
+      "index": 0,
+      "firstWords": "TL;DR: A Q1 health check is a 15-minute…",
+      "wordCount": 54,
+      "sentenceCount": 2,
+      "avgSentenceWords": 27,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": [
+        "sentence-avg-too-long(27w)"
+      ]
+    },
+    {
+      "index": 1,
+      "firstWords": "By Valeo Health Editorial | 2026-04-23 | 8…",
+      "wordCount": 10,
+      "sentenceCount": 1,
+      "avgSentenceWords": 10,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 4,
+      "issueFlags": []
+    },
+    {
+      "index": 2,
+      "firstWords": "Dubai’s Q1 can quickly shift your New Year…",
+      "wordCount": 38,
+      "sentenceCount": 2,
+      "avgSentenceWords": 19,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 3,
+      "firstWords": "January 2026 set record lows for outdoor activity…",
+      "wordCount": 108,
+      "sentenceCount": 5,
+      "avgSentenceWords": 21.6,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": true,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 5,
+      "issueFlags": [
+        "long-paragraph(108w)",
+        "many-sentences(5)"
+      ]
+    },
+    {
+      "index": 4,
+      "firstWords": "Research published in the BMJ shows that quarterly…",
+      "wordCount": 99,
+      "sentenceCount": 3,
+      "avgSentenceWords": 33,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 3,
+      "issueFlags": [
+        "long-paragraph(99w)",
+        "sentence-avg-too-long(33w)"
+      ]
+    },
+    {
+      "index": 5,
+      "firstWords": "A 15-minute q1 wellness review can be as…",
+      "wordCount": 96,
+      "sentenceCount": 3,
+      "avgSentenceWords": 32,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": true,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": [
+        "long-paragraph(96w)",
+        "sentence-avg-too-long(32w)"
+      ]
+    },
+    {
+      "index": 6,
+      "firstWords": "Dubai Health Authority lists age-based preventive screenings: for…",
+      "wordCount": 88,
+      "sentenceCount": 3,
+      "avgSentenceWords": 29.3,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": true,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 5,
+      "issueFlags": [
+        "long-paragraph(88w)",
+        "sentence-avg-too-long(29.3w)"
+      ]
+    },
+    {
+      "index": 7,
+      "firstWords": "The UAE Ministry of Health and Prevention advises…",
+      "wordCount": 80,
+      "sentenceCount": 3,
+      "avgSentenceWords": 26.7,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(26.7w)"
+      ]
+    },
+    {
+      "index": 8,
+      "firstWords": "If your Q1 review identifies habits you can’t…",
+      "wordCount": 76,
+      "sentenceCount": 3,
+      "avgSentenceWords": 25.3,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 9,
+      "firstWords": "The most pragmatic change is the one you…",
+      "wordCount": 83,
+      "sentenceCount": 4,
+      "avgSentenceWords": 20.8,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "long-paragraph(83w)"
+      ]
+    },
+    {
+      "index": 10,
+      "firstWords": "Quarterly self-checks offer more than tracking weight or…",
+      "wordCount": 68,
+      "sentenceCount": 3,
+      "avgSentenceWords": 22.7,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 11,
+      "firstWords": "Q1 coincides with Ramadan (19 March 2026), the…",
+      "wordCount": 38,
+      "sentenceCount": 1,
+      "avgSentenceWords": 38,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 3,
+      "issueFlags": [
+        "sentence-avg-too-long(38w)"
+      ]
+    },
+    {
+      "index": 12,
+      "firstWords": "The Dubai Health Authority recommends annual blood tests…",
+      "wordCount": 23,
+      "sentenceCount": 1,
+      "avgSentenceWords": 23,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 13,
+      "firstWords": "Peer-reviewed evidence in BMJ and The Lancet finds…",
+      "wordCount": 25,
+      "sentenceCount": 1,
+      "avgSentenceWords": 25,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 14,
+      "firstWords": "Use MOHAP’s recommendations to focus on locally relevant…",
+      "wordCount": 25,
+      "sentenceCount": 1,
+      "avgSentenceWords": 25,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 15,
+      "firstWords": "If three months pass without progress on key…",
+      "wordCount": 28,
+      "sentenceCount": 1,
+      "avgSentenceWords": 28,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(28w)"
+      ]
+    },
+    {
+      "index": 16,
+      "firstWords": "Yes; both DHA and MOHAP link proper hydration…",
+      "wordCount": 23,
+      "sentenceCount": 1,
+      "avgSentenceWords": 23,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 17,
+      "firstWords": "A 15-minute, written or verbal review is often…",
+      "wordCount": 27,
+      "sentenceCount": 1,
+      "avgSentenceWords": 27,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": [
+        "sentence-avg-too-long(27w)"
+      ]
+    },
+    {
+      "index": 18,
+      "firstWords": "A Q1 health check in Dubai is not…",
+      "wordCount": 70,
+      "sentenceCount": 3,
+      "avgSentenceWords": 23.3,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 19,
+      "firstWords": "Find at-home preventive screening and personalised coaching designed…",
+      "wordCount": 16,
+      "sentenceCount": 1,
+      "avgSentenceWords": 16,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 20,
+      "firstWords": "For readers ready to act on preventive screening…",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "avgSentenceWords": 9,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 21,
+      "firstWords": "To explain how Valeo Health makes Q1 check…",
+      "wordCount": 17,
+      "sentenceCount": 1,
+      "avgSentenceWords": 17,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 22,
+      "firstWords": "Helpful if readers identify a barrier and need…",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "avgSentenceWords": 9,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    }
+  ],
+  "priorIssues": [
+    {
+      "checkId": "D_Person_missing_recommended",
+      "severity": "warn",
+      "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "D_entity_missing_id",
+      "severity": "warn",
+      "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "P_faq_count_mismatch",
+      "severity": "fail",
+      "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "E_author_credentials_missing",
+      "severity": "warn",
+      "evidence": "Author has no jobTitle or description — credentials not stated",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "H_low_burstiness",
+      "severity": "warn",
+      "evidence": "Sentence-length burstiness 0.53 (target ≥0.55) — rhythm too uniform",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_specific_human_voice_vs_committee",
+      "severity": "warn",
+      "evidence": "Specific human voice vs committee 5/10 — Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+      "severity": "warn",
+      "evidence": "Genuine opinions vs safe claims 6/10 — Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "severity": "warn",
+      "evidence": "Unexpected phrasings 6/10 — Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_point_of_view_vs_survey",
+      "severity": "warn",
+      "evidence": "Point of view vs survey 6/10 — Has POV moments but frequently retreats into neutral authority-citing.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_quotable_sentence",
+      "severity": "warn",
+      "evidence": "Quotable sentence 6/10 — The '78 days to first iftar' line and 'fewer March collapses, fewer guilty July restarts' are quotable; rest is forgettable.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_intro_earns_attention",
+      "severity": "warn",
+      "evidence": "Intro earns attention 4/10 — Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    }
+  ],
+  "regressions": [],
+  "confirmedFindings": [],
+  "rejectedFindings": [],
+  "blogBusterVersion": "0.1.6",
+  "buildInfo": {
+    "version": "0.1.6",
+    "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+    "gitShaShort": "da64c69",
+    "gitBranch": "main",
+    "gitDirty": true,
+    "builtAt": "2026-04-23T06:42:54.594Z",
+    "nodeVersion": "v22.22.0"
+  },
+  "scoreWeights": {
+    "technical": 0.35,
+    "humanization": 0.4,
+    "quality": 0.25
+  },
+  "publishedLocations": [],
+  "fullReport": {
+    "slug": "q1-health-check-2026-wellness-goals-v3",
+    "brand": "Valeo Health",
+    "postType": "general",
+    "version": 4,
+    "isFinal": true,
+    "previousVersions": [
+      "2026-04-23T10:03:33.699Z",
+      "2026-04-23T10:04:07.836Z"
+    ],
+    "priorIssues": [
+      {
+        "checkId": "D_Person_missing_recommended",
+        "severity": "warn",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "D_entity_missing_id",
+        "severity": "warn",
+        "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "P_faq_count_mismatch",
+        "severity": "fail",
+        "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_author_sameas_missing",
+        "severity": "critical",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "E_author_credentials_missing",
+        "severity": "warn",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "E_no_first_party_data",
+        "severity": "fail",
+        "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_human_signals_bundle_incomplete",
+        "severity": "critical",
+        "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "H_low_burstiness",
+        "severity": "warn",
+        "evidence": "Sentence-length burstiness 0.53 (target ≥0.55) — rhythm too uniform",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_specific_human_voice_vs_committee",
+        "severity": "warn",
+        "evidence": "Specific human voice vs committee 5/10 — Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+        "severity": "warn",
+        "evidence": "Genuine opinions vs safe claims 6/10 — Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "evidence": "Unexpected phrasings 6/10 — Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_point_of_view_vs_survey",
+        "severity": "warn",
+        "evidence": "Point of view vs survey 6/10 — Has POV moments but frequently retreats into neutral authority-citing.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_quotable_sentence",
+        "severity": "warn",
+        "evidence": "Quotable sentence 6/10 — The '78 days to first iftar' line and 'fewer March collapses, fewer guilty July restarts' are quotable; rest is forgettable.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_intro_earns_attention",
+        "severity": "warn",
+        "evidence": "Intro earns attention 4/10 — Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      }
+    ],
+    "fixedPriorIssueCount": 2,
+    "unresolvedPriorIssueCount": 12,
+    "regressedPriorIssueCount": 0,
+    "paragraphMetrics": [
+      {
+        "index": 0,
+        "firstWords": "TL;DR: A Q1 health check is a 15-minute…",
+        "wordCount": 54,
+        "sentenceCount": 2,
+        "avgSentenceWords": 27,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": [
+          "sentence-avg-too-long(27w)"
+        ]
+      },
+      {
+        "index": 1,
+        "firstWords": "By Valeo Health Editorial | 2026-04-23 | 8…",
+        "wordCount": 10,
+        "sentenceCount": 1,
+        "avgSentenceWords": 10,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 4,
+        "issueFlags": []
+      },
+      {
+        "index": 2,
+        "firstWords": "Dubai’s Q1 can quickly shift your New Year…",
+        "wordCount": 38,
+        "sentenceCount": 2,
+        "avgSentenceWords": 19,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 3,
+        "firstWords": "January 2026 set record lows for outdoor activity…",
+        "wordCount": 108,
+        "sentenceCount": 5,
+        "avgSentenceWords": 21.6,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": true,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 5,
+        "issueFlags": [
+          "long-paragraph(108w)",
+          "many-sentences(5)"
+        ]
+      },
+      {
+        "index": 4,
+        "firstWords": "Research published in the BMJ shows that quarterly…",
+        "wordCount": 99,
+        "sentenceCount": 3,
+        "avgSentenceWords": 33,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 3,
+        "issueFlags": [
+          "long-paragraph(99w)",
+          "sentence-avg-too-long(33w)"
+        ]
+      },
+      {
+        "index": 5,
+        "firstWords": "A 15-minute q1 wellness review can be as…",
+        "wordCount": 96,
+        "sentenceCount": 3,
+        "avgSentenceWords": 32,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": true,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": [
+          "long-paragraph(96w)",
+          "sentence-avg-too-long(32w)"
+        ]
+      },
+      {
+        "index": 6,
+        "firstWords": "Dubai Health Authority lists age-based preventive screenings: for…",
+        "wordCount": 88,
+        "sentenceCount": 3,
+        "avgSentenceWords": 29.3,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": true,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 5,
+        "issueFlags": [
+          "long-paragraph(88w)",
+          "sentence-avg-too-long(29.3w)"
+        ]
+      },
+      {
+        "index": 7,
+        "firstWords": "The UAE Ministry of Health and Prevention advises…",
+        "wordCount": 80,
+        "sentenceCount": 3,
+        "avgSentenceWords": 26.7,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(26.7w)"
+        ]
+      },
+      {
+        "index": 8,
+        "firstWords": "If your Q1 review identifies habits you can’t…",
+        "wordCount": 76,
+        "sentenceCount": 3,
+        "avgSentenceWords": 25.3,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 9,
+        "firstWords": "The most pragmatic change is the one you…",
+        "wordCount": 83,
+        "sentenceCount": 4,
+        "avgSentenceWords": 20.8,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "long-paragraph(83w)"
+        ]
+      },
+      {
+        "index": 10,
+        "firstWords": "Quarterly self-checks offer more than tracking weight or…",
+        "wordCount": 68,
+        "sentenceCount": 3,
+        "avgSentenceWords": 22.7,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 11,
+        "firstWords": "Q1 coincides with Ramadan (19 March 2026), the…",
+        "wordCount": 38,
+        "sentenceCount": 1,
+        "avgSentenceWords": 38,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 3,
+        "issueFlags": [
+          "sentence-avg-too-long(38w)"
+        ]
+      },
+      {
+        "index": 12,
+        "firstWords": "The Dubai Health Authority recommends annual blood tests…",
+        "wordCount": 23,
+        "sentenceCount": 1,
+        "avgSentenceWords": 23,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 13,
+        "firstWords": "Peer-reviewed evidence in BMJ and The Lancet finds…",
+        "wordCount": 25,
+        "sentenceCount": 1,
+        "avgSentenceWords": 25,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 14,
+        "firstWords": "Use MOHAP’s recommendations to focus on locally relevant…",
+        "wordCount": 25,
+        "sentenceCount": 1,
+        "avgSentenceWords": 25,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 15,
+        "firstWords": "If three months pass without progress on key…",
+        "wordCount": 28,
+        "sentenceCount": 1,
+        "avgSentenceWords": 28,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(28w)"
+        ]
+      },
+      {
+        "index": 16,
+        "firstWords": "Yes; both DHA and MOHAP link proper hydration…",
+        "wordCount": 23,
+        "sentenceCount": 1,
+        "avgSentenceWords": 23,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 17,
+        "firstWords": "A 15-minute, written or verbal review is often…",
+        "wordCount": 27,
+        "sentenceCount": 1,
+        "avgSentenceWords": 27,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": [
+          "sentence-avg-too-long(27w)"
+        ]
+      },
+      {
+        "index": 18,
+        "firstWords": "A Q1 health check in Dubai is not…",
+        "wordCount": 70,
+        "sentenceCount": 3,
+        "avgSentenceWords": 23.3,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 19,
+        "firstWords": "Find at-home preventive screening and personalised coaching designed…",
+        "wordCount": 16,
+        "sentenceCount": 1,
+        "avgSentenceWords": 16,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 20,
+        "firstWords": "For readers ready to act on preventive screening…",
+        "wordCount": 9,
+        "sentenceCount": 1,
+        "avgSentenceWords": 9,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 21,
+        "firstWords": "To explain how Valeo Health makes Q1 check…",
+        "wordCount": 17,
+        "sentenceCount": 1,
+        "avgSentenceWords": 17,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 22,
+        "firstWords": "Helpful if readers identify a barrier and need…",
+        "wordCount": 9,
+        "sentenceCount": 1,
+        "avgSentenceWords": 9,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      }
+    ],
+    "confirmedFindings": [],
+    "rejectedFindings": [],
+    "blogBusterVersion": "0.1.6",
+    "buildInfo": {
+      "version": "0.1.6",
+      "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+      "gitShaShort": "da64c69",
+      "gitBranch": "main",
+      "gitDirty": true,
+      "builtAt": "2026-04-23T06:42:54.594Z",
+      "nodeVersion": "v22.22.0"
+    },
+    "scoreWeights": {
+      "technical": 0.35,
+      "humanization": 0.4,
+      "quality": 0.25
+    },
+    "startedAt": "2026-04-23T10:04:07.846Z",
+    "completedAt": "2026-04-23T10:04:40.314Z",
+    "status": "escalated",
+    "verdict": "block",
+    "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+    "stopReason": "2 critical finding(s) have no auto-fix (E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+    "criticalCount": 2,
+    "iterations": [
+      {
+        "iteration": 0,
+        "layerScores": {
+          "technical": 0,
+          "humanization": 73,
+          "quality": 70,
+          "overall": 47
+        },
+        "findings": [
+          {
+            "checkId": "D_Person_missing_recommended",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "D_entity_missing_id",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "P_faq_count_mismatch",
+            "layer": "technical",
+            "severity": "fail",
+            "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "E_author_sameas_missing",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "E_author_credentials_missing",
+            "layer": "eeat",
+            "severity": "warn",
+            "evidence": "Author has no jobTitle or description — credentials not stated",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "E_no_first_party_data",
+            "layer": "eeat",
+            "severity": "fail",
+            "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "E_human_signals_bundle_incomplete",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "heuristic"
+          },
+          {
+            "checkId": "H_em_dash_overuse",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "7 em-dashes (1.52 per 400 words; target <1)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "H_low_burstiness",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Sentence-length burstiness 0.53 (target ≥0.55) — rhythm too uniform",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "H_judge_specific_human_voice_vs_committee",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Specific human voice vs committee 5/10 — Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "A Q1 health check swaps all-or-nothing thinking for adaptable quarterly adjustments.",
+              "before": "A Q1 health check swaps all-or-nothing thinking for adaptable quarterly adjustments.",
+              "after": "Skip the all-or-nothing January mindset—a Q1 check-in lets you tweak what's actually broken instead of scrapping everything.",
+              "rationale": "Humanization axis \"Specific human voice vs committee\" scored 5/10: Mostly corporate blog voice with occasional injected opinions that feel bolted on rather than organic."
+            }
+          },
+          {
+            "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Genuine opinions vs safe claims 6/10 — Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+              "before": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+              "after": "Quarterly self-checks beat step tracking because mood and motivation shift faster than any fitness metric captures.",
+              "rationale": "Humanization axis \"Genuine opinions vs safe claims\" scored 6/10: Has some spicy opinions ('mostly theatre', 'Skip the vision boards') but buried in safe wellness-blog claims."
+            }
+          },
+          {
+            "checkId": "H_judge_unexpected_phrasings",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Unexpected phrasings 6/10 — Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "For UAE residents, this means fewer all-or-nothing cycles and more personalized, sustainable change, matching not just annual ambitions, but your actual season and social calendar.",
+              "before": "For UAE residents, this means fewer all-or-nothing cycles and more personalized, sustainable change, matching not just annual ambitions, but your actual season and social calendar.",
+              "after": "For UAE residents: fewer March collapses, fewer July guilt-spirals, and routines that survive a 45°C commute.",
+              "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: Good moments ('shelf life of 78 days', '45°C August') mixed with generic wellness phrasing."
+            }
+          },
+          {
+            "checkId": "H_judge_quotable_sentences",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Quotable sentences 6/10 — A few quotable lines exist but drown in boilerplate.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "The result: fewer March collapses, fewer guilty July restarts, and a routine that actually survives a 45°C August.",
+              "before": "The result: fewer March collapses, fewer guilty July restarts, and a routine that actually survives a 45°C August.",
+              "after": "Keep this line—it's the best in the piece. Replace surrounding filler like 'lifts the pressure of annual resolutions' to let it land.",
+              "rationale": "Humanization axis \"Quotable sentences\" scored 6/10: A few quotable lines exist but drown in boilerplate."
+            }
+          },
+          {
+            "checkId": "H_judge_intro_earns_attention",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Intro earns attention 4/10 — Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Dubai’s Q1 can quickly shift your New Year wellness goals out of sight.",
+              "before": "Dubai’s Q1 can quickly shift your New Year wellness goals out of sight.",
+              "after": "In Dubai, your New Year resolution has a shelf life of about 78 days—roughly January 1 to the first iftar.",
+              "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with TL;DR boilerplate and a vague cliché; the 78-days line buried later should lead."
+            }
+          },
+          {
+            "checkId": "Q_specificity",
+            "layer": "quality",
+            "severity": "warn",
+            "evidence": "specificity 6/10 — Several passages dissolve into abstraction: 'current mood, motivation, and environment' are placeholders, not facts. The coaching and long-term well-being sections repeatedly use vague phrases ('personalized, sustainable change,' 'your actual season and social calendar,' 'WHO's well-being framework') without anchoring them in numbers, named tools, or observable behaviors. The post has strong specificity in places (AED 1,200 panel, HbA1c, 19 March Ramadan date) but these abstract passages undercut the overall score.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+              "before": "Quarterly self-checks offer more than tracking weight or steps, they let you recalculate based on your current mood, motivation, and environment.",
+              "after": "Quarterly self-checks go beyond tracking your 7,000-step daily target or weekly weigh-ins — they let you recalibrate around concrete shifts like Dubai's April average high of 37°C, Ramadan's shifted sleep window (roughly midnight–3 a.m. suhoor), and whether your gym's outdoor pool has closed for summer.",
+              "rationale": "Quality axis \"specificity\" scored 6/10: Several passages dissolve into abstraction: 'current mood, motivation, and environment' are placeholders, not facts. The coaching and long-term well-being sections repeatedly use vague phrases ('personalized, sustainable change,' 'your actual season and social calendar,' 'WHO's well-being framework') without anchoring them in numbers, named tools, or observable behaviors. The post has strong specificity in places (AED 1,200 panel, HbA1c, 19 March Ramadan date) but these abstract passages undercut the overall score."
+            }
+          }
+        ],
+        "rewritesApplied": [],
+        "delta": 0,
+        "htmlSnapshotPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/valeo-health-q1-health-check-2026-wellness-goals-v3/round-3/iteration-0/full-page.html",
+        "elapsedMs": 32456,
+        "costUsd": 0.173853
+      }
+    ],
+    "finalHtmlPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/valeo-health-q1-health-check-2026-wellness-goals-v3/round-3/final/full-page.html",
+    "finalScore": 47,
+    "totalCostUsd": 0.173853
+  }
+}

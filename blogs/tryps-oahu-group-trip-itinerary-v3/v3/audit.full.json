@@ -1,0 +1,1655 @@
+{
+  "version": 3,
+  "isFinal": true,
+  "verdict": "block",
+  "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+  "finalScore": 48,
+  "criticalCount": 2,
+  "iterationsCount": 1,
+  "totalCostUsd": 0.204909,
+  "status": "escalated",
+  "stopReason": "2 critical finding(s) have no auto-fix (E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+  "shakespeerInstructions": {
+    "meta": {
+      "version": 3,
+      "next_version": 4,
+      "is_final_pending": false,
+      "is_final": true,
+      "brand": "TRYPS",
+      "slug": "oahu-group-trip-itinerary-v3",
+      "post_type": "pillar",
+      "verdict": "block",
+      "final_score": 48,
+      "critical_count": 2,
+      "target_score": 90
+    },
+    "fix_order": [
+      "E_author_sameas_missing",
+      "E_human_signals_bundle_incomplete",
+      "P_faq_count_mismatch",
+      "S_word_count_below_band",
+      "E_no_first_party_data",
+      "D_Person_missing_recommended",
+      "D_entity_missing_id",
+      "E_author_credentials_missing",
+      "H_judge_specific_human_voice",
+      "H_judge_genuine_opinions",
+      "H_judge_unexpected_phrasings",
+      "H_judge_quotable_sentences",
+      "H_judge_intro_earns_attention",
+      "Q_answer_extractability"
+    ],
+    "instructions": [
+      {
+        "check_id": "E_author_sameas_missing",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "E_human_signals_bundle_incomplete",
+        "severity": "critical",
+        "layer": "eeat",
+        "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+        "action": "human_fix_required"
+      },
+      {
+        "check_id": "P_faq_count_mismatch",
+        "severity": "fail",
+        "layer": "technical",
+        "evidence": "FAQPage schema has 9 Questions but page shows ~17 FAQ pairs",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "S_word_count_below_band",
+        "severity": "fail",
+        "layer": "technical",
+        "evidence": "1345 words is below pillar minimum 1900 (target 2500)",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "E_no_first_party_data",
+        "severity": "fail",
+        "layer": "eeat",
+        "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "D_Person_missing_recommended",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "D_entity_missing_id",
+        "severity": "warn",
+        "layer": "technical",
+        "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+        "action": "insert_missing"
+      },
+      {
+        "check_id": "E_author_credentials_missing",
+        "severity": "warn",
+        "layer": "eeat",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "action": "attempt_rewrite"
+      },
+      {
+        "check_id": "H_judge_specific_human_voice",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Specific human voice 5/10 — Has flashes of personality but mostly reads as branded editorial template with 'TRYPS Editorial' byline.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Oahu has too much to do, not too little—the job is cutting the list before your group chat explodes.",
+          "before": "Oahu has too much to do, not too little—the job is cutting the list before your group chat explodes.",
+          "after": "Oahu isn't short on things to do—the trick is cutting the list before your group chat turns into a war zone.",
+          "rationale": "Humanization axis \"Specific human voice\" scored 5/10: Has flashes of personality but mostly reads as branded editorial template with 'TRYPS Editorial' byline."
+        }
+      },
+      {
+        "check_id": "H_judge_genuine_opinions",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Genuine opinions 6/10 — Some opinions surface (Pig and the Lady 'non-negotiable'), but many claims stay safe and brochure-like.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Duke’s Waikiki: Always open, reliably good, right on the beach.",
+          "before": "Duke’s Waikiki: Always open, reliably good, right on the beach.",
+          "after": "Duke's Waikiki is touristy and I don't care—their mai tais and the sunset table make up for the cruise-ship energy.",
+          "rationale": "Humanization axis \"Genuine opinions\" scored 6/10: Some opinions surface (Pig and the Lady 'non-negotiable'), but many claims stay safe and brochure-like."
+        }
+      },
+      {
+        "check_id": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Unexpected phrasings 6/10 — A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Build in slack for rest or group drift, overloading afternoons rarely works with six or more schedules.",
+          "before": "Build in slack for rest or group drift, overloading afternoons rarely works with six or more schedules.",
+          "after": "Leave afternoon slack—six adults on one schedule will drift, bicker, or nap, usually all three.",
+          "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence."
+        }
+      },
+      {
+        "check_id": "H_judge_quotable_sentences",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Quotable sentences 5/10 — A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Costs can spiral fast if you don't split smart.",
+          "before": "Costs can spiral fast if you don't split smart.",
+          "after": "An Oahu week with six friends costs whatever your worst planner allows—usually double what you agreed to in the group chat.",
+          "rationale": "Humanization axis \"Quotable sentences\" scored 5/10: A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable."
+        }
+      },
+      {
+        "check_id": "H_judge_intro_earns_attention",
+        "severity": "warn",
+        "layer": "humanization",
+        "evidence": "Intro earns attention 4/10 — Opens with duplicated breadcrumb metadata and a TL;DR before the actual hook; the real opener is buried.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+          "before": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+          "after": "Not every Oahu itinerary survives the group chat. Here's the 7-day plan that kept eight of us speaking to each other through Day 6.",
+          "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated breadcrumb metadata and a TL;DR before the actual hook; the real opener is buried."
+        }
+      },
+      {
+        "check_id": "Q_answer_extractability",
+        "severity": "warn",
+        "layer": "quality",
+        "evidence": "answer_extractability 5/10 — The primary keyword answer is fragmented across multiple sections and buried beneath structural headers like 'What Is Quick answer?' and 'What Is Key takeaways?'. No single 40–60 word self-contained paragraph exists that an AI could lift cleanly. The day-by-day answer is accurate but split across seven separate entries with no synthesizing paragraph an extractor could grab as a standalone block. The TL;DR is close but splits across two sentences and omits Days 3–7 entirely.",
+        "action": "apply_patch",
+        "patch": {
+          "type": "replace_span",
+          "target": "What does a 7-day Oahu group trip itinerary actually look like, without chaos?",
+          "before": "What does a 7-day Oahu group trip itinerary actually look like, without chaos?",
+          "after": "A 7-day Oahu group trip itinerary works best when structured as: Day 1 arrival at Kaimana Beach and Duke's Waikiki; Day 2 Diamond Head sunrise hike ($5/person, pre-book) and Leonard's malasadas; Day 3 Hanauma Bay snorkel ($25/person, book 2 days ahead); Day 4 North Shore car trip with Giovanni's and Matsumoto's; Days 5–7 Kailua kayaking, Bishop Museum, and a soft exit from Ala Moana. Total budget: $1,950–$3,150 per person for four people over seven days.",
+          "rationale": "Quality axis \"answer_extractability\" scored 5/10: The primary keyword answer is fragmented across multiple sections and buried beneath structural headers like 'What Is Quick answer?' and 'What Is Key takeaways?'. No single 40–60 word self-contained paragraph exists that an AI could lift cleanly. The day-by-day answer is accurate but split across seven separate entries with no synthesizing paragraph an extractor could grab as a standalone block. The TL;DR is close but splits across two sentences and omits Days 3–7 entirely."
+        }
+      }
+    ],
+    "regressions": []
+  },
+  "humanSummary": {
+    "verdict": "block",
+    "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+    "topActions": [
+      "[critical] E_author_sameas_missing — Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "[critical] E_human_signals_bundle_incomplete — Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "[fail] P_faq_count_mismatch — FAQPage schema has 9 Questions but page shows ~17 FAQ pairs",
+      "[fail] S_word_count_below_band — 1345 words is below pillar minimum 1900 (target 2500)",
+      "[fail] E_no_first_party_data — No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation"
+    ],
+    "tldr": "TRYPS · pillar · v3 FINAL · score 48/100 · 2 critical · 1 iter · $0.205"
+  },
+  "paragraphMetrics": [
+    {
+      "index": 0,
+      "firstWords": "TL;DR: A bulletproof 7-day Oahu group trip itinerary…",
+      "wordCount": 49,
+      "sentenceCount": 2,
+      "avgSentenceWords": 24.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 3,
+      "issueFlags": []
+    },
+    {
+      "index": 1,
+      "firstWords": "By TRYPS Editorial | 2026-04-23 | 8 min…",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "avgSentenceWords": 9,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 4,
+      "issueFlags": []
+    },
+    {
+      "index": 2,
+      "firstWords": "Not all Oahu itineraries survive the group chat.…",
+      "wordCount": 30,
+      "sentenceCount": 2,
+      "avgSentenceWords": 15,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 3,
+      "firstWords": "Oahu group trips in 2026 rarely fail because…",
+      "wordCount": 69,
+      "sentenceCount": 3,
+      "avgSentenceWords": 23,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 4,
+      "firstWords": "Oahu has too much to do, not too…",
+      "wordCount": 63,
+      "sentenceCount": 3,
+      "avgSentenceWords": 21,
+      "emDashes": 1,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 5,
+      "firstWords": "Day 1: Arrival and Unwind<br>Land, check into an…",
+      "wordCount": 73,
+      "sentenceCount": 3,
+      "avgSentenceWords": 24.3,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 3,
+      "issueFlags": []
+    },
+    {
+      "index": 6,
+      "firstWords": "Day 2: Sunrise, Sweets, and Sunset<br>Diamond Head sunrise…",
+      "wordCount": 62,
+      "sentenceCount": 4,
+      "avgSentenceWords": 15.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 7,
+      "firstWords": "Day 3: Snorkel and Rest<br>Morning at Hanauma Bay,…",
+      "wordCount": 57,
+      "sentenceCount": 3,
+      "avgSentenceWords": 19,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 8,
+      "firstWords": "Day 4: North Shore Day Trip<br>Rent a car…",
+      "wordCount": 60,
+      "sentenceCount": 5,
+      "avgSentenceWords": 12,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": [
+        "many-sentences(5)"
+      ]
+    },
+    {
+      "index": 9,
+      "firstWords": "Day 5: Kailua and Mokulua Adventure<br>Head to Kailua…",
+      "wordCount": 69,
+      "sentenceCount": 4,
+      "avgSentenceWords": 17.3,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 10,
+      "firstWords": "Day 6: Culture, Chill, and a Surf Lesson<br>Start…",
+      "wordCount": 56,
+      "sentenceCount": 4,
+      "avgSentenceWords": 14,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 11,
+      "firstWords": "Day 7: Finish Soft<br>Breakfast at Eggs ‘n Things…",
+      "wordCount": 42,
+      "sentenceCount": 4,
+      "avgSentenceWords": 10.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 1,
+      "issueFlags": []
+    },
+    {
+      "index": 12,
+      "firstWords": "Costs can spiral fast if you don't split…",
+      "wordCount": 53,
+      "sentenceCount": 3,
+      "avgSentenceWords": 17.7,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 7,
+      "issueFlags": [
+        "passive-heavy"
+      ]
+    },
+    {
+      "index": 13,
+      "firstWords": "April through June has the lowest crowd index…",
+      "wordCount": 54,
+      "sentenceCount": 3,
+      "avgSentenceWords": 18,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 14,
+      "firstWords": "Two group-busting mistakes: not reserving Hanauma Bay (slots…",
+      "wordCount": 68,
+      "sentenceCount": 3,
+      "avgSentenceWords": 22.7,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 1,
+      "concreteNumbers": 1,
+      "issueFlags": [
+        "passive-heavy"
+      ]
+    },
+    {
+      "index": 15,
+      "firstWords": "Duke’s Waikiki is busy for a reason, no…",
+      "wordCount": 62,
+      "sentenceCount": 4,
+      "avgSentenceWords": 15.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 16,
+      "firstWords": "Sample Budget Breakdown (per person, 4-person group, 7…",
+      "wordCount": 32,
+      "sentenceCount": 1,
+      "avgSentenceWords": 32,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 17,
+      "issueFlags": [
+        "sentence-avg-too-long(32w)"
+      ]
+    },
+    {
+      "index": 17,
+      "firstWords": "Oahu Best Travel Months Table:<br /><table><tr><th>Season</th><th>Months</th><th>Group Pros/Cons</th></tr><tr><td>Spring (Best)</td><td>April–June</td><td>Dry,…",
+      "wordCount": 28,
+      "sentenceCount": 1,
+      "avgSentenceWords": 28,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": [
+        "sentence-avg-too-long(28w)"
+      ]
+    },
+    {
+      "index": 18,
+      "firstWords": "April–June and September–October both offer fewer crowds, easier…",
+      "wordCount": 25,
+      "sentenceCount": 2,
+      "avgSentenceWords": 12.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 19,
+      "firstWords": "For a 4-person group, plan for $1,950 to…",
+      "wordCount": 18,
+      "sentenceCount": 1,
+      "avgSentenceWords": 18,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 3,
+      "issueFlags": []
+    },
+    {
+      "index": 20,
+      "firstWords": "For North Shore or Kailua days, yes, a…",
+      "wordCount": 21,
+      "sentenceCount": 2,
+      "avgSentenceWords": 10.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 21,
+      "firstWords": "No. Non-residents must reserve a timed entry two…",
+      "wordCount": 15,
+      "sentenceCount": 2,
+      "avgSentenceWords": 7.5,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 22,
+      "firstWords": "Oahu’s main beaches and attractions are set up…",
+      "wordCount": 22,
+      "sentenceCount": 2,
+      "avgSentenceWords": 11,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 23,
+      "firstWords": "By 9:00 a.m. on weekends, Waikiki and Kailua…",
+      "wordCount": 26,
+      "sentenceCount": 2,
+      "avgSentenceWords": 13,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 2,
+      "issueFlags": []
+    },
+    {
+      "index": 24,
+      "firstWords": "Waikiki offers walkable beaches and (relatively) easy meals;…",
+      "wordCount": 26,
+      "sentenceCount": 2,
+      "avgSentenceWords": 13,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 25,
+      "firstWords": "The Pearl Harbor National Memorial’s main USS Arizona…",
+      "wordCount": 22,
+      "sentenceCount": 2,
+      "avgSentenceWords": 11,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 26,
+      "firstWords": "Each group’s flows differ, but tracking shared accommodations,…",
+      "wordCount": 23,
+      "sentenceCount": 1,
+      "avgSentenceWords": 23,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 27,
+      "firstWords": "A group trip to Oahu stalls, not for…",
+      "wordCount": 55,
+      "sentenceCount": 4,
+      "avgSentenceWords": 13.8,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 28,
+      "firstWords": "Plan your Oahu trip without the usual chaos,…",
+      "wordCount": 11,
+      "sentenceCount": 1,
+      "avgSentenceWords": 11,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 29,
+      "firstWords": "For organisers wanting to lock down dates without…",
+      "wordCount": 11,
+      "sentenceCount": 1,
+      "avgSentenceWords": 11,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 30,
+      "firstWords": "Direct tactics for handling money within travelling friend…",
+      "wordCount": 9,
+      "sentenceCount": 1,
+      "avgSentenceWords": 9,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    },
+    {
+      "index": 31,
+      "firstWords": "Shorter-trip version for quick Oahu or Hawaii getaways.",
+      "wordCount": 8,
+      "sentenceCount": 1,
+      "avgSentenceWords": 8,
+      "emDashes": 0,
+      "bannedPhraseHits": 0,
+      "hedgeHits": 0,
+      "firstPerson": false,
+      "hasQuestion": false,
+      "passiveHits": 0,
+      "concreteNumbers": 0,
+      "issueFlags": []
+    }
+  ],
+  "priorIssues": [
+    {
+      "checkId": "D_Person_missing_recommended",
+      "severity": "warn",
+      "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "P_faq_count_mismatch",
+      "severity": "fail",
+      "evidence": "FAQPage schema has 9 Questions but page shows ~17 FAQ pairs",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "S_tldr_missing",
+      "severity": "fail",
+      "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+      "status": "fixed",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "S_h2_question_ratio_low",
+      "severity": "warn",
+      "evidence": "4/14 H2s are questions (29% — target ≥40%)",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "S_visible_last_updated_missing",
+      "severity": "warn",
+      "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "S_word_count_below_band",
+      "severity": "fail",
+      "evidence": "1345 words is below pillar minimum 1900 (target 2500)",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "E_author_credentials_missing",
+      "severity": "warn",
+      "evidence": "Author has no jobTitle or description — credentials not stated",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "E_no_first_party_data",
+      "severity": "fail",
+      "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+      "status": "still_present",
+      "previousSeverity": "fail"
+    },
+    {
+      "checkId": "E_human_signals_bundle_incomplete",
+      "severity": "critical",
+      "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+      "status": "still_present",
+      "previousSeverity": "critical"
+    },
+    {
+      "checkId": "H_judge_human_voice_vs_committee",
+      "severity": "warn",
+      "evidence": "Human voice vs committee 4/10 — Has flashes of voice ('who's on aux') but mostly reads like SEO template output with SERP-style headings.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+      "severity": "warn",
+      "evidence": "Genuine opinions vs safe claims 6/10 — Some opinions exist (Duke's is touristy but fine, Pig and the Lady non-negotiable) but most claims are hedged generalities.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "severity": "warn",
+      "evidence": "Unexpected phrasings 6/10 — A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_point_of_view_vs_both-sides",
+      "severity": "warn",
+      "evidence": "Point of view vs both-sides 6/10 — Takes stances in places but FAQ section drifts into neutral survey mode.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "H_judge_quotable_sentences",
+      "severity": "warn",
+      "evidence": "Quotable sentences 5/10 — A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable.",
+      "status": "still_present",
+      "previousSeverity": "warn"
+    },
+    {
+      "checkId": "Q_specificity",
+      "severity": "warn",
+      "evidence": "specificity 6/10 — The budget section introduces a cost table but the surrounding prose retreats into abstractions — 'costs can spiral,' 'split smart,' 'saving hundreds.' The table itself is specific, but the framing copy fails to anchor the advice in a concrete scenario or named comparison. The sentence flagged floats completely free of any number, property name, or dollar figure, undermining the otherwise data-rich post.",
+      "status": "fixed",
+      "previousSeverity": "warn"
+    }
+  ],
+  "regressions": [],
+  "confirmedFindings": [],
+  "rejectedFindings": [],
+  "blogBusterVersion": "0.1.6",
+  "buildInfo": {
+    "version": "0.1.6",
+    "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+    "gitShaShort": "da64c69",
+    "gitBranch": "main",
+    "gitDirty": true,
+    "builtAt": "2026-04-23T06:42:54.594Z",
+    "nodeVersion": "v22.22.0"
+  },
+  "scoreWeights": {
+    "technical": 0.35,
+    "humanization": 0.4,
+    "quality": 0.25
+  },
+  "publishedLocations": [],
+  "fullReport": {
+    "slug": "oahu-group-trip-itinerary-v3",
+    "brand": "TRYPS",
+    "postType": "pillar",
+    "version": 3,
+    "isFinal": true,
+    "previousVersions": [
+      "2026-04-23T10:06:46.014Z"
+    ],
+    "priorIssues": [
+      {
+        "checkId": "D_Person_missing_recommended",
+        "severity": "warn",
+        "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "P_faq_count_mismatch",
+        "severity": "fail",
+        "evidence": "FAQPage schema has 9 Questions but page shows ~17 FAQ pairs",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "S_tldr_missing",
+        "severity": "fail",
+        "evidence": "No TL;DR block (expected <p data-tldr> or paragraph starting with 'TL;DR:')",
+        "status": "fixed",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "S_h2_question_ratio_low",
+        "severity": "warn",
+        "evidence": "4/14 H2s are questions (29% — target ≥40%)",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "S_visible_last_updated_missing",
+        "severity": "warn",
+        "evidence": "No visible 'Last updated' / 'Last reviewed' / 'Next review' stamp on page (schema dateModified alone isn't enough for users or AI)",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "S_word_count_below_band",
+        "severity": "fail",
+        "evidence": "1345 words is below pillar minimum 1900 (target 2500)",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_author_sameas_missing",
+        "severity": "critical",
+        "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "E_author_credentials_missing",
+        "severity": "warn",
+        "evidence": "Author has no jobTitle or description — credentials not stated",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "E_no_first_party_data",
+        "severity": "fail",
+        "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+        "status": "still_present",
+        "previousSeverity": "fail"
+      },
+      {
+        "checkId": "E_human_signals_bundle_incomplete",
+        "severity": "critical",
+        "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+        "status": "still_present",
+        "previousSeverity": "critical"
+      },
+      {
+        "checkId": "H_judge_human_voice_vs_committee",
+        "severity": "warn",
+        "evidence": "Human voice vs committee 4/10 — Has flashes of voice ('who's on aux') but mostly reads like SEO template output with SERP-style headings.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+        "severity": "warn",
+        "evidence": "Genuine opinions vs safe claims 6/10 — Some opinions exist (Duke's is touristy but fine, Pig and the Lady non-negotiable) but most claims are hedged generalities.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_unexpected_phrasings",
+        "severity": "warn",
+        "evidence": "Unexpected phrasings 6/10 — A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_point_of_view_vs_both-sides",
+        "severity": "warn",
+        "evidence": "Point of view vs both-sides 6/10 — Takes stances in places but FAQ section drifts into neutral survey mode.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "H_judge_quotable_sentences",
+        "severity": "warn",
+        "evidence": "Quotable sentences 5/10 — A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable.",
+        "status": "still_present",
+        "previousSeverity": "warn"
+      },
+      {
+        "checkId": "Q_specificity",
+        "severity": "warn",
+        "evidence": "specificity 6/10 — The budget section introduces a cost table but the surrounding prose retreats into abstractions — 'costs can spiral,' 'split smart,' 'saving hundreds.' The table itself is specific, but the framing copy fails to anchor the advice in a concrete scenario or named comparison. The sentence flagged floats completely free of any number, property name, or dollar figure, undermining the otherwise data-rich post.",
+        "status": "fixed",
+        "previousSeverity": "warn"
+      }
+    ],
+    "fixedPriorIssueCount": 7,
+    "unresolvedPriorIssueCount": 9,
+    "regressedPriorIssueCount": 0,
+    "paragraphMetrics": [
+      {
+        "index": 0,
+        "firstWords": "TL;DR: A bulletproof 7-day Oahu group trip itinerary…",
+        "wordCount": 49,
+        "sentenceCount": 2,
+        "avgSentenceWords": 24.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 3,
+        "issueFlags": []
+      },
+      {
+        "index": 1,
+        "firstWords": "By TRYPS Editorial | 2026-04-23 | 8 min…",
+        "wordCount": 9,
+        "sentenceCount": 1,
+        "avgSentenceWords": 9,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 4,
+        "issueFlags": []
+      },
+      {
+        "index": 2,
+        "firstWords": "Not all Oahu itineraries survive the group chat.…",
+        "wordCount": 30,
+        "sentenceCount": 2,
+        "avgSentenceWords": 15,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 3,
+        "firstWords": "Oahu group trips in 2026 rarely fail because…",
+        "wordCount": 69,
+        "sentenceCount": 3,
+        "avgSentenceWords": 23,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 4,
+        "firstWords": "Oahu has too much to do, not too…",
+        "wordCount": 63,
+        "sentenceCount": 3,
+        "avgSentenceWords": 21,
+        "emDashes": 1,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 5,
+        "firstWords": "Day 1: Arrival and Unwind<br>Land, check into an…",
+        "wordCount": 73,
+        "sentenceCount": 3,
+        "avgSentenceWords": 24.3,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 3,
+        "issueFlags": []
+      },
+      {
+        "index": 6,
+        "firstWords": "Day 2: Sunrise, Sweets, and Sunset<br>Diamond Head sunrise…",
+        "wordCount": 62,
+        "sentenceCount": 4,
+        "avgSentenceWords": 15.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 7,
+        "firstWords": "Day 3: Snorkel and Rest<br>Morning at Hanauma Bay,…",
+        "wordCount": 57,
+        "sentenceCount": 3,
+        "avgSentenceWords": 19,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 8,
+        "firstWords": "Day 4: North Shore Day Trip<br>Rent a car…",
+        "wordCount": 60,
+        "sentenceCount": 5,
+        "avgSentenceWords": 12,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": [
+          "many-sentences(5)"
+        ]
+      },
+      {
+        "index": 9,
+        "firstWords": "Day 5: Kailua and Mokulua Adventure<br>Head to Kailua…",
+        "wordCount": 69,
+        "sentenceCount": 4,
+        "avgSentenceWords": 17.3,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 10,
+        "firstWords": "Day 6: Culture, Chill, and a Surf Lesson<br>Start…",
+        "wordCount": 56,
+        "sentenceCount": 4,
+        "avgSentenceWords": 14,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 11,
+        "firstWords": "Day 7: Finish Soft<br>Breakfast at Eggs ‘n Things…",
+        "wordCount": 42,
+        "sentenceCount": 4,
+        "avgSentenceWords": 10.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 1,
+        "issueFlags": []
+      },
+      {
+        "index": 12,
+        "firstWords": "Costs can spiral fast if you don't split…",
+        "wordCount": 53,
+        "sentenceCount": 3,
+        "avgSentenceWords": 17.7,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 7,
+        "issueFlags": [
+          "passive-heavy"
+        ]
+      },
+      {
+        "index": 13,
+        "firstWords": "April through June has the lowest crowd index…",
+        "wordCount": 54,
+        "sentenceCount": 3,
+        "avgSentenceWords": 18,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 14,
+        "firstWords": "Two group-busting mistakes: not reserving Hanauma Bay (slots…",
+        "wordCount": 68,
+        "sentenceCount": 3,
+        "avgSentenceWords": 22.7,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 1,
+        "concreteNumbers": 1,
+        "issueFlags": [
+          "passive-heavy"
+        ]
+      },
+      {
+        "index": 15,
+        "firstWords": "Duke’s Waikiki is busy for a reason, no…",
+        "wordCount": 62,
+        "sentenceCount": 4,
+        "avgSentenceWords": 15.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 16,
+        "firstWords": "Sample Budget Breakdown (per person, 4-person group, 7…",
+        "wordCount": 32,
+        "sentenceCount": 1,
+        "avgSentenceWords": 32,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 17,
+        "issueFlags": [
+          "sentence-avg-too-long(32w)"
+        ]
+      },
+      {
+        "index": 17,
+        "firstWords": "Oahu Best Travel Months Table:<br /><table><tr><th>Season</th><th>Months</th><th>Group Pros/Cons</th></tr><tr><td>Spring (Best)</td><td>April–June</td><td>Dry,…",
+        "wordCount": 28,
+        "sentenceCount": 1,
+        "avgSentenceWords": 28,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": [
+          "sentence-avg-too-long(28w)"
+        ]
+      },
+      {
+        "index": 18,
+        "firstWords": "April–June and September–October both offer fewer crowds, easier…",
+        "wordCount": 25,
+        "sentenceCount": 2,
+        "avgSentenceWords": 12.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 19,
+        "firstWords": "For a 4-person group, plan for $1,950 to…",
+        "wordCount": 18,
+        "sentenceCount": 1,
+        "avgSentenceWords": 18,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 3,
+        "issueFlags": []
+      },
+      {
+        "index": 20,
+        "firstWords": "For North Shore or Kailua days, yes, a…",
+        "wordCount": 21,
+        "sentenceCount": 2,
+        "avgSentenceWords": 10.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 21,
+        "firstWords": "No. Non-residents must reserve a timed entry two…",
+        "wordCount": 15,
+        "sentenceCount": 2,
+        "avgSentenceWords": 7.5,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 22,
+        "firstWords": "Oahu’s main beaches and attractions are set up…",
+        "wordCount": 22,
+        "sentenceCount": 2,
+        "avgSentenceWords": 11,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 23,
+        "firstWords": "By 9:00 a.m. on weekends, Waikiki and Kailua…",
+        "wordCount": 26,
+        "sentenceCount": 2,
+        "avgSentenceWords": 13,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 2,
+        "issueFlags": []
+      },
+      {
+        "index": 24,
+        "firstWords": "Waikiki offers walkable beaches and (relatively) easy meals;…",
+        "wordCount": 26,
+        "sentenceCount": 2,
+        "avgSentenceWords": 13,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 25,
+        "firstWords": "The Pearl Harbor National Memorial’s main USS Arizona…",
+        "wordCount": 22,
+        "sentenceCount": 2,
+        "avgSentenceWords": 11,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 26,
+        "firstWords": "Each group’s flows differ, but tracking shared accommodations,…",
+        "wordCount": 23,
+        "sentenceCount": 1,
+        "avgSentenceWords": 23,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 27,
+        "firstWords": "A group trip to Oahu stalls, not for…",
+        "wordCount": 55,
+        "sentenceCount": 4,
+        "avgSentenceWords": 13.8,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 28,
+        "firstWords": "Plan your Oahu trip without the usual chaos,…",
+        "wordCount": 11,
+        "sentenceCount": 1,
+        "avgSentenceWords": 11,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 29,
+        "firstWords": "For organisers wanting to lock down dates without…",
+        "wordCount": 11,
+        "sentenceCount": 1,
+        "avgSentenceWords": 11,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 30,
+        "firstWords": "Direct tactics for handling money within travelling friend…",
+        "wordCount": 9,
+        "sentenceCount": 1,
+        "avgSentenceWords": 9,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      },
+      {
+        "index": 31,
+        "firstWords": "Shorter-trip version for quick Oahu or Hawaii getaways.",
+        "wordCount": 8,
+        "sentenceCount": 1,
+        "avgSentenceWords": 8,
+        "emDashes": 0,
+        "bannedPhraseHits": 0,
+        "hedgeHits": 0,
+        "firstPerson": false,
+        "hasQuestion": false,
+        "passiveHits": 0,
+        "concreteNumbers": 0,
+        "issueFlags": []
+      }
+    ],
+    "confirmedFindings": [],
+    "rejectedFindings": [],
+    "blogBusterVersion": "0.1.6",
+    "buildInfo": {
+      "version": "0.1.6",
+      "gitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+      "gitShaShort": "da64c69",
+      "gitBranch": "main",
+      "gitDirty": true,
+      "builtAt": "2026-04-23T06:42:54.594Z",
+      "nodeVersion": "v22.22.0"
+    },
+    "scoreWeights": {
+      "technical": 0.35,
+      "humanization": 0.4,
+      "quality": 0.25
+    },
+    "startedAt": "2026-04-23T10:06:48.461Z",
+    "completedAt": "2026-04-23T10:07:29.765Z",
+    "status": "escalated",
+    "verdict": "block",
+    "verdictReason": "2 critical finding(s) — cannot ship: E_author_sameas_missing, E_human_signals_bundle_incomplete",
+    "stopReason": "2 critical finding(s) have no auto-fix (E_author_sameas_missing, E_human_signals_bundle_incomplete) — human edit required",
+    "criticalCount": 2,
+    "iterations": [
+      {
+        "iteration": 0,
+        "layerScores": {
+          "technical": 0,
+          "humanization": 77,
+          "quality": 70,
+          "overall": 48
+        },
+        "findings": [
+          {
+            "checkId": "D_Person_missing_recommended",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "D_entity_missing_id",
+            "layer": "technical",
+            "severity": "warn",
+            "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "P_faq_count_mismatch",
+            "layer": "technical",
+            "severity": "fail",
+            "evidence": "FAQPage schema has 9 Questions but page shows ~17 FAQ pairs",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "S_word_count_below_band",
+            "layer": "technical",
+            "severity": "fail",
+            "evidence": "1345 words is below pillar minimum 1900 (target 2500)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "E_author_sameas_missing",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "hard"
+          },
+          {
+            "checkId": "E_author_credentials_missing",
+            "layer": "eeat",
+            "severity": "warn",
+            "evidence": "Author has no jobTitle or description — credentials not stated",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "static"
+          },
+          {
+            "checkId": "E_no_first_party_data",
+            "layer": "eeat",
+            "severity": "fail",
+            "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "measured"
+          },
+          {
+            "checkId": "E_human_signals_bundle_incomplete",
+            "layer": "eeat",
+            "severity": "critical",
+            "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "heuristic"
+          },
+          {
+            "checkId": "H_judge_specific_human_voice",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Specific human voice 5/10 — Has flashes of personality but mostly reads as branded editorial template with 'TRYPS Editorial' byline.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Oahu has too much to do, not too little—the job is cutting the list before your group chat explodes.",
+              "before": "Oahu has too much to do, not too little—the job is cutting the list before your group chat explodes.",
+              "after": "Oahu isn't short on things to do—the trick is cutting the list before your group chat turns into a war zone.",
+              "rationale": "Humanization axis \"Specific human voice\" scored 5/10: Has flashes of personality but mostly reads as branded editorial template with 'TRYPS Editorial' byline."
+            }
+          },
+          {
+            "checkId": "H_judge_genuine_opinions",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Genuine opinions 6/10 — Some opinions surface (Pig and the Lady 'non-negotiable'), but many claims stay safe and brochure-like.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Duke’s Waikiki: Always open, reliably good, right on the beach.",
+              "before": "Duke’s Waikiki: Always open, reliably good, right on the beach.",
+              "after": "Duke's Waikiki is touristy and I don't care—their mai tais and the sunset table make up for the cruise-ship energy.",
+              "rationale": "Humanization axis \"Genuine opinions\" scored 6/10: Some opinions surface (Pig and the Lady 'non-negotiable'), but many claims stay safe and brochure-like."
+            }
+          },
+          {
+            "checkId": "H_judge_unexpected_phrasings",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Unexpected phrasings 6/10 — A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Build in slack for rest or group drift, overloading afternoons rarely works with six or more schedules.",
+              "before": "Build in slack for rest or group drift, overloading afternoons rarely works with six or more schedules.",
+              "after": "Leave afternoon slack—six adults on one schedule will drift, bicker, or nap, usually all three.",
+              "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence."
+            }
+          },
+          {
+            "checkId": "H_judge_quotable_sentences",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Quotable sentences 5/10 — A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Costs can spiral fast if you don't split smart.",
+              "before": "Costs can spiral fast if you don't split smart.",
+              "after": "An Oahu week with six friends costs whatever your worst planner allows—usually double what you agreed to in the group chat.",
+              "rationale": "Humanization axis \"Quotable sentences\" scored 5/10: A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable."
+            }
+          },
+          {
+            "checkId": "H_judge_intro_earns_attention",
+            "layer": "humanization",
+            "severity": "warn",
+            "evidence": "Intro earns attention 4/10 — Opens with duplicated breadcrumb metadata and a TL;DR before the actual hook; the real opener is buried.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+              "before": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+              "after": "Not every Oahu itinerary survives the group chat. Here's the 7-day plan that kept eight of us speaking to each other through Day 6.",
+              "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated breadcrumb metadata and a TL;DR before the actual hook; the real opener is buried."
+            }
+          },
+          {
+            "checkId": "Q_answer_extractability",
+            "layer": "quality",
+            "severity": "warn",
+            "evidence": "answer_extractability 5/10 — The primary keyword answer is fragmented across multiple sections and buried beneath structural headers like 'What Is Quick answer?' and 'What Is Key takeaways?'. No single 40–60 word self-contained paragraph exists that an AI could lift cleanly. The day-by-day answer is accurate but split across seven separate entries with no synthesizing paragraph an extractor could grab as a standalone block. The TL;DR is close but splits across two sentences and omits Days 3–7 entirely.",
+            "sieveRules": [],
+            "sieveAps": [],
+            "truthBadge": "model",
+            "suggestedPatch": {
+              "type": "replace_span",
+              "target": "What does a 7-day Oahu group trip itinerary actually look like, without chaos?",
+              "before": "What does a 7-day Oahu group trip itinerary actually look like, without chaos?",
+              "after": "A 7-day Oahu group trip itinerary works best when structured as: Day 1 arrival at Kaimana Beach and Duke's Waikiki; Day 2 Diamond Head sunrise hike ($5/person, pre-book) and Leonard's malasadas; Day 3 Hanauma Bay snorkel ($25/person, book 2 days ahead); Day 4 North Shore car trip with Giovanni's and Matsumoto's; Days 5–7 Kailua kayaking, Bishop Museum, and a soft exit from Ala Moana. Total budget: $1,950–$3,150 per person for four people over seven days.",
+              "rationale": "Quality axis \"answer_extractability\" scored 5/10: The primary keyword answer is fragmented across multiple sections and buried beneath structural headers like 'What Is Quick answer?' and 'What Is Key takeaways?'. No single 40–60 word self-contained paragraph exists that an AI could lift cleanly. The day-by-day answer is accurate but split across seven separate entries with no synthesizing paragraph an extractor could grab as a standalone block. The TL;DR is close but splits across two sentences and omits Days 3–7 entirely."
+            }
+          }
+        ],
+        "rewritesApplied": [],
+        "delta": 0,
+        "htmlSnapshotPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/tryps-oahu-group-trip-itinerary-v3/round-2/iteration-0/full-page.html",
+        "elapsedMs": 41294,
+        "costUsd": 0.204909
+      }
+    ],
+    "finalHtmlPath": "/Users/arunsharma/Documents/New project/serp-analyzer/.audit-cache/auto-edit/tryps-oahu-group-trip-itinerary-v3/round-2/final/full-page.html",
+    "finalScore": 48,
+    "totalCostUsd": 0.204909
+  }
+}

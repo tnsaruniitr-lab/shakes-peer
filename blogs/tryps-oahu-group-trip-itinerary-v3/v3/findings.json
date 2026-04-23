@@ -1,0 +1,170 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 9 Questions but page shows ~17 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1345 words is below pillar minimum 1900 (target 2500)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "E_no_first_party_data",
+    "layer": "eeat",
+    "severity": "fail",
+    "evidence": "No first-party data signals (\"we tested\", \"our data shows\", \"we analyzed\"). Add at least one concrete observation",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "E_human_signals_bundle_incomplete",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Only 3/4 human signals present (author+LinkedIn=false, first-party data=false, original visual=true, 3+ citations=true). High AI-content-flag risk",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "heuristic"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice 5/10 — Has flashes of personality but mostly reads as branded editorial template with 'TRYPS Editorial' byline.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Oahu has too much to do, not too little—the job is cutting the list before your group chat explodes.",
+      "before": "Oahu has too much to do, not too little—the job is cutting the list before your group chat explodes.",
+      "after": "Oahu isn't short on things to do—the trick is cutting the list before your group chat turns into a war zone.",
+      "rationale": "Humanization axis \"Specific human voice\" scored 5/10: Has flashes of personality but mostly reads as branded editorial template with 'TRYPS Editorial' byline."
+    }
+  },
+  {
+    "checkId": "H_judge_genuine_opinions",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Genuine opinions 6/10 — Some opinions surface (Pig and the Lady 'non-negotiable'), but many claims stay safe and brochure-like.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Duke’s Waikiki: Always open, reliably good, right on the beach.",
+      "before": "Duke’s Waikiki: Always open, reliably good, right on the beach.",
+      "after": "Duke's Waikiki is touristy and I don't care—their mai tais and the sunset table make up for the cruise-ship energy.",
+      "rationale": "Humanization axis \"Genuine opinions\" scored 6/10: Some opinions surface (Pig and the Lady 'non-negotiable'), but many claims stay safe and brochure-like."
+    }
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Build in slack for rest or group drift, overloading afternoons rarely works with six or more schedules.",
+      "before": "Build in slack for rest or group drift, overloading afternoons rarely works with six or more schedules.",
+      "after": "Leave afternoon slack—six adults on one schedule will drift, bicker, or nap, usually all three.",
+      "rationale": "Humanization axis \"Unexpected phrasings\" scored 6/10: A few fresh bits ('who's on aux,' 'group chat explodes') mixed with generic travel-blog cadence."
+    }
+  },
+  {
+    "checkId": "H_judge_quotable_sentences",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Quotable sentences 5/10 — A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Costs can spiral fast if you don't split smart.",
+      "before": "Costs can spiral fast if you don't split smart.",
+      "after": "An Oahu week with six friends costs whatever your worst planner allows—usually double what you agreed to in the group chat.",
+      "rationale": "Humanization axis \"Quotable sentences\" scored 5/10: A couple of lines have snap ('who's on aux'), but most sentences are functional not memorable."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — Opens with duplicated breadcrumb metadata and a TL;DR before the actual hook; the real opener is buried.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+      "before": "Blog Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Trip Planning 7-Day Oahu Group Trip Itinerary: What Actually Works for Friend Groups Last updated: April 23, 2026 TL;DR: A bulletproof 7-day Oahu group trip itinerary prioritizes accessible, proven spots like Hanauma Bay and Diamond Head while building in downtime to prevent group chat friction.",
+      "after": "Not every Oahu itinerary survives the group chat. Here's the 7-day plan that kept eight of us speaking to each other through Day 6.",
+      "rationale": "Humanization axis \"Intro earns attention\" scored 4/10: Opens with duplicated breadcrumb metadata and a TL;DR before the actual hook; the real opener is buried."
+    }
+  },
+  {
+    "checkId": "Q_answer_extractability",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "answer_extractability 5/10 — The primary keyword answer is fragmented across multiple sections and buried beneath structural headers like 'What Is Quick answer?' and 'What Is Key takeaways?'. No single 40–60 word self-contained paragraph exists that an AI could lift cleanly. The day-by-day answer is accurate but split across seven separate entries with no synthesizing paragraph an extractor could grab as a standalone block. The TL;DR is close but splits across two sentences and omits Days 3–7 entirely.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "What does a 7-day Oahu group trip itinerary actually look like, without chaos?",
+      "before": "What does a 7-day Oahu group trip itinerary actually look like, without chaos?",
+      "after": "A 7-day Oahu group trip itinerary works best when structured as: Day 1 arrival at Kaimana Beach and Duke's Waikiki; Day 2 Diamond Head sunrise hike ($5/person, pre-book) and Leonard's malasadas; Day 3 Hanauma Bay snorkel ($25/person, book 2 days ahead); Day 4 North Shore car trip with Giovanni's and Matsumoto's; Days 5–7 Kailua kayaking, Bishop Museum, and a soft exit from Ala Moana. Total budget: $1,950–$3,150 per person for four people over seven days.",
+      "rationale": "Quality axis \"answer_extractability\" scored 5/10: The primary keyword answer is fragmented across multiple sections and buried beneath structural headers like 'What Is Quick answer?' and 'What Is Key takeaways?'. No single 40–60 word self-contained paragraph exists that an AI could lift cleanly. The day-by-day answer is accurate but split across seven separate entries with no synthesizing paragraph an extractor could grab as a standalone block. The TL;DR is close but splits across two sentences and omits Days 3–7 entirely."
+    }
+  }
+]

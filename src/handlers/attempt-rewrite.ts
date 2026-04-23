@@ -35,6 +35,29 @@ const BANNED_REWRITE_MARKERS = [
   /^sure[,.!]/i,
 ];
 
+// Check IDs where blog-buster rates on a 1-10 scale and requires ≥7 to pass.
+// Each initial rewrite usually lifts the score 1-2 points; we retry up to
+// THRESHOLD_RETRIES times per round, re-rewriting on top of the previous
+// output until the handler detects "no more material to rewrite" or the
+// threshold is plausibly hit.
+const THRESHOLD_CHECK_PREFIXES = ["H_judge_", "Q_"];
+const THRESHOLD_RETRIES = 2; // total Claude calls per finding = 1 + 2 = 3
+
+function isThresholdCheck(checkId: string): boolean {
+  return THRESHOLD_CHECK_PREFIXES.some((p) => checkId.startsWith(p));
+}
+
+/**
+ * Parse "N/10" out of the finding's evidence so we know how far we have to
+ * push. Returns the current score or null if no score is present.
+ */
+function currentScore(evidence: string): number | null {
+  const m = evidence.match(/(\d+)\s*\/\s*10\b/);
+  if (!m) return null;
+  const n = Number(m[1]);
+  return Number.isFinite(n) ? n : null;
+}
+
 export async function attemptRewriteHandler(
   state: HandlerState,
   instruction: Instruction,
@@ -85,17 +108,79 @@ export async function attemptRewriteHandler(
     }
   }
 
-  const nextHtml = state.html.replace(patch.before, rewrite);
+  let nextHtml = state.html.replace(patch.before, rewrite);
   if (nextHtml === state.html) {
     return { ...base, outcome: "skipped", reason: "no-op (rewrite == before)" };
+  }
+  let currentText = rewrite;
+  let totalLifts = 1;
+
+  // Push-to-threshold: for judge-rated checks below the 7/10 threshold,
+  // call Claude up to THRESHOLD_RETRIES more times with an escalating prompt.
+  // Each retry rewrites on top of the previous rewrite, pushing the score
+  // further. We stop early if Claude returns an empty/degenerate result.
+  if (isThresholdCheck(instruction.check_id)) {
+    const score = currentScore(instruction.evidence);
+    const target = 7;
+    if (score !== null && score < target) {
+      for (let retry = 0; retry < THRESHOLD_RETRIES; retry++) {
+        const retryPrompt = buildPushPrompt(instruction, currentText, score, target, retry + 2);
+        let harder: string;
+        try {
+          harder = deps.callClaude
+            ? (await deps.callClaude(retryPrompt)).trim()
+            : (await callClaudeDefault(retryPrompt, deps.apiKey, deps.model)).trim();
+        } catch {
+          break;
+        }
+        if (!harder || harder.length < Math.max(20, currentText.length * 0.3)) break;
+        if (BANNED_REWRITE_MARKERS.some((r) => r.test(harder))) break;
+        // Replace the previous rewrite in-place with the harder one.
+        const beforeBlockInHtml = currentText;
+        if (!nextHtml.includes(beforeBlockInHtml)) break;
+        nextHtml = nextHtml.replace(beforeBlockInHtml, harder);
+        currentText = harder;
+        totalLifts++;
+      }
+    }
   }
 
   return {
     ...base,
     html: nextHtml,
     outcome: "applied",
-    reason: `rewrote ${patch.before.length}b → ${rewrite.length}b`,
+    reason:
+      totalLifts > 1
+        ? `rewrote ${patch.before.length}b → ${currentText.length}b (push-to-threshold: ${totalLifts} passes)`
+        : `rewrote ${patch.before.length}b → ${currentText.length}b`,
   };
+}
+
+function buildPushPrompt(
+  instruction: Instruction,
+  previousRewrite: string,
+  startScore: number,
+  targetScore: number,
+  passNumber: number,
+): string {
+  return [
+    "You are rewriting a blog fragment to raise its quality rating.",
+    "",
+    `Finding: ${instruction.evidence}`,
+    `Starting score: ${startScore}/10 · Target: ${targetScore}+/10 · This is rewrite pass #${passNumber}.`,
+    "",
+    "The previous rewrite is BELOW the target. Push further:",
+    "- Be more concrete. Replace vague claims with specific numbers, names, comparisons.",
+    "- Inject genuine point-of-view. Take a stance; do not hedge both sides.",
+    "- Use unexpected phrasings — one memorable image or sharp observation.",
+    "- Preserve the outer HTML tag structure exactly.",
+    "- Output ONLY the rewritten HTML fragment. No preamble, no meta-commentary.",
+    "",
+    "Previous rewrite:",
+    previousRewrite,
+    "",
+    "Improved rewrite:",
+  ].join("\n");
 }
 
 function buildRewritePrompt(instruction: Instruction, before: string): string {

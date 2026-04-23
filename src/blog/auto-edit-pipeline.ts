@@ -12,6 +12,12 @@ import { generateBlogPackage } from "./writer.js";
 import { renderBlogMarkdown } from "./markdown.js";
 import { buildAuditOptions, toBloggerPost } from "./blog-buster-adapter.js";
 import { runAuditLoop, type AuditRunPayload } from "./audit-loop.js";
+import { sweepEmDashes } from "../handlers/density-sweep.js";
+import {
+  findBrandByDomain,
+  mergeBrandsmithIntoRequest,
+  type BrandsmithRow,
+} from "./brandsmith-lookup.js";
 import {
   blogSlugDir,
   captureAuditorProvenance,
@@ -46,6 +52,33 @@ import type { HandlerState } from "../handlers/types.js";
 
 const REPO_ROOT = path.resolve(fileURLToPath(new URL(".", import.meta.url)), "..", "..");
 
+/**
+ * Diff the pre- and post-enrichment requests to report which fields the
+ * Brandsmith lookup actually populated. Useful so history.json records the
+ * provenance of every field the writer relied on.
+ */
+function summarizeEnrichment(
+  before: BlogWriterRequest,
+  after: BlogWriterRequest,
+  row: BrandsmithRow,
+): BrandsmithEnrichmentSummary {
+  const populated: string[] = [];
+  const changed = (a: unknown, b: unknown): boolean => a !== b && b != null && b !== "";
+  if (changed(before.brand.product_description, after.brand.product_description))
+    populated.push("brand.product_description");
+  if (changed(before.brand.tone_of_voice, after.brand.tone_of_voice))
+    populated.push("brand.tone_of_voice");
+  if (changed(before.audience, after.audience)) populated.push("audience");
+  if (changed(before.article.category, after.article.category))
+    populated.push("article.category");
+  if (changed(before.angle, after.angle)) populated.push("angle");
+  return {
+    brandId: row.id,
+    brandName: row.name,
+    fieldsPopulated: populated,
+  };
+}
+
 function severityRank(s: OpenItem["severity"]): number {
   return { info: 0, warn: 1, fail: 2, critical: 3 }[s] ?? 0;
 }
@@ -68,6 +101,14 @@ export interface AutoEditOptions {
   // Test seam: skip the generator and use this package as v1. When provided,
   // the request is still parsed so brand/slug/markdown render correctly.
   seedPackage?: BlogWriterResponse;
+  // Opt out of Brandsmith enrichment (for determinism in tests). Default: on.
+  skipBrandsmithEnrichment?: boolean;
+}
+
+export interface BrandsmithEnrichmentSummary {
+  brandId: number;
+  brandName: string;
+  fieldsPopulated: string[];
 }
 
 export interface AutoEditResult {
@@ -80,20 +121,49 @@ export interface AutoEditResult {
   commits: Array<{ version: number; sha: string | null }>;
   pushed: boolean;
   history: HistoryFile;
+  brandsmith?: BrandsmithEnrichmentSummary | null;
 }
 
 export async function generateAndAutoEdit(
   requestBody: unknown,
   options: AutoEditOptions = {},
 ): Promise<AutoEditResult> {
-  const request: BlogWriterRequest = BlogWriterRequestSchema.parse(requestBody);
+  let request: BlogWriterRequest = BlogWriterRequestSchema.parse(requestBody);
   const maxRounds = options.maxRounds ?? 2;
   const targetScore = options.targetScore ?? 90;
   const runLlm = options.runLlm ?? true;
   const push = options.push ?? true;
 
+  // ─── 0. Brandsmith enrichment ───────────────────────────────────────────
+  // Look up the brand by domain in Supabase and merge any populated fields
+  // into the request before generation. Caller values always win; this only
+  // fills gaps. Non-blocking — if Supabase is unreachable or the brand
+  // doesn't exist, we proceed with what the caller supplied.
+  let brandsmithSummary: BrandsmithEnrichmentSummary | null = null;
+  if (!options.skipBrandsmithEnrichment) {
+    const row = await findBrandByDomain(request.brand.domain);
+    if (row) {
+      const enriched = mergeBrandsmithIntoRequest(request, row);
+      brandsmithSummary = summarizeEnrichment(request, enriched, row);
+      request = enriched;
+      if (brandsmithSummary.fieldsPopulated.length > 0) {
+        console.log(
+          `[brandsmith] enriched ${row.name} (id=${row.id}) — filled: ${brandsmithSummary.fieldsPopulated.join(", ")}`,
+        );
+      }
+    }
+  }
+
   // ─── 1. Generate v1 ─────────────────────────────────────────────────────
   const pkg = options.seedPackage ?? (await generateBlogPackage(requestBody));
+
+  // Deterministic density sweep — em-dashes. Runs once on the pristine v1
+  // HTML so blog-buster's H_em_dash_overuse detector sees a post at target
+  // density on round 1. Avoids the one-patch-per-round drift spiral.
+  const sweep = sweepEmDashes(pkg.html);
+  if (sweep.replaced > 0) {
+    pkg.html = sweep.html;
+  }
   const blog = blogSlugDir(request.brand.name, pkg.article.slug);
   const markdown = renderBlogMarkdown(request, pkg.article, {
     canonical_url: pkg.request?.canonical_url,
@@ -327,7 +397,7 @@ export async function generateAndAutoEdit(
     commits.push({ version: versionNum, sha: commit.sha ?? null });
   }
 
-  // ─── 4. Promote final + write history + commit ──────────────────────────
+  // ─── 4. Promote final + verification audit + write history + commit ────
   const finalVersion = Math.max(...versionMetrics.map((v) => v.version));
   promoteFinal(blog, finalVersion);
 
@@ -339,21 +409,153 @@ export async function generateAndAutoEdit(
     "utf-8",
   );
 
+  // Post-loop verification audit — closes the "v4 is never audited" gap.
+  // Without this, `final/audit.full.json` is the audit that PRODUCED v4
+  // (i.e., the audit of v3), so the report shows stale findings. Running
+  // audit() once more on loop.finalState guarantees the final report
+  // reflects the published blog's actual state.
+  //
+  // Cost: ~$0.15-0.30 per blog. One audit call, no inner rewrites needed —
+  // we pass runLlmLayers based on the pipeline setting but honestly this
+  // could be forced to false to save money (we only need the detection
+  // pass, not blog-buster's internal rewriter). Leaving at runLlm for
+  // judge-score parity with the loop runs.
+  let verificationCost = 0;
+  try {
+    const verifyDir = path.join(
+      REPO_ROOT,
+      ".audit-cache",
+      "auto-edit",
+      blog.slug,
+      "post-loop-verification",
+    );
+    fs.mkdirSync(verifyDir, { recursive: true });
+
+    const finalPkg: BlogWriterResponse = {
+      ...pkg,
+      html: loop.finalState.html,
+      json_ld: loop.finalState.jsonLd as BlogWriterResponse["json_ld"],
+    };
+    const verifyOpts: AuditOptions = {
+      ...buildAuditOptions({
+        request,
+        response: finalPkg,
+        repoRoot: REPO_ROOT,
+        outputDir: verifyDir,
+        runLlmLayers: runLlm,
+        targetScore,
+      }),
+      priorRuns: [...priorRuns],
+      version: finalVersion + 1,
+    };
+    const verifyResult = await blogBusterAudit(verifyOpts);
+    verificationCost = verifyResult.totalCostUsd;
+
+    // Overwrite final/ audit artifacts with the verification results —
+    // these are now the source of truth for the post-publish state.
+    const finalDir = path.join(blog.root, "final");
+    fs.writeFileSync(
+      path.join(finalDir, "audit.full.json"),
+      JSON.stringify(verifyResult, null, 2),
+      "utf-8",
+    );
+    fs.writeFileSync(
+      path.join(finalDir, "audit.json"),
+      JSON.stringify(
+        {
+          version: verifyResult.version,
+          isFinal: true,
+          verdict: verifyResult.verdict,
+          verdictReason: verifyResult.verdictReason,
+          finalScore: verifyResult.finalScore,
+          criticalCount: verifyResult.criticalCount,
+          iterationsCount: verifyResult.iterationsCount,
+          status: verifyResult.status,
+          stopReason: verifyResult.stopReason,
+          totalCostUsd: verifyResult.totalCostUsd,
+          scoreWeights: verifyResult.scoreWeights,
+          blogBusterVersion: verifyResult.blogBusterVersion,
+          note: "post-loop verification audit — reflects final HTML state",
+        },
+        null,
+        2,
+      ),
+      "utf-8",
+    );
+    const report = verifyResult.fullReport;
+    fs.writeFileSync(
+      path.join(finalDir, "findings.json"),
+      JSON.stringify(
+        report.iterations.flatMap((i) => i.findings ?? []),
+        null,
+        2,
+      ),
+      "utf-8",
+    );
+    fs.writeFileSync(
+      path.join(finalDir, "paragraph-metrics.json"),
+      JSON.stringify(report.paragraphMetrics ?? [], null, 2),
+      "utf-8",
+    );
+    fs.writeFileSync(
+      path.join(finalDir, "prior-issues.json"),
+      JSON.stringify(report.priorIssues ?? [], null, 2),
+      "utf-8",
+    );
+
+    // Also append a verification entry to versionMetrics so the dashboard
+    // reflects the true final score rather than the score of the audit that
+    // produced the final version.
+    const verifyLayerScores =
+      report.iterations[report.iterations.length - 1]?.layerScores ?? null;
+    versionMetrics.push({
+      version: finalVersion + 1,
+      generatedAt: new Date().toISOString(),
+      score: verifyResult.finalScore,
+      layerScores: verifyLayerScores
+        ? {
+            technical: verifyLayerScores.technical,
+            humanization: verifyLayerScores.humanization,
+            quality: verifyLayerScores.quality,
+            overall: verifyLayerScores.overall,
+          }
+        : null,
+      verdict: verifyResult.verdict,
+      criticalCount: verifyResult.criticalCount,
+      costUsd: verifyResult.totalCostUsd,
+      innerIterations: report.iterations.length,
+      dispatchCounts: null, // no dispatch for verification audit
+      escalationCount: 0,
+      commitSha: null, // filled after commit
+    });
+  } catch (err) {
+    console.warn(
+      `[auto-edit] post-loop verification audit failed: ${(err as Error).message}`,
+    );
+    // Non-fatal — we still ship; just leaves the stale final/ artifacts in place.
+  }
+
   const provenance = captureAuditorProvenance();
   const history: HistoryFile = {
     slug: blog.slug,
     brand: request.brand.name,
     terminal: loop.terminal,
     terminalReason: loop.reason,
-    totalCostUsd: versionMetrics.reduce((s, v) => s + v.costUsd, 0),
+    totalCostUsd:
+      versionMetrics.reduce((s, v) => s + v.costUsd, 0) + 0, // verification cost already in versionMetrics entry
     versions: versionMetrics,
     openItems: Array.from(openItemsByCheck.values()),
     auditorVersion: provenance.version,
     auditorGitSha: provenance.sha,
+    brandsmith: brandsmithSummary,
     updatedAt: new Date().toISOString(),
   };
   writeHistory(blog, history);
-  commitVersion(blog, finalVersion, `final (${loop.terminal}) + history`);
+  commitVersion(
+    blog,
+    finalVersion,
+    `final (${loop.terminal}) + verification audit${verificationCost > 0 ? ` $${verificationCost.toFixed(4)}` : ""}`,
+  );
 
   // ─── 5. Push ────────────────────────────────────────────────────────────
   let pushed = false;
@@ -372,5 +574,6 @@ export async function generateAndAutoEdit(
     commits,
     pushed,
     history,
+    brandsmith: brandsmithSummary,
   };
 }

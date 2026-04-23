@@ -56,6 +56,7 @@ export const SYNTHESIZERS: Record<string, Synthesizer> = {
   D_WebPage_missing_recommended: synthesizeWebPage,
   S_visible_last_updated_missing: synthesizeLastUpdated,
   E_author_credentials_missing: synthesizeAuthorCredentials,
+  S_h2_question_ratio_low: synthesizeH2QuestionRatio,
 };
 
 export function hasSynthesizer(checkId: string): boolean {
@@ -540,6 +541,109 @@ async function synthesizeAuthorCredentials(
   return { ...base, html: nextHtml, outcome: "applied", reason: "author bio rendered" };
 }
 
+// ─── S_h2_question_ratio_low ───────────────────────────────────────────────
+//
+// Blog-buster's detector fires when <40% of H2s are in question form. The
+// evidence looks like "5/14 H2s are questions (36%)". We parse that, pick
+// the cheapest H2s to convert, and rewrite them to question form using a
+// deterministic mapping (no LLM call — keeps cost near zero).
+//
+// The strategy: prefer H2s that already contain a verb that can be inverted
+// ("How AEO Works" → "How Does AEO Work?"). For H2s that are pure noun
+// phrases ("Benefits of AEO"), prepend "What are..." and append "?".
+
+async function synthesizeH2QuestionRatio(
+  state: HandlerState,
+  instruction: Instruction,
+  _ctx: SynthesisContext,
+): Promise<HandlerResult> {
+  const base = baseResult(state, instruction);
+  // Parse current ratio from evidence: "5/14 H2s are questions (36%)"
+  const m = instruction.evidence.match(/(\d+)\s*\/\s*(\d+)\s*H2s/i);
+  if (!m) {
+    return { ...base, outcome: "skipped", reason: "could not parse H2 ratio from evidence" };
+  }
+  const currentQ = Number(m[1]);
+  const total = Number(m[2]);
+  const target = Math.ceil(total * 0.4);
+  const need = target - currentQ;
+  if (need <= 0) {
+    return { ...base, outcome: "skipped", reason: "ratio already at/above target" };
+  }
+
+  const root = parse(state.html);
+  const h2s = root.querySelectorAll("h2");
+  // Pick candidates: H2s that are NOT already questions and that convert
+  // cleanly to question form. Sort so the shortest/clearest go first.
+  const candidates: Array<{ el: ReturnType<typeof root.querySelector>; text: string }> = [];
+  for (const el of h2s) {
+    const text = el.text.trim();
+    if (!text || text.includes("?")) continue;
+    candidates.push({ el, text });
+  }
+  candidates.sort((a, b) => a.text.length - b.text.length);
+
+  let converted = 0;
+  for (const cand of candidates) {
+    if (converted >= need) break;
+    const q = toQuestionForm(cand.text);
+    if (!q) continue;
+    const originalHtml = cand.el!.innerHTML;
+    cand.el!.set_content(q);
+    converted++;
+  }
+
+  if (converted === 0) {
+    return { ...base, outcome: "skipped", reason: "no H2s suitable for question conversion" };
+  }
+
+  return {
+    ...base,
+    html: root.toString(),
+    outcome: "applied",
+    reason: `converted ${converted} H2(s) to question form (${currentQ + converted}/${total} = ${Math.round(((currentQ + converted) / total) * 100)}%)`,
+  };
+}
+
+/**
+ * Deterministic heading → question conversion. Returns null if the heading
+ * doesn't fit any known pattern (we'd rather leave it alone than produce
+ * awkward output).
+ */
+function toQuestionForm(heading: string): string | null {
+  const h = heading.trim();
+  if (!h) return null;
+  // Strip any trailing punctuation we don't want to keep.
+  const cleaned = h.replace(/[.:;,]$/, "");
+
+  // Pattern: "How X Works" / "How X Helps" → "How Does X Work?"
+  const howM = /^(How|Why)\s+(.+?)\s+(Works?|Helps?|Fails?|Wins?|Changes?)$/i.exec(cleaned);
+  if (howM) {
+    const [, q, subj, verb] = howM;
+    const base = verb.toLowerCase().replace(/s$/, "");
+    return `${q} Does ${subj} ${base.charAt(0).toUpperCase()}${base.slice(1)}?`;
+  }
+
+  // Pattern: starts with "The X ..." → keep as-is (awkward to question-ify)
+  if (/^(The|A|An)\s/i.test(cleaned)) {
+    return `What Is ${cleaned.replace(/^(The|A|An)\s+/i, "")}?`;
+  }
+
+  // Pattern: "Benefits of X" / "Examples of X" → "What Are the Benefits of X?"
+  if (/^(Benefits|Examples|Types|Categories|Kinds|Principles|Rules|Signals|Features)\s+of\s+/i.test(cleaned)) {
+    return `What Are the ${cleaned}?`;
+  }
+
+  // Pattern: bare noun phrase with verb root — prepend "What Is"
+  // Heuristic: 2-5 words, first word is capitalized.
+  const words = cleaned.split(/\s+/);
+  if (words.length >= 2 && words.length <= 5 && /^[A-Z]/.test(words[0]!)) {
+    return `What Is ${cleaned}?`;
+  }
+
+  return null;
+}
+
 function insertBeforeCloseArticle(html: string, block: string): string {
   const re = /<\/article>/i;
   if (!re.test(html)) {
@@ -614,6 +718,21 @@ interface FaqPair {
   answer: string;
 }
 
+// Matches blog-buster's QUESTION_OPENERS set in src/shared-lib/validators.ts.
+const QUESTION_OPENERS = new Set([
+  "how", "what", "why", "when", "where", "who", "which", "whose",
+  "can", "could", "should", "would", "will", "do", "does", "did",
+  "is", "are", "was", "were", "has", "have",
+]);
+
+function looksLikeQuestion(text: string): boolean {
+  const trimmed = text.trim();
+  if (!trimmed) return false;
+  if (trimmed.endsWith("?")) return true;
+  const first = trimmed.split(/\s+/)[0]?.toLowerCase().replace(/[^\w]/g, "") ?? "";
+  return QUESTION_OPENERS.has(first);
+}
+
 function extractVisibleFaqs(html: string): FaqPair[] {
   const root = parse(html);
   const pairs: FaqPair[] = [];
@@ -623,7 +742,7 @@ function extractVisibleFaqs(html: string): FaqPair[] {
     const summary = details.querySelector("summary");
     if (!summary) continue;
     const q = summary.text.trim();
-    if (!q || !q.includes("?")) continue;
+    if (!looksLikeQuestion(q)) continue;
     const aFragments: string[] = [];
     for (const child of details.childNodes) {
       const node = child as unknown as { tagName?: string; text?: string; toString: () => string };
@@ -636,33 +755,42 @@ function extractVisibleFaqs(html: string): FaqPair[] {
   }
   if (pairs.length > 0) return pairs;
 
-  // Pattern 2: question-form headings followed by paragraphs.
-  // Handshake contract §7a — blog-buster's faqVisibleCount (src/shared-lib/
-  // validators.ts) scans the WHOLE document. Match that: prefer an explicit
-  // FAQ section if it has question-form content; otherwise scan root.
+  // Pattern 2: question-form headings scanned document-wide, matching
+  // blog-buster's faqVisibleCount (src/shared-lib/validators.ts). Scope
+  // includes h2/h3/h4/strong/summary/dt, and uses looksLikeQuestion for
+  // identical parity with the counter.
   const faqSection =
     root.querySelector("section.faq") ||
     root.querySelector("#faq") ||
     root.querySelector("[data-section='faq']");
   const explicitScopeHeadings = faqSection
-    ? faqSection.querySelectorAll("h2, h3, h4").filter((h) => h.text.trim().includes("?"))
+    ? faqSection
+        .querySelectorAll("h2, h3, h4, strong, summary, dt")
+        .filter((h) => looksLikeQuestion(h.text))
     : [];
   const scope = explicitScopeHeadings.length > 0 ? faqSection! : root;
-  const headings = scope.querySelectorAll("h2, h3, h4");
+  const headings = scope.querySelectorAll("h2, h3, h4, strong, summary, dt");
   for (const h of headings) {
     const q = h.text.trim();
-    if (!q || !q.includes("?")) continue;
-    // Collect following <p> siblings until next heading.
+    if (!looksLikeQuestion(q)) continue;
+    // Collect following siblings until next heading-like element.
     const answer: string[] = [];
     let sib = h.nextElementSibling;
-    while (sib && !["H2", "H3"].includes(sib.tagName)) {
-      if (sib.tagName === "P" || sib.tagName === "UL" || sib.tagName === "OL") {
-        answer.push(sib.text.trim());
+    while (sib && !["H2", "H3", "H4"].includes(sib.tagName)) {
+      if (["P", "UL", "OL", "DD", "DIV"].includes(sib.tagName)) {
+        const t = sib.text.trim();
+        if (t) answer.push(t);
       }
       sib = sib.nextElementSibling;
     }
     const a = answer.join(" ").trim();
-    if (a) pairs.push({ question: q, answer: a });
+    // Keep the Q even if A is empty — blog-buster counts visible questions,
+    // not Q/A pairs, so a Q without a sibling answer still contributes to
+    // the count mismatch we're trying to fix.
+    pairs.push({
+      question: q,
+      answer: a || `See the ${h.tagName?.toLowerCase() ?? "section"} above for context.`,
+    });
   }
   return pairs;
 }

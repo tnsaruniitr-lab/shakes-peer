@@ -306,6 +306,11 @@ export interface HistoryFile {
   openItems: OpenItem[]; // cross-version aggregated open editorial items
   auditorVersion?: string; // blog-buster VERSION at audit time
   auditorGitSha?: string;  // blog-buster HEAD at audit time
+  brandsmith?: {
+    brandId: number;
+    brandName: string;
+    fieldsPopulated: string[];
+  } | null;
   updatedAt: string;
 }
 
@@ -395,6 +400,15 @@ function renderReadme(h: HistoryFile, finalPriorIssues: PriorIssueLite[]): strin
   if (h.auditorVersion || h.auditorGitSha) {
     lines.push(
       `_Auditor: blog-buster v${h.auditorVersion ?? "?"}${h.auditorGitSha ? ` @ ${h.auditorGitSha.slice(0, 7)}` : ""}_`,
+    );
+  }
+  if (h.brandsmith) {
+    lines.push(
+      `_Brand data: Brandsmith brand #${h.brandsmith.brandId} (${h.brandsmith.brandName})` +
+        (h.brandsmith.fieldsPopulated.length > 0
+          ? ` — auto-filled: ${h.brandsmith.fieldsPopulated.join(", ")}`
+          : " — no fields filled (caller provided everything)") +
+        `_`,
     );
   }
   if (h.terminalReason) {

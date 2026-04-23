@@ -54,8 +54,35 @@ export async function applyInstructions(
 
   const rewriteDeps: RewriteDeps = input.rewrite ?? { runLlm: false };
 
-  // Fall back to instructions order if fix_order is missing/empty.
-  const order = fixOrder.length > 0 ? fixOrder : instructions.map((i) => i.check_id);
+  // Reorder so synthesizers + content-inserts run AFTER blog-buster's span
+  // patches. Synthesizers mutate large chunks (TL;DR injection after <h1>,
+  // author-bio block, last-updated stamp) — running them first invalidates
+  // any subsequent apply_patch targeting those regions. Spans first, inserts
+  // last is the safer order.
+  const baseOrder = fixOrder.length > 0 ? fixOrder : instructions.map((i) => i.check_id);
+  const deferredChecks = new Set<string>();
+  for (const id of baseOrder) {
+    const instr = byId.get(id);
+    if (!instr) continue;
+    if (instr.action === "insert_missing") {
+      deferredChecks.add(id);
+      continue;
+    }
+    const envelopeEmptyForSynth =
+      !instr.patch || (!instr.patch.after?.trim() && !instr.patch.before?.trim());
+    if (input.synthesis && hasSynthesizer(id) && envelopeEmptyForSynth) {
+      deferredChecks.add(id);
+    }
+  }
+  const order = [
+    ...baseOrder.filter((id) => !deferredChecks.has(id)),
+    ...baseOrder.filter((id) => deferredChecks.has(id)),
+  ];
+
+  // Collected drift/ambiguous results are retried after the main pass with
+  // fuzzy whitespace matching — resolves the "first patch applied mutates
+  // the HTML so later patches targeting nearby spans no longer match" trap.
+  const deferRetry: Instruction[] = [];
 
   for (const checkId of order) {
     const instr = byId.get(checkId);
@@ -64,8 +91,7 @@ export async function applyInstructions(
 
     // Content synthesizer short-circuit: if a check_id has a synthesizer and
     // blog-buster didn't send a usable patch envelope, run the synthesizer
-    // instead of the default handler. This covers the 4 findings blog-buster
-    // can't auto-fix (TL;DR, DefinedTerm, FAQ count, word-count band).
+    // instead of the default handler.
     const envelopeEmpty =
       !instr.patch || (!instr.patch.after?.trim() && !instr.patch.before?.trim());
     if (input.synthesis && hasSynthesizer(checkId) && envelopeEmpty) {
@@ -103,6 +129,36 @@ export async function applyInstructions(
     }
     trace.push(result);
     state = { html: result.html, jsonLd: result.jsonLd, metaTags: result.metaTags };
+
+    // Collect drifted patches for a second fuzzy-match pass.
+    if (result.outcome === "drift" && instr.patch?.before && instr.patch.after) {
+      deferRetry.push(instr);
+    }
+  }
+
+  // Drift retry pass — fuzzy whitespace match. Blog-buster's patches are
+  // sometimes snapshot-dependent (generated against pre-dispatch HTML); by
+  // the time we get here, our synthesizers or other patches have shifted
+  // positions. A second pass with normalized-whitespace matching recovers
+  // most of them without risking false replacements.
+  for (const instr of deferRetry) {
+    const fuzzy = applyFuzzyPatch(state.html, instr.patch!.before, instr.patch!.after);
+    if (fuzzy) {
+      state = { ...state, html: fuzzy };
+      // Replace the trace entry for this checkId with a "recovered" result.
+      const prevIdx = trace.findIndex(
+        (t) => t.checkId === instr.check_id && t.outcome === "drift",
+      );
+      if (prevIdx >= 0) {
+        trace[prevIdx] = {
+          ...state,
+          checkId: instr.check_id,
+          action: instr.action,
+          outcome: "applied",
+          reason: "drift recovered via fuzzy whitespace match",
+        };
+      }
+    }
   }
 
   const counts: OutcomeCounts = {};
@@ -114,4 +170,54 @@ export async function applyInstructions(
   });
 
   return { state, trace, escalations: sink.records, counts, criticalUnresolved };
+}
+
+/**
+ * Fuzzy patch: match the `before` string after collapsing all whitespace runs
+ * to single spaces on both sides. Used as a fallback when the exact string
+ * can't be found (usually because other patches shifted whitespace/newlines).
+ *
+ * Returns the patched HTML if exactly one fuzzy occurrence exists, or null
+ * for zero / multiple matches (we keep the uniqueness guarantee of
+ * applyPatchHandler).
+ */
+function applyFuzzyPatch(html: string, before: string, after: string): string | null {
+  const needle = before.replace(/\s+/g, " ").trim();
+  if (needle.length < 20) return null; // too short to uniquely identify
+  const normalized = html.replace(/\s+/g, " ");
+  const firstIdx = normalized.indexOf(needle);
+  if (firstIdx === -1) return null;
+  if (normalized.indexOf(needle, firstIdx + needle.length) !== -1) return null;
+
+  // Walk the original html character by character, skipping whitespace
+  // differences, to locate the exact substring to replace.
+  let h = 0;
+  let n = 0;
+  let spanStart = -1;
+  while (h < html.length && n < needle.length) {
+    const hc = html[h]!;
+    const nc = needle[n]!;
+    if (/\s/.test(hc) && /\s/.test(nc)) {
+      // Consume whitespace run on both sides.
+      while (h < html.length && /\s/.test(html[h]!)) h++;
+      while (n < needle.length && /\s/.test(needle[n]!)) n++;
+      continue;
+    }
+    if (hc === nc) {
+      if (spanStart === -1) spanStart = h;
+      h++;
+      n++;
+      continue;
+    }
+    // Mismatch — restart search past the current spanStart.
+    if (spanStart === -1) {
+      h++;
+    } else {
+      h = spanStart + 1;
+      spanStart = -1;
+      n = 0;
+    }
+  }
+  if (n !== needle.length || spanStart === -1) return null;
+  return html.slice(0, spanStart) + after + html.slice(h);
 }

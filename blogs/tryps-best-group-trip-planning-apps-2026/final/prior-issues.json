@@ -1,0 +1,107 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "severity": "warn",
+    "evidence": "TL;DR is 72 words (target 40–58)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "status": "still_present",
+    "previousSeverity": "fail"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "status": "still_present",
+    "previousSeverity": "critical"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.32/500 words; target ≤2)",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 6/10 — Mixes genuine voice moments with clearly templated comparison-post scaffolding and repeated bullet structures.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+    "severity": "warn",
+    "evidence": "Genuine opinions vs safe claims 6/10 — The Wanderlog road-trip concession and 'Dave ghosting' show real takes, but most comparisons read like neutral bullet points.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_unexpected_phrasings",
+    "severity": "warn",
+    "evidence": "Unexpected phrasings 6/10 — A few fresh lines (thumbs-up emoji three days late, group chat dying on trip four) are outnumbered by boilerplate comparison phrasing.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_quotability",
+    "severity": "warn",
+    "evidence": "Quotability 6/10 — The Dave/Doodle and group-chat-on-trip-four lines are quotable; most other sentences aren't.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention",
+    "severity": "warn",
+    "evidence": "Intro earns attention 4/10 — The opening is a duplicated nav crumb plus a generic TL;DR; the real hook (Dave ghosting Doodle) is buried paragraphs in.",
+    "status": "fixed",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The TL;DR block and 'Quick answer' preamble delay the real hook, which is buried mid-page: 'The hardest part of a group trip isn't Bali versus Lisbon — it's Dave ghosting the Doodle poll for nine days straight.' That line is genuinely arresting. It should be sentence one. The actual opening question ('Which group trip planning app actually gets your friends moving?') is competent but generic — it could lead any comparison post on any topic.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  },
+  {
+    "checkId": "Q_specificity",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — The Google trend claim appears four times and never supplies a number, a date range, a percentage, or a link — making it unfalsifiable filler. Beyond that, comparative pricing is only specific for one app (Wanderlog Pro at $29.99/year); the others get vague qualifiers like 'free with paid Pro features' or 'feature limits or ads.' Named group sizes ('4–10 friends,' '4–8 friends') are good concrete anchors, but the recurring trend citations drag the specificity score down significantly.",
+    "status": "still_present",
+    "previousSeverity": "warn"
+  }
+]

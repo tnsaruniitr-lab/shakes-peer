@@ -1,0 +1,305 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://trypsagent.com/#organization",
+      "name": "TRYPS",
+      "url": "https://trypsagent.com",
+      "description": "TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://trypsagent.com/#logo",
+        "url": "https://trypsagent.com/logo.png",
+        "width": 600,
+        "height": 60,
+        "caption": "TRYPS logo"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://trypsagent.com/contact"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Arun Sharma"
+      },
+      "sameAs": [
+        "https://twitter.com/trypsapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trypsagent.com/#website",
+      "url": "https://trypsagent.com",
+      "name": "TRYPS",
+      "description": "TRYPS helps friends plan trips together, lock dates, build itineraries, and split expenses.",
+      "publisher": {
+        "@id": "https://trypsagent.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://trypsagent.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#webpage",
+      "url": "https://trypsagent.com/best-group-trip-planning-apps-2026",
+      "name": "Best Group Trip Planning App for Friends — 2026 Comparison",
+      "description": "Best group trip planning app for friends in 2026: TRYPS vs Wanderlog, Splitwise, Troupe, SquadTrip. Honest review by TRYPS.",
+      "isPartOf": {
+        "@id": "https://trypsagent.com/#website"
+      },
+      "dateModified": "2026-04-23T08:41:50Z",
+      "primaryImageOfPage": {
+        "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#hero-image"
+      },
+      "inLanguage": "en-US",
+      "breadcrumb": {
+        "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#breadcrumbs"
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#hero-image",
+      "url": "https://trypsagent.com/images/blog/best-group-trip-planning-apps-2026-hero.png",
+      "width": 1200,
+      "height": 630,
+      "caption": "Best Group Trip Planning App for Friends — 2026 Comparison hero image for TRYPS",
+      "creator": {
+        "@id": "https://trypsagent.com/#organization"
+      },
+      "license": "https://trypsagent.com/license"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#breadcrumbs",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Blog",
+          "item": "https://trypsagent.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Trip Planning",
+          "item": "https://trypsagent.com/blog/category"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Best Group Trip Planning App for Friends — 2026 Comparison",
+          "item": "https://trypsagent.com/blog/best-group-trip-planning-app-2026-comparison"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#article",
+      "mainEntityOfPage": {
+        "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#webpage"
+      },
+      "isPartOf": {
+        "@id": "https://trypsagent.com/#website"
+      },
+      "headline": "Best Group Trip Planning App for Friends — 2026 Comparison",
+      "alternativeHeadline": "Best Group Trip Planning App for Friends (2026 Comparison)",
+      "description": "Best group trip planning app for friends in 2026: TRYPS vs Wanderlog, Splitwise, Troupe, SquadTrip. Honest review by TRYPS.",
+      "abstract": "Which group trip planning app actually gets your friends moving? We compare TRYPS, Wanderlog, Splitwise, Troupe, and SquadTrip side-by-side for 2026 — features, price, and real pros/cons.",
+      "url": "https://trypsagent.com/best-group-trip-planning-apps-2026",
+      "datePublished": "2026-04-23T08:41:50Z",
+      "dateModified": "2026-04-23T08:41:50Z",
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": [
+          "[data-tldr]",
+          ".quick-answer",
+          "h1"
+        ]
+      },
+      "author": {
+        "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#author"
+      },
+      "publisher": {
+        "@id": "https://trypsagent.com/#organization"
+      },
+      "image": {
+        "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#hero-image"
+      },
+      "articleSection": "Trip Planning",
+      "keywords": [
+        "best group trip planning app",
+        "group trip planning app 2026",
+        "trip planning app for friends",
+        "group travel planning tools",
+        "best travel app for group trips",
+        "group itinerary app"
+      ],
+      "wordCount": 1361,
+      "inLanguage": "en-US",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Best Group Trip Planning App for Friends — 2026 Comparison"
+        },
+        {
+          "@type": "Thing",
+          "name": "No sign-up required for group members — just share a link"
+        },
+        {
+          "@type": "Thing",
+          "name": "Date polling, itinerary building, and expense splitting in one place (not three separate tools)"
+        },
+        {
+          "@type": "Thing",
+          "name": "Free to start — no credit card for the core planning flow"
+        },
+        {
+          "@type": "Thing",
+          "name": "Designed for small friend groups (4–10 people), not enterprise travel teams"
+        }
+      ],
+      "mentions": [
+        {
+          "@type": "Organization",
+          "name": "TRYPS",
+          "url": "https://trypsagent.com"
+        },
+        {
+          "@type": "Person",
+          "name": "Arun Sharma"
+        }
+      ],
+      "citation": [
+        {
+          "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-wanderlog-site"
+        },
+        {
+          "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-splitwise-site"
+        },
+        {
+          "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-troupe-site"
+        },
+        {
+          "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-squadtrip-site"
+        },
+        {
+          "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-google-travel-trends"
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#author",
+      "name": "TRYPS Editorial",
+      "url": "https://trypsagent.com/authors/tryps-editorial",
+      "worksFor": {
+        "@id": "https://trypsagent.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does TRYPS differ from Wanderlog for group trips with friends?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TRYPS focuses on group coordination first, getting everyone to vote on dates, agree on a shared plan, and settle expenses all in one place, with no sign-up for invitees. Wanderlog is best for building detailed itineraries and mapping, but each group member needs an account, and there is no built-in polling or expense tool.[wanderlog-site]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Splitwise help plan trips or only split expenses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Splitwise only splits and tracks expenses among friends, with settlement reminders. There is no feature for trip planning, date polling, or itinerary building.[splitwise-site]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which group trip app is best for 4–8 friends planning a weekend away?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TRYPS is designed for small friend groups exactly like this, birthdays, reunions, bachelor trips, with built-in date polls, trip planning, and split expense tracking. No separate tools required.[google-travel-trends]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use Troupe for expense splitting?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Troupe helps groups poll dates and vote on activities or hotels but does not have any built-in expense-tracking tools. You’ll need to use Splitwise or another finance app alongside it.[troupe-site]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is SquadTrip meant for friend group trips?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SquadTrip focuses on professional trip hosts or travel businesses who coordinate and collect payments for large, often paid group trips, not casual friend getaways.[squadtrip-site]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do any of these apps require my friends to sign up or download an app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All except TRYPS require friends to either sign up or download an app to join your trip. TRYPS uses a simple invite link or iMessage, no registration required.[google-travel-trends]"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is TRYPS actually free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TRYPS’s main trip planning flow, date poll, itinerary build, and expense splits, is free to start. There is no credit card required for the core planning functions.[google-travel-trends]"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-wanderlog-site",
+      "headline": "Wanderlog — Trip planning, itinerary, and travel app",
+      "url": "https://wanderlog.com/",
+      "text": "Wanderlog markets itself as a trip planning + itinerary tool with route mapping and offline access; used widely by solo and small-group travelers."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-splitwise-site",
+      "headline": "Splitwise — Split expenses with friends",
+      "url": "https://www.splitwise.com/",
+      "text": "Splitwise specializes in expense splitting and settlement reminders; does not offer itinerary building or date polling."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-troupe-site",
+      "headline": "Troupe — Planning group trips together",
+      "url": "https://www.troupe.com/",
+      "text": "Troupe focuses on group trip polling and voting on hotels and activities; no built-in expense splitting."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-squadtrip-site",
+      "headline": "SquadTrip — Host and manage group trips",
+      "url": "https://squadtrip.com/",
+      "text": "SquadTrip is aimed at paid group-trip hosts and travel organizers running multi-trip businesses; different audience from friend-group planners."
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://trypsagent.com/best-group-trip-planning-apps-2026#source-google-travel-trends",
+      "headline": "Google — Travel and Tourism Insights",
+      "url": "https://www.google.com/travel/research/",
+      "text": "Google's trend data on travel planning behavior, including the rise of multi-friend coordination searches year over year."
+    }
+  ]
+}

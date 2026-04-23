@@ -1,0 +1,128 @@
+{
+  "round": 3,
+  "counts": {
+    "escalated": 2,
+    "skipped": 4,
+    "applied": 7,
+    "drift": 5
+  },
+  "criticalUnresolved": true,
+  "trace": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "action": "human_fix_required",
+      "outcome": "escalated",
+      "reason": "human_fix_required (critical)"
+    },
+    {
+      "checkId": "S_word_count_below_band",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "S_tldr_word_count",
+      "action": "attempt_rewrite",
+      "outcome": "skipped",
+      "reason": "no patch/before to rewrite"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "rewrote 699b → 706b"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "action": "attempt_rewrite",
+      "outcome": "drift",
+      "reason": "before snippet no longer in html"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "action": "attempt_rewrite",
+      "outcome": "drift",
+      "reason": "before snippet no longer in html"
+    },
+    {
+      "checkId": "H_tricolon_density",
+      "action": "attempt_rewrite",
+      "outcome": "drift",
+      "reason": "before snippet no longer in html"
+    },
+    {
+      "checkId": "H_judge_specific_human_voice_vs_committee",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (102b → 94b)"
+    },
+    {
+      "checkId": "H_judge_genuine_opinions_vs_safe_claims",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (59b → 104b)"
+    },
+    {
+      "checkId": "H_judge_unexpected_phrasings",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (126b → 140b)"
+    },
+    {
+      "checkId": "H_judge_quotability",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (61b → 100b)"
+    },
+    {
+      "checkId": "H_judge_intro_earns_attention",
+      "action": "apply_patch",
+      "outcome": "drift",
+      "reason": "before string not found in html (patch type=replace_span, target=Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.)"
+    },
+    {
+      "checkId": "Q_intro_hook",
+      "action": "apply_patch",
+      "outcome": "applied",
+      "reason": "replaced single occurrence (104b → 241b)"
+    },
+    {
+      "checkId": "Q_specificity",
+      "action": "apply_patch",
+      "outcome": "drift",
+      "reason": "before string not found in html (patch type=replace_span, target=Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.)"
+    },
+    {
+      "checkId": "P_faq_count_mismatch",
+      "action": "attempt_rewrite",
+      "outcome": "applied",
+      "reason": "FAQPage rebuilt from 7 visible FAQ(s)"
+    },
+    {
+      "checkId": "D_Person_missing_recommended",
+      "action": "insert_missing",
+      "outcome": "skipped",
+      "reason": "no patch envelope"
+    },
+    {
+      "checkId": "D_entity_missing_id",
+      "action": "insert_missing",
+      "outcome": "skipped",
+      "reason": "no patch envelope"
+    },
+    {
+      "checkId": "E_author_credentials_missing",
+      "action": "attempt_rewrite",
+      "outcome": "escalated",
+      "reason": "author.title and author.bio both absent in brief — caller must populate"
+    }
+  ],
+  "escalations": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "at": "2026-04-23T08:43:51.852Z"
+    }
+  ]
+}

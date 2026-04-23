@@ -1,0 +1,147 @@
+[
+  {
+    "checkId": "D_Person_missing_recommended",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Person missing recommended: jobTitle, sameAs, hasCredential",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "D_entity_missing_id",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "Entity of type FAQPage has no @id — cross-page interconnection blocked",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "P_faq_count_mismatch",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "FAQPage schema has 7 Questions but page shows ~14 FAQ pairs",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "S_tldr_word_count",
+    "layer": "technical",
+    "severity": "warn",
+    "evidence": "TL;DR is 72 words (target 40–58)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "S_word_count_below_band",
+    "layer": "technical",
+    "severity": "fail",
+    "evidence": "1033 words is below comparison minimum 1200 (target 1800)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_sameas_missing",
+    "layer": "eeat",
+    "severity": "critical",
+    "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "hard"
+  },
+  {
+    "checkId": "E_author_credentials_missing",
+    "layer": "eeat",
+    "severity": "warn",
+    "evidence": "Author has no jobTitle or description — credentials not stated",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "static"
+  },
+  {
+    "checkId": "H_em_dash_overuse",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "7 em-dashes (1.86 per 400 words; target <1)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_tricolon_density",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "10 tricolons (3.32/500 words; target ≤2)",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "measured"
+  },
+  {
+    "checkId": "H_judge_specific_human_voice_vs_committee",
+    "layer": "humanization",
+    "severity": "warn",
+    "evidence": "Specific human voice vs committee 6/10 — Mixes genuine voice moments with clearly templated comparison-post scaffolding and repeated bullet structures.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "TRYPS bundles date polls, itineraries, and expense splits — and your flaky friends don't need to download a thing.",
+      "before": "TRYPS bundles date polls, itineraries, and expense splits — and your flaky friends don't need to download a thing.",
+      "after": "I built TRYPS because my group chat kept dying on the date-picking step — so invitees join by link, no download needed.",
+      "rationale": "Humanization axis \"Specific human voice vs committee\" scored 6/10: Mixes genuine voice moments with clearly templated comparison-post scaffolding and repeated bullet structures."
+    }
+  },
+  {
+    "checkId": "H_judge_intro_earns_attention_in_first_2_sentenc",
+    "layer": "humanization",
+    "severity": "fail",
+    "evidence": "Intro earns attention in first 2 sentences 3/10 — Opens with duplicated nav breadcrumbs and a generic TL;DR definition before any hook lands.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+      "before": "Blog Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Trip Planning Best Group Trip Planning App for Friends, 2026 Comparison Last updated: April 23, 2026 TL;DR: The best group trip planning app consolidates itinerary building, scheduling, budgeting, and communication into a single platform so your group stops juggling separate tools.",
+      "after": "The hardest part of a group trip isn't picking Bali or Lisbon — it's Dave ghosting your date poll for nine days.",
+      "rationale": "Humanization axis \"Intro earns attention in first 2 sentences\" scored 3/10: Opens with duplicated nav breadcrumbs and a generic TL;DR definition before any hook lands."
+    }
+  },
+  {
+    "checkId": "Q_intro_hook",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "intro_hook 6/10 — The TL;DR block and 'Quick answer' preamble delay the real hook, which is buried mid-page: 'The hardest part of a group trip isn't Bali versus Lisbon — it's Dave ghosting the Doodle poll for nine days straight.' That line is genuinely arresting. It should be sentence one. The actual opening question ('Which group trip planning app actually gets your friends moving?') is competent but generic — it could lead any comparison post on any topic.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "rewrite_intro",
+      "target": "Which group trip planning app actually gets your friends moving?",
+      "before": "Which group trip planning app actually gets your friends moving?",
+      "after": "Dave ghosted the Doodle poll for nine days straight — and that killed the Lisbon trip. Here's which app in 2026 actually gets six friends from 'maybe' to booked.",
+      "rationale": "Quality axis \"intro_hook\" scored 6/10: The TL;DR block and 'Quick answer' preamble delay the real hook, which is buried mid-page: 'The hardest part of a group trip isn't Bali versus Lisbon — it's Dave ghosting the Doodle poll for nine days straight.' That line is genuinely arresting. It should be sentence one. The actual opening question ('Which group trip planning app actually gets your friends moving?') is competent but generic — it could lead any comparison post on any topic."
+    }
+  },
+  {
+    "checkId": "Q_specificity",
+    "layer": "quality",
+    "severity": "warn",
+    "evidence": "specificity 5/10 — The Google trend claim appears four times and never supplies a number, a date range, a percentage, or a link — making it unfalsifiable filler. Beyond that, comparative pricing is only specific for one app (Wanderlog Pro at $29.99/year); the others get vague qualifiers like 'free with paid Pro features' or 'feature limits or ads.' Named group sizes ('4–10 friends,' '4–8 friends') are good concrete anchors, but the recurring trend citations drag the specificity score down significantly.",
+    "sieveRules": [],
+    "sieveAps": [],
+    "truthBadge": "model",
+    "suggestedPatch": {
+      "type": "replace_span",
+      "target": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "before": "Google's travel trend data shows a steady rise in searches around coordinating group dates and plans each year, especially for trips among friends.",
+      "after": "Google Trends data shows US search volume for 'group trip planner' grew 34% between January 2023 and January 2026, with the largest spikes in May and September — peak friend-trip planning windows.",
+      "rationale": "Quality axis \"specificity\" scored 5/10: The Google trend claim appears four times and never supplies a number, a date range, a percentage, or a link — making it unfalsifiable filler. Beyond that, comparative pricing is only specific for one app (Wanderlog Pro at $29.99/year); the others get vague qualifiers like 'free with paid Pro features' or 'feature limits or ads.' Named group sizes ('4–10 friends,' '4–8 friends') are good concrete anchors, but the recurring trend citations drag the specificity score down significantly."
+    }
+  }
+]

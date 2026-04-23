@@ -1,0 +1,129 @@
+{
+  "slug": "tryps-best-group-trip-planning-apps-2026",
+  "brand": "TRYPS",
+  "terminal": "needs_review",
+  "terminalReason": "reached maxRounds=3 with 3 open item(s) for editorial review",
+  "totalCostUsd": 0.671193,
+  "versions": [
+    {
+      "version": 1,
+      "generatedAt": "2026-04-23T08:41:51.130Z",
+      "score": null,
+      "layerScores": null,
+      "verdict": null,
+      "criticalCount": null,
+      "costUsd": 0,
+      "innerIterations": 0,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": "3309da0e5097aeed441277fd0c2309e0e64f39fc"
+    },
+    {
+      "version": 2,
+      "generatedAt": "2026-04-23T08:43:53.645Z",
+      "score": 45,
+      "layerScores": {
+        "technical": 13,
+        "humanization": 59,
+        "quality": 67,
+        "overall": 45
+      },
+      "verdict": "block",
+      "criticalCount": 1,
+      "costUsd": 0.174315,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 2,
+        "skipped": 3,
+        "applied": 8,
+        "drift": 6
+      },
+      "escalationCount": 1,
+      "commitSha": "402b6562ebc103673005926038fb6cf690676a5e"
+    },
+    {
+      "version": 3,
+      "generatedAt": "2026-04-23T08:43:53.780Z",
+      "score": 52,
+      "layerScores": {
+        "technical": 22,
+        "humanization": 72,
+        "quality": 60,
+        "overall": 52
+      },
+      "verdict": "block",
+      "criticalCount": 1,
+      "costUsd": 0.16936800000000002,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 2,
+        "skipped": 5,
+        "applied": 7,
+        "drift": 8
+      },
+      "escalationCount": 1,
+      "commitSha": "bd2071ba85a4d032cb5db8294524ee7a36460db2"
+    },
+    {
+      "version": 4,
+      "generatedAt": "2026-04-23T08:43:53.872Z",
+      "score": 53,
+      "layerScores": {
+        "technical": 22,
+        "humanization": 75,
+        "quality": 63,
+        "overall": 53
+      },
+      "verdict": "block",
+      "criticalCount": 1,
+      "costUsd": 0.17102099999999998,
+      "innerIterations": 1,
+      "dispatchCounts": {
+        "escalated": 2,
+        "skipped": 4,
+        "applied": 7,
+        "drift": 5
+      },
+      "escalationCount": 1,
+      "commitSha": "9246b9c2d1b68261310d13e97b1baa6d48c00fc4"
+    },
+    {
+      "version": 5,
+      "generatedAt": "2026-04-23T08:44:27.705Z",
+      "score": 53,
+      "layerScores": {
+        "technical": 22,
+        "humanization": 75,
+        "quality": 63,
+        "overall": 53
+      },
+      "verdict": "block",
+      "criticalCount": 1,
+      "costUsd": 0.15648900000000002,
+      "innerIterations": 1,
+      "dispatchCounts": null,
+      "escalationCount": 0,
+      "commitSha": null
+    }
+  ],
+  "openItems": [
+    {
+      "checkId": "E_author_sameas_missing",
+      "severity": "critical",
+      "evidence": "Author has no sameAs URLs (should link LinkedIn + at least one other profile)",
+      "suggestedFields": [
+        "author.linkedin_url"
+      ],
+      "firstSeenVersion": 2,
+      "lastSeenVersion": 4
+    }
+  ],
+  "auditorVersion": "0.1.6",
+  "auditorGitSha": "da64c69dcbf38cae92c564e46e09c1f4093d7f60",
+  "brandsmith": {
+    "brandId": 2,
+    "brandName": "tryps",
+    "fieldsPopulated": []
+  },
+  "updatedAt": "2026-04-23T08:44:27.748Z"
+}
